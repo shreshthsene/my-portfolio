@@ -271,6 +271,24 @@
       .avatar{margin: 0 auto}
       .services{grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))}
     }
+
+    /* Case Study Modal Sections */
+.modal h4 {
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent-600);
+}
+
+.modal ul {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.modal li {
+  margin-bottom: 6px;
+}
+
   </style>
 </head>
 <body>
@@ -394,7 +412,6 @@
         <!-- Example Project 1 -->
         <article class="proj" role="listitem" tabindex="0" data-project='{"title": "Performance Marketing Optimization",
     "subtitle": "Reduced CPL by 18% and boosted qualified leads by 22%",
-    "img": "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
     "challenge": "Practo wanted to increase qualified leads while lowering CPL.",
     "approach": "I designed and executed multi-channel campaigns across Google Ads, LinkedIn, and Email.",
     "execution": "Tested creatives and CTAs, optimized landing pages, and automated nurture flows in HubSpot.",
@@ -520,14 +537,20 @@
   </main>
 
   <!-- Project Modal (hidden by default) -->
-  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="modal" role="document" aria-labelledby="modalTitle">
-      <button class="close" aria-label="Close modal" onclick="closeModal()">✕</button>
-      <h3 id="modalTitle"></h3>
-      <p id="modalDesc" style="color:var(--muted)"></p>
-      <div id="modalImage" style="margin-top:12px"></div>
-    </div>
+  <!-- Project Modal (hidden by default) -->
+<div class="modal-backdrop" id="modalBackdrop" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal" role="document" aria-labelledby="modalTitle">
+    <button class="close" aria-label="Close modal" onclick="closeModal()">✕</button>
+    
+    <!-- Title + Subtitle -->
+    <h3 id="modalTitle"></h3>
+    <p id="modalSubtitle" style="color:var(--muted); font-style:italic"></p>
+    
+    <!-- Case Study Content -->
+    <div id="modalContent" style="margin-top:18px; line-height:1.6"></div>
   </div>
+</div>
+
 
   <script>
     // footer year
@@ -546,16 +569,28 @@
     });
 
     function openProject(el){
-      const data = el.dataset.project ? JSON.parse(el.dataset.project) : null;
-      if(!data) return;
-      modalTitle.textContent = data.title;
-      modalDesc.textContent = data.desc;
-      modalImage.innerHTML = `<img src="${data.img}" alt="${data.title}" style="width:100%; border-radius:8px; margin-top:10px" />`;
-      modalBackdrop.style.display = 'grid';
-      modalBackdrop.setAttribute('aria-hidden','false');
-      // lock scroll
-      document.documentElement.style.overflow = 'hidden';
-    }
+  const data = el.dataset.project ? JSON.parse(el.dataset.project) : null;
+  if(!data) return;
+
+  // Title + subtitle
+  modalTitle.textContent = data.title;
+  document.getElementById("modalSubtitle").textContent = data.subtitle || "";
+
+  // Build sections
+  let contentHtml = "";
+  if(data.challenge) contentHtml += `<h4>Challenge</h4><p>${data.challenge}</p>`;
+  if(data.approach) contentHtml += `<h4>Approach</h4><p>${data.approach}</p>`;
+  if(data.execution) contentHtml += `<h4>Execution</h4><p>${data.execution}</p>`;
+  if(data.results) {
+    contentHtml += `<h4>Results</h4><ul>${data.results.map(r => `<li>${r}</li>`).join("")}</ul>`;
+  }
+  document.getElementById("modalContent").innerHTML = contentHtml;
+
+  modalBackdrop.style.display = 'grid';
+  modalBackdrop.setAttribute('aria-hidden','false');
+  document.documentElement.style.overflow = 'hidden'; // lock scroll
+}
+
 
     function openArticle(title, content){
   modalTitle.textContent = title;
