@@ -1,123 +1,572 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shreshth Saini | Portfolio</title>
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gray-50 text-gray-800 p-6">
-    <!-- Headline / Introduction -->
-    <header class="text-center mb-16">
-      <h1 class="text-4xl font-bold mb-2">Shreshth Saini</h1>
-      <p class="text-lg text-gray-600">
-        Marketing Specialist | Content Creator | Digital Strategist
-      </p>
-      <p class="text-gray-500">
-        Vancouver, BC | shreshthsaini45@gmail.com | +1 (672) 336-6428
-      </p>
-    </header>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shresnth Saini — Marketing Portfolio</title>
+  <meta name="description" content="Marketing Specialist | Content Creator | Digital Strategist — portfolio & case studies" />
 
-    <!-- About Me -->
-    <section class="max-w-3xl mx-auto mb-16 text-center">
-      <h2 class="text-2xl font-semibold mb-4">About Me</h2>
-      <p class="text-gray-700 leading-relaxed">
-       I am a Marketing Specialist with 4+ years of experience across international markets, combining creativity with analytics to deliver measurable growth. Skilled in performance marketing, content strategy, and social campaigns, I’ve helped brands like Practo and OYO Hotels increase qualified leads by 22%, boost engagement by 30%, and drive seasonal bookings up by 15%.      </p>
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#F7FAFC;
+      --card:#ffffff;
+      --muted:#6B7280;
+      --accent:#2563EB;
+      --accent-600:#1D4ED8;
+      --text:#0f172a;
+      --glass: rgba(255,255,255,0.6);
+      --gap: clamp(16px, 2.5vw, 32px);
+      --container: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg,var(--bg),#fff);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+    }
+
+    /* Layout container */
+    .wrap{
+      max-width:var(--container);
+      margin:0 auto;
+      padding:48px 20px;
+    }
+
+    /* Header */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:18px 20px;
+      position:sticky;
+      top:0;
+      background:rgba(255,255,255,0.75);
+      backdrop-filter: blur(6px);
+      border-bottom:1px solid rgba(15,23,42,0.04);
+      z-index:40;
+    }
+    .logo{
+      font-weight:700;
+      letter-spacing:0.2px;
+      color:var(--text);
+    }
+    nav{display:flex; gap:12px; align-items:center;}
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:600;
+      padding:8px 10px;
+      border-radius:8px;
+      transition: all .18s ease;
+      font-size:14px;
+    }
+    nav a:hover{background:rgba(37,99,235,0.06); color:var(--accent-600)}
+
+    /* Hero */
+    .hero{
+      display:grid;
+      gap:24px;
+      grid-template-columns: 1fr 420px;
+      align-items:center;
+      padding:48px 20px;
+    }
+    .hero .headline{
+      font-size: clamp(26px, 4.5vw, 44px);
+      line-height:1.05;
+      font-weight:800;
+      margin:0 0 16px 0;
+      color:var(--text);
+    }
+    .hero .sub{
+      color:var(--muted);
+      margin-bottom:18px;
+      max-width:62ch;
+      font-size:15px;
+    }
+    .cta-row{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:10px;
+      font-weight:700;
+      cursor:pointer;
+      border:0;
+      font-size:14px;
+    }
+    .btn-primary{
+      background:var(--accent);
+      color:#fff;
+      box-shadow:0 6px 18px rgba(37,99,235,0.18);
+    }
+    .btn-ghost{
+      background:transparent;
+      color:var(--accent-600);
+      border:1px solid rgba(29,78,216,0.08);
+    }
+    .hero-art{
+      border-radius:14px;
+      background:linear-gradient(180deg,#fff,#f9fbff);
+      height:320px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      box-shadow: 0 6px 18px rgba(12,15,20,0.04);
+    }
+    .hero-art img{width:100%; height:100%; object-fit:cover}
+
+    /* About */
+    .about{
+      display:grid;
+      grid-template-columns: 220px 1fr;
+      gap:24px;
+      align-items:center;
+      margin-top:36px;
+    }
+    .avatar{
+      width:200px;
+      height:200px;
+      border-radius:14px;
+      overflow:hidden;
+      border:6px solid #fff;
+      box-shadow:0 10px 30px rgba(15,23,42,0.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .avatar img{width:100%; height:100%; object-fit:cover}
+    .about p{color:var(--muted); margin-top:6px; font-size:15px}
+    .stats{
+      display:flex;
+      gap:18px;
+      margin-top:18px;
+      flex-wrap:wrap;
+    }
+    .stat{background:var(--card); padding:16px 18px; border-radius:12px; box-shadow:0 6px 18px rgba(15,23,42,0.03); min-width:120px; text-align:center}
+    .stat .num{font-weight:800; font-size:20px}
+    .stat .label{font-size:13px; color:var(--muted)}
+
+    /* Services */
+    .services{
+      margin-top:48px;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap:18px;
+    }
+    .service-card{
+      background:var(--card);
+      padding:18px;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(15,23,42,0.03);
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .icon{
+      width:44px; height:44px; border-radius:10px; display:grid; place-items:center; background:linear-gradient(180deg,#f3f8ff,#fff);
+      box-shadow:0 4px 12px rgba(15,23,42,0.03);
+      flex-shrink:0;
+    }
+    .svc h4{margin:0 0 6px 0}
+    .svc p{margin:0; color:var(--muted); font-size:14px}
+
+    /* Portfolio */
+    .portfolio{
+      margin-top:44px;
+    }
+    .portfolio-grid{
+      display:grid;
+      gap:16px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    }
+    .proj{
+      background:var(--card);
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 8px 26px rgba(15,23,42,0.04);
+      cursor:pointer;
+      display:flex;
+      flex-direction:column;
+      min-height:160px;
+    }
+    .proj-thumb{height:120px; background:#eef2ff; display:block}
+    .proj-body{padding:12px}
+    .proj-title{font-weight:700; margin:0 0 6px 0}
+    .proj-desc{color:var(--muted); font-size:14px; margin:0}
+
+    /* Articles */
+    .articles{
+      margin-top:44px;
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap:18px;
+    }
+    .article{
+      background:var(--card);
+      padding:16px;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(15,23,42,0.03);
+    }
+    .article h5{margin:0 0 8px 0}
+    .article p{margin:0 0 12px 0; color:var(--muted)}
+
+    /* Resume / CTA */
+    .resume{
+      margin-top:44px;
+      display:flex;
+      gap:18px;
+      align-items:center;
+      justify-content:center;
+      padding:26px;
+      background:linear-gradient(180deg,#fff,#f8fbff);
+      border-radius:12px;
+      box-shadow:0 8px 20px rgba(15,23,42,0.03);
+    }
+
+    /* Contact */
+    .contact{
+      margin-top:48px;
+      padding:26px;
+      border-radius:12px;
+      background:var(--card);
+      box-shadow:0 6px 18px rgba(15,23,42,0.03);
+      text-align:center;
+    }
+    .contact p{color:var(--muted)}
+    .social{display:flex; gap:12px; justify-content:center; margin-top:12px}
+    .social a{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:10px; text-decoration:none; color:var(--muted); border:1px solid rgba(15,23,42,0.04)}
+
+    footer{margin:42px 0 90px 0; text-align:center; color:var(--muted); font-size:13px}
+
+    /* Modal */
+    .modal-backdrop{
+      position:fixed; inset:0; background:rgba(2,6,23,0.6); display:none; place-items:center; z-index:120;
+    }
+    .modal{
+      width: min(1000px, calc(100% - 40px));
+      max-height:90vh;
+      overflow:auto;
+      background:var(--card);
+      padding:20px;
+      border-radius:14px;
+      box-shadow:0 20px 60px rgba(2,6,23,0.4);
+    }
+    .modal .close{float:right; background:transparent; border:0; font-weight:700; font-size:18px; cursor:pointer}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr; padding:28px 10px}
+      .about{grid-template-columns: 1fr; text-align:center}
+      .avatar{margin: 0 auto}
+      .services{grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))}
+    }
+  </style>
+</head>
+<body>
+
+  <header aria-label="Main header">
+    <div class="logo" aria-hidden="true">Shresnth Saini</div>
+    <nav role="navigation" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#articles">Articles</a>
+      <a href="#contact" class="">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+
+    <!-- HERO -->
+    <section class="hero" id="home" aria-labelledby="hero-heading">
+      <div>
+        <h1 id="hero-heading" class="headline">Helping brands grow through data-driven marketing & storytelling</h1>
+        <p class="sub">I create campaign-driven growth strategies — paid, content, and email — that move the needle for B2B and consumer brands. Focused on measurable results and growth that scales.</p>
+
+        <div class="cta-row" role="region" aria-label="Primary call to actions">
+          <button class="btn btn-primary" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">View My Work</button>
+          <a class="btn btn-ghost" href="#contact">Let’s Talk</a>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <!-- Replace src with your chosen background/illustration -->
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=6d53a1f6d1b2c6af9f7aef5b44b7e8d9" alt="Marketing creative visual" />
+      </div>
     </section>
 
-    <!-- Blogs / Insights -->
-    <section class="max-w-5xl mx-auto mb-16">
-      <h2 class="text-2xl font-semibold mb-6 text-center">Articles & Insights</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="p-6 shadow-md rounded-2xl bg-white hover:scale-105 transition">
-          <h3 class="font-semibold text-xl mb-2">
-            The Role of Digital Marketing in Building Stronger Communities
-          </h3>
-          <p class="text-gray-600">
-            Digital marketing is more than driving clicks—it’s about building
-            connections. By creating meaningful content, engaging on social
-            platforms, and highlighting shared values, brands foster a sense of
-            community that goes beyond transactions.
-          </p>
-        </div>
-        <div class="p-6 shadow-md rounded-2xl bg-white hover:scale-105 transition">
-          <h3 class="font-semibold text-xl mb-2">
-            Marketing Isn’t About Selling—It’s About Connecting
-          </h3>
-          <p class="text-gray-600">
-            Through influencer collaborations, localized campaigns, and strong
-            storytelling, marketing transforms audiences into advocates,
-            building long-lasting relationships.
-          </p>
+    <!-- ABOUT -->
+    <section class="about" aria-labelledby="about-heading">
+      <div class="avatar" aria-hidden="true">
+        <!-- Replace with your photo -->
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=8d5ad8d5f0f3c0b3a1bb6c4a7f2bcd9f" alt="Portrait of Shresnth Saini" />
+      </div>
+
+      <div>
+        <h2 id="about-heading">About Me</h2>
+        <p>I'm a Marketing Specialist with 4+ years of experience in digital marketing and content strategy. I design campaigns that increase engagement, generate qualified leads, and deliver measurable ROI. I work across SEO, paid media, content creation, and performance analytics.</p>
+
+        <div class="stats" aria-hidden="true">
+          <div class="stat">
+            <div class="num">4+</div>
+            <div class="label">Years of experience</div>
+          </div>
+          <div class="stat">
+            <div class="num">20+</div>
+            <div class="label">Campaigns managed</div>
+          </div>
+          <div class="stat">
+            <div class="num">Avg 3x</div>
+            <div class="label">ROI improvement</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Get in Touch -->
-    <footer class="text-center mt-16">
-      <h2 class="text-2xl font-semibold mb-4">Get in Touch</h2>
-      <p class="text-gray-600 mb-6">
-        I’d love to connect and discuss how my skills can contribute to your
-        team’s success.
-      </p>
+    <!-- SERVICES -->
+    <section id="services" aria-labelledby="services-heading">
+      <h3 style="margin-top:42px">Services</h3>
+      <p style="color:var(--muted)">Strategic services I offer — modular or full-service campaign execution.</p>
 
-      <!-- Resume Download -->
-      <a
-        href="Shreshth_Marketing_Resume.pdf"
-        download="Shreshth_Saini_Resume.pdf"
-        class="px-4 py-2 bg-blue-600 text-white rounded inline-flex items-center gap-2 mb-6"
-      >
-        📄 Download Resume
-      </a>
+      <div class="services" role="list">
+        <article class="service-card" role="listitem">
+          <div class="icon" aria-hidden="true">
+            <!-- simple SEO icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11 17l-5-5 5-5" stroke="#1e293b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 19l-7-7 7-7" stroke="#1e293b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/></svg>
+          </div>
+          <div class="svc">
+            <h4>SEO & Content</h4>
+            <p>Keyword-led content and technical SEO that increases organic discoverability and quality traffic.</p>
+          </div>
+        </article>
 
-      <!-- Writing Samples -->
-      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-8">
-        <div class="p-6 shadow-md rounded-2xl bg-white">
-          <h3 class="font-semibold text-xl mb-2">Blog Post</h3>
-          <p class="text-gray-600">
-            Exploring how community-driven campaigns bring lasting brand value
-            and audience loyalty.
-          </p>
-        </div>
+        <article class="service-card" role="listitem">
+          <div class="icon" aria-hidden="true">
+            <!-- paid ads icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 7h18M7 21V7" stroke="#1e293b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="svc">
+            <h4>Paid Media (PPC)</h4>
+            <p>Audience-first paid campaigns across Meta, Google, and LinkedIn focused on LTV and CPA optimization.</p>
+          </div>
+        </article>
 
-        <div class="p-6 shadow-md rounded-2xl bg-white">
-          <h3 class="font-semibold text-xl mb-2">Social Media Campaign</h3>
-          <ul class="list-disc ml-5 mt-2 text-gray-600 space-y-1 text-left">
-            <li>
-              “Every building tells a story. We create spaces where innovation
-              meets community.”
-            </li>
-            <li>
-              “From concept to completion, collaboration drives our success.
-              #Teamwork”
-            </li>
-            <li>
-              “Marketing isn’t about selling—it’s about connecting. Let’s build
-              something lasting.”
-            </li>
-          </ul>
-        </div>
+        <article class="service-card" role="listitem">
+          <div class="icon" aria-hidden="true">
+            <!-- social icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#1e293b" stroke-width="1.6"/><path d="M19 12c0 4-3 7-7 7s-7-3-7-7" stroke="#1e293b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="svc">
+            <h4>Social Media Strategy</h4>
+            <p>Content calendars, creative briefs, and paid-social experiments to grow brand awareness and engagement.</p>
+          </div>
+        </article>
 
-        <div class="p-6 shadow-md rounded-2xl bg-white">
-          <h3 class="font-semibold text-xl mb-2">Email Campaign</h3>
-          <p class="text-gray-600">
-            <strong>Subject:</strong> Discover the Future of Community-Driven
-            Spaces <br />
-            <strong>CTA:</strong> “Learn More”
-          </p>
+        <article class="service-card" role="listitem">
+          <div class="icon" aria-hidden="true">
+            <!-- email icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#1e293b" stroke-width="1.6"/><path d="M3 7l9 6 9-6" stroke="#1e293b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="svc">
+            <h4>Email Campaigns</h4>
+            <p>Lifecycle emails, automations, and A/B testing to increase conversions and LTV.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="work" class="portfolio" aria-labelledby="work-heading">
+      <h3 id="work-heading" style="margin-top:36px">Portfolio & Case Studies</h3>
+      <p style="color:var(--muted)">Click a project to view the case study details and results.</p>
+
+      <div class="portfolio-grid" role="list">
+        <!-- Example Project 1 -->
+        <article class="proj" role="listitem" tabindex="0" data-project='{"title":"B2B SaaS Growth — SEO & Content","desc":"Organic traffic +150% in 6 months. Strategy: keyword clustering, pillar content, technical fixes.","img":"https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1f5e9a4ae2a4c1f1b7a5a7d2f2bd6f45"}'>
+          <div class="proj-thumb" style="background-image:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1f5e9a4ae2a4c1f1b7a5a7d2f2bd6f45'); background-size:cover; background-position:center"></div>
+          <div class="proj-body">
+            <h4 class="proj-title">B2B SaaS — SEO Growth</h4>
+            <p class="proj-desc">Content strategy + technical SEO that scaled inbound leads.</p>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="proj" role="listitem" tabindex="0" data-project='{"title":"E-commerce PPC Campaign","desc":"CPA down 32% and ROAS improved to 5.2x across Google & Meta.","img":"https://images.unsplash.com/photo-1534777413181-3f8b918f7e9d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1a8a4e0da5f9d1f2b8b3452663abc85f"}'>
+          <div class="proj-thumb" style="background-image:url('https://images.unsplash.com/photo-1534777413181-3f8b918f7e9d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1a8a4e0da5f9d1f2b8b3452663abc85f'); background-size:cover; background-position:center"></div>
+          <div class="proj-body">
+            <h4 class="proj-title">E-commerce — Paid Media</h4>
+            <p class="proj-desc">Scale-focused Meta & Search campaigns that improved ROAS.</p>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="proj" role="listitem" tabindex="0" data-project='{"title":"Email Nurture Series","desc":"Automated lifecycle flows that increased MQLs by 48%.","img":"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f9be5d56c8aaf2c8a3d40f7a6f3b9b2"}'>
+          <div class="proj-thumb" style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f9be5d56c8aaf2c8a3d40f7a6f3b9b2'); background-size:cover; background-position:center"></div>
+          <div class="proj-body">
+            <h4 class="proj-title">Lifecycle Email Campaign</h4>
+            <p class="proj-desc">Automations and segmentation that improved conversion rates.</p>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="proj" role="listitem" tabindex="0" data-project='{"title":"Social Launch Campaign","desc":"Influencer-driven launch with UGC that increased signups 3x.","img":"https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=e3c4c1b4e7b2a6a5435f7d1e2f6e6f9c"}'>
+          <div class="proj-thumb" style="background-image:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=e3c4c1b4e7b2a6a5435f7d1e2f6e6f9c'); background-size:cover; background-position:center"></div>
+          <div class="proj-body">
+            <h4 class="proj-title">Social Media Launch</h4>
+            <p class="proj-desc">UGC + influencer strategy that drove acquisition efficiently.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ARTICLES / BLOGS -->
+    <section id="articles" aria-labelledby="articles-heading">
+      <h3 id="articles-heading" style="margin-top:44px">Articles & Insights</h3>
+      <div class="articles" role="list">
+        <article class="article" role="listitem">
+          <h5>The Role of Digital Marketing in Building Communities</h5>
+          <p>How community-driven campaigns add long-term brand value beyond one-off conversions.</p>
+          <a class="btn btn-ghost" href="#" onclick="alert('Replace link with your blog post URL')">Read More</a>
+        </article>
+
+        <article class="article" role="listitem">
+          <h5>Marketing Isn’t About Selling—It’s About Connecting</h5>
+          <p>On using storytelling & influencer collaboration to create brand advocates.</p>
+          <a class="btn btn-ghost" href="#" onclick="alert('Replace link with your blog post URL')">Read More</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- RESUME -->
+    <section class="resume" aria-labelledby="resume-heading">
+      <div>
+        <h3 id="resume-heading" style="margin:0 0 8px 0">Resume</h3>
+        <p style="color:var(--muted); margin:0 0 12px 0">Download a PDF version of my resume or view my experience online.</p>
+        <div style="display:flex; gap:12px; justify-content:center">
+          <a class="btn btn-primary" href="resume.pdf" download aria-label="Download resume">Download Resume (PDF)</a>
+          <a class="btn btn-ghost" href="#contact">View Contact</a>
         </div>
       </div>
+    </section>
 
-      <!-- Contact Me -->
-      <div class="mt-10">
-        <a
-          href="mailto:shreshthsaini45@gmail.com"
-          class="px-4 py-2 bg-gray-800 text-white rounded inline-flex items-center gap-2"
-        >
-          ✉️ Contact Me
+    <!-- CONTACT -->
+    <section id="contact" class="contact" aria-labelledby="contact-heading">
+      <h3 id="contact-heading">Let’s Build Your Next Campaign</h3>
+      <p>I’d love to connect — tell me about your goals and I’ll propose a short plan. No spam, just real strategy.</p>
+
+      <div style="margin-top:18px">
+        <form onsubmit="event.preventDefault(); alert('Thanks! Replace this action with a real form handler.');" style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-top:8px">
+          <input name="name" placeholder="Your name" required style="padding:12px 14px; border-radius:10px; border:1px solid rgba(15,23,42,0.06); min-width:200px" />
+          <input name="email" type="email" placeholder="Email address" required style="padding:12px 14px; border-radius:10px; border:1px solid rgba(15,23,42,0.06); min-width:240px" />
+          <button class="btn btn-primary" type="submit">Book My Call</button>
+        </form>
+      </div>
+
+      <div style="margin-top:12px; color:var(--muted)">Or reach out via</div>
+      <div class="social" role="list" aria-label="social links">
+        <a href="mailto:shresnth.saini45@gmail.com" role="listitem" title="Email">
+          <!-- email svg -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:0.9"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#374151" stroke-width="1.4"/><path d="M3 7l9 6 9-6" stroke="#374151" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Email
+        </a>
+
+        <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" role="listitem" title="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:0.9"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#374151" stroke-width="1.4"/><path d="M8 11v6M8 8v.01M12 11v6M17 11v6" stroke="#374151" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          LinkedIn
+        </a>
+
+        <a href="https://twitter.com/" target="_blank" rel="noreferrer" role="listitem" title="Twitter">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:0.9"><path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0016 3a4.48 4.48 0 00-4.47 5.5A12.94 12.94 0 013 4s-4 9 5 13a13 13 0 01-8 2c9 5 20 0 20-11.5A4.5 4.5 0 0023 3z" stroke="#374151" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Twitter
         </a>
       </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Shresnth Saini · Marketing Specialist · <a href="mailto:shresnth.saini45@gmail.com" style="color:inherit; text-decoration:underline">Email</a>
     </footer>
-  </body>
+
+  </main>
+
+  <!-- Project Modal (hidden by default) -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal" role="document" aria-labelledby="modalTitle">
+      <button class="close" aria-label="Close modal" onclick="closeModal()">✕</button>
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc" style="color:var(--muted)"></p>
+      <div id="modalImage" style="margin-top:12px"></div>
+
+      <section style="margin-top:18px">
+        <h4 style="margin:0 0 6px 0">Challenge</h4>
+        <p style="color:var(--muted); margin-top:6px">Brief description of the client's problem and constraints.</p>
+
+        <h4 style="margin:12px 0 6px 0">Strategy</h4>
+        <p style="color:var(--muted); margin-top:6px">What approaches, channels, and experiments were executed.</p>
+
+        <h4 style="margin:12px 0 6px 0">Results</h4>
+        <p style="color:var(--muted); margin-top:6px">Key metrics — conversions, traffic uplift, CPA/ROAS improvements (use real numbers here).</p>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    // footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Project modal functionality
+    const projectEls = document.querySelectorAll('.proj');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalImage = document.getElementById('modalImage');
+
+    projectEls.forEach(el => {
+      el.addEventListener('click', () => openProject(el));
+      el.addEventListener('keypress', (e) => { if(e.key === 'Enter' || e.key === ' ') openProject(el); });
+    });
+
+    function openProject(el){
+      const data = el.dataset.project ? JSON.parse(el.dataset.project) : null;
+      if(!data) return;
+      modalTitle.textContent = data.title;
+      modalDesc.textContent = data.desc;
+      modalImage.innerHTML = `<img src="${data.img}" alt="${data.title}" style="width:100%; border-radius:8px; margin-top:10px" />`;
+      modalBackdrop.style.display = 'grid';
+      modalBackdrop.setAttribute('aria-hidden','false');
+      // lock scroll
+      document.documentElement.style.overflow = 'hidden';
+    }
+
+    function closeModal(){
+      modalBackdrop.style.display = 'none';
+      modalBackdrop.setAttribute('aria-hidden','true');
+      modalTitle.textContent = '';
+      modalDesc.textContent = '';
+      modalImage.innerHTML = '';
+      document.documentElement.style.overflow = '';
+    }
+
+    // close on ESC
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') closeModal();
+    });
+
+    // click backdrop to close
+    modalBackdrop.addEventListener('click', (evt) => {
+      if(evt.target === modalBackdrop) closeModal();
+    });
+  </script>
+
+</body>
 </html>
