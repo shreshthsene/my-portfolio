@@ -558,6 +558,26 @@
       document.documentElement.style.overflow = 'hidden';
     }
 
+    function openArticle(title, content){
+  modalTitle.textContent = title;
+  modalDesc.textContent = ''; // clear project description
+  modalImage.innerHTML = '';  // no image for articles
+  modalBackdrop.style.display = 'grid';
+  modalBackdrop.setAttribute('aria-hidden','false');
+
+  // Insert full article content
+  const articleContent = document.createElement('div');
+  articleContent.style.marginTop = '12px';
+  articleContent.style.color = 'var(--text)';
+  articleContent.style.lineHeight = '1.6';
+  articleContent.innerHTML = `<p>${content.replace(/\n/g, '</p><p>')}</p>`;
+  
+  modalImage.appendChild(articleContent);
+
+  // lock scroll
+  document.documentElement.style.overflow = 'hidden';
+}
+
     function closeModal(){
       modalBackdrop.style.display = 'none';
       modalBackdrop.setAttribute('aria-hidden','true');
