@@ -69,16 +69,7 @@
       letter-spacing:0.2px;
       color:var(--text);
     }
-    aria-label="Main header">
-  <div class="logo" aria-hidden="true">Shreshth Saini</div>
-  <nav role="navigation" aria-label="Primary">
-    <a href="#work">Work</a>
-    <a href="#services">Services</a>
-    <a href="#articles">Articles</a>
-    <a href="#contact">Contact</a>
-    <!-- Theme toggle button -->
-    <button id="themeToggle" class="btn btn-ghost" style="font-size:13px;">🌙</button>
-  </nav>
+
     nav{display:flex; gap:12px; align-items:center;}
     nav a{
       color:var(--muted);
@@ -263,6 +254,11 @@
       box-shadow:0 6px 18px rgba(15,23,42,0.03);
       text-align:center;
     }
+    <!-- Modern toggle switch -->
+<label class="theme-switch">
+  <input type="checkbox" id="themeToggle" />
+  <span class="slider"></span>
+</label>
     .contact p{color:var(--muted)}
     .social{display:flex; gap:12px; justify-content:center; margin-top:12px}
     .social a{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:10px; text-decoration:none; color:var(--muted); border:1px solid rgba(15,23,42,0.04)}
@@ -307,6 +303,56 @@
 
 .modal li {
   margin-bottom: 6px;
+}
+
+    /* Toggle switch container */
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+  cursor: pointer;
+}
+
+/* Hide the checkbox */
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider (the moving knob) */
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--muted);
+  border-radius: 34px;
+  transition: 0.3s;
+}
+
+/* Circle knob */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+/* When checked → move knob and change color */
+.theme-switch input:checked + .slider {
+  background-color: var(--accent);
+}
+
+.theme-switch input:checked + .slider:before {
+  transform: translateX(22px);
 }
 
   </style>
@@ -657,27 +703,31 @@
     modalBackdrop.addEventListener('click', (evt) => {
       if(evt.target === modalBackdrop) closeModal();
     });
-    const toggleBtn = document.getElementById('themeToggle');
+const toggleSwitch = document.getElementById('themeToggle');
 const rootEl = document.documentElement;
 
 // Load saved preference
 if (localStorage.getItem('theme') === 'dark') {
   rootEl.classList.add('dark');
-  toggleBtn.textContent = '☀️';
+  toggleSwitch.checked = true;
 }
 
 // Toggle on click
-toggleBtn.addEventListener('click', () => {
-  rootEl.classList.toggle('dark');
-  const isDark = rootEl.classList.contains('dark');
-  toggleBtn.textContent = isDark ? '☀️' : '🌙';
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+toggleSwitch.addEventListener('change', () => {
+  if (toggleSwitch.checked) {
+    rootEl.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    rootEl.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
+  }
 });
-    // Respect system preferences if no theme is saved
+
+// Respect system preferences if no theme is saved
 if (!localStorage.getItem('theme')) {
   if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
     rootEl.classList.add('dark');
-    toggleBtn.textContent = '☀️';
+    toggleSwitch.checked = true;
   }
 }
   </script>
