@@ -552,16 +552,16 @@
   </main>
 
   <!-- Project Modal (hidden by default) -->
-  <!-- Project Modal (hidden by default) -->
+<!-- Case Study / Article Modal -->
 <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="modal" role="document" aria-labelledby="modalTitle">
     <button class="close" aria-label="Close modal" onclick="closeModal()">✕</button>
-    
-    <!-- Title + Subtitle -->
+
+    <!-- Title + optional subtitle -->
     <h3 id="modalTitle"></h3>
     <p id="modalSubtitle" style="color:var(--muted); font-style:italic"></p>
-    
-    <!-- Case Study Content -->
+
+    <!-- Main body (used for both case studies & articles) -->
     <div id="modalContent" style="margin-top:18px; line-height:1.6"></div>
   </div>
 </div>
@@ -607,24 +607,16 @@
 }
 
 
-    function openArticle(title, content){
+ function openArticle(title, content){
   modalTitle.textContent = title;
-  modalDesc.textContent = ''; // clear project description
-  modalImage.innerHTML = '';  // no image for articles
+  document.getElementById("modalSubtitle").textContent = ""; // no subtitle for articles
+
+  // Insert full article content into modalContent
+  document.getElementById("modalContent").innerHTML = content;
+
   modalBackdrop.style.display = 'grid';
   modalBackdrop.setAttribute('aria-hidden','false');
-
-  // Insert full article content
-  const articleContent = document.createElement('div');
-  articleContent.style.marginTop = '12px';
-  articleContent.style.color = 'var(--text)';
-  articleContent.style.lineHeight = '1.6';
-  articleContent.innerHTML = `<p>${content.replace(/\n/g, '</p><p>')}</p>`;
-  
-  modalImage.appendChild(articleContent);
-
-  // lock scroll
-  document.documentElement.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden'; // lock scroll
 }
 
     function closeModal(){
