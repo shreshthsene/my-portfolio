@@ -656,14 +656,14 @@
   document.documentElement.style.overflow = 'hidden'; // lock scroll
 }
 
-    function closeModal(){
-      modalBackdrop.style.display = 'none';
-      modalBackdrop.setAttribute('aria-hidden','true');
-      modalTitle.textContent = '';
-      modalDesc.textContent = '';
-      modalImage.innerHTML = '';
-      document.documentElement.style.overflow = '';
-    }
+   function closeModal(){
+  modalBackdrop.style.display = 'none';
+  modalBackdrop.setAttribute('aria-hidden','true');
+  modalTitle.textContent = '';
+  document.getElementById("modalSubtitle").textContent = '';
+  document.getElementById("modalContent").innerHTML = '';
+  document.documentElement.style.overflow = ''; // restore scroll
+}
 
     // close on ESC
     document.addEventListener('keydown', (e) => {
