@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -21,6 +21,16 @@
       --gap: clamp(16px, 2.5vw, 32px);
       --container: 1100px;
     }
+    /* Dark theme overrides */
+.dark {
+  --bg: #0f172a;        /* dark background */
+  --card: #1e293b;      /* card background */
+  --muted: #9ca3af;     /* muted text */
+  --accent: #60a5fa;    /* lighter blue accent */
+  --accent-600: #3b82f6;
+  --text: #f9fafb;      /* main text (light) */
+  --glass: rgba(30, 41, 59, 0.6);
+}
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -59,6 +69,17 @@
       letter-spacing:0.2px;
       color:var(--text);
     }
+    <header aria-label="Main header">
+  <div class="logo" aria-hidden="true">Shreshth Saini</div>
+  <nav role="navigation" aria-label="Primary">
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#articles">Articles</a>
+    <a href="#contact">Contact</a>
+    <!-- Theme toggle button -->
+    <button id="themeToggle" class="btn btn-ghost" style="font-size:13px;">🌙</button>
+  </nav>
+</header>
     nav{display:flex; gap:12px; align-items:center;}
     nav a{
       color:var(--muted);
@@ -637,6 +658,29 @@
     modalBackdrop.addEventListener('click', (evt) => {
       if(evt.target === modalBackdrop) closeModal();
     });
+    const toggleBtn = document.getElementById('themeToggle');
+const rootEl = document.documentElement;
+
+// Load saved preference
+if (localStorage.getItem('theme') === 'dark') {
+  rootEl.classList.add('dark');
+  toggleBtn.textContent = '☀️';
+}
+
+// Toggle on click
+toggleBtn.addEventListener('click', () => {
+  rootEl.classList.toggle('dark');
+  const isDark = rootEl.classList.contains('dark');
+  toggleBtn.textContent = isDark ? '☀️' : '🌙';
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+    // Respect system preferences if no theme is saved
+if (!localStorage.getItem('theme')) {
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    rootEl.classList.add('dark');
+    toggleBtn.textContent = '☀️';
+  }
+}
   </script>
 
 </body>
