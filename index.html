@@ -180,6 +180,24 @@
       box-shadow:0 4px 12px rgba(15,23,42,0.03);
       flex-shrink:0;
     }
+    /* Default state */
+.service-card .icon {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover effect */
+.service-card:hover .icon {
+  transform: scale(1.15); /* make it bigger */
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25); /* glowing effect */
+}
+    .service-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+}
     .svc h4{margin:0 0 6px 0}
     .svc p{margin:0; color:var(--muted); font-size:14px}
 
