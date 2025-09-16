@@ -21,14 +21,13 @@
       --gap: clamp(16px, 2.5vw, 32px);
       --container: 1100px;
     }
- /* Dark theme overrides */
 .dark {
-  --bg: #0f172a;         /* very dark blue background */
-  --card: #1e293b;       /* darker card background */
-  --muted: #cbd5e1;      /* softer but visible gray for subtext */
-  --accent: #60a5fa;     /* light blue accent */
-  --accent-600: #3b82f6; /* stronger blue */
-  --text: #f1f5f9;       /* almost white text */
+  --bg: #0f172a;
+  --card: #1e293b;
+  --muted: #94a3b8;   /* softer gray but readable */
+  --accent: #3b82f6;
+  --accent-600: #2563eb;
+  --text: #f8fafc;    /* bright white text */
   --glass: rgba(30, 41, 59, 0.6);
 }
     *{box-sizing:border-box}
@@ -254,11 +253,7 @@
       box-shadow:0 6px 18px rgba(15,23,42,0.03);
       text-align:center;
     }
-    <!-- Modern toggle switch -->
-<label class="theme-switch">
-  <input type="checkbox" id="themeToggle" />
-  <span class="slider"></span>
-</label>
+    
     .contact p{color:var(--muted)}
     .social{display:flex; gap:12px; justify-content:center; margin-top:12px}
     .social a{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:10px; text-decoration:none; color:var(--muted); border:1px solid rgba(15,23,42,0.04)}
@@ -305,38 +300,39 @@
   margin-bottom: 6px;
 }
 
-    /* Toggle switch container */
+  /* Ensure toggle in navbar aligns correctly */
+nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Modern toggle styling */
 .theme-switch {
   position: relative;
   display: inline-block;
-  width: 48px;
+  width: 50px;
   height: 26px;
   cursor: pointer;
 }
 
-/* Hide the checkbox */
 .theme-switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-/* Slider (the moving knob) */
 .slider {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--muted);
+  inset: 0;
+  background-color: #cbd5e1; /* light gray */
   border-radius: 34px;
   transition: 0.3s;
 }
 
-/* Circle knob */
 .slider:before {
-  position: absolute;
   content: "";
+  position: absolute;
   height: 18px;
   width: 18px;
   left: 4px;
@@ -346,13 +342,12 @@
   transition: 0.3s;
 }
 
-/* When checked → move knob and change color */
 .theme-switch input:checked + .slider {
   background-color: var(--accent);
 }
 
 .theme-switch input:checked + .slider:before {
-  transform: translateX(22px);
+  transform: translateX(24px);
 }
 
   </style>
@@ -366,6 +361,12 @@
       <a href="#services">Services</a>
       <a href="#articles">Articles</a>
       <a href="#contact" class="">Contact</a>
+
+      <!-- Modern theme toggle -->
+    <label class="theme-switch">
+      <input type="checkbox" id="themeToggle" />
+      <span class="slider"></span>
+    </label>    
     </nav>
   </header>
 
@@ -703,16 +704,15 @@
     modalBackdrop.addEventListener('click', (evt) => {
       if(evt.target === modalBackdrop) closeModal();
     });
-const toggleSwitch = document.getElementById('themeToggle');
+
+    const toggleSwitch = document.getElementById('themeToggle');
 const rootEl = document.documentElement;
 
-// Load saved preference
 if (localStorage.getItem('theme') === 'dark') {
   rootEl.classList.add('dark');
   toggleSwitch.checked = true;
 }
 
-// Toggle on click
 toggleSwitch.addEventListener('change', () => {
   if (toggleSwitch.checked) {
     rootEl.classList.add('dark');
@@ -723,13 +723,12 @@ toggleSwitch.addEventListener('change', () => {
   }
 });
 
-// Respect system preferences if no theme is saved
 if (!localStorage.getItem('theme')) {
   if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
     rootEl.classList.add('dark');
     toggleSwitch.checked = true;
   }
-}
+
   </script>
 
 </body>
