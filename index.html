@@ -220,6 +220,22 @@
       flex-direction:column;
       min-height:160px;
     }
+    /* Smooth transition for portfolio cards */
+.proj {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover effect */
+.proj:hover {
+  transform: translateY(-6px); /* card lifts up */
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.15); /* stronger shadow */
+}
+
+/* Optional: make thumbnail zoom slightly on hover */
+.proj:hover .proj-thumb {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
     .proj-thumb{height:120px; background:#eef2ff; display:block}
     .proj-body{padding:12px}
     .proj-title{font-weight:700; margin:0 0 6px 0}
