@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -21,15 +21,7 @@
       --gap: clamp(16px, 2.5vw, 32px);
       --container: 1100px;
     }
-.dark {
-  --bg: #0f172a;
-  --card: #1e293b;
-  --muted: #94a3b8;   /* softer gray but readable */
-  --accent: #3b82f6;
-  --accent-600: #2563eb;
-  --text: #f8fafc;    /* bright white text */
-  --glass: rgba(30, 41, 59, 0.6);
-}
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -300,56 +292,6 @@
   margin-bottom: 6px;
 }
 
-  /* Ensure toggle in navbar aligns correctly */
-nav {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-/* Modern toggle styling */
-.theme-switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 26px;
-  cursor: pointer;
-}
-
-.theme-switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  inset: 0;
-  background-color: #cbd5e1; /* light gray */
-  border-radius: 34px;
-  transition: 0.3s;
-}
-
-.slider:before {
-  content: "";
-  position: absolute;
-  height: 18px;
-  width: 18px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  border-radius: 50%;
-  transition: 0.3s;
-}
-
-.theme-switch input:checked + .slider {
-  background-color: var(--accent);
-}
-
-.theme-switch input:checked + .slider:before {
-  transform: translateX(24px);
-}
-
   </style>
 </head>
 <body>
@@ -361,12 +303,6 @@ nav {
       <a href="#services">Services</a>
       <a href="#articles">Articles</a>
       <a href="#contact" class="">Contact</a>
-
-      <!-- Modern theme toggle -->
-    <label class="theme-switch">
-      <input type="checkbox" id="themeToggle" />
-      <span class="slider"></span>
-    </label>    
     </nav>
   </header>
 
@@ -704,30 +640,6 @@ nav {
     modalBackdrop.addEventListener('click', (evt) => {
       if(evt.target === modalBackdrop) closeModal();
     });
-
-    const toggleSwitch = document.getElementById('themeToggle');
-const rootEl = document.documentElement;
-
-if (localStorage.getItem('theme') === 'dark') {
-  rootEl.classList.add('dark');
-  toggleSwitch.checked = true;
-}
-
-toggleSwitch.addEventListener('change', () => {
-  if (toggleSwitch.checked) {
-    rootEl.classList.add('dark');
-    localStorage.setItem('theme', 'dark');
-  } else {
-    rootEl.classList.remove('dark');
-    localStorage.setItem('theme', 'light');
-  }
-});
-
-if (!localStorage.getItem('theme')) {
-  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    rootEl.classList.add('dark');
-    toggleSwitch.checked = true;
-  }
 
   </script>
 
