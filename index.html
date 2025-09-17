@@ -841,7 +841,11 @@
   let contentHtml = "";
   if(data.challenge) contentHtml += `<h4>Challenge</h4><p>${data.challenge}</p>`;
   if(data.approach) contentHtml += `<h4>Approach</h4><p>${data.approach}</p>`;
-  if(data.execution) contentHtml += `<h4>Execution</h4><p>${data.execution}</p>`;
+  if(data.execution) {
+  // Split execution into bullet points
+  const execItems = data.execution.split("\n").map(e => e.trim()).filter(e => e);
+  contentHtml += `<h4>Execution</h4><ul>${execItems.map(e => `<li>${e.replace(/^•\s*/, "")}</li>`).join("")}</ul>`;
+}
   if(data.results) {
   contentHtml += `<h4>Results</h4><ul>${data.results.map(r => `<li>${r}</li>`).join("")}</ul>`;
 }
