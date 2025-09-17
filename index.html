@@ -366,57 +366,71 @@
   margin-bottom: 6px;
 }
 
-/* === Paste new Story + Timeline styles here === */
-#story {
-  margin-top: 48px;
-}
-
-.timeline {
+/* Horizontal Timeline */
+.timeline-horizontal {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 40px 0;
   position: relative;
-  margin: 32px 0;
-  padding-left: 28px;
-  border-left: 2px solid var(--accent-600);
 }
 
-.timeline-item {
-  margin-bottom: 24px;
-  position: relative;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease;
-}
-
-.timeline-item.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.timeline-item::before {
+.timeline-horizontal::before {
   content: "";
   position: absolute;
-  left: -10px;
-  top: 6px;
-  width: 14px;
-  height: 14px;
+  top: 25px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent-600);
+  z-index: 1;
+}
+
+.timeline-event {
+  text-align: center;
+  position: relative;
+  width: 22%;
+  z-index: 2;
+}
+
+.timeline-event::before {
+  content: "";
+  display: block;
+  margin: 0 auto 12px auto;
+  width: 18px;
+  height: 18px;
   background: var(--accent-600);
   border-radius: 50%;
   box-shadow: 0 0 0 4px #fff;
+  position: relative;
+  top: 0;
 }
 
-.timeline-item h5 {
-  margin: 0 0 6px 0;
+.timeline-event h5 {
+  margin: 6px 0;
   font-size: 15px;
   font-weight: 700;
   color: var(--text);
 }
 
-.timeline-item p {
-  margin: 0;
+.timeline-event p {
   font-size: 14px;
   color: var(--muted);
+  margin: 0;
 }
-/* === End of new styles === */
 
+    /* === Animation styles (new) === */
+.timeline-event {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.timeline-event.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+    
 </style>
 
   </style>
@@ -515,28 +529,33 @@
     data-driven rigor.
   </p>
 
-  <!-- TIMELINE -->
-  <div style="margin-top:28px">
-    <h4>Journey Timeline</h4>
-    <div class="timeline">
-      <div class="timeline-item">
-        <h5>2021 — OYO Hotels</h5>
-        <p>Marketing Associate · Seasonal campaigns, influencer partnerships, and social growth</p>
-      </div>
-      <div class="timeline-item">
-        <h5>2022 – 2025 — Practo</h5>
-        <p>Performance Marketing Analyst · Multi-channel campaigns, ROI optimization, and automation</p>
-      </div>
-      <div class="timeline-item">
-        <h5>2024 – 2025 — MBA, University Canada West</h5>
-        <p>Project Management & Strategy focus · Expanding leadership and business skills</p>
-      </div>
-      <div class="timeline-item">
-        <h5>Today</h5>
-        <p>Marketing Specialist · Combining data, strategy, and storytelling to drive growth</p>
-      </div>
+ <!-- HORIZONTAL TIMELINE -->
+<div style="margin-top:28px">
+  <h4>Journey Timeline</h4>
+  <div class="timeline-horizontal">
+    <div class="timeline-event">
+      <h5>2021</h5>
+      <p>OYO Hotels<br>
+      Marketing Associate · Campaigns, influencer partnerships, social growth</p>
+    </div>
+    <div class="timeline-event">
+      <h5>2022 – 2025</h5>
+      <p>Practo<br>
+      Performance Marketing Analyst · Multi-channel growth & automation</p>
+    </div>
+    <div class="timeline-event">
+      <h5>2024 – 2025</h5>
+      <p>MBA, UCW<br>
+      Project Management & Strategy focus</p>
+    </div>
+    <div class="timeline-event">
+      <h5>Today</h5>
+      <p>Marketing Specialist<br>
+      Data-driven storytelling & growth campaigns</p>
     </div>
   </div>
+</div>
+  
 </section>
 
  <!-- TOOLS & SKILLS SECTION -->
@@ -1003,8 +1022,8 @@
     });
 
   
-  // Reveal timeline items on scroll
-  const timelineItems = document.querySelectorAll('.timeline-item');
+ // Reveal timeline events on scroll
+  const timelineEvents = document.querySelectorAll('.timeline-event');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1014,8 +1033,7 @@
     });
   }, { threshold: 0.2 });
 
-  timelineItems.forEach(item => observer.observe(item));
-
+  timelineEvents.forEach(event => observer.observe(event));
 
   </script>
 
