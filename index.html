@@ -366,6 +366,59 @@
   margin-bottom: 6px;
 }
 
+/* === Paste new Story + Timeline styles here === */
+#story {
+  margin-top: 48px;
+}
+
+.timeline {
+  position: relative;
+  margin: 32px 0;
+  padding-left: 28px;
+  border-left: 2px solid var(--accent-600);
+}
+
+.timeline-item {
+  margin-bottom: 24px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  background: var(--accent-600);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px #fff;
+}
+
+.timeline-item h5 {
+  margin: 0 0 6px 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.timeline-item p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+/* === End of new styles === */
+
+</style>
+
   </style>
 </head>
 <body>
@@ -428,6 +481,63 @@
         </div>
       </div>
     </section>
+
+    <!-- PERSONALITY & STORY -->
+<section id="story">
+  <h3>My Story</h3>
+
+  <p>
+    I first stepped into marketing because I was fascinated by how creative storytelling 
+    and data analytics together can move people to act. While studying, I was drawn to 
+    projects where I could combine strategy with measurable impact, and that curiosity 
+    naturally led me into digital marketing.
+  </p>
+
+  <p>
+    At <strong>OYO Hotels</strong>, I managed multi-location campaigns, influencer collaborations, 
+    and content calendars that lifted seasonal bookings by 15% and grew Instagram followers 
+    by 20% in six months. From there, I expanded into performance marketing at <strong>Practo</strong>, 
+    where I led multi-channel campaigns across Google Ads, LinkedIn, and Email—achieving a 22% 
+    increase in qualified leads and reducing cost-per-lead by 18% through analytics-driven optimizations.
+  </p>
+
+  <p>
+    Today, I focus on <em>scalable e-commerce and growth marketing</em>: lifecycle campaigns, 
+    SEO-led content, and automation that boost conversions and customer LTV. 
+    I believe effective marketing is about creating clarity in a noisy digital world 
+    — connecting the right audience with genuine value.
+  </p>
+
+  <p>
+    Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching digital 
+    designs, and writing about emerging marketing trends. My goal is to join a team where 
+    I can keep solving growth challenges while bringing creative energy and 
+    data-driven rigor.
+  </p>
+
+  <!-- TIMELINE -->
+  <div style="margin-top:28px">
+    <h4>Journey Timeline</h4>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h5>2021 — OYO Hotels</h5>
+        <p>Marketing Associate · Seasonal campaigns, influencer partnerships, and social growth</p>
+      </div>
+      <div class="timeline-item">
+        <h5>2022 – 2025 — Practo</h5>
+        <p>Performance Marketing Analyst · Multi-channel campaigns, ROI optimization, and automation</p>
+      </div>
+      <div class="timeline-item">
+        <h5>2024 – 2025 — MBA, University Canada West</h5>
+        <p>Project Management & Strategy focus · Expanding leadership and business skills</p>
+      </div>
+      <div class="timeline-item">
+        <h5>Today</h5>
+        <p>Marketing Specialist · Combining data, strategy, and storytelling to drive growth</p>
+      </div>
+    </div>
+  </div>
+</section>
 
  <!-- TOOLS & SKILLS SECTION -->
 <section id="tools" style="margin-top:48px">
@@ -891,6 +1001,21 @@
     modalBackdrop.addEventListener('click', (evt) => {
       if(evt.target === modalBackdrop) closeModal();
     });
+
+  
+  // Reveal timeline items on scroll
+  const timelineItems = document.querySelectorAll('.timeline-item');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  timelineItems.forEach(item => observer.observe(item));
+
 
   </script>
 
