@@ -819,8 +819,12 @@
   if(data.approach) contentHtml += `<h4>Approach</h4><p>${data.approach}</p>`;
   if(data.execution) contentHtml += `<h4>Execution</h4><p>${data.execution}</p>`;
   if(data.results) {
-    contentHtml += `<h4>Results</h4><ul>${data.results.map(r => `<li>${r}</li>`).join("")}</ul>`;
-  }
+  contentHtml += `<h4>Results</h4><ul>${data.results.map(r => `<li>${r}</li>`).join("")}</ul>`;
+}
+  if(data.takeaways) {
+  contentHtml += `<h4>Key Takeaways</h4><p>${data.takeaways}</p>`;
+}
+  
   document.getElementById("modalContent").innerHTML = contentHtml;
 
   modalBackdrop.style.display = 'grid';
