@@ -1,25 +1,23 @@
 // service-worker.js
 
-const CACHE_NAME = "portfolio-cache-v1";
+const CACHE_NAME = "portfolio-cache-v2";
 const urlsToCache = [
-  "/",               // homepage
-  "/index.html",     // main HTML
-  "/styles.css",     // update with your actual CSS file
-  "/script.js",      // update with your actual JS file
-  "/myphoto.jpg",    // profile image
-  "/favicon.ico",    // favicon if you have one
-  "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap",
+  "/",              // homepage
+  "/index.html",    // main HTML
+  "/myphoto.jpg",   // profile image
 ];
 
-// Install: cache important files
+// Install service worker and cache files
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(urlsToCache);
+    })
   );
   self.skipWaiting();
 });
 
-// Activate: remove old caches
+// Activate and clean old caches
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) =>
@@ -35,11 +33,11 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Fetch: serve from cache, fallback to network
+// Fetch requests
 self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request);
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
     })
   );
 });
