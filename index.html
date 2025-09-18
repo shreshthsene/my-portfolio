@@ -466,18 +466,25 @@
   }
 
 
-  /* Score badge colors */
 .badge-green {
-  background-color: #16a34a; /* green */
+  background-color: #4CAF50;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
 }
 
 .badge-yellow {
-  background-color: #facc15; /* yellow */
-  color: #111; /* dark text for contrast */
+  background-color: #FF9800;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
 }
 
 .badge-red {
-  background-color: #dc2626; /* red */
+  background-color: #F44336;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
 }
 
   </style>
@@ -737,23 +744,21 @@
   </div>
 </section>    
 
-<section id="performance">
-  <h2>Website Performance</h2>
-  <p>Real-time Core Web Vitals for my portfolio.</p>
+<h2>Website Performance</h2>
+<p>Real-time Core Web Vitals for my portfolio.</p>
 
-  <p>
-  <strong>Performance Score:</strong> 
-  <span id="score">Loading...</span>
-  <span id="score-badge" style="margin-left:10px; padding:4px 10px; border-radius:8px; font-weight:600; color:white; font-size:0.9rem;">--</span>
+<p>
+  <strong>Performance Score:</strong>
+  <span id="score-badge"></span>
+  <span id="score-label"></span>
 </p>
-  <p><strong>FCP:</strong> <span id="fcp">Loading...</span></p>
-  <p><strong>LCP:</strong> <span id="lcp">Loading...</span></p>
-  <p><strong>CLS:</strong> <span id="cls">Loading...</span></p>
-  <p><strong>TBT:</strong> <span id="tbt">Loading...</span></p>
 
-  <!-- Chart -->
-  <canvas id="performanceChart" width="400" height="200"></canvas>
+<p><strong>FCP:</strong> <span id="fcp">Loading...</span></p>
+<p><strong>LCP:</strong> <span id="lcp">Loading...</span></p>
+<p><strong>CLS:</strong> <span id="cls">Loading...</span></p>
+<p><strong>TBT:</strong> <span id="tbt">Loading...</span></p>
 
+<canvas id="performanceChart" width="400" height="200"></canvas>
 
 
   
@@ -1110,23 +1115,6 @@
   timelineEvents.forEach(event => observer.observe(event));
 
     
-async function loadPerformance() {
-  try {
-    const res = await fetch("/api/performance");
-    const data = await res.json();
-
-    document.getElementById("score").textContent = data.score;
-    document.getElementById("fcp").textContent = data.fcp;
-    document.getElementById("lcp").textContent = data.lcp;
-    document.getElementById("cls").textContent = data.cls;
-    document.getElementById("tbt").textContent = data.tbt;
-  } catch (err) {
-    console.error("Error loading performance data:", err);
-  }
-}
-
-loadPerformance();
-
 src="https://cdn.jsdelivr.net/npm/chart.js">
 
   async function loadPerformance() {
@@ -1134,13 +1122,32 @@ src="https://cdn.jsdelivr.net/npm/chart.js">
       const res = await fetch("/api/performance");
       const data = await res.json();
 
-      document.getElementById("score").textContent = data.score;
+      // ===== Score Badge + Label =====
+      const badge = document.getElementById("score-badge");
+      const label = document.getElementById("score-label");
+      const score = data.score;
+
+      badge.innerText = score;
+
+      // Apply badge color + label
+      if (score >= 90) {
+        badge.className = "badge-green";
+        label.innerText = "Excellent 🚀";
+      } else if (score >= 50) {
+        badge.className = "badge-yellow";
+        label.innerText = "Needs Improvement ⚠️";
+      } else {
+        badge.className = "badge-red";
+        label.innerText = "Poor ❌";
+      }
+
+      // ===== Other metrics =====
       document.getElementById("fcp").textContent = data.fcp;
       document.getElementById("lcp").textContent = data.lcp;
       document.getElementById("cls").textContent = data.cls;
       document.getElementById("tbt").textContent = data.tbt;
 
-      // Chart.js
+      // ===== Chart.js =====
       const ctx = document.getElementById("performanceChart").getContext("2d");
       new Chart(ctx, {
         type: "bar",
@@ -1174,26 +1181,13 @@ src="https://cdn.jsdelivr.net/npm/chart.js">
           }
         }
       });
+
     } catch (err) {
       console.error("Error loading performance data", err);
     }
   }
 
   loadPerformance();
-
-    document.getElementById("score").innerText = data.score;
-
-const badge = document.getElementById("score-badge");
-badge.innerText = data.score;
-
-// Apply color based on score
-if (data.score >= 90) {
-  badge.className = "badge-green";
-} else if (data.score >= 50) {
-  badge.className = "badge-yellow";
-} else {
-  badge.className = "badge-red";
-}
 
   
 
