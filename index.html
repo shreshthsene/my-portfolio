@@ -6,11 +6,19 @@
   <title>Shreshth's Portfolio</title>
   <meta name="description" content="Marketing Specialist | Content Creator | Digital Strategist — portfolio & case studies" />
 
-  <!-- Google font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+ <!-- Preload Google Fonts -->
+<link rel="preload" 
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" 
+      as="style" 
+      onload="this.onload=null;this.rel='stylesheet'">
 
-  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=6d53a1f6d1b2c6af9f7aef5b44b7e8d9" />
+<!-- Fallback if JS is disabled -->
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap">
+</noscript>
 
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1542744173...">
+  
   <style>
     :root{
       --bg:#F7FAFC;
@@ -573,8 +581,30 @@
       </div>
 
       <div class="hero-art" aria-hidden="true">
-        <!-- Replace src with your chosen background/illustration -->
-        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=6d53a1f6d1b2c6af9f7aef5b44b7e8d9" alt="Marketing creative visual" />
+       <picture>
+    <!-- WebP sources -->
+    <source 
+      srcset="
+        https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=400&auto=format&fit=crop&fm=webp 400w,
+        https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop&fm=webp 800w,
+        https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop&fm=webp 1200w
+      "
+      sizes="(max-width: 768px) 100vw, 1200px"
+      type="image/webp"
+    >
+
+    <!-- JPG fallback -->
+    <img 
+      src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop" 
+      srcset="
+        https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=400&auto=format&fit=crop 400w,
+        https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop 800w,
+        https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop 1200w
+      "
+      sizes="(max-width: 768px) 100vw, 1200px"
+      alt="Marketing creative visual"
+    >
+  </picture>      
       </div>
     </section>
 
