@@ -1,6 +1,6 @@
 // service-worker.js
 
-const CACHE_NAME = "portfolio-cache-v1";
+const CACHE_NAME = "portfolio-cache-v2"; // increment this!
 const urlsToCache = [
   "/",               // homepage
   "/index.html",     // main HTML
