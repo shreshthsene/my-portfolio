@@ -1115,8 +1115,11 @@
   timelineEvents.forEach(event => observer.observe(event));
 
     
-src="https://cdn.jsdelivr.net/npm/chart.js">
+<!-- Load Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<!-- Your performance script -->
+<script>
   async function loadPerformance() {
     try {
       const res = await fetch("/api/performance");
@@ -1129,7 +1132,6 @@ src="https://cdn.jsdelivr.net/npm/chart.js">
 
       badge.innerText = score;
 
-      // Apply badge color + label
       if (score >= 90) {
         badge.className = "badge-green";
         label.innerText = "Excellent 🚀";
@@ -1173,12 +1175,8 @@ src="https://cdn.jsdelivr.net/npm/chart.js">
         },
         options: {
           responsive: true,
-          plugins: {
-            legend: { display: false }
-          },
-          scales: {
-            y: { beginAtZero: true }
-          }
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true } }
         }
       });
 
@@ -1188,7 +1186,7 @@ src="https://cdn.jsdelivr.net/npm/chart.js">
   }
 
   loadPerformance();
-
+</script>
   
 
   </script>
