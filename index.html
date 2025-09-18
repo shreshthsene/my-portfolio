@@ -701,6 +701,18 @@
     <p><strong>CLS:</strong> <span id="cls">Loading...</span></p>
     <p><strong>TBT:</strong> <span id="tbt">Loading...</span></p>
   </div>
+
+  
+  id="performance">
+  <h2>Website Performance</h2>
+  <p>Real-time Core Web Vitals for my portfolio.</p>
+
+  <p><strong>Performance Score:</strong> <span id="score">Loading...</span></p>
+
+  <!-- Chart placeholder -->
+  <canvas id="performanceChart" width="400" height="200"></canvas>
+
+  
 </section>
     
     <!-- SERVICES -->
@@ -1070,6 +1082,58 @@ async function loadPerformance() {
 }
 
 loadPerformance();
+
+src="https://cdn.jsdelivr.net/npm/chart.js">
+
+  
+  async function loadPerformance() {
+    try {
+      const res = await fetch("/api/performance");
+      const data = await res.json();
+
+      // Update score text
+      document.getElementById("score").textContent = data.score || "N/A";
+
+      // Prepare chart data
+      const labels = ["FCP", "LCP", "CLS", "TBT"];
+      const values = [
+        parseFloat(data.fcp) || 0,
+        parseFloat(data.lcp) || 0,
+        parseFloat(data.cls) || 0,
+        parseFloat(data.tbt) || 0,
+      ];
+
+      // Render chart
+      const ctx = document.getElementById("performanceChart").getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Core Web Vitals",
+            data: values,
+            backgroundColor: "rgba(54, 162, 235, 0.6)",
+            borderColor: "rgba(54, 162, 235, 1)",
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+    } catch (error) {
+      console.error("Error fetching performance:", error);
+      document.getElementById("score").textContent = "Error loading data";
+    }
+  }
+
+  loadPerformance();
+
 
   </script>
 
