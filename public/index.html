@@ -6,18 +6,20 @@
   <title>Shreshth's Portfolio</title>
   <meta name="description" content="Marketing Specialist | Content Creator | Digital Strategist — portfolio & case studies" />
 
- <!-- Preload Google Fonts -->
-<link rel="preload" 
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" 
-      as="style" 
-      onload="this.onload=null;this.rel='stylesheet'">
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap">
 
-<!-- Fallback if JS is disabled -->
-<noscript>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap">
-</noscript>
+<!-- Preload Hero -->
+<link rel="preload" as="image" href="/images/hero.webp" fetchpriority="high">
 
-<link rel="preload" as="image" href="https://images.unsplash.com/photo-1542744173...">
+<!-- Hero Image -->
+<picture>
+  <source srcset="/images/hero.avif" type="image/avif">
+  <source srcset="/images/hero.webp" type="image/webp">
+  <img src="/images/hero.jpg" alt="Hero Section" width="1200" height="800" loading="eager" fetchpriority="high">
+</picture>
   
   <style>
     :root{
@@ -1200,7 +1202,7 @@
 
   </script>
 
-  <script>
+<script>
   // Lazy-load Chart.js only when performance section is visible
   document.addEventListener("DOMContentLoaded", () => {
     const perfSection = document.getElementById("performance");
@@ -1211,8 +1213,9 @@
           const script = document.createElement("script");
           script.src = "https://cdn.jsdelivr.net/npm/chart.js";
           script.onload = () => {
-            // Run your loadPerformance() function after Chart.js loads
+            // Run performance load immediately + keep updating
             loadPerformance();
+            setInterval(loadPerformance, 15000); // update every 15s
           };
           document.body.appendChild(script);
           obs.disconnect(); // stop observing after load
@@ -1223,45 +1226,59 @@
       // fallback: load immediately
       const script = document.createElement("script");
       script.src = "https://cdn.jsdelivr.net/npm/chart.js";
-      script.onload = loadPerformance;
+      script.onload = () => {
+        loadPerformance();
+        setInterval(loadPerformance, 15000);
+      };
       document.body.appendChild(script);
     }
   });
-</script>
 
-  <script>
-    async function loadPerformance() {
-      try {
-        const res = await fetch("/api/performance");
-        const data = await res.json();
+  async function loadPerformance() {
+    try {
+      const res = await fetch("/api/performance");
+      const data = await res.json();
 
-        // === Score Badge + Label ===
-        const badge = document.getElementById("score-badge");
-        const label = document.getElementById("score-label");
-        const score = data.score;
+      // === Score Badge + Label ===
+      const badge = document.getElementById("score-badge");
+      const label = document.getElementById("score-label");
+      const score = data.score;
 
-        badge.innerText = score;
+      badge.innerText = score;
 
-        if (score >= 80) {
-          badge.className = "badge-green";
-          label.innerText = "Excellent ✅";
-        } else if (score >= 50) {
-          badge.className = "badge-yellow";
-          label.innerText = "Needs Improvement ⚠️";
-        } else {
-          badge.className = "badge-red";
-          label.innerText = "Poor ❌";
-        }
+      if (score >= 80) {
+        badge.className = "badge-green";
+        label.innerText = "Excellent ✅";
+      } else if (score >= 50) {
+        badge.className = "badge-yellow";
+        label.innerText = "Needs Improvement ⚠️";
+      } else {
+        badge.className = "badge-red";
+        label.innerText = "Poor ❌";
+      }
 
-        // === Metrics ===
-        document.getElementById("fcp").textContent = data.fcp;
-        document.getElementById("lcp").textContent = data.lcp;
-        document.getElementById("cls").textContent = data.cls;
-        document.getElementById("tbt").textContent = data.tbt;
+      // === Metrics ===
+      document.getElementById("fcp").textContent = data.fcp;
+      document.getElementById("lcp").textContent = data.lcp;
+      document.getElementById("cls").textContent = data.cls;
+      document.getElementById("tbt").textContent = data.tbt;
 
-        // === Chart.js ===
-        const ctx = document.getElementById("performanceChart").getContext("2d");
-        new Chart(ctx, {
+      // === Chart.js ===
+      const ctx = document.getElementById("performanceChart").getContext("2d");
+
+      if (window.performanceChart) {
+        // Update existing chart
+        window.performanceChart.data.datasets[0].data = [
+          data.score,
+          parseFloat(data.fcp),
+          parseFloat(data.lcp),
+          parseFloat(data.cls),
+          parseFloat(data.tbt)
+        ];
+        window.performanceChart.update();
+      } else {
+        // Create new chart once
+        window.performanceChart = new Chart(ctx, {
           type: "bar",
           data: {
             labels: ["Score", "FCP", "LCP", "CLS", "TBT"],
@@ -1286,7 +1303,7 @@
           },
           options: {
             responsive: true,
-            animation: { duration: 1000, easing: "easeOutQuart" },
+            animation: { duration: 800, easing: "easeOutQuart" },
             plugins: { legend: { display: false } },
             scales: {
               y: {
@@ -1300,13 +1317,13 @@
             }
           }
         });
-
-      } catch (err) {
-        console.error("Error loading performance data", err);
       }
-    }
 
-    loadPerformance();
+    } catch (err) {
+      console.error("Error loading performance data", err);
+    }
+  }
+    
   </script>
 
 <script>
