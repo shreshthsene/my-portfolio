@@ -432,61 +432,72 @@
 }
     
 
+/* === Performance Card (Updated) === */
+    #performance {
+      max-width: 650px;
+      margin: 40px auto;
+      padding: 24px;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    #performance:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    }
 
-  
-  #performance {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    border-radius: 12px;
-    background: #ffffff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    font-family: "Inter", sans-serif;
-  }
+    #performance h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      background: linear-gradient(90deg, #2563EB, #4F46E5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-  #performance h2 {
-    margin-bottom: 10px;
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: #222;
-  }
+    #performance p {
+      margin: 6px 0;
+      font-size: 0.95rem;
+      color: #444;
+    }
 
-  #performance p {
-    margin: 6px 0;
-    font-size: 1rem;
-    color: #333;
-  }
+    #performance strong {
+      color: #111;
+      font-weight: 600;
+    }
 
-  #performance strong {
-    color: #111;
-  }
+    .badge-green,
+    .badge-yellow,
+    .badge-red {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-left: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
 
-  #performance canvas {
-    margin-top: 20px;
-  }
+    .badge-green { background-color: #22c55e; color: #fff; }
+    .badge-yellow { background-color: #f59e0b; color: #fff; }
+    .badge-red { background-color: #ef4444; color: #fff; }
 
+    #score-label {
+      margin-left: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
 
-.badge-green {
-  background-color: #4CAF50;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 6px;
-}
+    #performance canvas {
+      margin-top: 20px;
+    }
 
-.badge-yellow {
-  background-color: #FF9800;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 6px;
-}
+    .chartjs-render-monitor {
+      border-radius: 8px;
+    }
 
-.badge-red {
-  background-color: #F44336;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 6px;
-}
-
+    
   </style>
 </head>
 <body>
@@ -745,25 +756,22 @@
 </section>    
 
 <section id="performance">
-  <h2>Website Performance</h2>
-  <p>Real-time Core Web Vitals for my portfolio.</p>
+    <h2>Website Performance</h2>
+    <p>Real-time Core Web Vitals for my portfolio.</p>
 
-  <p>
-    <strong>Performance Score:</strong>
-    <span id="score-badge"></span>
-    <span id="score-label"></span>
-  </p>
+    <p>
+      <strong>Performance Score:</strong>
+      <span id="score-badge"></span>
+      <span id="score-label"></span>
+    </p>
 
-  <p><strong>FCP:</strong> <span id="fcp">Loading...</span></p>
-  <p><strong>LCP:</strong> <span id="lcp">Loading...</span></p>
-  <p><strong>CLS:</strong> <span id="cls">Loading...</span></p>
-  <p><strong>TBT:</strong> <span id="tbt">Loading...</span></p>
+    <p><strong>FCP:</strong> <span id="fcp">Loading...</span></p>
+    <p><strong>LCP:</strong> <span id="lcp">Loading...</span></p>
+    <p><strong>CLS:</strong> <span id="cls">Loading...</span></p>
+    <p><strong>TBT:</strong> <span id="tbt">Loading...</span></p>
 
-  <canvas id="performanceChart" width="400" height="200"></canvas>
+    <canvas id="performanceChart" width="400" height="200"></canvas>  
 
-
-  
-</section>
     
     <!-- SERVICES -->
     <section id="services" aria-labelledby="services-heading">
@@ -1117,82 +1125,88 @@
 
   </script>
 
-    
-<!-- Load Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- Your performance script -->
-<script>
-  async function loadPerformance() {
-    try {
-      const res = await fetch("/api/performance");
-      const data = await res.json();
+  <script>
+    async function loadPerformance() {
+      try {
+        const res = await fetch("/api/performance");
+        const data = await res.json();
 
-      // ===== Score Badge + Label =====
-      const badge = document.getElementById("score-badge");
-      const label = document.getElementById("score-label");
-      const score = data.score;
+        // === Score Badge + Label ===
+        const badge = document.getElementById("score-badge");
+        const label = document.getElementById("score-label");
+        const score = data.score;
 
-      badge.innerText = score;
+        badge.innerText = score;
 
-      if (score >= 90) {
-        badge.className = "badge-green";
-        label.innerText = "Excellent 🚀";
-      } else if (score >= 50) {
-        badge.className = "badge-yellow";
-        label.innerText = "Needs Improvement ⚠️";
-      } else {
-        badge.className = "badge-red";
-        label.innerText = "Poor ❌";
-      }
-
-      // ===== Other metrics =====
-      document.getElementById("fcp").textContent = data.fcp;
-      document.getElementById("lcp").textContent = data.lcp;
-      document.getElementById("cls").textContent = data.cls;
-      document.getElementById("tbt").textContent = data.tbt;
-
-      // ===== Chart.js =====
-      const ctx = document.getElementById("performanceChart").getContext("2d");
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: ["Score", "FCP", "LCP", "CLS", "TBT"],
-          datasets: [{
-            label: "Web Vitals",
-            data: [
-              data.score,
-              parseFloat(data.fcp),
-              parseFloat(data.lcp),
-              parseFloat(data.cls),
-              parseFloat(data.tbt)
-            ],
-            backgroundColor: [
-              "#4CAF50", // Score
-              "#2196F3", // FCP
-              "#FF9800", // LCP
-              "#9C27B0", // CLS
-              "#F44336"  // TBT
-            ]
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: { legend: { display: false } },
-          scales: { y: { beginAtZero: true } }
+        if (score >= 90) {
+          badge.className = "badge-green";
+          label.innerText = "Excellent 🚀";
+        } else if (score >= 50) {
+          badge.className = "badge-yellow";
+          label.innerText = "Needs Improvement ⚠️";
+        } else {
+          badge.className = "badge-red";
+          label.innerText = "Poor ❌";
         }
-      });
 
-    } catch (err) {
-      console.error("Error loading performance data", err);
+        // === Metrics ===
+        document.getElementById("fcp").textContent = data.fcp;
+        document.getElementById("lcp").textContent = data.lcp;
+        document.getElementById("cls").textContent = data.cls;
+        document.getElementById("tbt").textContent = data.tbt;
+
+        // === Chart.js ===
+        const ctx = document.getElementById("performanceChart").getContext("2d");
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: ["Score", "FCP", "LCP", "CLS", "TBT"],
+            datasets: [{
+              label: "Web Vitals",
+              data: [
+                data.score,
+                parseFloat(data.fcp),
+                parseFloat(data.lcp),
+                parseFloat(data.cls),
+                parseFloat(data.tbt)
+              ],
+              backgroundColor: [
+                "#22c55e", // Score
+                "#3b82f6", // FCP
+                "#f59e0b", // LCP
+                "#a855f7", // CLS
+                "#ef4444"  // TBT
+              ],
+              borderRadius: 6,
+            }]
+          },
+          options: {
+            responsive: true,
+            animation: { duration: 1000, easing: "easeOutQuart" },
+            plugins: { legend: { display: false } },
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: { color: "rgba(0,0,0,0.05)" },
+                ticks: { color: "#555", font: { size: 12 } }
+              },
+              x: {
+                ticks: { color: "#555", font: { size: 12 } }
+              }
+            }
+          }
+        });
+
+      } catch (err) {
+        console.error("Error loading performance data", err);
+      }
     }
-  }
 
-  loadPerformance();
-  </script>
-  
-
+    loadPerformance();
   </script>
 
+  </script>
 </body>
 </html>
