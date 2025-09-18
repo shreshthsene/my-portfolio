@@ -1,18 +1,18 @@
 // service-worker.js
 
-const CACHE_NAME = "portfolio-cache-v4"; // bump version every update
+const CACHE_NAME = "portfolio-cache-v4"; // bump version when you change files
 const urlsToCache = [
   "/",               // root
-  "/index.html",     // main HTML
-  "/styles.css",     // replace with actual CSS filename
-  "/script.js",      // replace with actual JS filename
-  "/myphoto.jpg",    // replace with your profile image
-  "/favicon.ico",    // favicon if available
-  "/offline.html",   // 👈 offline fallback page
+  "/index.html",     // main page
+  "/offline.html",   // fallback when offline
+  "/styles.css",     // replace with your actual CSS file if any
+  "/script.js",      // replace with your actual JS file if any
+  "/myphoto.jpg",    // your profile picture
+  "/favicon.ico",    // optional
   "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap",
 ];
 
-// Install service worker & cache files
+// Install and cache files
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -22,7 +22,7 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
-// Activate & remove old caches
+// Activate and clean old caches
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) =>
@@ -38,19 +38,19 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Fetch requests with offline fallback
+// Fetch: serve from cache, fallback to network, fallback to offline.html
 self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      return (
-        response ||
-        fetch(event.request).catch(() => {
-          // if request is for HTML page → fallback to offline.html
-          if (event.request.headers.get("accept").includes("text/html")) {
-            return caches.match("/offline.html");
-          }
-        })
-      );
+    fetch(event.request).catch(() => {
+      return caches.match(event.request).then((response) => {
+        if (response) {
+          return response;
+        }
+        // if not found in cache, show offline.html for navigation requests
+        if (event.request.mode === "navigate") {
+          return caches.match("/offline.html");
+        }
+      });
     })
   );
 });
