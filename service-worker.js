@@ -1,24 +1,26 @@
 // service-worker.js
 
-const CACHE_NAME = "portfolio-cache-v3"; // bump version on each deploy
+const CACHE_NAME = "portfolio-cache-v4"; // bump version each deploy
 const urlsToCache = [
-  "/",               // homepage
-  "/index.html",     // main HTML
-  "/myphoto.jpg",    // your profile image
-  // add actual CSS/JS if you have separate files
+  "/", 
+  "/index.html", 
+  "/myphoto.jpg"
+  // ⚠️ only list files you are 100% sure exist in your repo
 ];
 
-// Install service worker and cache files
+// Install
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(urlsToCache);
+      return cache.addAll(urlsToCache).catch((err) => {
+        console.error("Cache addAll failed:", err);
+      });
     })
   );
-  self.skipWaiting(); // activate immediately
+  self.skipWaiting();
 });
 
-// Activate and remove old caches
+// Activate
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) =>
@@ -31,24 +33,21 @@ self.addEventListener("activate", (event) => {
       )
     )
   );
-  self.clients.claim(); // take control immediately
+  self.clients.claim();
 });
 
-// Fetch requests
+// Fetch
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
-      // Return from cache if available
-      if (response) {
-        return response;
-      }
-      // Otherwise fetch from network
-      return fetch(event.request).catch(() => {
-        // Fallback only for navigation requests
-        if (event.request.mode === "navigate") {
-          return caches.match("/index.html");
-        }
-      });
+      return (
+        response ||
+        fetch(event.request).catch(() => {
+          if (event.request.mode === "navigate") {
+            return caches.match("/index.html");
+          }
+        })
+      );
     })
   );
 });
