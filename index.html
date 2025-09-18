@@ -431,7 +431,54 @@
   transform: translateY(0);
 }
     
-</style>
+
+
+  
+  #performance {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: "Inter", sans-serif;
+  }
+
+  #performance h2 {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #222;
+  }
+
+  #performance p {
+    margin: 6px 0;
+    font-size: 1rem;
+    color: #333;
+  }
+
+  #performance strong {
+    color: #111;
+  }
+
+  #performance canvas {
+    margin-top: 20px;
+  }
+
+
+  /* Score badge colors */
+.badge-green {
+  background-color: #16a34a; /* green */
+}
+
+.badge-yellow {
+  background-color: #facc15; /* yellow */
+  color: #111; /* dark text for contrast */
+}
+
+.badge-red {
+  background-color: #dc2626; /* red */
+}
 
   </style>
 </head>
@@ -691,16 +738,23 @@
 </section>    
 
 <section id="performance">
-  <h3>Website Performance</h3>
+  <h2>Website Performance</h2>
   <p>Real-time Core Web Vitals for my portfolio.</p>
 
-  <div id="perf-dashboard">
-    <p><strong>Performance Score:</strong> <span id="score">Loading...</span></p>
-    <p><strong>FCP:</strong> <span id="fcp">Loading...</span></p>
-    <p><strong>LCP:</strong> <span id="lcp">Loading...</span></p>
-    <p><strong>CLS:</strong> <span id="cls">Loading...</span></p>
-    <p><strong>TBT:</strong> <span id="tbt">Loading...</span></p>
-  </div>
+  <p>
+  <strong>Performance Score:</strong> 
+  <span id="score">Loading...</span>
+  <span id="score-badge" style="margin-left:10px; padding:4px 10px; border-radius:8px; font-weight:600; color:white; font-size:0.9rem;">--</span>
+</p>
+  <p><strong>FCP:</strong> <span id="fcp">Loading...</span></p>
+  <p><strong>LCP:</strong> <span id="lcp">Loading...</span></p>
+  <p><strong>CLS:</strong> <span id="cls">Loading...</span></p>
+  <p><strong>TBT:</strong> <span id="tbt">Loading...</span></p>
+
+  <!-- Chart -->
+  <canvas id="performanceChart" width="400" height="200"></canvas>
+
+
 
   
 </section>
@@ -1075,55 +1129,73 @@ loadPerformance();
 
 src="https://cdn.jsdelivr.net/npm/chart.js">
 
-  
   async function loadPerformance() {
     try {
       const res = await fetch("/api/performance");
       const data = await res.json();
 
-      // Update score text
-      document.getElementById("score").textContent = data.score || "N/A";
+      document.getElementById("score").textContent = data.score;
+      document.getElementById("fcp").textContent = data.fcp;
+      document.getElementById("lcp").textContent = data.lcp;
+      document.getElementById("cls").textContent = data.cls;
+      document.getElementById("tbt").textContent = data.tbt;
 
-      // Prepare chart data
-      const labels = ["FCP", "LCP", "CLS", "TBT"];
-      const values = [
-        parseFloat(data.fcp) || 0,
-        parseFloat(data.lcp) || 0,
-        parseFloat(data.cls) || 0,
-        parseFloat(data.tbt) || 0,
-      ];
-
-      // Render chart
+      // Chart.js
       const ctx = document.getElementById("performanceChart").getContext("2d");
       new Chart(ctx, {
         type: "bar",
         data: {
-          labels: labels,
+          labels: ["Score", "FCP", "LCP", "CLS", "TBT"],
           datasets: [{
-            label: "Core Web Vitals",
-            data: values,
-            backgroundColor: "rgba(54, 162, 235, 0.6)",
-            borderColor: "rgba(54, 162, 235, 1)",
-            borderWidth: 1
+            label: "Web Vitals",
+            data: [
+              data.score,
+              parseFloat(data.fcp),
+              parseFloat(data.lcp),
+              parseFloat(data.cls),
+              parseFloat(data.tbt)
+            ],
+            backgroundColor: [
+              "#4CAF50", // Score
+              "#2196F3", // FCP
+              "#FF9800", // LCP
+              "#9C27B0", // CLS
+              "#F44336"  // TBT
+            ]
           }]
         },
         options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false }
+          },
           scales: {
-            y: {
-              beginAtZero: true
-            }
+            y: { beginAtZero: true }
           }
         }
       });
-
-    } catch (error) {
-      console.error("Error fetching performance:", error);
-      document.getElementById("score").textContent = "Error loading data";
+    } catch (err) {
+      console.error("Error loading performance data", err);
     }
   }
 
   loadPerformance();
 
+    document.getElementById("score").innerText = data.score;
+
+const badge = document.getElementById("score-badge");
+badge.innerText = data.score;
+
+// Apply color based on score
+if (data.score >= 90) {
+  badge.className = "badge-green";
+} else if (data.score >= 50) {
+  badge.className = "badge-yellow";
+} else {
+  badge.className = "badge-red";
+}
+
+  
 
   </script>
 
