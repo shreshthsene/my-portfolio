@@ -7,16 +7,15 @@ export default async function handler(req, res) {
     const response = await fetch(apiUrl);
     const data = await response.json();
 
-    if (!data.lighthouseResult) {
-      return res.status(500).json({ error: "No lighthouseResult", data });
-    }
-
+    // ✅ Extract metrics properly
     const metrics = {
-      score: data.lighthouseResult.categories.performance.score * 100,
-      fcp: data.lighthouseResult.audits["first-contentful-paint"].displayValue,
-      lcp: data.lighthouseResult.audits["largest-contentful-paint"].displayValue,
-      cls: data.lighthouseResult.audits["cumulative-layout-shift"].displayValue,
-      tbt: data.lighthouseResult.audits["total-blocking-time"].displayValue,
+      score: Math.round(
+        (data.lighthouseResult?.categories?.performance?.score || 0) * 100
+      ),
+      fcp: data.lighthouseResult?.audits["first-contentful-paint"]?.displayValue || "N/A",
+      lcp: data.lighthouseResult?.audits["largest-contentful-paint"]?.displayValue || "N/A",
+      cls: data.lighthouseResult?.audits["cumulative-layout-shift"]?.displayValue || "N/A",
+      tbt: data.lighthouseResult?.audits["total-blocking-time"]?.displayValue || "N/A",
     };
 
     res.status(200).json(metrics);
