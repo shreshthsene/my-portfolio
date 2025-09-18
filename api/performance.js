@@ -1,22 +1,21 @@
 export default async function handler(req, res) {
+  const apiKey = process.env.PAGESPEED_API_KEY; // env variable from Vercel
+  const url = req.query.url || "https://yourdomain.com"; // default: your site
+
   try {
-    const key = process.env.PAGESPEED_API_KEY;
-    const url = "https://www.shreshth-portfolio.vercel.app"; // your site
-
-    const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${url}&key=${key}&strategy=mobile`;
-
-    const response = await fetch(apiUrl);
+    const response = await fetch(
+      `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${url}&strategy=mobile&key=${apiKey}`
+    );
     const data = await response.json();
 
-    const metrics = {
-      performance: data.lighthouseResult.categories.performance.score * 100,
-      fcp: data.lighthouseResult.audits["first-contentful-paint"].displayValue,
-      lcp: data.lighthouseResult.audits["largest-contentful-paint"].displayValue,
-      cls: data.lighthouseResult.audits["cumulative-layout-shift"].displayValue,
-      tti: data.lighthouseResult.audits["interactive"].displayValue,
-    };
+    // extract core metrics
+    const lighthouse = data.lighthouseResult?.categories?.performance?.score || 0;
+    const fcp = data.lighthouseResult?.audits["first-contentful-paint"]?.displayValue || "N/A";
+    const lcp = data.lighthouseResult?.audits["largest-contentful-paint"]?.displayValue || "N/A";
+    const cls = data.lighthouseResult?.audits["cumulative-layout-shift"]?.displayValue || "N/A";
+    const tbt = data.lighthouseResult?.audits["total-blocking-time"]?.displayValue || "N/A";
 
-    res.status(200).json(metrics);
+    res.status(200).json({ score: lighthouse * 100, fcp, lcp, cls, tbt });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to fetch performance data" });
