@@ -9,6 +9,8 @@
   <!-- Google font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=6d53a1f6d1b2c6af9f7aef5b44b7e8d9" />
+
   <style>
     :root{
       --bg:#F7FAFC;
@@ -1168,7 +1170,34 @@
 
   </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+  // Lazy-load Chart.js only when performance section is visible
+  document.addEventListener("DOMContentLoaded", () => {
+    const perfSection = document.getElementById("performance");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        if (entries[0].isIntersecting) {
+          const script = document.createElement("script");
+          script.src = "https://cdn.jsdelivr.net/npm/chart.js";
+          script.onload = () => {
+            // Run your loadPerformance() function after Chart.js loads
+            loadPerformance();
+          };
+          document.body.appendChild(script);
+          obs.disconnect(); // stop observing after load
+        }
+      });
+      observer.observe(perfSection);
+    } else {
+      // fallback: load immediately
+      const script = document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/npm/chart.js";
+      script.onload = loadPerformance;
+      document.body.appendChild(script);
+    }
+  });
+</script>
 
   <script>
     async function loadPerformance() {
