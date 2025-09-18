@@ -1,13 +1,11 @@
 // service-worker.js
 
-const CACHE_NAME = "portfolio-cache-v2"; // increment this!
+const CACHE_NAME = "portfolio-cache-v3"; // bump version on each deploy
 const urlsToCache = [
   "/",               // homepage
   "/index.html",     // main HTML
   "/myphoto.jpg",    // your profile image
-  "/styles.css",     // your CSS (update with real filename if different)
-  "/script.js",      // your JS (update with real filename if different)
-  "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap",
+  // add actual CSS/JS if you have separate files
 ];
 
 // Install service worker and cache files
@@ -17,6 +15,7 @@ self.addEventListener("install", (event) => {
       return cache.addAll(urlsToCache);
     })
   );
+  self.skipWaiting(); // activate immediately
 });
 
 // Activate and remove old caches
@@ -32,19 +31,24 @@ self.addEventListener("activate", (event) => {
       )
     )
   );
+  self.clients.claim(); // take control immediately
 });
 
 // Fetch requests
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
-      // Serve from cache, or fetch from network
-      return (
-        response ||
-        fetch(event.request).catch(() =>
-          caches.match("/index.html") // fallback to homepage if offline
-        )
-      );
+      // Return from cache if available
+      if (response) {
+        return response;
+      }
+      // Otherwise fetch from network
+      return fetch(event.request).catch(() => {
+        // Fallback only for navigation requests
+        if (event.request.mode === "navigate") {
+          return caches.match("/index.html");
+        }
+      });
     })
   );
 });
