@@ -744,21 +744,22 @@
   </div>
 </section>    
 
-<h2>Website Performance</h2>
-<p>Real-time Core Web Vitals for my portfolio.</p>
+<section id="performance">
+  <h2>Website Performance</h2>
+  <p>Real-time Core Web Vitals for my portfolio.</p>
 
-<p>
-  <strong>Performance Score:</strong>
-  <span id="score-badge"></span>
-  <span id="score-label"></span>
-</p>
+  <p>
+    <strong>Performance Score:</strong>
+    <span id="score-badge"></span>
+    <span id="score-label"></span>
+  </p>
 
-<p><strong>FCP:</strong> <span id="fcp">Loading...</span></p>
-<p><strong>LCP:</strong> <span id="lcp">Loading...</span></p>
-<p><strong>CLS:</strong> <span id="cls">Loading...</span></p>
-<p><strong>TBT:</strong> <span id="tbt">Loading...</span></p>
+  <p><strong>FCP:</strong> <span id="fcp">Loading...</span></p>
+  <p><strong>LCP:</strong> <span id="lcp">Loading...</span></p>
+  <p><strong>CLS:</strong> <span id="cls">Loading...</span></p>
+  <p><strong>TBT:</strong> <span id="tbt">Loading...</span></p>
 
-<canvas id="performanceChart" width="400" height="200"></canvas>
+  <canvas id="performanceChart" width="400" height="200"></canvas>
 
 
   
@@ -1114,6 +1115,8 @@
 
   timelineEvents.forEach(event => observer.observe(event));
 
+  </script>
+
     
 <!-- Load Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -1186,7 +1189,7 @@
   }
 
   loadPerformance();
-</script>
+  </script>
   
 
   </script>
