@@ -689,6 +689,19 @@
     </div>
   </div>
 </section>    
+
+<section id="performance">
+  <h3>Website Performance</h3>
+  <p>Real-time Core Web Vitals for my portfolio.</p>
+
+  <div id="perf-dashboard">
+    <p><strong>Performance Score:</strong> <span id="score">Loading...</span></p>
+    <p><strong>FCP:</strong> <span id="fcp">Loading...</span></p>
+    <p><strong>LCP:</strong> <span id="lcp">Loading...</span></p>
+    <p><strong>CLS:</strong> <span id="cls">Loading...</span></p>
+    <p><strong>TBT:</strong> <span id="tbt">Loading...</span></p>
+  </div>
+</section>
     
     <!-- SERVICES -->
     <section id="services" aria-labelledby="services-heading">
@@ -1039,6 +1052,24 @@
   }, { threshold: 0.2 });
 
   timelineEvents.forEach(event => observer.observe(event));
+
+    
+async function loadPerformance() {
+  try {
+    const res = await fetch("/api/performance");
+    const data = await res.json();
+
+    document.getElementById("score").textContent = data.score;
+    document.getElementById("fcp").textContent = data.fcp;
+    document.getElementById("lcp").textContent = data.lcp;
+    document.getElementById("cls").textContent = data.cls;
+    document.getElementById("tbt").textContent = data.tbt;
+  } catch (err) {
+    console.error("Error loading performance data:", err);
+  }
+}
+
+loadPerformance();
 
   </script>
 
