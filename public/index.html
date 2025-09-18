@@ -1202,8 +1202,10 @@
 
   </script>
 
+<!-- Web Vitals library -->
+<script src="https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js"></script>
+
 <script>
-  // Lazy-load Chart.js only when performance section is visible
   document.addEventListener("DOMContentLoaded", () => {
     const perfSection = document.getElementById("performance");
 
@@ -1213,117 +1215,109 @@
           const script = document.createElement("script");
           script.src = "https://cdn.jsdelivr.net/npm/chart.js";
           script.onload = () => {
-            // Run performance load immediately + keep updating
-            loadPerformance();
-            setInterval(loadPerformance, 15000); // update every 15s
+            initChart();
+            initWebVitals();
           };
           document.body.appendChild(script);
-          obs.disconnect(); // stop observing after load
+          obs.disconnect();
         }
       });
       observer.observe(perfSection);
     } else {
-      // fallback: load immediately
       const script = document.createElement("script");
       script.src = "https://cdn.jsdelivr.net/npm/chart.js";
       script.onload = () => {
-        loadPerformance();
-        setInterval(loadPerformance, 15000);
+        initChart();
+        initWebVitals();
       };
       document.body.appendChild(script);
     }
   });
 
-  async function loadPerformance() {
-    try {
-      const res = await fetch("/api/performance");
-      const data = await res.json();
+  let vitals = { fcp: 0, lcp: 0, cls: 0, tbt: 0, score: 0 };
+  let chart;
 
-      // === Score Badge + Label ===
-      const badge = document.getElementById("score-badge");
-      const label = document.getElementById("score-label");
-      const score = data.score;
+  function initWebVitals() {
+    webVitals.getFCP(m => { vitals.fcp = m.value / 1000; updateUI(); });
+    webVitals.getLCP(m => { vitals.lcp = m.value / 1000; updateUI(); });
+    webVitals.getCLS(m => { vitals.cls = m.value; updateUI(); });
+    webVitals.getTTFB(m => { vitals.tbt = m.value; updateUI(); });
+  }
 
-      badge.innerText = score;
+  function updateUI() {
+    const badge = document.getElementById("score-badge");
+    const label = document.getElementById("score-label");
 
-      if (score >= 80) {
-        badge.className = "badge-green";
-        label.innerText = "Excellent ✅";
-      } else if (score >= 50) {
-        badge.className = "badge-yellow";
-        label.innerText = "Needs Improvement ⚠️";
-      } else {
-        badge.className = "badge-red";
-        label.innerText = "Poor ❌";
-      }
+    // Simple score calculation
+    vitals.score = Math.max(0, 100 - (vitals.lcp*10 + vitals.tbt/10 + vitals.cls*50));
 
-      // === Metrics ===
-      document.getElementById("fcp").textContent = data.fcp;
-      document.getElementById("lcp").textContent = data.lcp;
-      document.getElementById("cls").textContent = data.cls;
-      document.getElementById("tbt").textContent = data.tbt;
+    badge.innerText = Math.round(vitals.score);
 
-      // === Chart.js ===
-      const ctx = document.getElementById("performanceChart").getContext("2d");
+    if (vitals.score >= 80) {
+      badge.className = "badge-green";
+      label.innerText = "Excellent ✅";
+    } else if (vitals.score >= 50) {
+      badge.className = "badge-yellow";
+      label.innerText = "Needs Improvement ⚠️";
+    } else {
+      badge.className = "badge-red";
+      label.innerText = "Poor ❌";
+    }
 
-      if (window.performanceChart) {
-        // Update existing chart
-        window.performanceChart.data.datasets[0].data = [
-          data.score,
-          parseFloat(data.fcp),
-          parseFloat(data.lcp),
-          parseFloat(data.cls),
-          parseFloat(data.tbt)
-        ];
-        window.performanceChart.update();
-      } else {
-        // Create new chart once
-        window.performanceChart = new Chart(ctx, {
-          type: "bar",
-          data: {
-            labels: ["Score", "FCP", "LCP", "CLS", "TBT"],
-            datasets: [{
-              label: "Web Vitals",
-              data: [
-                data.score,
-                parseFloat(data.fcp),
-                parseFloat(data.lcp),
-                parseFloat(data.cls),
-                parseFloat(data.tbt)
-              ],
-              backgroundColor: [
-                "#22c55e", // Score
-                "#3b82f6", // FCP
-                "#f59e0b", // LCP
-                "#a855f7", // CLS
-                "#ef4444"  // TBT
-              ],
-              borderRadius: 6,
-            }]
-          },
-          options: {
-            responsive: true,
-            animation: { duration: 800, easing: "easeOutQuart" },
-            plugins: { legend: { display: false } },
-            scales: {
-              y: {
-                beginAtZero: true,
-                grid: { color: "rgba(0,0,0,0.05)" },
-                ticks: { color: "#555", font: { size: 12 } }
-              },
-              x: {
-                ticks: { color: "#555", font: { size: 12 } }
-              }
-            }
-          }
-        });
-      }
+    document.getElementById("fcp").textContent = vitals.fcp.toFixed(2) + " s";
+    document.getElementById("lcp").textContent = vitals.lcp.toFixed(2) + " s";
+    document.getElementById("cls").textContent = vitals.cls.toFixed(3);
+    document.getElementById("tbt").textContent = vitals.tbt.toFixed(0) + " ms";
 
-    } catch (err) {
-      console.error("Error loading performance data", err);
+    if (chart) {
+      chart.data.datasets[0].data = [
+        vitals.score,
+        vitals.fcp,
+        vitals.lcp,
+        vitals.cls,
+        vitals.tbt
+      ];
+      chart.update();
     }
   }
-    
+
+  function initChart() {
+    const ctx = document.getElementById("performanceChart").getContext("2d");
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["Score", "FCP", "LCP", "CLS", "TBT"],
+        datasets: [{
+          label: "Web Vitals",
+          data: [0, 0, 0, 0, 0],
+          backgroundColor: [
+            "#22c55e", // Score
+            "#3b82f6", // FCP
+            "#f59e0b", // LCP
+            "#a855f7", // CLS
+            "#ef4444"  // TBT
+          ],
+          borderRadius: 6,
+        }]
+      },
+      options: {
+        responsive: true,
+        animation: { duration: 800, easing: "easeOutQuart" },
+        plugins: { legend: { display: false } },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: { color: "rgba(0,0,0,0.05)" },
+            ticks: { color: "#555", font: { size: 12 } }
+          },
+          x: {
+            ticks: { color: "#555", font: { size: 12 } }
+          }
+        }
+      }
+    });
+  }
+
   </script>
 
 <script>
