@@ -465,163 +465,87 @@
 }
     
 
-/* === Performance Section Card === */
-#performance.performance-card {
-  position: relative;
-  max-width: 650px;
+.performance-grid {
+  display: grid;
+  gap: 24px;
   margin: 48px auto;
-  padding: 32px;
-  border-radius: 20px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.12); /* glass */
+  max-width: 900px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.perf-card {
+  background: rgba(255,255,255,0.25);
   backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-}
-
-/* === Animated Gradient Accent Border === */
-#performance::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  padding: 2px;
   border-radius: 20px;
-  background: linear-gradient(135deg, #2563eb, #9333ea, #f59e0b);
-  background-size: 300% 300%;
-  animation: borderFlow 8s ease infinite;
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  z-index: 0;
-}
-@keyframes borderFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 8px 26px rgba(0,0,0,0.1);
+  padding: 24px;
+  text-align: center;
 }
 
-/* === Gradient Waves Background === */
-.performance-bg {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 20% 30%, rgba(37,99,235,0.25), transparent 70%),
-              radial-gradient(circle at 80% 70%, rgba(147,51,234,0.25), transparent 70%);
-  animation: bgPulse 10s ease-in-out infinite alternate;
-  z-index: 0;
-}
-@keyframes bgPulse {
-  from { transform: scale(1); opacity: 0.7; }
-  to { transform: scale(1.1); opacity: 1; }
-}
-
-/* === Floating Particles Layer === */
-#particles {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* === Foreground Content === */
-.performance-content {
+/* Radial Gauge */
+.radial-gauge {
   position: relative;
-  z-index: 2;
-  color: #0f172a;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
 }
-
-#performance h2 {
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: #1e3a8a;
-  margin-bottom: 6px;
+.circular-chart {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
 }
-
-#performance p {
-  font-size: 0.95rem;
-  color: #374151;
-  margin-bottom: 18px;
+.circle-bg {
+  fill: none;
+  stroke: #e5e7eb;
+  stroke-width: 3;
 }
-
-/* === Score Badge === */
-.score {
+.circle-progress {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke: url(#grad);
+  transition: stroke-dasharray 1s ease;
+}
+.radial-gauge span {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 1.2rem;
-  margin-bottom: 24px;
-}
-
-#performance-score {
-  display: inline-block;
-  min-width: 44px;
-  text-align: center;
-  padding: 8px 16px;
-  border-radius: 9999px;
+  justify-content: center;
+  font-size: 2rem;
   font-weight: 700;
-  font-size: 1rem;
-  color: #fff;
-  box-shadow: 0 0 16px rgba(0,0,0,0.15);
-  transition: transform 0.3s ease;
+  color: #111827;
 }
-#performance-score:hover {
-  transform: scale(1.1);
-}
-
-.status {
+.score-label {
+  margin-top: 12px;
   font-weight: 600;
+  color: #10b981;
 }
-.status.good { color: #16a34a; }
-.status.average { color: #f59e0b; }
-.status.poor { color: #dc2626; }
 
-#performance-score.good { background: #16a34a; }
-#performance-score.average { background: #f59e0b; }
-#performance-score.poor { background: #dc2626; }
-
-/* === Metrics Grid === */
-.metrics {
+/* Metric Tiles */
+.metrics-tiles {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px 22px;
-  margin-bottom: 24px;
+  gap: 16px;
+}
+.metric-tile {
+  padding: 16px;
+  border-radius: 14px;
+  font-weight: 700;
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.metric-tile:hover {
+  transform: scale(1.07);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
-.metric {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1f2937;
-  padding: 14px 16px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(8px);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  text-align: center;
-}
-.metric:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 8px 20px rgba(37,99,235,0.25);
-}
-
-/* === Animated Count-Up === */
-.metric strong, 
-#performance-score {
-  display: inline-block;
-  animation: countUp 2s ease forwards;
-}
-@keyframes countUp {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* === Chart === */
-#performanceChart {
-  margin-top: 16px;
-  width: 100% !important;
-  height: 260px !important;
-}
+/* Gradients */
+.gradient-fcp { background: linear-gradient(135deg, #facc15, #fb923c); }
+.gradient-lcp { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+.gradient-cls { background: linear-gradient(135deg, #34d399, #059669); }
+.gradient-tbt { background: linear-gradient(135deg, #ef4444, #ec4899); }
     
   </style>
 </head>
@@ -902,29 +826,48 @@
   </div>
 </section>    
 
-<section id="performance" class="performance-card">
-  <!-- Background Layers -->
-  <div class="performance-bg"></div>
-  <canvas id="particles"></canvas>
+<section id="performance" class="performance-grid">
+  <!-- Overall Performance Card -->
+  <div class="perf-card">
+    <h2>Overall Performance</h2>
+    <div class="radial-gauge">
+      <svg viewBox="0 0 36 36" class="circular-chart">
+        <path class="circle-bg"
+          d="M18 2.0845
+             a 15.9155 15.9155 0 0 1 0 31.831
+             a 15.9155 15.9155 0 0 1 0 -31.831"/>
+        <path id="progress" class="circle-progress"
+          stroke-dasharray="0, 100"
+          d="M18 2.0845
+             a 15.9155 15.9155 0 0 1 0 31.831
+             a 15.9155 15.9155 0 0 1 0 -31.831"/>
+      </svg>
+      <span id="score-value">0</span>
+    </div>
+    <p class="score-label" id="score-label">Loading…</p>
+  </div>
 
-  <!-- Foreground Content -->
-  <div class="performance-content">
-    <h2>Website Performance</h2>
-    <p>Real-time Core Web Vitals for my portfolio.</p>
-
-   <div class="score">
-  <span id="performance-score" class="poor">38</span>
-  <span class="status poor">Poor ❌</span>
-</div>
-
-    <div class="metrics">
-  <div class="metric"><strong>FCP:</strong> <span id="fcp">5.1</span> s</div>
-  <div class="metric"><strong>LCP:</strong> <span id="lcp">8.5</span> s</div>
-  <div class="metric"><strong>CLS:</strong> <span id="cls">0.274</span></div>
-  <div class="metric"><strong>TBT:</strong> <span id="tbt">420</span> ms</div>
-</div>
-
-    <canvas id="performanceChart"></canvas>
+  <!-- Core Web Vitals Card -->
+  <div class="perf-card">
+    <h2>Core Web Vitals</h2>
+    <div class="metrics-tiles">
+      <div class="metric-tile gradient-fcp">
+        <p>FCP</p>
+        <p id="fcp">2.7s</p>
+      </div>
+      <div class="metric-tile gradient-lcp">
+        <p>LCP</p>
+        <p id="lcp">3.2s</p>
+      </div>
+      <div class="metric-tile gradient-cls">
+        <p>CLS</p>
+        <p id="cls">0</p>
+      </div>
+      <div class="metric-tile gradient-tbt">
+        <p>TBT</p>
+        <p id="tbt">220ms</p>
+      </div>
+    </div>
   </div>
 
 </section>
@@ -1574,6 +1517,25 @@ document.addEventListener("DOMContentLoaded", () => {
     tbtEl.textContent = "0 ms";
     animateValue(tbtEl, 0, tbtVal, 2000, " ms");
   }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const scoreEl = document.getElementById("score-value");
+  const progressEl = document.getElementById("progress");
+  const scoreLabel = document.getElementById("score-label");
+
+  let score = 0;
+  const target = 84; // Example value, replace with API response later
+  const interval = setInterval(() => {
+    if (score >= target) {
+      clearInterval(interval);
+      scoreLabel.textContent = "Excellent ✔️";
+      return;
+    }
+    score++;
+    scoreEl.textContent = score;
+    progressEl.setAttribute("stroke-dasharray", `${score}, 100`);
+  }, 30);
 });
     
 </script>
