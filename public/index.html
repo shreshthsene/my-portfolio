@@ -446,88 +446,89 @@
 }
     
 
-.performance-grid {
-  display: grid;
-  gap: 24px;
-  margin: 48px auto;
-  max-width: 900px;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-}
+<!-- ===== Scoped styles (only affect this section) ===== -->
+    #performance {
+      position: relative;
+      padding: 56px 0;
+      overflow: hidden;
+      background: linear-gradient(180deg, transparent, rgba(248,250,252,0.6));
+    }
+    #performance .perf-container{
+      max-width: var(--container, 1100px);
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    @media (max-width: 900px){
+      #performance .perf-container{ grid-template-columns: 1fr; }
+    }
 
-.perf-card {
-  background: rgba(255,255,255,0.25);
-  backdrop-filter: blur(16px) saturate(180%);
-  border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.25);
-  box-shadow: 0 8px 26px rgba(0,0,0,0.1);
-  padding: 24px;
-  text-align: center;
-}
+    /* particles canvas */
+    #perfParticles{
+      position: absolute; inset: 0; pointer-events: none; opacity: .55;
+    }
 
-/* Radial Gauge */
-.radial-gauge {
-  position: relative;
-  width: 150px;
-  height: 150px;
-  margin: 0 auto;
-}
-.circular-chart {
-  transform: rotate(-90deg);
-  width: 100%;
-  height: 100%;
-}
-.circle-bg {
-  fill: none;
-  stroke: #e5e7eb;
-  stroke-width: 3;
-}
-.circle-progress {
-  fill: none;
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke: url(#grad);
-  transition: stroke-dasharray 1s ease;
-}
-.radial-gauge span {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #111827;
-}
-.score-label {
-  margin-top: 12px;
-  font-weight: 600;
-  color: #10b981;
-}
+    .perf-card{
+      background: var(--card, #fff);
+      border-radius: 16px;
+      box-shadow: 0 8px 22px rgba(15,23,42,0.06);
+      padding: 24px;
+    }
+    .perf-card h2, .card-title{
+      margin: 0 0 16px 0;
+      font-weight: 800;
+      color: var(--text, #0f172a);
+      font-size: 20px;
+    }
 
-/* Metric Tiles */
-.metrics-tiles {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-.metric-tile {
-  padding: 16px;
-  border-radius: 14px;
-  font-weight: 700;
-  color: #fff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.metric-tile:hover {
-  transform: scale(1.07);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-}
+    /* Gauge */
+    .gauge{
+      position: relative;
+      width: clamp(180px, 32vw, 260px);
+      height: clamp(180px, 32vw, 260px);
+      margin: 8px auto 0 auto;
+    }
+    .circular-chart{
+      transform: rotate(-90deg);
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .circle-progress{ transition: stroke-dasharray .8s ease; }
+    .gauge-score{
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800;
+      font-size: clamp(36px, 6vw, 56px); /* readable but bounded */
+      color: var(--text, #0f172a);
+      letter-spacing: .5px;
+    }
+    .gauge-label{
+      text-align: center;
+      margin-top: 12px;
+      font-weight: 700;
+      color: #10b981; /* will be swapped by JS */
+    }
 
-/* Gradients */
-.gradient-fcp { background: linear-gradient(135deg, #facc15, #fb923c); }
-.gradient-lcp { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
-.gradient-cls { background: linear-gradient(135deg, #34d399, #059669); }
-.gradient-tbt { background: linear-gradient(135deg, #ef4444, #ec4899); }
-    
+    /* Metrics */
+    .metrics-grid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .metric{
+      border: 1px solid rgba(15,23,42,0.06);
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: linear-gradient(180deg,#fff,#f8fbff);
+      box-shadow: 0 4px 12px rgba(15,23,42,0.03);
+    }
+    .metric span{ display:block; color: var(--muted,#6B7280); font-weight:600; font-size:13px; }
+    .metric strong{ display:block; margin-top:6px; font-size:18px; font-weight:800; color: var(--text,#0f172a); }
+  
   </style>
 </head>
 <body>
@@ -807,75 +808,76 @@
   </div>
 </section>    
 
-<section id="performance" class="relative z-10 py-16">
-  <!-- Floating particles background -->
-  <canvas id="particles" class="absolute inset-0 w-full h-full -z-10"></canvas>
+<!-- ===== PERFORMANCE (replace your whole section with this) ===== -->
+<section id="performance" aria-labelledby="performance-heading">
+  <!-- soft particles background -->
+  <canvas id="perfParticles" aria-hidden="true"></canvas>
 
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-6">
-    
-    <!-- Radial Gauge Card -->
-    <div class="rounded-2xl shadow-lg bg-white/30 dark:bg-black/30 backdrop-blur-md border border-white/20 p-6 text-center">
-      <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">Overall Performance</h2>
-      
-      <div class="flex justify-center relative w-24 h-24 md:w-32 md:h-32 mx-auto">
-        <svg viewBox="0 0 36 36" class="w-full h-full rotate-[-90deg] circular-chart">
+  <div class="perf-container">
+    <!-- Gauge card -->
+    <article class="perf-card">
+      <h2 id="performance-heading">Overall Performance</h2>
+
+      <div class="gauge" aria-label="Performance score">
+        <svg viewBox="0 0 36 36" class="circular-chart" role="img">
+          <!-- track -->
           <path
-            class="text-gray-300 dark:text-gray-700"
-            stroke-width="2.5"
+            class="circle-bg"
+            stroke-width="3"
             fill="none"
-            stroke="currentColor"
+            stroke="#e5e7eb"
             d="M18 2.0845
                a 15.9155 15.9155 0 0 1 0 31.831
-               a 15.9155 15.9155 0 0 1 0 -31.831"
-          />
+               a 15.9155 15.9155 0 0 1 0 -31.831" />
+          <!-- progress -->
           <path
-            id="performance-progress"
-            stroke-width="2.5"
+            id="perfProgress"
+            class="circle-progress"
+            stroke-width="3"
             stroke-linecap="round"
             fill="none"
-            stroke="url(#grad)"
-            stroke-dasharray="0,100"
+            stroke="url(#perfGrad)"
+            stroke-dasharray="0 100"
             d="M18 2.0845
                a 15.9155 15.9155 0 0 1 0 31.831
-               a 15.9155 15.9155 0 0 1 0 -31.831"
-          />
+               a 15.9155 15.9155 0 0 1 0 -31.831" />
           <defs>
-            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#34d399" />
-              <stop offset="100%" stop-color="#3b82f6" />
+            <linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"  stop-color="#3b82f6"/>
+              <stop offset="100%" stop-color="#10b981"/>
             </linearGradient>
           </defs>
         </svg>
-        <!-- Bigger Score Font -->
-        <span id="performance-score" class="absolute inset-0 flex items-center justify-center font-bold text-3xl md:text-4xl text-gray-900 dark:text-white">0</span>
-      </div>
-      
-      <!-- Status Label -->
-      <p id="performance-label" class="mt-4 font-semibold text-green-500">Loading…</p>
-    </div>
 
-    <!-- Core Web Vitals Tiles -->
-    <div class="rounded-2xl shadow-lg bg-white/30 dark:bg-black/30 backdrop-blur-md border border-white/20 p-6 text-center">
-      <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">Core Web Vitals</h2>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="p-5 rounded-xl text-white font-bold bg-gradient-to-r from-yellow-300 to-orange-400">
-          <p>FCP</p>
-          <p id="fcp">0.0s</p>
+        <div id="perfScore" class="gauge-score">0</div>
+      </div>
+
+      <p id="perfLabel" class="gauge-label">Loading…</p>
+    </article>
+
+    <!-- Vitals card -->
+    <article class="perf-card">
+      <h3 class="card-title">Core Web Vitals</h3>
+
+      <div class="metrics-grid">
+        <div class="metric">
+          <span>FCP</span>
+          <strong id="m-fcp">0.00s</strong>
         </div>
-        <div class="p-5 rounded-xl text-white font-bold bg-gradient-to-r from-yellow-400 to-amber-500">
-          <p>LCP</p>
-          <p id="lcp">0.0s</p>
+        <div class="metric">
+          <span>LCP</span>
+          <strong id="m-lcp">0.00s</strong>
         </div>
-        <div class="p-5 rounded-xl text-white font-bold bg-gradient-to-r from-green-400 to-emerald-500">
-          <p>CLS</p>
-          <p id="cls">0</p>
+        <div class="metric">
+          <span>CLS</span>
+          <strong id="m-cls">0.000</strong>
         </div>
-        <div class="p-5 rounded-xl text-white font-bold bg-gradient-to-r from-red-400 to-pink-500">
-          <p>TBT</p>
-          <p id="tbt">0ms</p>
+        <div class="metric">
+          <span>TBT</span>
+          <strong id="m-tbt">0 ms</strong>
         </div>
       </div>
-    </div>
+    </article>
   </div>
 </section>
     
@@ -1231,142 +1233,101 @@
 
   </script>
 
-<script>
-// === Floating Particles in Performance Section ===
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-let particles = [];
-
-function resizeCanvas() {
-  const perf = document.getElementById("performance");
-  canvas.width = perf.offsetWidth;
-  canvas.height = perf.offsetHeight;
-}
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
-
-function initParticles() {
-  particles = [];
-  const count = 25;
-  for (let i = 0; i < count; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      radius: Math.random() * 3 + 2,
-      dx: (Math.random() - 0.5) * 0.7,
-      dy: (Math.random() - 0.5) * 0.7,
-      opacity: Math.random() * 0.6 + 0.2
-    });
-  }
-}
-
-function drawParticles() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  particles.forEach(p => {
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(37,99,235,${p.opacity})`;
-    ctx.fill();
-
-    p.x += p.dx;
-    p.y += p.dy;
-    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-  });
-}
-
-function animateParticles() {
-  drawParticles();
-  requestAnimationFrame(animateParticles);
-}
-
-initParticles();
-animateParticles();
-
-// === Count Up Utility Function ===
-function animateValue(el, start, end, duration, suffix = "") {
-  let startTimestamp = null;
-  const step = (timestamp) => {
-    if (!startTimestamp) startTimestamp = timestamp;
-    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-    el.textContent = (start + (end - start) * progress).toFixed(
-      Number.isInteger(end) ? 0 : 2
-    ) + suffix;
-    if (progress < 1) {
-      requestAnimationFrame(step);
-    }
-  };
-  requestAnimationFrame(step);
-}
-
-// === Run Count Ups + Gauge Animation on Page Load ===
-document.addEventListener("DOMContentLoaded", () => {
-  const scoreEl = document.getElementById("performance-score");
-  const progressEl = document.getElementById("performance-progress");
-  const scoreLabel = document.getElementById("performance-label");
-
-  // Target values (replace with API later)
-  const targetScore = 84;
-  const targetFCP = 2.7;
-  const targetLCP = 3.2;
-  const targetCLS = 0.0;
-  const targetTBT = 220;
-
-  // Animate Score
-  if (scoreEl && progressEl) {
-    scoreEl.textContent = "0";
-    let score = 0;
-    const interval = setInterval(() => {
-      if (score >= targetScore) {
-        clearInterval(interval);
-
-        // Label update
-        if (targetScore >= 80) {
-          scoreLabel.textContent = "Excellent ✔️";
-          scoreLabel.className = "mt-4 font-semibold text-green-500";
-        } else if (targetScore >= 50) {
-          scoreLabel.textContent = "Needs Improvement ⚠️";
-          scoreLabel.className = "mt-4 font-semibold text-yellow-500";
-        } else {
-          scoreLabel.textContent = "Poor ❌";
-          scoreLabel.className = "mt-4 font-semibold text-red-500";
-        }
-
-        return;
+<!-- ===== Scoped script (no external deps) ===== -->
+  <script>
+    (function(){
+      // ---- Particles ----
+      const canvas = document.getElementById('perfParticles');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      function sizeCanvas(){
+        const r = document.getElementById('performance').getBoundingClientRect();
+        canvas.width = r.width; canvas.height = r.height;
       }
-      score++;
-      scoreEl.textContent = score;
-      progressEl.setAttribute("stroke-dasharray", `${score}, 100`);
-    }, 30);
-  }
+      function initParticles(){
+        particles = [];
+        for(let i=0;i<28;i++){
+          particles.push({
+            x: Math.random()*canvas.width,
+            y: Math.random()*canvas.height,
+            r: Math.random()*2 + 1.5,
+            dx: (Math.random()-.5)*.6,
+            dy: (Math.random()-.5)*.6,
+            o: Math.random()*.5+.15
+          });
+        }
+      }
+      function draw(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        for(const p of particles){
+          ctx.beginPath();
+          ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+          ctx.fillStyle = `rgba(59,130,246,${p.o})`;
+          ctx.fill();
+          p.x += p.dx; p.y += p.dy;
+          if(p.x<0||p.x>canvas.width) p.dx*=-1;
+          if(p.y<0||p.y>canvas.height) p.dy*=-1;
+        }
+        requestAnimationFrame(draw);
+      }
 
-  // Animate Metrics
-  const fcpEl = document.getElementById("fcp");
-  if (fcpEl) {
-    fcpEl.textContent = "0.00s";
-    animateValue(fcpEl, 0, targetFCP, 2000, "s");
-  }
+      // ---- Gauge + numbers ----
+      const progressEl = document.getElementById('perfProgress');
+      const scoreEl    = document.getElementById('perfScore');
+      const labelEl    = document.getElementById('perfLabel');
 
-  const lcpEl = document.getElementById("lcp");
-  if (lcpEl) {
-    lcpEl.textContent = "0.00s";
-    animateValue(lcpEl, 0, targetLCP, 2000, "s");
-  }
+      // EDIT THESE (or wire to your API)
+      const targetScore = 84;
+      const targetFCP = 2.7;
+      const targetLCP = 3.2;
+      const targetCLS = 0.0;
+      const targetTBT = 220;
 
-  const clsEl = document.getElementById("cls");
-  if (clsEl) {
-    clsEl.textContent = "0.000";
-    animateValue(clsEl, 0, targetCLS, 2000);
-  }
+      function animateNumber(el, end, dur, suffix=''){
+        const start = performance.now();
+        function step(now){
+          const t = Math.min(1, (now-start)/dur);
+          const val = (end*t);
+          el.textContent = (Number.isInteger(end) ? Math.round(val) : val.toFixed(2)) + suffix;
+          if(t<1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
 
-  const tbtEl = document.getElementById("tbt");
-  if (tbtEl) {
-    tbtEl.textContent = "0 ms";
-    animateValue(tbtEl, 0, targetTBT, 2000, " ms");
-  }
-});
-</script>
+      function setLabel(score){
+        if(score >= 80){ labelEl.textContent = 'Excellent ✔️'; labelEl.style.color = '#10b981'; }
+        else if(score >= 50){ labelEl.textContent = 'Needs Improvement ⚠️'; labelEl.style.color = '#f59e0b'; }
+        else { labelEl.textContent = 'Poor ❌'; labelEl.style.color = '#ef4444'; }
+      }
 
+      function run(){
+        // particles
+        sizeCanvas(); initParticles(); draw();
+        window.addEventListener('resize', ()=>{ sizeCanvas(); initParticles(); });
+
+        // gauge
+        let s=0;
+        const tick = setInterval(()=>{
+          if(s>=targetScore){ clearInterval(tick); setLabel(targetScore); return; }
+          s++;
+          scoreEl.textContent = s;
+          progressEl.setAttribute('stroke-dasharray', `${s} 100`);
+        }, 18);
+
+        // metrics
+        document.getElementById('m-fcp').textContent = targetFCP.toFixed(2)+'s';
+        document.getElementById('m-lcp').textContent = targetLCP.toFixed(2)+'s';
+        document.getElementById('m-cls').textContent = targetCLS.toFixed(3);
+        animateNumber(document.getElementById('m-tbt'), targetTBT, 900, ' ms');
+      }
+
+      // kick off
+      document.readyState === 'loading'
+        ? document.addEventListener('DOMContentLoaded', run)
+        : run();
+    })();
+  </script>
+  
 <script>
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
