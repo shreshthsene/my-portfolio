@@ -751,37 +751,39 @@
   background: #2563eb;
 }
 
-/* === Download Box === */
+/* Download box */
 .download-box {
   text-align: center;
-  margin-top: 20px;
+  padding: 16px;
+  max-width: 400px;      /* smaller width */
+  margin: 20px auto 0;   /* tightened spacing */
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
+.download-box p { 
+  margin-bottom: 8px; 
+  font-weight: 500; 
+  font-size: 14px;
+  color: #374151; 
+}
+
+/* Button */
 .download-btn {
+  display: inline-block;
+  padding: 8px 16px;      /* smaller padding */
+  border-radius: 8px;
   background: #2563eb;
   color: #fff;
-  font-size: 1rem;
   font-weight: 600;
-  border: none;
-  border-radius: 12px;
-  padding: 0.9rem 1.6rem;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
-  transition: all 0.3s ease;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.2s ease;
 }
 
-.download-btn:hover {
-  background: #1e40af;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
-}
-
-.download-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
+.download-btn:hover { 
+  background: #1d4ed8; 
 }
     
   
