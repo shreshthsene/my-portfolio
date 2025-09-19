@@ -531,6 +531,32 @@
       font-weight:800;
       color:#0f172a;
     }
+
+    /* Section spacing (same rhythm as other portfolio sections) */
+#performance {
+  padding: 4rem 1rem; /* adjust top/bottom spacing */
+}
+
+/* Section header style consistent with portfolio */
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.875rem; /* ~30px, same as other headings */
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  color: #111827; /* gray-900 */
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: #6b7280; /* gray-500 */
+  max-width: 600px;
+  margin: 0 auto; /* centers subtitle */
+}
   
   </style>
 </head>
@@ -812,9 +838,9 @@
 </section>    
 
 <section id="performance" aria-labelledby="performance-heading">
-  <!-- Section heading like other portfolio sections -->
+  <!-- Section heading -->
   <header class="section-header">
-    <h2 id="performance-heading">Website Performance</h2>
+    <h2 id="performance-heading" class="section-title">Website Performance</h2>
     <p class="section-subtitle">Real-time Core Web Vitals for my portfolio.</p>
   </header>
 
