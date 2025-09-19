@@ -1361,72 +1361,65 @@ if ("serviceWorker" in navigator) {
       .catch((err) => console.error("❌ Service Worker registration failed:", err));
   });
 }
-
+  </script>
 
 <script>
 (async function(){
-  const API_KEY = "AIzaSyDcnYpSU0uUFUoaTkf2oc2TCaALVoul34M";
-  const API_URL = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(window.location.href)}&key=${API_KEY}`;
-
   const progressEl = document.getElementById("perfProgress");
   const scoreEl = document.getElementById("perfScore");
   const labelEl = document.getElementById("perfLabel");
   const gaugeEl = document.querySelector(".gauge");
 
   function setLabel(s){
-    if(s>=80){labelEl.textContent="Excellent ✔️";labelEl.style.color="#10b981";}
-    else if(s>=50){labelEl.textContent="Needs Improvement ⚠️";labelEl.style.color="#f59e0b";}
-    else{labelEl.textContent="Poor ❌";labelEl.style.color="#ef4444";}
+    if(s >= 80){ labelEl.textContent = "Excellent ✔️"; labelEl.style.color = "#10b981"; }
+    else if(s >= 50){ labelEl.textContent = "Needs Improvement ⚠️"; labelEl.style.color = "#f59e0b"; }
+    else { labelEl.textContent = "Poor ❌"; labelEl.style.color = "#ef4444"; }
   }
 
   function animateGauge(from, to){
     let start=null;
     function step(ts){
       if(!start) start=ts;
-      const progress=Math.min((ts-start)/1000,1);
-      const value=from+(to-from)*progress;
-      progressEl.setAttribute("stroke-dasharray",`${value} 100`);
-      scoreEl.textContent=Math.round(value);
-      if(progress<1){requestAnimationFrame(step);}
+      const progress = Math.min((ts-start)/1000, 1);
+      const value = from + (to-from)*progress;
+      progressEl.setAttribute("stroke-dasharray", `${value} 100`);
+      scoreEl.textContent = Math.round(value);
+      if(progress < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
   }
 
   try {
-    const res = await fetch(API_URL);
+    // ✅ Call your backend instead of Google directly
+    const res = await fetch("/api/performance");
     const data = await res.json();
 
-    const lighthouse = data.lighthouseResult?.categories?.performance?.score;
-    const audits = data.lighthouseResult?.audits;
-
-    if(lighthouse !== undefined){
-      const score = Math.round(data.lighthouseResult.categories.performance.score * 100);
-
-      // Animate
+    if(data.score !== undefined){
       scoreEl.classList.remove("shimmer");
       labelEl.classList.remove("shimmer");
       gaugeEl.classList.remove("pulsing");
 
-      animateGauge(0,score);
-      setLabel(score);
+      animateGauge(0, data.score);
+      setLabel(data.score);
     }
 
-    if(audits){
-      document.getElementById('m-fcp').textContent = (data.lighthouseResult.audits['first-contentful-paint'].numericValue / 1000).toFixed(2) + 's';
-document.getElementById('m-lcp').textContent = (data.lighthouseResult.audits['largest-contentful-paint'].numericValue / 1000).toFixed(2) + 's';
-document.getElementById('m-cls').textContent = data.lighthouseResult.audits['cumulative-layout-shift'].numericValue.toFixed(3);
-document.getElementById('m-tbt').textContent = Math.round(data.lighthouseResult.audits['total-blocking-time'].numericValue) + ' ms';
+    if(data.fcp !== undefined){
+      document.getElementById("m-fcp").textContent = data.fcp.toFixed(2) + "s";
+      document.getElementById("m-lcp").textContent = data.lcp.toFixed(2) + "s";
+      document.getElementById("m-cls").textContent = data.cls.toFixed(3);
+      document.getElementById("m-tbt").textContent = data.tbt + " ms";
 
-      ["m-fcp","m-lcp","m-cls","m-tbt"].forEach(id=>document.getElementById(id).classList.remove("shimmer"));
+      ["m-fcp","m-lcp","m-cls","m-tbt"].forEach(
+        id => document.getElementById(id).classList.remove("shimmer")
+      );
     }
   } catch(e){
-    console.error("⚠️ PageSpeed API fetch failed", e);
-    scoreEl.textContent="N/A";
-    labelEl.textContent="Error";
+    console.error("⚠️ Performance fetch failed", e);
+    scoreEl.textContent = "N/A";
+    labelEl.textContent = "Error";
   }
 })();
 
-  
   </script>
 </body>
 </html>
