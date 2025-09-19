@@ -566,13 +566,13 @@
 
 /* === Marketing Approach Section === */
 #approach {
-  margin-top: 40px;
-  padding: 40px 20px;
+  margin-top: 60px; /* consistent with other sections */
+  padding: 60px 20px;
   background: #f9fafb;
 }
 
 #approach h2 {
-  font-size: 2rem;
+  font-size: 1.8rem; /* same size as other section headings */
   font-weight: 800;
   text-align: center;
   margin-bottom: 8px;
@@ -586,15 +586,7 @@
   font-size: 15px;
 }
 
-/* Steps grid */
-.approach-steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
-  margin-bottom: 50px;
-}
-
-/* Steps redesigned as connected process */
+/* === Steps Timeline === */
 .approach-steps {
   display: flex;
   justify-content: space-between;
@@ -613,13 +605,13 @@
 }
 
 .step-card .circle {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: #2563eb;
   color: #fff;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -643,7 +635,7 @@
 .approach-steps::before {
   content: "";
   position: absolute;
-  top: 25px;
+  top: 24px;
   left: 5%;
   right: 5%;
   height: 3px;
@@ -655,71 +647,142 @@
   z-index: 1;
 }
 
-/* Slide deck preview */
-.slide-deck {
+/* === Slide Deck Preview === */
+.deck-preview {
   position: relative;
   max-width: 800px;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 50px auto;
   overflow: hidden;
   border-radius: 14px;
   background: #fff;
   box-shadow: 0 8px 22px rgba(0,0,0,0.08);
 }
+
 .slides {
   display: flex;
   transition: transform 0.6s ease;
 }
+
 .slide {
   min-width: 100%;
   padding: 40px;
 }
-.slide h3 {
-  font-size: 1.4rem;
-  margin-bottom: 16px;
+
+.slide h4 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
   color: #111827;
+  text-align: center;
 }
-.slide p {
+
+.slide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.slide-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #f9fafb;
+  padding: 16px;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.slide-item:hover {
+  transform: translateY(-4px);
+}
+
+.slide-item .icon {
+  font-size: 22px;
+}
+
+.slide-item h5 {
   font-size: 15px;
-  color: #374151;
-  line-height: 1.6;
+  font-weight: 600;
+  margin-bottom: 4px;
 }
-.slide-nav {
+
+.slide-item p {
+  font-size: 13px;
+  color: #374151;
+  line-height: 1.5;
+}
+
+/* Carousel buttons */
+.carousel-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.9);
   border: none;
-  font-size: 20px;
+  font-size: 22px;
   cursor: pointer;
   padding: 8px 12px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: background 0.3s ease;
 }
-.slide-nav.prev { left: 10px; }
-.slide-nav.next { right: 10px; }
+.carousel-btn:hover {
+  background: #f3f4f6;
+}
+.carousel-btn.prev { left: 12px; }
+.carousel-btn.next { right: 12px; }
 
-/* Download box */
+/* Indicators */
+.indicators {
+  text-align: center;
+  padding: 14px 0;
+}
+.indicators span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 4px;
+  background: #d1d5db;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.indicators span.active {
+  background: #2563eb;
+}
+
+/* === Download Box === */
 .download-box {
   text-align: center;
-  padding: 20px;
-  max-width: 500px;
-  margin: 0 auto;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  margin-top: 20px;
 }
-.download-box p { margin-bottom: 12px; font-weight: 600; color: #111827; }
+
 .download-btn {
-  display: inline-block;
-  padding: 10px 18px;
-  border-radius: 10px;
   background: #2563eb;
   color: #fff;
+  font-size: 1rem;
   font-weight: 600;
-  text-decoration: none;
+  border: none;
+  border-radius: 12px;
+  padding: 0.9rem 1.6rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+  transition: all 0.3s ease;
 }
-.download-btn:hover { background: #1d4ed8; }
 
+.download-btn:hover {
+  background: #1e40af;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
+}
+
+.download-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
+}
     
   
   </style>
@@ -1053,58 +1116,106 @@
 
   <!-- Steps -->
   <div class="approach-steps">
-  <div class="step-card">
-    <div class="circle">1</div>
-    <h4>Audit & Research</h4>
-    <p>Market trends, competitors, personas.</p>
+    <div class="step-card">
+      <div class="circle">1</div>
+      <h4>Audit & Research</h4>
+      <p>Market trends, competitors, personas.</p>
+    </div>
+    <div class="step-card">
+      <div class="circle">2</div>
+      <h4>Strategy & Messaging</h4>
+      <p>Positioning, value proposition, brand voice.</p>
+    </div>
+    <div class="step-card">
+      <div class="circle">3</div>
+      <h4>Execution</h4>
+      <p>SEO, ads, social, content, and email campaigns.</p>
+    </div>
+    <div class="step-card">
+      <div class="circle">4</div>
+      <h4>Measurement</h4>
+      <p>KPI tracking, dashboards, transparent reporting.</p>
+    </div>
+    <div class="step-card">
+      <div class="circle">5</div>
+      <h4>Optimization</h4>
+      <p>Iterating weekly and scaling best channels.</p>
+    </div>
   </div>
-  <div class="step-card">
-    <div class="circle">2</div>
-    <h4>Strategy & Messaging</h4>
-    <p>Positioning, value proposition, brand voice.</p>
-  </div>
-  <div class="step-card">
-    <div class="circle">3</div>
-    <h4>Execution</h4>
-    <p>SEO, ads, social, content, and email campaigns.</p>
-  </div>
-  <div class="step-card">
-    <div class="circle">4</div>
-    <h4>Measurement</h4>
-    <p>KPI tracking, dashboards, transparent reporting.</p>
-  </div>
-  <div class="step-card">
-    <div class="circle">5</div>
-    <h4>Optimization</h4>
-    <p>Iterating weekly and scaling best channels.</p>
-  </div>
-</div>
 
   <!-- Slide Deck Preview -->
-  <div class="slide-deck">
-    <div class="slides" id="slides">
-      <div class="slide">
-        <h3>Page 1 – Strategy & Approach</h3>
-        <p><strong>Objectives:</strong> Awareness, traffic, sustainable growth.<br>
-        <strong>Research:</strong> Competitors, personas, market insights.<br>
-        <strong>Channels:</strong> SEO, social media, email, ads.</p>
+  <div class="deck-preview">
+    <div class="slides">
+      <!-- Page 1 -->
+      <div class="slide active">
+        <h4>📘 Page 1 – Strategy & Approach</h4>
+        <div class="slide-grid">
+          <div class="slide-item">
+            <span class="icon">🎯</span>
+            <div>
+              <h5>Objectives</h5>
+              <p>Awareness, traffic, sustainable growth.</p>
+            </div>
+          </div>
+          <div class="slide-item">
+            <span class="icon">🔍</span>
+            <div>
+              <h5>Research</h5>
+              <p>Competitors, personas, market insights.</p>
+            </div>
+          </div>
+          <div class="slide-item">
+            <span class="icon">🌐</span>
+            <div>
+              <h5>Channels</h5>
+              <p>SEO, social media, email, ads.</p>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- Page 2 -->
       <div class="slide">
-        <h3>Page 2 – Execution & KPIs</h3>
-        <p><strong>Roadmap:</strong> Foundation → Growth → Scale.<br>
-        <strong>KPIs:</strong> Performance, SEO, ads ROI, engagement, conversions.<br>
-        <strong>Optimization:</strong> Weekly review, monthly reports, scaling.</p>
+        <h4>🚀 Page 2 – Execution & Measurement</h4>
+        <div class="slide-grid">
+          <div class="slide-item">
+            <span class="icon">📈</span>
+            <div>
+              <h5>Execution</h5>
+              <p>SEO, PPC, social & email campaigns.</p>
+            </div>
+          </div>
+          <div class="slide-item">
+            <span class="icon">📊</span>
+            <div>
+              <h5>Measurement</h5>
+              <p>KPI tracking, dashboards, reporting.</p>
+            </div>
+          </div>
+          <div class="slide-item">
+            <span class="icon">♻️</span>
+            <div>
+              <h5>Optimization</h5>
+              <p>Iterating weekly, scaling best channels.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <button class="slide-nav prev" onclick="moveSlide(-1)">&#10094;</button>
-    <button class="slide-nav next" onclick="moveSlide(1)">&#10095;</button>
+
+    <!-- Controls -->
+    <button class="carousel-btn prev">‹</button>
+    <button class="carousel-btn next">›</button>
+    <div class="indicators"></div>
   </div>
 
   <!-- Download PDF -->
   <div class="download-box">
-    <p>📑 Download my full marketing plan (PDF)</p>
-    <a href="/files/marketing_plan.pdf" class="download-btn" download>Download PDF</a>
+    <button class="download-btn">
+      📥 Download Full Marketing Plan (PDF)
+    </button>
   </div>
+
 </section>
     
     
@@ -1640,13 +1751,52 @@ if ("serviceWorker" in navigator) {
   }
 })();
 
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelector(".slides");
+  const slideItems = document.querySelectorAll(".slide");
+  const prevBtn = document.querySelector(".carousel-btn.prev");
+  const nextBtn = document.querySelector(".carousel-btn.next");
+  const indicatorsContainer = document.querySelector(".indicators");
+
   let currentSlide = 0;
-function moveSlide(dir) {
-  const slides = document.getElementById("slides");
-  const total = slides.children.length;
-  currentSlide = (currentSlide + dir + total) % total;
-  slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-}
+  const totalSlides = slideItems.length;
+
+  // === Create indicators ===
+  slideItems.forEach((_, idx) => {
+    const dot = document.createElement("span");
+    if (idx === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => moveToSlide(idx));
+    indicatorsContainer.appendChild(dot);
+  });
+  const dots = indicatorsContainer.querySelectorAll("span");
+
+  // === Move to a specific slide ===
+  function moveToSlide(index) {
+    currentSlide = index;
+    slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === currentSlide);
+    });
+  }
+
+  // === Handlers for buttons ===
+  prevBtn.addEventListener("click", () => {
+    const newIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+    moveToSlide(newIndex);
+  });
+
+  nextBtn.addEventListener("click", () => {
+    const newIndex = (currentSlide + 1) % totalSlides;
+    moveToSlide(newIndex);
+  });
+
+  // Auto-rotate every 8 seconds
+  setInterval(() => {
+    const newIndex = (currentSlide + 1) % totalSlides;
+    moveToSlide(newIndex);
+  }, 8000);
+});
 
   </script>
 </body>
