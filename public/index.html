@@ -537,25 +537,30 @@
   padding: 4rem 1rem; /* adjust top/bottom spacing */
 }
 
-/* Section header style consistent with portfolio */
+/* Section header style (match other sections exactly) */
 .section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers both heading + subheading */
   text-align: center;
   margin-bottom: 2rem;
 }
 
+/* Main title same as other section titles */
 .section-title {
-  font-size: 1.875rem; /* ~30px, same as other headings */
+  font-size: 1.5rem;  /* 24px → same as Services/Tools headings */
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 0.5rem;
-  color: #111827; /* gray-900 */
+  color: #111827;
 }
 
+/* Subheading positioned properly */
 .section-subtitle {
   font-size: 1rem;
+  font-weight: 400;
   color: #6b7280; /* gray-500 */
-  max-width: 600px;
-  margin: 0 auto; /* centers subtitle */
+  margin: 0; /* removes extra offset */
 }
   
   </style>
@@ -839,10 +844,10 @@
 
 <section id="performance" aria-labelledby="performance-heading">
   <!-- Section heading -->
-  <header class="section-header">
-    <h2 id="performance-heading" class="section-title">Website Performance</h2>
-    <p class="section-subtitle">Real-time Core Web Vitals for my portfolio.</p>
-  </header>
+ <header class="section-header">
+  <h2 id="performance-heading" class="section-title">Website Performance</h2>
+  <p class="section-subtitle">Real-time Core Web Vitals for my portfolio.</p>
+</header>
 
   <!-- Performance content -->
   <div class="perf-container">
