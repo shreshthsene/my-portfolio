@@ -1382,27 +1382,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const scoreEl = document.getElementById("performance-score");
-  const progressEl = document.getElementById("performance-progress");
-  const labelEl = document.getElementById("performance-label");
-
-  let score = 0;
-  const target = 84; // final score
-  const interval = setInterval(() => {
-    if (score >= target) {
-      clearInterval(interval);
-      labelEl.textContent = "Excellent ✔️";
-      return;
-    }
-    score++;
-    scoreEl.textContent = score;
-    progressEl.setAttribute("stroke-dasharray", `${score}, 100`);
-  }, 30);
-});
-</script>
-
 <script>
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
