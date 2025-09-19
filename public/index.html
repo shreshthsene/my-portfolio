@@ -469,29 +469,52 @@
 #performance.performance-card {
   position: relative;
   max-width: 650px;
-  margin: 40px auto;
-  padding: 28px;
-  border-radius: 16px;
+  margin: 48px auto;
+  padding: 32px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
-  background: transparent; /* important so background + particles show */
+  background: rgba(255, 255, 255, 0.12); /* glass */
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 }
 
-/* === Gradient Background Layer === */
+/* === Animated Gradient Accent Border === */
+#performance::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #2563eb, #9333ea, #f59e0b);
+  background-size: 300% 300%;
+  animation: borderFlow 8s ease infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  z-index: 0;
+}
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* === Gradient Waves Background === */
 .performance-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, #f9fbff, #ffffff, #f3f6ff);
-  background-size: 300% 300%;
-  animation: gradientShift 12s ease infinite;
+  background: radial-gradient(circle at 20% 30%, rgba(37,99,235,0.25), transparent 70%),
+              radial-gradient(circle at 80% 70%, rgba(147,51,234,0.25), transparent 70%);
+  animation: bgPulse 10s ease-in-out infinite alternate;
   z-index: 0;
 }
-
-/* Gradient animation */
-@keyframes gradientShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@keyframes bgPulse {
+  from { transform: scale(1); opacity: 0.7; }
+  to { transform: scale(1.1); opacity: 1; }
 }
 
 /* === Floating Particles Layer === */
@@ -506,46 +529,53 @@
 .performance-content {
   position: relative;
   z-index: 2;
+  color: #0f172a;
 }
 
 #performance h2 {
   font-size: 1.6rem;
-  font-weight: 700;
-  color: #1e3a8a; /* deep blue */
-  margin-bottom: 4px;
+  font-weight: 800;
+  color: #1e3a8a;
+  margin-bottom: 6px;
 }
 
 #performance p {
   font-size: 0.95rem;
-  color: #4b5563; /* gray */
-  margin-bottom: 16px;
+  color: #374151;
+  margin-bottom: 18px;
 }
 
 /* === Score Badge === */
 .score {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-size: 1.2rem;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 #performance-score {
   display: inline-block;
-  padding: 6px 14px;
+  min-width: 44px;
+  text-align: center;
+  padding: 8px 16px;
   border-radius: 9999px;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 1rem;
   color: #fff;
+  box-shadow: 0 0 16px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+#performance-score:hover {
+  transform: scale(1.1);
 }
 
 .status {
   font-weight: 600;
 }
-
-.status.good { color: #16a34a; }       /* green */
-.status.average { color: #f59e0b; }   /* yellow */
-.status.poor { color: #dc2626; }      /* red */
+.status.good { color: #16a34a; }
+.status.average { color: #f59e0b; }
+.status.poor { color: #dc2626; }
 
 #performance-score.good { background: #16a34a; }
 #performance-score.average { background: #f59e0b; }
@@ -555,29 +585,40 @@
 .metrics {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px 20px;
-  margin-bottom: 20px;
+  gap: 16px 22px;
+  margin-bottom: 24px;
 }
 
 .metric {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #374151;
-  padding: 10px 14px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(6px);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  text-align: center;
+}
+.metric:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(37,99,235,0.25);
 }
 
-.metric:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+/* === Animated Count-Up === */
+.metric strong, 
+#performance-score {
+  display: inline-block;
+  animation: countUp 2s ease forwards;
+}
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* === Chart === */
 #performanceChart {
-  margin-top: 12px;
+  margin-top: 16px;
   width: 100% !important;
   height: 260px !important;
 }
@@ -871,17 +912,17 @@
     <h2>Website Performance</h2>
     <p>Real-time Core Web Vitals for my portfolio.</p>
 
-    <div class="score">
-      <span id="performance-score">38</span>
-      <span class="status poor">Poor ❌</span>
-    </div>
+   <div class="score">
+  <span id="performance-score" class="poor">38</span>
+  <span class="status poor">Poor ❌</span>
+</div>
 
     <div class="metrics">
-      <div class="metric"><strong>FCP:</strong> 5.1 s</div>
-      <div class="metric"><strong>LCP:</strong> 8.5 s</div>
-      <div class="metric"><strong>CLS:</strong> 0.274</div>
-      <div class="metric"><strong>TBT:</strong> 420 ms</div>
-    </div>
+  <div class="metric"><strong>FCP:</strong> <span id="fcp">5.1</span> s</div>
+  <div class="metric"><strong>LCP:</strong> <span id="lcp">8.5</span> s</div>
+  <div class="metric"><strong>CLS:</strong> <span id="cls">0.274</span></div>
+  <div class="metric"><strong>TBT:</strong> <span id="tbt">420</span> ms</div>
+</div>
 
     <canvas id="performanceChart"></canvas>
   </div>
@@ -1478,6 +1519,63 @@ function animateParticles() {
 
 initParticles();
 animateParticles();
+
+// === Count Up Utility Function ===
+function animateValue(el, start, end, duration, suffix = "") {
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    el.textContent = (start + (end - start) * progress).toFixed(
+      Number.isInteger(end) ? 0 : 2
+    ) + suffix;
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  };
+  requestAnimationFrame(step);
+}
+
+// === Run Count Ups on Page Load ===
+document.addEventListener("DOMContentLoaded", () => {
+  // Score Badge
+  const scoreEl = document.getElementById("performance-score");
+  if (scoreEl) {
+    const scoreValue = parseInt(scoreEl.textContent);
+    scoreEl.textContent = "0";
+    animateValue(scoreEl, 0, scoreValue, 1500);
+  }
+
+  // Metrics
+  const fcpEl = document.getElementById("fcp");
+  if (fcpEl) {
+    const fcpVal = parseFloat(fcpEl.textContent);
+    fcpEl.textContent = "0.00 s";
+    animateValue(fcpEl, 0, fcpVal, 2000, " s");
+  }
+
+  const lcpEl = document.getElementById("lcp");
+  if (lcpEl) {
+    const lcpVal = parseFloat(lcpEl.textContent);
+    lcpEl.textContent = "0.00 s";
+    animateValue(lcpEl, 0, lcpVal, 2000, " s");
+  }
+
+  const clsEl = document.getElementById("cls");
+  if (clsEl) {
+    const clsVal = parseFloat(clsEl.textContent);
+    clsEl.textContent = "0.000";
+    animateValue(clsEl, 0, clsVal, 2000);
+  }
+
+  const tbtEl = document.getElementById("tbt");
+  if (tbtEl) {
+    const tbtVal = parseInt(tbtEl.textContent);
+    tbtEl.textContent = "0 ms";
+    animateValue(tbtEl, 0, tbtVal, 2000, " ms");
+  }
+});
+    
 </script>
 
 <script>
