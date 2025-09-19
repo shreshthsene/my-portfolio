@@ -827,17 +827,20 @@
 </section>    
 
 <section id="performance" class="relative z-10 py-16">
+  <!-- Floating particles background -->
   <canvas id="particles" class="absolute inset-0 w-full h-full -z-10"></canvas>
 
   <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-6">
+    
     <!-- Radial Gauge Card -->
     <div class="rounded-2xl shadow-lg bg-white/30 dark:bg-black/30 backdrop-blur-md border border-white/20 p-6 text-center">
       <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">Overall Performance</h2>
-      <div class="flex justify-center relative w-36 h-36 mx-auto">
+      
+      <div class="flex justify-center relative w-28 h-28 md:w-32 md:h-32 mx-auto">
         <svg viewBox="0 0 36 36" class="w-full h-full rotate-[-90deg] circular-chart">
           <path
             class="text-gray-300 dark:text-gray-700"
-            stroke-width="3"
+            stroke-width="2.5"
             fill="none"
             stroke="currentColor"
             d="M18 2.0845
@@ -846,7 +849,7 @@
           />
           <path
             id="performance-progress"
-            stroke-width="3"
+            stroke-width="2.5"
             stroke-linecap="round"
             fill="none"
             stroke="url(#grad)"
@@ -862,8 +865,11 @@
             </linearGradient>
           </defs>
         </svg>
-        <span id="performance-score" class="absolute inset-0 flex items-center justify-center font-bold text-2xl text-gray-900 dark:text-white">0</span>
+        <!-- Bigger Score Font -->
+        <span id="performance-score" class="absolute inset-0 flex items-center justify-center font-bold text-3xl md:text-4xl text-gray-900 dark:text-white">0</span>
       </div>
+      
+      <!-- Status Label -->
       <p id="performance-label" class="mt-4 font-semibold text-green-500">Loading…</p>
     </div>
 
