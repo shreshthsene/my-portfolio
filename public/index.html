@@ -751,41 +751,38 @@
   background: #2563eb;
 }
 
-/* Download box */
-.download-box {
-  text-align: center;
-  padding: 16px;
-  max-width: 400px;      /* smaller width */
-  margin: 20px auto 0;   /* tightened spacing */
-  background: #fff;
+/* Download box inside deck */
+.deck-preview .download-box {
+  margin: 20px auto 10px auto;
+  background: #f9fafb;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 14px;
+  box-shadow: none;
+  max-width: 300px;
 }
 
-.download-box p { 
-  margin-bottom: 8px; 
-  font-weight: 500; 
-  font-size: 14px;
-  color: #374151; 
+.deck-preview .download-box p {
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
 }
 
-/* Button */
-.download-btn {
+.deck-preview .download-btn {
   display: inline-block;
-  padding: 8px 16px;      /* smaller padding */
+  padding: 8px 16px;
   border-radius: 8px;
   background: #2563eb;
   color: #fff;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   text-decoration: none;
   transition: background 0.2s ease;
 }
 
-.download-btn:hover { 
-  background: #1d4ed8; 
+.deck-preview .download-btn:hover {
+  background: #1d4ed8;
 }
-    
   
   </style>
 </head>
@@ -1145,78 +1142,77 @@
     </div>
   </div>
 
-  <!-- Slide Deck Preview -->
-  <div class="deck-preview">
-    <div class="slides">
-      <!-- Page 1 -->
-      <div class="slide active">
-        <h4>📘 Page 1 – Strategy & Approach</h4>
-        <div class="slide-grid">
-          <div class="slide-item">
-            <span class="icon">🎯</span>
-            <div>
-              <h5>Objectives</h5>
-              <p>Awareness, traffic, sustainable growth.</p>
-            </div>
-          </div>
-          <div class="slide-item">
-            <span class="icon">🔍</span>
-            <div>
-              <h5>Research</h5>
-              <p>Competitors, personas, market insights.</p>
-            </div>
-          </div>
-          <div class="slide-item">
-            <span class="icon">🌐</span>
-            <div>
-              <h5>Channels</h5>
-              <p>SEO, social media, email, ads.</p>
-            </div>
+ <!-- Slide Deck Preview -->
+<div class="deck-preview">
+  <div class="slides" id="slides">
+    <!-- Page 1 -->
+    <div class="slide active">
+      <h4>📘 Page 1 – Strategy & Approach</h4>
+      <div class="slide-grid">
+        <div class="slide-item">
+          <span class="icon">🎯</span>
+          <div>
+            <h5>Objectives</h5>
+            <p>Awareness, traffic, sustainable growth.</p>
           </div>
         </div>
-      </div>
-
-      <!-- Page 2 -->
-      <div class="slide">
-        <h4>🚀 Page 2 – Execution & Measurement</h4>
-        <div class="slide-grid">
-          <div class="slide-item">
-            <span class="icon">📈</span>
-            <div>
-              <h5>Execution</h5>
-              <p>SEO, PPC, social & email campaigns.</p>
-            </div>
+        <div class="slide-item">
+          <span class="icon">🔍</span>
+          <div>
+            <h5>Research</h5>
+            <p>Competitors, personas, market insights.</p>
           </div>
-          <div class="slide-item">
-            <span class="icon">📊</span>
-            <div>
-              <h5>Measurement</h5>
-              <p>KPI tracking, dashboards, reporting.</p>
-            </div>
-          </div>
-          <div class="slide-item">
-            <span class="icon">♻️</span>
-            <div>
-              <h5>Optimization</h5>
-              <p>Iterating weekly, scaling best channels.</p>
-            </div>
+        </div>
+        <div class="slide-item">
+          <span class="icon">🌐</span>
+          <div>
+            <h5>Channels</h5>
+            <p>SEO, social media, email, ads.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Controls -->
-    <button class="carousel-btn prev">‹</button>
-    <button class="carousel-btn next">›</button>
-    <div class="indicators"></div>
+    <!-- Page 2 -->
+    <div class="slide">
+      <h4>🚀 Page 2 – Execution & Measurement</h4>
+      <div class="slide-grid">
+        <div class="slide-item">
+          <span class="icon">📈</span>
+          <div>
+            <h5>Execution</h5>
+            <p>SEO, PPC, social & email campaigns.</p>
+          </div>
+        </div>
+        <div class="slide-item">
+          <span class="icon">📊</span>
+          <div>
+            <h5>Measurement</h5>
+            <p>KPI tracking, dashboards, reporting.</p>
+          </div>
+        </div>
+        <div class="slide-item">
+          <span class="icon">♻️</span>
+          <div>
+            <h5>Optimization</h5>
+            <p>Iterating weekly, scaling best channels.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Download PDF -->
+  <!-- Controls -->
+  <button class="carousel-btn prev" onclick="moveSlide(-1)">‹</button>
+  <button class="carousel-btn next" onclick="moveSlide(1)">›</button>
+  <div class="indicators"></div>
+
+  <!-- Download PDF (now inside the deck) -->
   <div class="download-box">
-    <button class="download-btn">
-      📥 Download Full Marketing Plan (PDF)
-    </button>
+    <p>📑 Download my full marketing plan (PDF)</p>
+    <a href="/files/marketing_plan.pdf" class="download-btn" download>Download PDF</a>
   </div>
+</div>
 
 </section>
     
