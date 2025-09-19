@@ -22,25 +22,6 @@
   
 <!-- Preload Hero (AVIF preferred) -->
 <link rel="preload" as="image" href="/images/hero.avif" type="image/avif" fetchpriority="high">
-
-<!-- Hero Image -->
-<picture>
-  <!-- Modern formats first -->
-  <source srcset="/images/hero.avif" type="image/avif">
-  <source srcset="/images/hero.webp" type="image/webp">
-
-  <!-- Fallback JPG -->
-  <img 
-    src="/images/hero.jpg" 
-    alt="Hero Section" 
-    width="1200" 
-    height="800"
-    loading="eager" 
-    decoding="async"
-    fetchpriority="high"
-    style="max-width: 100%; height: auto;"
-  >
-</picture>
   
   <style>
     :root{
@@ -836,7 +817,7 @@
     <div class="rounded-2xl shadow-lg bg-white/30 dark:bg-black/30 backdrop-blur-md border border-white/20 p-6 text-center">
       <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">Overall Performance</h2>
       
-      <div class="flex justify-center relative w-28 h-28 md:w-32 md:h-32 mx-auto">
+      <div class="flex justify-center relative w-24 h-24 md:w-32 md:h-32 mx-auto">
         <svg viewBox="0 0 36 36" class="w-full h-full rotate-[-90deg] circular-chart">
           <path
             class="text-gray-300 dark:text-gray-700"
