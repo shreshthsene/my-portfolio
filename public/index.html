@@ -465,78 +465,13 @@
 }
     
 
-/* === Performance Card (Updated) === */
-    #performance {
-      max-width: 650px;
-      margin: 40px auto;
-      padding: 24px;
-      border-radius: 16px;
-      background: #fff;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    #performance:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-    }
-
-    #performance h2 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      background: linear-gradient(90deg, #2563EB, #4F46E5);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    #performance p {
-      margin: 6px 0;
-      font-size: 0.95rem;
-      color: #444;
-    }
-
-    #performance strong {
-      color: #111;
-      font-weight: 600;
-    }
-
-    .badge-green,
-    .badge-yellow,
-    .badge-red {
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      margin-left: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    .badge-green { background-color: #22c55e; color: #fff; }
-    .badge-yellow { background-color: #f59e0b; color: #fff; }
-    .badge-red { background-color: #ef4444; color: #fff; }
-
-    #score-label {
-      margin-left: 8px;
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-
-    #performance canvas {
-      margin-top: 20px;
-    }
-
-    .chartjs-render-monitor {
-      border-radius: 8px;
-    }
-
-    /* Performance Card */
+/* === Performance Card (Final Modern Version) === */
 #performance {
   max-width: 650px;
   margin: 40px auto;
   padding: 28px;
   border-radius: 16px;
-  background: var(--card);
+  background: #fff;
   box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -547,30 +482,72 @@
   box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
 }
 
-/* Title styling */
+/* Title gradient */
 #performance h2 {
   font-size: 1.6rem;
   font-weight: 700;
-  color: var(--accent-600);
   margin-bottom: 6px;
+  background: linear-gradient(90deg, #2563EB, #4F46E5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Subtext */
 #performance p {
   font-size: 0.95rem;
-  color: var(--muted);
+  color: #444;
+  margin-bottom: 12px;
 }
 
-/* Score Row */
+/* Score Row & strong values */
 #performance strong {
-  color: var(--text);
+  color: #111;
   font-weight: 600;
 }
 
-/* Chart spacing */
+/* === Score Badges === */
+.badge-green,
+.badge-yellow,
+.badge-red {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-left: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.badge-green { background-color: #22c55e; color: #fff; }
+.badge-yellow { background-color: #f59e0b; color: #fff; }
+.badge-red { background-color: #ef4444; color: #fff; }
+
+.badge-green:hover,
+.badge-yellow:hover,
+.badge-red:hover {
+  transform: scale(1.05);
+}
+
+/* Score Label */
+#score-label {
+  margin-left: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Chart styling */
 #performance canvas {
   margin-top: 24px;
   border-radius: 10px;
+  background: #fafafa;
+  padding: 8px;
+}
+
+/* Chart monitor tweaks */
+.chartjs-render-monitor {
+  border-radius: 8px;
 }
 
     
@@ -853,22 +830,37 @@
   </div>
 </section>    
 
-<section id="performance">
-    <h2>Website Performance</h2>
-    <p>Real-time Core Web Vitals for my portfolio.</p>
+<section id="performance" class="performance-card">
+  <h2>Website Performance</h2>
+  <p>Real-time Core Web Vitals for my portfolio.</p>
 
-    <p>
-      <strong>Performance Score:</strong>
-      <span id="score-badge"></span>
-      <span id="score-label"></span>
-    </p>
+  <!-- Score Ring -->
+  <div class="score-wrapper">
+    <svg viewBox="0 0 36 36" class="circular-chart green">
+      <path class="circle-bg"
+        d="M18 2.0845
+           a 15.9155 15.9155 0 0 1 0 31.831
+           a 15.9155 15.9155 0 0 1 0 -31.831"/>
+      <path class="circle"
+        stroke-dasharray="0, 100"
+        d="M18 2.0845
+           a 15.9155 15.9155 0 0 1 0 31.831
+           a 15.9155 15.9155 0 0 1 0 -31.831"/>
+      <text x="18" y="20.35" class="percentage" id="score-badge">0</text>
+    </svg>
+    <span id="score-label" class="status">Loading...</span>
+  </div>
 
-    <p><strong>FCP:</strong> <span id="fcp">Loading...</span></p>
-    <p><strong>LCP:</strong> <span id="lcp">Loading...</span></p>
-    <p><strong>CLS:</strong> <span id="cls">Loading...</span></p>
-    <p><strong>TBT:</strong> <span id="tbt">Loading...</span></p>
+  <!-- Metrics -->
+  <div class="metrics">
+    <div class="metric"><span>⚡</span> FCP: <strong id="fcp">0.00 s</strong></div>
+    <div class="metric"><span>⏱️</span> LCP: <strong id="lcp">0.00 s</strong></div>
+    <div class="metric"><span>📐</span> CLS: <strong id="cls">0.000</strong></div>
+    <div class="metric"><span>⌛</span> TBT: <strong id="tbt">0 ms</strong></div>
+  </div>
 
-    <canvas id="performanceChart" width="400" height="200"></canvas>  
+  <!-- Chart -->
+  <canvas id="performanceChart"></canvas>
 </section>
     
     <!-- SERVICES -->
@@ -1230,7 +1222,19 @@
 <script>
   let chart;
 
-  // === Load performance data from your API ===
+  // === Show placeholder UI instantly ===
+  function initPerformanceUI() {
+    document.getElementById("score-badge").textContent = "—";
+    document.getElementById("score-badge").className = "badge-yellow";
+    document.getElementById("score-label").textContent = "Loading… ⏳";
+
+    document.getElementById("fcp").textContent = "--";
+    document.getElementById("lcp").textContent = "--";
+    document.getElementById("cls").textContent = "--";
+    document.getElementById("tbt").textContent = "--";
+  }
+
+  // === Fetch & update performance data ===
   async function loadPerformance() {
     try {
       const res = await fetch("/api/performance");
@@ -1239,7 +1243,7 @@
       // === Score Badge + Label ===
       const badge = document.getElementById("score-badge");
       const label = document.getElementById("score-label");
-      const score = data.score;
+      const score = Math.round(data.score);
 
       badge.textContent = score;
 
@@ -1264,9 +1268,9 @@
       const ctx = document.getElementById("performanceChart").getContext("2d");
 
       if (chart) {
-        // update existing chart
+        // Update existing chart
         chart.data.datasets[0].data = [
-          data.score,
+          score,
           parseFloat(data.fcp),
           parseFloat(data.lcp),
           parseFloat(data.cls),
@@ -1274,7 +1278,7 @@
         ];
         chart.update();
       } else {
-        // create chart first time
+        // Create chart on first load
         chart = new Chart(ctx, {
           type: "bar",
           data: {
@@ -1282,7 +1286,7 @@
             datasets: [{
               label: "Web Vitals",
               data: [
-                data.score,
+                score,
                 parseFloat(data.fcp),
                 parseFloat(data.lcp),
                 parseFloat(data.cls),
@@ -1309,15 +1313,18 @@
           }
         });
       }
+
     } catch (err) {
       console.error("Error loading performance data", err);
+      document.getElementById("score-label").textContent = "Error fetching data ❌";
     }
   }
 
-  // Run once immediately, then refresh every 30s
+  // Init placeholders, then load + refresh
   document.addEventListener("DOMContentLoaded", () => {
+    initPerformanceUI();
     loadPerformance();
-    setInterval(loadPerformance, 30000);
+    setInterval(loadPerformance, 30000); // update every 30s
   });
 </script>
 
