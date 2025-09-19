@@ -550,6 +550,32 @@
   border-radius: 8px;
 }
 
+    .circular-chart {
+  display: block;
+  max-width: 120px;
+  margin: 10px auto;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 3.8;
+}
+
+.circle {
+  fill: none;
+  stroke-width: 3.8;
+  stroke: #22c55e; /* default green, you can swap on score */
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.6s ease;
+}
+
+.percentage {
+  font-size: 0.5em;
+  font-weight: 700;
+  text-anchor: middle;
+  fill: #111;
+}
     
   </style>
 </head>
@@ -1247,6 +1273,9 @@
 
       badge.textContent = score;
 
+      // Update score ring
+      updateScoreRing(score);
+
       if (score >= 80) {
         badge.className = "badge-green";
         label.textContent = "Excellent ✅";
@@ -1326,6 +1355,27 @@
     loadPerformance();
     setInterval(loadPerformance, 30000); // update every 30s
   });
+
+// === Update Circular Score Ring ===
+function updateScoreRing(score) {
+  const circle = document.querySelector(".circular-chart .circle");
+  const percentageText = document.getElementById("score-badge");
+
+  // SVG stroke length
+  const radius = 15.9155;
+  const circumference = 2 * Math.PI * radius;
+
+  // Clamp score between 0–100
+  const progress = Math.max(0, Math.min(score, 100));
+
+  // Animate stroke
+  const dashArray = `${(progress / 100) * circumference}, ${circumference}`;
+  circle.setAttribute("stroke-dasharray", dashArray);
+
+  // Update center text
+  percentageText.textContent = progress;
+}
+  
 </script>
 
 <script>
