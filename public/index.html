@@ -446,88 +446,91 @@
 }
     
 
-<!-- ===== Scoped styles (only affect this section) ===== -->
+    /* Section spacing */
     #performance {
-      position: relative;
-      padding: 56px 0;
-      overflow: hidden;
-      background: linear-gradient(180deg, transparent, rgba(248,250,252,0.6));
+      padding: 80px 0;
+      background: transparent;
     }
-    #performance .perf-container{
-      max-width: var(--container, 1100px);
+    #performance .perf-container {
+      max-width: 1100px;
       margin: 0 auto;
       padding: 0 20px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: center;
+      gap: 32px;
     }
-    @media (max-width: 900px){
-      #performance .perf-container{ grid-template-columns: 1fr; }
-    }
-
-    /* particles canvas */
-    #perfParticles{
-      position: absolute; inset: 0; pointer-events: none; opacity: .55;
+    @media (max-width: 900px) {
+      #performance .perf-container { grid-template-columns: 1fr; }
     }
 
-    .perf-card{
-      background: var(--card, #fff);
+    /* Card */
+    .perf-card {
+      position: relative;
+      background: #fff;
       border-radius: 16px;
-      box-shadow: 0 8px 22px rgba(15,23,42,0.06);
-      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      padding: 28px;
+      overflow: hidden;
     }
-    .perf-card h2, .card-title{
-      margin: 0 0 16px 0;
+    .perf-card h2, .card-title {
+      margin: 0 0 20px 0;
       font-weight: 800;
-      color: var(--text, #0f172a);
+      color: #0f172a;
       font-size: 20px;
     }
 
-    /* Gauge */
-    .gauge{
-      position: relative;
-      width: clamp(180px, 32vw, 260px);
-      height: clamp(180px, 32vw, 260px);
-      margin: 8px auto 0 auto;
+    /* Particles */
+    .perf-particles-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
     }
-    .circular-chart{
-      transform: rotate(-90deg);
+    #perfParticles {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      display: block;
-    }
-    .circle-progress{ transition: stroke-dasharray .8s ease; }
-    .gauge-score{
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800;
-      font-size: clamp(36px, 6vw, 56px); /* readable but bounded */
-      color: var(--text, #0f172a);
-      letter-spacing: .5px;
-    }
-    .gauge-label{
-      text-align: center;
-      margin-top: 12px;
-      font-weight: 700;
-      color: #10b981; /* will be swapped by JS */
     }
 
-    /* Metrics */
-    .metrics-grid{
+    /* Gauge */
+    .gauge { position: relative; width: 220px; height: 220px; margin: 0 auto; z-index: 1; }
+    .circular-chart { transform: rotate(-90deg); width: 100%; height: 100%; }
+    .circle-progress { transition: stroke-dasharray .8s ease; }
+    .gauge-score {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 48px; color: #0f172a;
+    }
+    .gauge-label { text-align: center; margin-top: 14px; font-weight: 700; color: #10b981; z-index: 1; }
+
+    /* Metrics styled like portfolio tiles */
+    .metrics-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 16px;
     }
-    .metric{
-      border: 1px solid rgba(15,23,42,0.06);
-      border-radius: 12px;
-      padding: 14px 16px;
-      background: linear-gradient(180deg,#fff,#f8fbff);
-      box-shadow: 0 4px 12px rgba(15,23,42,0.03);
+    .metric {
+      background: #fff;
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      transition: transform 0.2s ease;
     }
-    .metric span{ display:block; color: var(--muted,#6B7280); font-weight:600; font-size:13px; }
-    .metric strong{ display:block; margin-top:6px; font-size:18px; font-weight:800; color: var(--text,#0f172a); }
+    .metric:hover { transform: translateY(-2px); }
+    .metric span {
+      display:block;
+      color:#6B7280;
+      font-weight:600;
+      font-size:13px;
+    }
+    .metric strong {
+      display:block;
+      margin-top:6px;
+      font-size:20px;
+      font-weight:800;
+      color:#0f172a;
+    }
   
   </style>
 </head>
@@ -808,39 +811,25 @@
   </div>
 </section>    
 
-<!-- ===== PERFORMANCE (replace your whole section with this) ===== -->
 <section id="performance" aria-labelledby="performance-heading">
-  <!-- soft particles background -->
-  <canvas id="perfParticles" aria-hidden="true"></canvas>
-
   <div class="perf-container">
     <!-- Gauge card -->
     <article class="perf-card">
+      <div class="perf-particles-wrap">
+        <canvas id="perfParticles" aria-hidden="true"></canvas>
+      </div>
+
       <h2 id="performance-heading">Overall Performance</h2>
 
       <div class="gauge" aria-label="Performance score">
         <svg viewBox="0 0 36 36" class="circular-chart" role="img">
-          <!-- track -->
-          <path
-            class="circle-bg"
-            stroke-width="3"
-            fill="none"
-            stroke="#e5e7eb"
-            d="M18 2.0845
-               a 15.9155 15.9155 0 0 1 0 31.831
-               a 15.9155 15.9155 0 0 1 0 -31.831" />
-          <!-- progress -->
-          <path
-            id="perfProgress"
-            class="circle-progress"
-            stroke-width="3"
-            stroke-linecap="round"
-            fill="none"
-            stroke="url(#perfGrad)"
-            stroke-dasharray="0 100"
-            d="M18 2.0845
-               a 15.9155 15.9155 0 0 1 0 31.831
-               a 15.9155 15.9155 0 0 1 0 -31.831" />
+          <path class="circle-bg"
+            stroke-width="3" fill="none" stroke="#e5e7eb"
+            d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831a 15.9155 15.9155 0 0 1 0 -31.831"/>
+          <path id="perfProgress" class="circle-progress"
+            stroke-width="3" stroke-linecap="round" fill="none"
+            stroke="url(#perfGrad)" stroke-dasharray="0 100"
+            d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831a 15.9155 15.9155 0 0 1 0 -31.831"/>
           <defs>
             <linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%"  stop-color="#3b82f6"/>
@@ -848,7 +837,6 @@
             </linearGradient>
           </defs>
         </svg>
-
         <div id="perfScore" class="gauge-score">0</div>
       </div>
 
@@ -858,7 +846,6 @@
     <!-- Vitals card -->
     <article class="perf-card">
       <h3 class="card-title">Core Web Vitals</h3>
-
       <div class="metrics-grid">
         <div class="metric">
           <span>FCP</span>
@@ -1233,27 +1220,24 @@
 
   </script>
 
-<!-- ===== Scoped script (no external deps) ===== -->
   <script>
     (function(){
-      // ---- Particles ----
       const canvas = document.getElementById('perfParticles');
       const ctx = canvas.getContext('2d');
       let particles = [];
       function sizeCanvas(){
-        const r = document.getElementById('performance').getBoundingClientRect();
-        canvas.width = r.width; canvas.height = r.height;
+        canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
       }
       function initParticles(){
         particles = [];
-        for(let i=0;i<28;i++){
+        for(let i=0;i<20;i++){
           particles.push({
             x: Math.random()*canvas.width,
             y: Math.random()*canvas.height,
-            r: Math.random()*2 + 1.5,
-            dx: (Math.random()-.5)*.6,
-            dy: (Math.random()-.5)*.6,
-            o: Math.random()*.5+.15
+            r: Math.random()*2+1,
+            dx:(Math.random()-.5)*.6,
+            dy:(Math.random()-.5)*.6,
+            o: Math.random()*.5+.2
           });
         }
       }
@@ -1262,72 +1246,46 @@
         for(const p of particles){
           ctx.beginPath();
           ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-          ctx.fillStyle = `rgba(59,130,246,${p.o})`;
+          ctx.fillStyle=`rgba(59,130,246,${p.o})`;
           ctx.fill();
-          p.x += p.dx; p.y += p.dy;
-          if(p.x<0||p.x>canvas.width) p.dx*=-1;
-          if(p.y<0||p.y>canvas.height) p.dy*=-1;
+          p.x+=p.dx;p.y+=p.dy;
+          if(p.x<0||p.x>canvas.width)p.dx*=-1;
+          if(p.y<0||p.y>canvas.height)p.dy*=-1;
         }
         requestAnimationFrame(draw);
       }
 
-      // ---- Gauge + numbers ----
       const progressEl = document.getElementById('perfProgress');
-      const scoreEl    = document.getElementById('perfScore');
-      const labelEl    = document.getElementById('perfLabel');
+      const scoreEl = document.getElementById('perfScore');
+      const labelEl = document.getElementById('perfLabel');
 
-      // EDIT THESE (or wire to your API)
-      const targetScore = 84;
-      const targetFCP = 2.7;
-      const targetLCP = 3.2;
-      const targetCLS = 0.0;
-      const targetTBT = 220;
+      const targetScore=84, fcp=2.7, lcp=3.2, cls=0, tbt=220;
 
-      function animateNumber(el, end, dur, suffix=''){
-        const start = performance.now();
-        function step(now){
-          const t = Math.min(1, (now-start)/dur);
-          const val = (end*t);
-          el.textContent = (Number.isInteger(end) ? Math.round(val) : val.toFixed(2)) + suffix;
-          if(t<1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-      }
-
-      function setLabel(score){
-        if(score >= 80){ labelEl.textContent = 'Excellent ✔️'; labelEl.style.color = '#10b981'; }
-        else if(score >= 50){ labelEl.textContent = 'Needs Improvement ⚠️'; labelEl.style.color = '#f59e0b'; }
-        else { labelEl.textContent = 'Poor ❌'; labelEl.style.color = '#ef4444'; }
+      function setLabel(s){
+        if(s>=80){labelEl.textContent="Excellent ✔️";labelEl.style.color="#10b981";}
+        else if(s>=50){labelEl.textContent="Needs Improvement ⚠️";labelEl.style.color="#f59e0b";}
+        else{labelEl.textContent="Poor ❌";labelEl.style.color="#ef4444";}
       }
 
       function run(){
-        // particles
         sizeCanvas(); initParticles(); draw();
-        window.addEventListener('resize', ()=>{ sizeCanvas(); initParticles(); });
+        window.addEventListener('resize',()=>{sizeCanvas();initParticles();});
 
-        // gauge
         let s=0;
-        const tick = setInterval(()=>{
-          if(s>=targetScore){ clearInterval(tick); setLabel(targetScore); return; }
-          s++;
-          scoreEl.textContent = s;
-          progressEl.setAttribute('stroke-dasharray', `${s} 100`);
-        }, 18);
+        const tick=setInterval(()=>{
+          if(s>=targetScore){clearInterval(tick);setLabel(targetScore);return;}
+          s++;scoreEl.textContent=s;
+          progressEl.setAttribute('stroke-dasharray',`${s} 100`);
+        },20);
 
-        // metrics
-        document.getElementById('m-fcp').textContent = targetFCP.toFixed(2)+'s';
-        document.getElementById('m-lcp').textContent = targetLCP.toFixed(2)+'s';
-        document.getElementById('m-cls').textContent = targetCLS.toFixed(3);
-        animateNumber(document.getElementById('m-tbt'), targetTBT, 900, ' ms');
+        document.getElementById('m-fcp').textContent=fcp.toFixed(2)+'s';
+        document.getElementById('m-lcp').textContent=lcp.toFixed(2)+'s';
+        document.getElementById('m-cls').textContent=cls.toFixed(3);
+        document.getElementById('m-tbt').textContent=tbt+' ms';
       }
-
-      // kick off
-      document.readyState === 'loading'
-        ? document.addEventListener('DOMContentLoaded', run)
-        : run();
+      document.readyState==="loading"?document.addEventListener("DOMContentLoaded",run):run();
     })();
-  </script>
-  
+  </script>  
 <script>
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
