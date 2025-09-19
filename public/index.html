@@ -576,6 +576,42 @@
   text-anchor: middle;
   fill: #111;
 }
+
+    /* === Modern Performance Background === */
+.performance-card {
+  position: relative;
+  overflow: hidden; /* so background + particles don’t spill out */
+}
+
+.performance-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, #f9fbff, #ffffff, #f3f6ff);
+  background-size: 300% 300%;
+  animation: gradientShift 12s ease infinite;
+  z-index: 0;
+}
+
+/* Particles Canvas */
+#particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Content stays above */
+#performance > *:not(.performance-bg):not(#particles) {
+  position: relative;
+  z-index: 2;
+}
+
+/* Gradient animation */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
     
   </style>
 </head>
@@ -857,6 +893,8 @@
 </section>    
 
 <section id="performance" class="performance-card">
+  <div class="performance-bg"></div> <!-- 🔥 New animated background -->
+
   <h2>Website Performance</h2>
   <p>Real-time Core Web Vitals for my portfolio.</p>
 
@@ -887,6 +925,9 @@
 
   <!-- Chart -->
   <canvas id="performanceChart"></canvas>
+
+  <!-- Floating Particles Canvas -->
+  <canvas id="particles"></canvas>
 </section>
     
     <!-- SERVICES -->
@@ -1376,6 +1417,60 @@ function updateScoreRing(score) {
   percentageText.textContent = progress;
 }
   
+</script>
+
+  <script>
+// === Floating Particles in Performance Section ===
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let particles = [];
+
+function resizeCanvas() {
+  canvas.width = document.getElementById("performance").offsetWidth;
+  canvas.height = document.getElementById("performance").offsetHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+function initParticles() {
+  particles = [];
+  const count = 25; // number of particles
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 3 + 2,
+      dx: (Math.random() - 0.5) * 0.7,
+      dy: (Math.random() - 0.5) * 0.7,
+      opacity: Math.random() * 0.6 + 0.2
+    });
+  }
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(37,99,235,${p.opacity})`; // accent blue
+    ctx.fill();
+
+    p.x += p.dx;
+    p.y += p.dy;
+
+    // bounce off edges
+    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+  });
+}
+
+function animateParticles() {
+  drawParticles();
+  requestAnimationFrame(animateParticles);
+}
+
+initParticles();
+animateParticles();
 </script>
 
 <script>
