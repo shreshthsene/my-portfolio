@@ -1202,102 +1202,97 @@
 
   </script>
 
-<!-- Web Vitals library -->
-<script src="https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js"></script>
+<!-- Load Chart.js & web-vitals early -->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/chart.js" as="script">
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+<script src="https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js" defer></script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const perfSection = document.getElementById("performance");
-
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver((entries, obs) => {
-        if (entries[0].isIntersecting) {
-          const script = document.createElement("script");
-          script.src = "https://cdn.jsdelivr.net/npm/chart.js";
-          script.onload = () => {
-            initChart();
-            initWebVitals();
-          };
-          document.body.appendChild(script);
-          obs.disconnect();
-        }
-      });
-      observer.observe(perfSection);
-    } else {
-      const script = document.createElement("script");
-      script.src = "https://cdn.jsdelivr.net/npm/chart.js";
-      script.onload = () => {
-        initChart();
-        initWebVitals();
-      };
-      document.body.appendChild(script);
-    }
-  });
-
-  let vitals = { fcp: 0, lcp: 0, cls: 0, tbt: 0, score: 0 };
+  let vitals = { score: 100, fcp: 0, lcp: 0, cls: 0, tbt: 0 };
   let chart;
 
-  function initWebVitals() {
-    webVitals.getFCP(m => { vitals.fcp = m.value / 1000; updateUI(); });
-    webVitals.getLCP(m => { vitals.lcp = m.value / 1000; updateUI(); });
-    webVitals.getCLS(m => { vitals.cls = m.value; updateUI(); });
-    webVitals.getTTFB(m => { vitals.tbt = m.value; updateUI(); });
+  // Initialize UI immediately
+  function initUI() {
+    document.getElementById("fcp").textContent = "0.00 s";
+    document.getElementById("lcp").textContent = "0.00 s";
+    document.getElementById("cls").textContent = "0.000";
+    document.getElementById("tbt").textContent = "0 ms";
+
+    const badge = document.getElementById("score-badge");
+    badge.textContent = "100";
+    badge.className = "badge-green";
+    document.getElementById("score-label").textContent = "Excellent ✅";
   }
 
+  // Update UI when new metrics arrive
   function updateUI() {
     const badge = document.getElementById("score-badge");
     const label = document.getElementById("score-label");
 
-    // Simple score calculation
-    vitals.score = Math.max(0, 100 - (vitals.lcp*10 + vitals.tbt/10 + vitals.cls*50));
-
-    badge.innerText = Math.round(vitals.score);
+    // Simple scoring logic based on vitals
+    vitals.score = Math.max(
+      0,
+      100 - (vitals.lcp * 10 + vitals.tbt / 10 + vitals.cls * 50)
+    );
+    badge.textContent = Math.round(vitals.score);
 
     if (vitals.score >= 80) {
       badge.className = "badge-green";
-      label.innerText = "Excellent ✅";
+      label.textContent = "Excellent ✅";
     } else if (vitals.score >= 50) {
       badge.className = "badge-yellow";
-      label.innerText = "Needs Improvement ⚠️";
+      label.textContent = "Needs Improvement ⚠️";
     } else {
       badge.className = "badge-red";
-      label.innerText = "Poor ❌";
+      label.textContent = "Poor ❌";
     }
 
+    // Update metric values
     document.getElementById("fcp").textContent = vitals.fcp.toFixed(2) + " s";
     document.getElementById("lcp").textContent = vitals.lcp.toFixed(2) + " s";
     document.getElementById("cls").textContent = vitals.cls.toFixed(3);
     document.getElementById("tbt").textContent = vitals.tbt.toFixed(0) + " ms";
 
+    // Update chart
     if (chart) {
       chart.data.datasets[0].data = [
         vitals.score,
         vitals.fcp,
         vitals.lcp,
         vitals.cls,
-        vitals.tbt
+        vitals.tbt,
       ];
       chart.update();
     }
   }
 
-  function initChart() {
+  // Listen for Web Vitals events
+  function initWebVitals() {
+    webVitals.onFCP((metric) => { vitals.fcp = metric.value / 1000; updateUI(); });
+    webVitals.onLCP((metric) => { vitals.lcp = metric.value / 1000; updateUI(); });
+    webVitals.onCLS((metric) => { vitals.cls = metric.value; updateUI(); });
+    webVitals.onINP((metric) => { vitals.tbt = metric.value; updateUI(); }); // INP used instead of old TBT
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    initUI();
+
     const ctx = document.getElementById("performanceChart").getContext("2d");
     chart = new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["Score", "FCP", "LCP", "CLS", "TBT"],
+        labels: ["Score", "FCP", "LCP", "CLS", "INP"],
         datasets: [{
           label: "Web Vitals",
-          data: [0, 0, 0, 0, 0],
+          data: [vitals.score, vitals.fcp, vitals.lcp, vitals.cls, vitals.tbt],
           backgroundColor: [
             "#22c55e", // Score
             "#3b82f6", // FCP
             "#f59e0b", // LCP
             "#a855f7", // CLS
-            "#ef4444"  // TBT
+            "#ef4444"  // INP
           ],
-          borderRadius: 6,
+          borderRadius: 6
         }]
       },
       options: {
@@ -1305,20 +1300,15 @@
         animation: { duration: 800, easing: "easeOutQuart" },
         plugins: { legend: { display: false } },
         scales: {
-          y: {
-            beginAtZero: true,
-            grid: { color: "rgba(0,0,0,0.05)" },
-            ticks: { color: "#555", font: { size: 12 } }
-          },
-          x: {
-            ticks: { color: "#555", font: { size: 12 } }
-          }
+          y: { beginAtZero: true, grid: { color: "rgba(0,0,0,0.05)" } },
+          x: { ticks: { color: "#555", font: { size: 12 } } }
         }
       }
     });
-  }
 
-  </script>
+    initWebVitals();
+  });
+</script>
 
 <script>
 if ("serviceWorker" in navigator) {
