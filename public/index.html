@@ -756,20 +756,21 @@
   margin: 20px auto 10px auto;
   background: #f9fafb;
   border-radius: 10px;
-  padding: 14px;
-  box-shadow: none;
-  max-width: 300px;
+  padding: 14px 18px;
+  display: flex;                 /* Align text + button in a row */
+  justify-content: center;       /* Center as a group */
+  align-items: center;
+  gap: 16px;                     /* Space between text and button */
+  max-width: 420px;
 }
 
-.deck-preview .download-box p {
-  margin-bottom: 6px;
-  font-size: 13px;
+.deck-preview .download-box span {
+  font-size: 14px;
   font-weight: 500;
   color: #374151;
 }
 
 .deck-preview .download-btn {
-  display: inline-block;
   padding: 8px 16px;
   border-radius: 8px;
   background: #2563eb;
@@ -778,6 +779,7 @@
   font-size: 13px;
   text-decoration: none;
   transition: background 0.2s ease;
+  white-space: nowrap;           /* Prevent button from breaking */
 }
 
 .deck-preview .download-btn:hover {
@@ -1208,10 +1210,9 @@
   <div class="indicators"></div>
 
   <!-- Download PDF (now inside the deck) -->
-  <div class="download-box">
-    <p>📑 Download my full marketing plan (PDF)</p>
-    <a href="/files/marketing_plan.pdf" class="download-btn" download>Download PDF</a>
-  </div>
+ <div class="download-box">
+  <span>📑 Download my full marketing plan (PDF)</span>
+  <a href="/files/marketing_plan.pdf" class="download-btn" download>Download PDF</a>
 </div>
 
 </section>
