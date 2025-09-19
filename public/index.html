@@ -465,124 +465,19 @@
 }
     
 
-/* === Performance Card (Final Modern Version) === */
-#performance {
+/* === Performance Section Card === */
+#performance.performance-card {
+  position: relative;
   max-width: 650px;
   margin: 40px auto;
   padding: 28px;
   border-radius: 16px;
-  background: #fff;
+  overflow: hidden;
   box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background: transparent; /* important so background + particles show */
 }
 
-/* Hover lift animation */
-#performance:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
-}
-
-/* Title gradient */
-#performance h2 {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 6px;
-  background: linear-gradient(90deg, #2563EB, #4F46E5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Subtext */
-#performance p {
-  font-size: 0.95rem;
-  color: #444;
-  margin-bottom: 12px;
-}
-
-/* Score Row & strong values */
-#performance strong {
-  color: #111;
-  font-weight: 600;
-}
-
-/* === Score Badges === */
-.badge-green,
-.badge-yellow,
-.badge-red {
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  margin-left: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
-}
-
-.badge-green { background-color: #22c55e; color: #fff; }
-.badge-yellow { background-color: #f59e0b; color: #fff; }
-.badge-red { background-color: #ef4444; color: #fff; }
-
-.badge-green:hover,
-.badge-yellow:hover,
-.badge-red:hover {
-  transform: scale(1.05);
-}
-
-/* Score Label */
-#score-label {
-  margin-left: 8px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #333;
-}
-
-/* Chart styling */
-#performance canvas {
-  margin-top: 24px;
-  border-radius: 10px;
-  background: #fafafa;
-  padding: 8px;
-}
-
-/* Chart monitor tweaks */
-.chartjs-render-monitor {
-  border-radius: 8px;
-}
-
-    .circular-chart {
-  display: block;
-  max-width: 120px;
-  margin: 10px auto;
-}
-
-.circle-bg {
-  fill: none;
-  stroke: #eee;
-  stroke-width: 3.8;
-}
-
-.circle {
-  fill: none;
-  stroke-width: 3.8;
-  stroke: #22c55e; /* default green, you can swap on score */
-  stroke-linecap: round;
-  transition: stroke-dasharray 0.6s ease;
-}
-
-.percentage {
-  font-size: 0.5em;
-  font-weight: 700;
-  text-anchor: middle;
-  fill: #111;
-}
-
-    /* === Modern Performance Background === */
-.performance-card {
-  position: relative;
-  overflow: hidden; /* so background + particles don’t spill out */
-}
-
+/* === Gradient Background Layer === */
 .performance-bg {
   position: absolute;
   inset: 0;
@@ -592,7 +487,14 @@
   z-index: 0;
 }
 
-/* Particles Canvas */
+/* Gradient animation */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* === Floating Particles Layer === */
 #particles {
   position: absolute;
   inset: 0;
@@ -600,17 +502,84 @@
   pointer-events: none;
 }
 
-/* Content stays above */
-#performance > *:not(.performance-bg):not(#particles) {
+/* === Foreground Content === */
+.performance-content {
   position: relative;
   z-index: 2;
 }
 
-/* Gradient animation */
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+#performance h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1e3a8a; /* deep blue */
+  margin-bottom: 4px;
+}
+
+#performance p {
+  font-size: 0.95rem;
+  color: #4b5563; /* gray */
+  margin-bottom: 16px;
+}
+
+/* === Score Badge === */
+.score {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+#performance-score {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.status {
+  font-weight: 600;
+}
+
+.status.good { color: #16a34a; }       /* green */
+.status.average { color: #f59e0b; }   /* yellow */
+.status.poor { color: #dc2626; }      /* red */
+
+#performance-score.good { background: #16a34a; }
+#performance-score.average { background: #f59e0b; }
+#performance-score.poor { background: #dc2626; }
+
+/* === Metrics Grid === */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 20px;
+  margin-bottom: 20px;
+}
+
+.metric {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #374151;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.metric:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+/* === Chart === */
+#performanceChart {
+  margin-top: 12px;
+  width: 100% !important;
+  height: 260px !important;
 }
     
   </style>
@@ -893,38 +862,29 @@
 </section>    
 
 <section id="performance" class="performance-card">
-  <div class="performance-bg"></div> 
-  <canvas id="particles"></canvas>  
-  <h2>Website Performance</h2>
-  <p>Real-time Core Web Vitals for my portfolio.</p>
+  <!-- Background Layers -->
+  <div class="performance-bg"></div>
+  <canvas id="particles"></canvas>
 
-  <!-- Score Ring -->
-  <div class="score-wrapper">
-    <svg viewBox="0 0 36 36" class="circular-chart green">
-      <path class="circle-bg"
-        d="M18 2.0845
-           a 15.9155 15.9155 0 0 1 0 31.831
-           a 15.9155 15.9155 0 0 1 0 -31.831"/>
-      <path class="circle"
-        stroke-dasharray="0, 100"
-        d="M18 2.0845
-           a 15.9155 15.9155 0 0 1 0 31.831
-           a 15.9155 15.9155 0 0 1 0 -31.831"/>
-      <text x="18" y="20.35" class="percentage" id="score-badge">0</text>
-    </svg>
-    <span id="score-label" class="status">Loading...</span>
+  <!-- Foreground Content -->
+  <div class="performance-content">
+    <h2>Website Performance</h2>
+    <p>Real-time Core Web Vitals for my portfolio.</p>
+
+    <div class="score">
+      <span id="performance-score">38</span>
+      <span class="status poor">Poor ❌</span>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><strong>FCP:</strong> 5.1 s</div>
+      <div class="metric"><strong>LCP:</strong> 8.5 s</div>
+      <div class="metric"><strong>CLS:</strong> 0.274</div>
+      <div class="metric"><strong>TBT:</strong> 420 ms</div>
+    </div>
+
+    <canvas id="performanceChart"></canvas>
   </div>
-
-  <!-- Metrics -->
-  <div class="metrics">
-    <div class="metric"><span>⚡</span> FCP: <strong id="fcp">0.00 s</strong></div>
-    <div class="metric"><span>⏱️</span> LCP: <strong id="lcp">0.00 s</strong></div>
-    <div class="metric"><span>📐</span> CLS: <strong id="cls">0.000</strong></div>
-    <div class="metric"><span>⌛</span> TBT: <strong id="tbt">0 ms</strong></div>
-  </div>
-
-  <!-- Chart -->
-  <canvas id="performanceChart"></canvas>
 
 </section>
     
@@ -1387,6 +1347,55 @@
       document.getElementById("score-label").textContent = "Error fetching data ❌";
     }
   }
+
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let particles = [];
+
+function resizeCanvas() {
+  const perf = document.getElementById("performance");
+  canvas.width = perf.offsetWidth;
+  canvas.height = perf.offsetHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+function initParticles() {
+  particles = [];
+  for (let i = 0; i < 25; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 3 + 2,
+      dx: (Math.random() - 0.5) * 0.5,
+      dy: (Math.random() - 0.5) * 0.5,
+      o: Math.random() * 0.6 + 0.2
+    });
+  }
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(59,130,246,${p.o})`; // blue glow
+    ctx.fill();
+
+    p.x += p.dx;
+    p.y += p.dy;
+    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+  });
+}
+
+function animateParticles() {
+  drawParticles();
+  requestAnimationFrame(animateParticles);
+}
+
+initParticles();
+animateParticles();
 
   // Init placeholders, then load + refresh
   document.addEventListener("DOMContentLoaded", () => {
