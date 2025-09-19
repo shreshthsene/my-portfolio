@@ -893,8 +893,8 @@
 </section>    
 
 <section id="performance" class="performance-card">
-  <div class="performance-bg"></div> <!-- 🔥 New animated background -->
-
+  <div class="performance-bg"></div> 
+  <canvas id="particles"></canvas>  
   <h2>Website Performance</h2>
   <p>Real-time Core Web Vitals for my portfolio.</p>
 
@@ -926,8 +926,6 @@
   <!-- Chart -->
   <canvas id="performanceChart"></canvas>
 
-  <!-- Floating Particles Canvas -->
-  <canvas id="particles"></canvas>
 </section>
     
     <!-- SERVICES -->
@@ -1482,7 +1480,6 @@ if ("serviceWorker" in navigator) {
       .catch((err) => console.error("❌ Service Worker registration failed:", err));
   });
 }
-</script>
 
   </script>
 </body>
