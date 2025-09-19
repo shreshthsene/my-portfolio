@@ -826,50 +826,72 @@
   </div>
 </section>    
 
-<section id="performance" class="performance-grid">
-  <!-- Overall Performance Card -->
-  <div class="perf-card">
-    <h2>Overall Performance</h2>
-    <div class="radial-gauge">
-      <svg viewBox="0 0 36 36" class="circular-chart">
-        <path class="circle-bg"
-          d="M18 2.0845
-             a 15.9155 15.9155 0 0 1 0 31.831
-             a 15.9155 15.9155 0 0 1 0 -31.831"/>
-        <path id="progress" class="circle-progress"
-          stroke-dasharray="0, 100"
-          d="M18 2.0845
-             a 15.9155 15.9155 0 0 1 0 31.831
-             a 15.9155 15.9155 0 0 1 0 -31.831"/>
-      </svg>
-      <span id="score-value">0</span>
-    </div>
-    <p class="score-label" id="score-label">Loading…</p>
-  </div>
+<section id="performance" class="relative z-10 py-16">
+  <!-- floating particles canvas -->
+  <canvas id="particles" class="absolute inset-0 w-full h-full -z-10"></canvas>
 
-  <!-- Core Web Vitals Card -->
-  <div class="perf-card">
-    <h2>Core Web Vitals</h2>
-    <div class="metrics-tiles">
-      <div class="metric-tile gradient-fcp">
-        <p>FCP</p>
-        <p id="fcp">2.7s</p>
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-6">
+    <!-- Radial Gauge Card -->
+    <div class="rounded-2xl shadow-lg bg-white/30 dark:bg-black/30 backdrop-blur-md border border-white/20 p-6 text-center">
+      <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">Overall Performance</h2>
+      <div class="flex justify-center relative w-36 h-36 mx-auto">
+        <svg viewBox="0 0 36 36" class="w-full h-full rotate-[-90deg] circular-chart">
+          <path
+            class="text-gray-300 dark:text-gray-700"
+            stroke-width="3"
+            fill="none"
+            stroke="currentColor"
+            d="M18 2.0845
+               a 15.9155 15.9155 0 0 1 0 31.831
+               a 15.9155 15.9155 0 0 1 0 -31.831"
+          />
+          <path
+            id="performance-progress"
+            class="circle-progress"
+            stroke-width="3"
+            stroke-linecap="round"
+            fill="none"
+            stroke="url(#grad)"
+            stroke-dasharray="0,100"
+            d="M18 2.0845
+               a 15.9155 15.9155 0 0 1 0 31.831
+               a 15.9155 15.9155 0 0 1 0 -31.831"
+          />
+          <defs>
+            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#34d399" />
+              <stop offset="100%" stop-color="#3b82f6" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <span id="performance-score" class="absolute inset-0 flex items-center justify-center font-bold text-2xl text-gray-900 dark:text-white">0</span>
       </div>
-      <div class="metric-tile gradient-lcp">
-        <p>LCP</p>
-        <p id="lcp">3.2s</p>
-      </div>
-      <div class="metric-tile gradient-cls">
-        <p>CLS</p>
-        <p id="cls">0</p>
-      </div>
-      <div class="metric-tile gradient-tbt">
-        <p>TBT</p>
-        <p id="tbt">220ms</p>
+      <p id="performance-label" class="mt-4 font-semibold text-green-500">Loading…</p>
+    </div>
+
+    <!-- Core Web Vitals Tiles -->
+    <div class="rounded-2xl shadow-lg bg-white/30 dark:bg-black/30 backdrop-blur-md border border-white/20 p-6 text-center">
+      <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">Core Web Vitals</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="p-5 rounded-xl text-white font-bold bg-gradient-to-r from-yellow-300 to-orange-400">
+          <p>FCP</p>
+          <p id="fcp">0.0s</p>
+        </div>
+        <div class="p-5 rounded-xl text-white font-bold bg-gradient-to-r from-yellow-400 to-amber-500">
+          <p>LCP</p>
+          <p id="lcp">0.0s</p>
+        </div>
+        <div class="p-5 rounded-xl text-white font-bold bg-gradient-to-r from-green-400 to-emerald-500">
+          <p>CLS</p>
+          <p id="cls">0</p>
+        </div>
+        <div class="p-5 rounded-xl text-white font-bold bg-gradient-to-r from-red-400 to-pink-500">
+          <p>TBT</p>
+          <p id="tbt">0ms</p>
+        </div>
       </div>
     </div>
   </div>
-
 </section>
     
     <!-- SERVICES -->
@@ -1224,114 +1246,8 @@
 
   </script>
 
-<!-- Load Chart.js early -->
-<link rel="preload" href="https://cdn.jsdelivr.net/npm/chart.js" as="script">
-<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
-
 <script>
-  let chart;
-
-  // === Show placeholder UI instantly ===
-  function initPerformanceUI() {
-    document.getElementById("score-badge").textContent = "—";
-    document.getElementById("score-badge").className = "badge-yellow";
-    document.getElementById("score-label").textContent = "Loading… ⏳";
-
-    document.getElementById("fcp").textContent = "--";
-    document.getElementById("lcp").textContent = "--";
-    document.getElementById("cls").textContent = "--";
-    document.getElementById("tbt").textContent = "--";
-  }
-
-  // === Fetch & update performance data ===
-  async function loadPerformance() {
-    try {
-      const res = await fetch("/api/performance");
-      const data = await res.json();
-
-      // === Score Badge + Label ===
-      const badge = document.getElementById("score-badge");
-      const label = document.getElementById("score-label");
-      const score = Math.round(data.score);
-
-      badge.textContent = score;
-
-      // Update score ring
-      updateScoreRing(score);
-
-      if (score >= 80) {
-        badge.className = "badge-green";
-        label.textContent = "Excellent ✅";
-      } else if (score >= 50) {
-        badge.className = "badge-yellow";
-        label.textContent = "Needs Improvement ⚠️";
-      } else {
-        badge.className = "badge-red";
-        label.textContent = "Poor ❌";
-      }
-
-      // === Metrics ===
-      document.getElementById("fcp").textContent = data.fcp;
-      document.getElementById("lcp").textContent = data.lcp;
-      document.getElementById("cls").textContent = data.cls;
-      document.getElementById("tbt").textContent = data.tbt;
-
-      // === Chart.js ===
-      const ctx = document.getElementById("performanceChart").getContext("2d");
-
-      if (chart) {
-        // Update existing chart
-        chart.data.datasets[0].data = [
-          score,
-          parseFloat(data.fcp),
-          parseFloat(data.lcp),
-          parseFloat(data.cls),
-          parseFloat(data.tbt)
-        ];
-        chart.update();
-      } else {
-        // Create chart on first load
-        chart = new Chart(ctx, {
-          type: "bar",
-          data: {
-            labels: ["Score", "FCP", "LCP", "CLS", "TBT"],
-            datasets: [{
-              label: "Web Vitals",
-              data: [
-                score,
-                parseFloat(data.fcp),
-                parseFloat(data.lcp),
-                parseFloat(data.cls),
-                parseFloat(data.tbt)
-              ],
-              backgroundColor: [
-                "#22c55e", // Score
-                "#3b82f6", // FCP
-                "#f59e0b", // LCP
-                "#a855f7", // CLS
-                "#ef4444"  // TBT
-              ],
-              borderRadius: 6
-            }]
-          },
-          options: {
-            responsive: true,
-            animation: { duration: 800, easing: "easeOutQuart" },
-            plugins: { legend: { display: false } },
-            scales: {
-              y: { beginAtZero: true, grid: { color: "rgba(0,0,0,0.05)" } },
-              x: { ticks: { color: "#555", font: { size: 12 } } }
-            }
-          }
-        });
-      }
-
-    } catch (err) {
-      console.error("Error loading performance data", err);
-      document.getElementById("score-label").textContent = "Error fetching data ❌";
-    }
-  }
-
+// === Floating Particles in Performance Section ===
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
 let particles = [];
@@ -1346,86 +1262,7 @@ window.addEventListener("resize", resizeCanvas);
 
 function initParticles() {
   particles = [];
-  for (let i = 0; i < 25; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 3 + 2,
-      dx: (Math.random() - 0.5) * 0.5,
-      dy: (Math.random() - 0.5) * 0.5,
-      o: Math.random() * 0.6 + 0.2
-    });
-  }
-}
-
-function drawParticles() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  particles.forEach(p => {
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(59,130,246,${p.o})`; // blue glow
-    ctx.fill();
-
-    p.x += p.dx;
-    p.y += p.dy;
-    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-  });
-}
-
-function animateParticles() {
-  drawParticles();
-  requestAnimationFrame(animateParticles);
-}
-
-initParticles();
-animateParticles();
-
-  // Init placeholders, then load + refresh
-  document.addEventListener("DOMContentLoaded", () => {
-    initPerformanceUI();
-    loadPerformance();
-    setInterval(loadPerformance, 30000); // update every 30s
-  });
-
-// === Update Circular Score Ring ===
-function updateScoreRing(score) {
-  const circle = document.querySelector(".circular-chart .circle");
-  const percentageText = document.getElementById("score-badge");
-
-  // SVG stroke length
-  const radius = 15.9155;
-  const circumference = 2 * Math.PI * radius;
-
-  // Clamp score between 0–100
-  const progress = Math.max(0, Math.min(score, 100));
-
-  // Animate stroke
-  const dashArray = `${(progress / 100) * circumference}, ${circumference}`;
-  circle.setAttribute("stroke-dasharray", dashArray);
-
-  // Update center text
-  percentageText.textContent = progress;
-}
-  
-</script>
-
-  <script>
-// === Floating Particles in Performance Section ===
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-let particles = [];
-
-function resizeCanvas() {
-  canvas.width = document.getElementById("performance").offsetWidth;
-  canvas.height = document.getElementById("performance").offsetHeight;
-}
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
-
-function initParticles() {
-  particles = [];
-  const count = 25; // number of particles
+  const count = 25;
   for (let i = 0; i < count; i++) {
     particles.push({
       x: Math.random() * canvas.width,
@@ -1443,13 +1280,11 @@ function drawParticles() {
   particles.forEach(p => {
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(37,99,235,${p.opacity})`; // accent blue
+    ctx.fillStyle = `rgba(37,99,235,${p.opacity})`;
     ctx.fill();
 
     p.x += p.dx;
     p.y += p.dy;
-
-    // bounce off edges
     if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
     if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
   });
@@ -1479,57 +1314,86 @@ function animateValue(el, start, end, duration, suffix = "") {
   requestAnimationFrame(step);
 }
 
-// === Run Count Ups on Page Load ===
+// === Run Count Ups + Gauge Animation on Page Load ===
 document.addEventListener("DOMContentLoaded", () => {
-  // Score Badge
   const scoreEl = document.getElementById("performance-score");
-  if (scoreEl) {
-    const scoreValue = parseInt(scoreEl.textContent);
+  const progressEl = document.getElementById("performance-progress");
+  const scoreLabel = document.getElementById("performance-label");
+
+  // Target values (replace with API later)
+  const targetScore = 84;
+  const targetFCP = 2.7;
+  const targetLCP = 3.2;
+  const targetCLS = 0.0;
+  const targetTBT = 220;
+
+  // Animate Score
+  if (scoreEl && progressEl) {
     scoreEl.textContent = "0";
-    animateValue(scoreEl, 0, scoreValue, 1500);
+    let score = 0;
+    const interval = setInterval(() => {
+      if (score >= targetScore) {
+        clearInterval(interval);
+
+        // Label update
+        if (targetScore >= 80) {
+          scoreLabel.textContent = "Excellent ✔️";
+          scoreLabel.className = "mt-4 font-semibold text-green-500";
+        } else if (targetScore >= 50) {
+          scoreLabel.textContent = "Needs Improvement ⚠️";
+          scoreLabel.className = "mt-4 font-semibold text-yellow-500";
+        } else {
+          scoreLabel.textContent = "Poor ❌";
+          scoreLabel.className = "mt-4 font-semibold text-red-500";
+        }
+
+        return;
+      }
+      score++;
+      scoreEl.textContent = score;
+      progressEl.setAttribute("stroke-dasharray", `${score}, 100`);
+    }, 30);
   }
 
-  // Metrics
+  // Animate Metrics
   const fcpEl = document.getElementById("fcp");
   if (fcpEl) {
-    const fcpVal = parseFloat(fcpEl.textContent);
-    fcpEl.textContent = "0.00 s";
-    animateValue(fcpEl, 0, fcpVal, 2000, " s");
+    fcpEl.textContent = "0.00s";
+    animateValue(fcpEl, 0, targetFCP, 2000, "s");
   }
 
   const lcpEl = document.getElementById("lcp");
   if (lcpEl) {
-    const lcpVal = parseFloat(lcpEl.textContent);
-    lcpEl.textContent = "0.00 s";
-    animateValue(lcpEl, 0, lcpVal, 2000, " s");
+    lcpEl.textContent = "0.00s";
+    animateValue(lcpEl, 0, targetLCP, 2000, "s");
   }
 
   const clsEl = document.getElementById("cls");
   if (clsEl) {
-    const clsVal = parseFloat(clsEl.textContent);
     clsEl.textContent = "0.000";
-    animateValue(clsEl, 0, clsVal, 2000);
+    animateValue(clsEl, 0, targetCLS, 2000);
   }
 
   const tbtEl = document.getElementById("tbt");
   if (tbtEl) {
-    const tbtVal = parseInt(tbtEl.textContent);
     tbtEl.textContent = "0 ms";
-    animateValue(tbtEl, 0, tbtVal, 2000, " ms");
+    animateValue(tbtEl, 0, targetTBT, 2000, " ms");
   }
 });
+</script>
 
+  <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const scoreEl = document.getElementById("score-value");
-  const progressEl = document.getElementById("progress");
-  const scoreLabel = document.getElementById("score-label");
+  const scoreEl = document.getElementById("performance-score");
+  const progressEl = document.getElementById("performance-progress");
+  const labelEl = document.getElementById("performance-label");
 
   let score = 0;
-  const target = 84; // Example value, replace with API response later
+  const target = 84; // final score
   const interval = setInterval(() => {
     if (score >= target) {
       clearInterval(interval);
-      scoreLabel.textContent = "Excellent ✔️";
+      labelEl.textContent = "Excellent ✔️";
       return;
     }
     score++;
@@ -1537,7 +1401,6 @@ document.addEventListener("DOMContentLoaded", () => {
     progressEl.setAttribute("stroke-dasharray", `${score}, 100`);
   }, 30);
 });
-    
 </script>
 
 <script>
