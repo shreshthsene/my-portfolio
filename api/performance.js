@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  const API_KEY = process.env.PAGESPEED_API_KEY; // secure
+  const API_KEY = process.env.PAGESPEED_API_KEY;
   const url = req.query.url || "https://shreshth-portfolio.vercel.app/";
 
   try {
