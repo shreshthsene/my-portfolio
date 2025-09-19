@@ -9,16 +9,37 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap">
 
-<!-- Preload Hero -->
-<link rel="preload" as="image" href="/images/hero.webp" fetchpriority="high">
+<!-- Preload font stylesheet -->
+<link rel="preload" 
+      as="style" 
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap">
+
+<!-- Load stylesheet (with swap) -->
+<link rel="stylesheet" 
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" 
+      media="all">
+  
+<!-- Preload Hero (AVIF preferred) -->
+<link rel="preload" as="image" href="/images/hero.avif" type="image/avif" fetchpriority="high">
 
 <!-- Hero Image -->
 <picture>
+  <!-- Modern formats first -->
   <source srcset="/images/hero.avif" type="image/avif">
   <source srcset="/images/hero.webp" type="image/webp">
-  <img src="/images/hero.jpg" alt="Hero Section" width="1200" height="800" loading="eager" fetchpriority="high">
+
+  <!-- Fallback JPG -->
+  <img 
+    src="/images/hero.jpg" 
+    alt="Hero Section" 
+    width="1200" 
+    height="800"
+    loading="eager" 
+    decoding="async"
+    fetchpriority="high"
+    style="max-width: 100%; height: auto;"
+  >
 </picture>
   
   <style>
