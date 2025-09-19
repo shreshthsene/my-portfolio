@@ -1208,7 +1208,7 @@
 <script src="https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js" defer></script>
 
 <script>
-  let vitals = { score: 100, fcp: 0, lcp: 0, cls: 0, tbt: 0 };
+  let vitals = { score: 0, fcp: 0, lcp: 0, cls: 0, tbt: 0 };
   let chart;
 
   // Initialize UI immediately
@@ -1224,16 +1224,31 @@
     document.getElementById("score-label").textContent = "Excellent ✅";
   }
 
+  function calculateScore(vitals) {
+  let score = 100;
+
+  // LCP thresholds
+  if (vitals.lcp > 4) score -= 30;
+  else if (vitals.lcp > 2.5) score -= 15;
+
+  // CLS thresholds
+  if (vitals.cls > 0.25) score -= 30;
+  else if (vitals.cls > 0.1) score -= 15;
+
+  // INP thresholds (similar to TBT for responsiveness)
+  if (vitals.tbt > 500) score -= 30;
+  else if (vitals.tbt > 200) score -= 15;
+
+  return Math.max(0, score);
+}
+
+  
   // Update UI when new metrics arrive
   function updateUI() {
+    vitals.score = calculateScore(vitals);     
     const badge = document.getElementById("score-badge");
     const label = document.getElementById("score-label");
 
-    // Simple scoring logic based on vitals
-    vitals.score = Math.max(
-      0,
-      100 - (vitals.lcp * 10 + vitals.tbt / 10 + vitals.cls * 50)
-    );
     badge.textContent = Math.round(vitals.score);
 
     if (vitals.score >= 80) {
