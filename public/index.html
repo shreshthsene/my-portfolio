@@ -1751,6 +1751,7 @@ if ("serviceWorker" in navigator) {
   }
 })();
 
+<script>
 document.addEventListener("DOMContentLoaded", () => {
   const slides = document.querySelector(".slides");
   const slideItems = document.querySelectorAll(".slide");
@@ -1760,6 +1761,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentSlide = 0;
   const totalSlides = slideItems.length;
+  let autoPlay;
 
   // === Create indicators ===
   slideItems.forEach((_, idx) => {
@@ -1791,11 +1793,24 @@ document.addEventListener("DOMContentLoaded", () => {
     moveToSlide(newIndex);
   });
 
-  // Auto-rotate every 8 seconds
-  setInterval(() => {
-    const newIndex = (currentSlide + 1) % totalSlides;
-    moveToSlide(newIndex);
-  }, 8000);
+  // === Auto-rotate ===
+  function startAutoPlay() {
+    autoPlay = setInterval(() => {
+      const newIndex = (currentSlide + 1) % totalSlides;
+      moveToSlide(newIndex);
+    }, 8000);
+  }
+
+  function stopAutoPlay() {
+    clearInterval(autoPlay);
+  }
+
+  // Start autoplay
+  startAutoPlay();
+
+  // Pause on hover
+  slides.parentElement.addEventListener("mouseenter", stopAutoPlay);
+  slides.parentElement.addEventListener("mouseleave", startAutoPlay);
 });
 
   </script>
