@@ -1992,13 +1992,13 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   }
   function initParticles(){
     particles = [];
-    for(let i=0;i<45;i++){
+    for(let i=0;i<55;i++){
       particles.push({
         x: Math.random()*canvas.width,
         y: Math.random()*canvas.height,
-        r: Math.random()*2+1,
-        dx:(Math.random()-.5)*.6,    // slightly faster drift
-        dy:(Math.random()-.5)*.6,
+        r: Math.random()*3+2,
+        dx:(Math.random()-.5)*.7,    // slightly faster drift
+        dy:(Math.random()-.5)*.7,
         o: Math.random()*.4+.3
       });
     }
