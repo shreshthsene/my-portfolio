@@ -87,130 +87,283 @@
     }
     nav a:hover{background:rgba(37,99,235,0.06); color:var(--accent-600)}
 
-    /* Hero */
-    .hero{
-      display:grid;
-      gap:24px;
-      grid-template-columns: 1fr 420px;
-      align-items:center;
-      padding:48px 20px;
-    }
-    .hero .headline{
-      font-size: clamp(26px, 4.5vw, 44px);
-      line-height:1.05;
-      font-weight:800;
-      margin:0 0 16px 0;
-      color:var(--text);
-    }
-    .hero .sub{
-      color:var(--muted);
-      margin-bottom:18px;
-      max-width:62ch;
-      font-size:15px;
-    }
-    .cta-row{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:12px 16px;
-      border-radius:10px;
-      font-weight:700;
-      cursor:pointer;
-      border:0;
-      font-size:14px;
-    }
-    .btn-primary{
-      background:var(--accent);
-      color:#fff;
-      box-shadow:0 6px 18px rgba(37,99,235,0.18);
-    }
-    .btn-ghost{
-      background:transparent;
-      color:var(--accent-600);
-      border:1px solid rgba(29,78,216,0.08);
-    }
-    .hero-art{
-      border-radius:14px;
-      background:linear-gradient(180deg,#fff,#f9fbff);
-      height:320px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      box-shadow: 0 6px 18px rgba(12,15,20,0.04);
-    }
-    .hero-art img{width:100%; height:100%; object-fit:cover}
+/* Hero Section */
+.hero {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr 420px;
+  align-items: center;
+  padding: 64px 20px;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #3b82f6, #10b981);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  color: #fff; /* default text color */
+}
 
-    /* About */
-    .about{
-      display:grid;
-      grid-template-columns: 220px 1fr;
-      gap:24px;
-      align-items:center;
-      margin-top:36px;
-    }
-    .avatar{
-      width:200px;
-      height:200px;
-      border-radius:14px;
-      overflow:hidden;
-      border:6px solid #fff;
-      box-shadow:0 10px 30px rgba(15,23,42,0.06);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-   .avatar img{width:100%; height:100%; object-fit:cover; object-position:top;}  
-    .about p{color:var(--muted); margin-top:6px; font-size:15px}
-    .stats{
-      display:flex;
-      gap:18px;
-      margin-top:18px;
-      flex-wrap:wrap;    
-    }
-    .stat{background:var(--card); padding:16px 18px; border-radius:12px; box-shadow:0 6px 18px rgba(15,23,42,0.03); min-width:120px; text-align:center}
-    .stat .num{font-weight:800; font-size:20px}
-    .stat .label{font-size:13px; color:var(--muted)
-    }
+/* Hero Headline */
+.hero .headline {
+  font-size: clamp(28px, 4.5vw, 52px);
+  line-height: 1.1;
+  font-weight: 800;
+  margin: 0 0 20px 0;
+  color: #fff;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
 
-/* Tools ticker effect */
+/* Hero Subtext */
+.hero .sub {
+  margin-bottom: 24px;
+  max-width: 62ch;
+  font-size: 17px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* CTA Row */
+.cta-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 0;
+  font-size: 15px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn-primary {
+  background: var(--accent, #2563eb);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+}
+.btn-ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/* Hero Image Container */
+.hero-art {
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+  animation: float 6s ease-in-out infinite;
+}
+.hero-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(1.05) contrast(1.05);
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-art {
+    height: 280px;
+    margin-top: 20px;
+  }
+}
+    
+   /* About Section */
+.about {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 32px;
+  align-items: center;
+  margin-top: 64px;
+  padding: 40px 20px;
+}
+
+/* Avatar (circular, glowing) */
+.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 6px solid #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.25);
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* About Paragraph */
+.about p {
+  color: var(--muted, #6b7280);
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Stats Container */
+.stats {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+/* Stat Card (Glassmorphism) */
+.stat {
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.stat:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  border-color: rgba(59, 130, 246, 0.4); /* subtle accent glow */
+}
+.stat .num {
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--accent, #2563eb);
+}
+.stat .label {
+  font-size: 14px;
+  color: var(--muted, #6b7280);
+  margin-top: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 20px;
+  }
+  .stats {
+    justify-content: center;
+  }
+}
+
+/* Tools Section Wrapper */
+.tools-section {
+  margin-top: 80px;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #f9fafb, #eef6ff);
+  border-radius: 24px;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Title */
+.tools-section h3 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #0f172a;
+}
+
+.tools-sub {
+  color: var(--muted, #6b7280);
+  margin-bottom: 32px;
+  font-size: 16px;
+}
+
+/* Ticker Effect */
 .tools-ticker {
   overflow: hidden;
   width: 100%;
   position: relative;
 }
-
 .ticker-track {
   display: flex;
-  gap: 32px;
-  animation: ticker 10s linear infinite;
+  gap: 28px;
+  animation: ticker 35s linear infinite;
+  will-change: transform;
 }
-
-.tool {
-  flex: 0 0 auto;
-  background: var(--card);
-  padding: 16px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(15,23,42,0.03);
-  text-align: center;
-  min-width: 120px;
-}
-
-.tool svg {
-  margin-bottom: 8px;
-}
-
-.tool span {
-  display: block;
-  font-size: 14px;
-  color: var(--muted);
-  font-weight: 600;
-}
-
 @keyframes ticker {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
+}
+
+/* Tool Card */
+.tool {
+  flex: 0 0 auto;
+  min-width: 150px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(14px);
+  text-align: center;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.tool:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 14px 34px rgba(37, 99, 235, 0.25);
+}
+.tool svg {
+  margin-bottom: 10px;
+  width: 42px;
+  height: 42px;
+}
+.tool span {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+  .ticker-track {
+    animation-duration: 20s; /* speed up for smaller screens */
+  }
+  .tool {
+    min-width: 120px;
+    padding: 14px 16px;
+  }
 }
     
     /* Services */
@@ -446,9 +599,12 @@
 }
     
 
-/* === Performance Section Styles === */
+/* === Performance Section === */
 #performance {
   padding: 4rem 1rem;
+  background: #ffffff;
+  position: relative;
+  z-index: 1;
 }
 
 .section-header {
@@ -456,15 +612,15 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .section-title {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: 800;
   line-height: 1.2;
   margin-bottom: 0.5rem;
-  color: #111827;
+  color: #0f172a;
 }
 
 .section-subtitle {
@@ -488,29 +644,34 @@
 
 .perf-card {
   position: relative;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-  padding: 28px;
-  overflow: hidden; /* keeps particles inside */
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 18px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+  padding: 32px;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.perf-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(37, 99, 235, 0.15);
 }
 
-/* === Particle canvas for Overall Performance card === */
+/* Particle canvas */
 #perfParticles {
   position: absolute;
   top: 0; left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;               /* keep behind content */
-  pointer-events: none;     /* don’t block clicks */
+  z-index: 0;
+  pointer-events: none;
 }
 
 .perf-content {
   position: relative;
-  z-index: 1;               /* keep content above particles */
+  z-index: 1;
 }
 
-.perf-card h2, .card-title {
+.card-title {
   margin: 0 0 20px 0;
   font-weight: 800;
   color: #0f172a;
@@ -523,7 +684,6 @@
   width: 220px; 
   height: 220px; 
   margin: 0 auto; 
-  z-index: 1; 
 }
 .circular-chart { 
   transform: rotate(-90deg); 
@@ -531,7 +691,7 @@
   height: 100%; 
 }
 .circle-progress { 
-  transition: stroke-dasharray .8s ease; 
+  transition: stroke-dasharray 1s ease; 
 }
 .gauge-score {
   position: absolute; inset: 0;
@@ -543,10 +703,9 @@
   margin-top: 14px; 
   font-weight: 700; 
   color: #10b981; 
-  z-index: 1; 
 }
 
-/* Metrics styled like portfolio tiles */
+/* Metrics */
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -557,9 +716,12 @@
   border-radius: 14px;
   padding: 18px 20px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.metric:hover { transform: translateY(-2px); }
+.metric:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.18);
+}
 .metric span {
   display:block;
   color:#6B7280;
@@ -587,7 +749,7 @@
   100% { background-position: 200% 0; }
 }
 
-/* Pulse effect for gauge on load */
+/* Pulse */
 .gauge.pulsing {
   animation: pulse 1.5s infinite;
 }
@@ -596,30 +758,30 @@
   50% { transform: scale(1.05); }
 }
 
-
-/* === Marketing Approach Section === */
+/* === Approach Section === */
 #approach {
-  margin-top: 20px;   /* reduced gap (was 40px) */
-  padding: 30px 20px; /* slightly smaller padding */
+  margin-top: 40px;
+  padding: 50px 20px;
   background: #f9fafb;
+  border-radius: 18px;
 }
 
 #approach h2 {
-  font-size: 1.5rem;   /* match Website Performance heading */
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: 800;
   text-align: center;
-  margin-bottom: 8px;
-  color: #111827;
+  margin-bottom: 12px;
+  color: #0f172a;
 }
 
 #approach p.sub {
   text-align: center;
   color: #6b7280;
-  margin-bottom: 32px; /* smaller spacing below subtitle */
-  font-size: 14px;
+  margin-bottom: 40px;
+  font-size: 15px;
 }
 
-/* === Steps Timeline === */
+/* Steps */
 .approach-steps {
   display: flex;
   justify-content: space-between;
@@ -627,21 +789,20 @@
   gap: 20px;
   flex-wrap: wrap;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
-
 .step-card {
   flex: 1;
   min-width: 160px;
   text-align: center;
-  position: relative;
+  transition: transform 0.3s ease;
 }
-
+.step-card:hover { transform: translateY(-6px); }
 .step-card .circle {
-  width: 48px;
-  height: 48px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
-  background: #2563eb;
+  background: linear-gradient(135deg,#3b82f6,#10b981);
   color: #fff;
   font-weight: bold;
   font-size: 16px;
@@ -649,15 +810,13 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto 12px auto;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(59,130,246,0.25);
 }
-
 .step-card h4 {
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 6px;
 }
-
 .step-card p {
   font-size: 13px;
   color: #6b7280;
@@ -668,53 +827,45 @@
 .approach-steps::before {
   content: "";
   position: absolute;
-  top: 24px;
+  top: 27px;
   left: 5%;
   right: 5%;
   height: 3px;
-  background: #d1d5db;
+  background: linear-gradient(90deg,#3b82f6,#10b981);
   z-index: 0;
 }
-.step-card .circle {
-  position: relative;
-  z-index: 1;
-}
+.step-card .circle { position: relative; z-index: 1; }
 
-/* === Slide Deck Preview === */
+/* Slide Deck */
 .deck-preview {
   position: relative;
-  max-width: 800px;
+  max-width: 820px;
   margin: 0 auto 50px auto;
   overflow: hidden;
-  border-radius: 14px;
+  border-radius: 16px;
   background: #fff;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 26px rgba(0,0,0,0.08);
 }
-
 .slides {
   display: flex;
   transition: transform 0.6s ease;
 }
-
 .slide {
   min-width: 100%;
   padding: 40px;
 }
-
 .slide h4 {
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 20px;
-  color: #111827;
+  color: #0f172a;
   text-align: center;
 }
-
 .slide-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
 }
-
 .slide-item {
   display: flex;
   align-items: flex-start;
@@ -722,45 +873,41 @@
   background: #f9fafb;
   padding: 16px;
   border-radius: 10px;
-  transition: transform 0.3s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
-
 .slide-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.15);
 }
-
-.slide-item .icon {
-  font-size: 22px;
-}
-
+.slide-item .icon { font-size: 22px; }
 .slide-item h5 {
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 4px;
 }
-
 .slide-item p {
   font-size: 13px;
   color: #374151;
   line-height: 1.5;
 }
 
-/* Carousel buttons */
+/* Carousel controls */
 .carousel-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   border: none;
   font-size: 22px;
   cursor: pointer;
   padding: 8px 12px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  transition: background 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 .carousel-btn:hover {
   background: #f3f4f6;
+  transform: scale(1.1);
 }
 .carousel-btn.prev { left: 12px; }
 .carousel-btn.next { right: 12px; }
@@ -778,31 +925,30 @@
   background: #d1d5db;
   border-radius: 50%;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 .indicators span.active {
   background: #2563eb;
+  transform: scale(1.2);
 }
 
-/* Download box inside deck */
+/* Download box */
 .deck-preview .download-box {
   margin: 20px auto 10px auto;
   background: #f9fafb;
   border-radius: 10px;
   padding: 14px 18px;
-  display: flex;                 /* Align text + button in a row */
-  justify-content: center;       /* Center as a group */
+  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 16px;                     /* Space between text and button */
+  gap: 16px;
   max-width: 420px;
 }
-
 .deck-preview .download-box span {
   font-size: 14px;
   font-weight: 500;
   color: #374151;
 }
-
 .deck-preview .download-btn {
   padding: 8px 16px;
   border-radius: 8px;
@@ -811,13 +957,10 @@
   font-weight: 600;
   font-size: 13px;
   text-decoration: none;
-  transition: background 0.2s ease;
-  white-space: nowrap;           /* Prevent button from breaking */
+  transition: background 0.25s ease;
+  white-space: nowrap;
 }
-
-.deck-preview .download-btn:hover {
-  background: #1d4ed8;
-}
+.deck-preview .download-btn:hover { background: #1d4ed8; }
 
 
 /* Base section */
@@ -844,6 +987,12 @@
 .wave-divider path {
   fill: var(--wave-color, #f9fafb);
 }
+
+<!-- AOS (Scroll Animations) -->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+<!-- Rellax (Parallax Scrolling) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>
     
   </style>
 </head>
@@ -862,139 +1011,131 @@
 
   <main class="wrap">
 
-    <!-- HERO -->
-    <section class="hero" id="home" aria-labelledby="hero-heading">
-      <div>
-        <h1 id="hero-heading" class="headline">Helping brands grow through data-driven marketing & storytelling</h1>
-        <p class="sub">I create campaign-driven growth strategies — paid, content, and email — that move the needle for B2B and consumer brands. Focused on measurable results and growth that scales.</p>
+   <!-- HERO -->
+<section class="hero parallax-section" id="home" aria-labelledby="hero-heading">
+  <div data-aos="fade-up">
+    <h1 id="hero-heading" class="headline">
+      Helping brands grow through data-driven marketing & storytelling
+    </h1>
+    <p class="sub" data-aos="fade-up" data-aos-delay="150">
+      I create campaign-driven growth strategies — paid, content, and email — 
+      that move the needle for B2B and consumer brands. 
+      Focused on measurable results and growth that scales.
+    </p>
 
-        <div class="cta-row" role="region" aria-label="Primary call to actions">
-          <button class="btn btn-primary" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">View My Work</button>
-          <a class="btn btn-ghost" href="#contact">Let’s Talk</a>
-        </div>
-      </div>
-
-      <div class="hero-art" aria-hidden="true">
-       <picture>
-    <!-- WebP sources -->
-    <source 
-      srcset="
-        https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=400&auto=format&fit=crop&fm=webp 400w,
-        https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop&fm=webp 800w,
-        https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop&fm=webp 1200w
-      "
-      sizes="(max-width: 768px) 100vw, 1200px"
-      type="image/webp"
-    >
-
-    <!-- JPG fallback -->
-    <img 
-      src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop" 
-      srcset="
-        https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=400&auto=format&fit=crop 400w,
-        https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop 800w,
-        https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop 1200w
-      "
-      sizes="(max-width: 768px) 100vw, 1200px"
-      alt="Marketing creative visual"
-    >
-  </picture>      
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="about" aria-labelledby="about-heading">
-      <div class="avatar" aria-hidden="true">
-        <!-- Replace with your photo -->
-        <img src="myphoto.jpg" loading="lazy" alt="Portrait of Shresnth Saini" />
-      </div>
-
-      <div>
-        <h2 id="about-heading">About Me</h2>
-        <p>I'm a Marketing Specialist with 4+ years of experience in digital marketing and content strategy. I design campaigns that increase engagement, generate qualified leads, and deliver measurable ROI. I work across SEO, paid media, content creation, and performance analytics.</p>
-
-        <div class="stats" aria-hidden="true">
-          <div class="stat">
-            <div class="num">4+</div>
-            <div class="label">Years of experience</div>
-          </div>
-          <div class="stat">
-            <div class="num">20+</div>
-            <div class="label">Campaigns managed</div>
-          </div>
-          <div class="stat">
-            <div class="num">Avg 2x</div>
-            <div class="label">ROI improvement</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PERSONALITY & STORY -->
-<section id="story">
-  <h3>My Story</h3>
-
-  <p>
-    I first stepped into marketing because I was fascinated by how creative storytelling 
-    and data analytics together can move people to act. While studying, I was drawn to 
-    projects where I could combine strategy with measurable impact, and that curiosity 
-    naturally led me into digital marketing.
-  </p>
-
-  <p>
-    At <strong>OYO Hotels</strong>, I managed multi-location campaigns, influencer collaborations, 
-    and content calendars that lifted seasonal bookings by 15% and grew Instagram followers 
-    by 20% in six months. From there, I expanded into performance marketing at <strong>Practo</strong>, 
-    where I led multi-channel campaigns across Google Ads, LinkedIn, and Email—achieving a 22% 
-    increase in qualified leads and reducing cost-per-lead by 18% through analytics-driven optimizations.
-  </p>
-
-  <p>
-    Today, I focus on <em>scalable e-commerce and growth marketing</em>: lifecycle campaigns, 
-    SEO-led content, and automation that boost conversions and customer LTV. 
-    I believe effective marketing is about creating clarity in a noisy digital world 
-    — connecting the right audience with genuine value.
-  </p>
-
-  <p>
-    Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching digital 
-    designs, and writing about emerging marketing trends. My goal is to join a team where 
-    I can keep solving growth challenges while bringing creative energy and 
-    data-driven rigor.
-  </p>
-
-<!-- HORIZONTAL TIMELINE -->
-<div style="margin-top:28px">
-  <h4>Journey Timeline</h4>
-  <div class="timeline-horizontal">
-    <div class="timeline-event">
-      <h5>2020</h5>
-      <p>BBA · Project Management Major<br>
-      Built strong foundations in strategy, operations, and leadership</p>
-    </div>
-    <div class="timeline-event">
-      <h5>2021</h5>
-      <p>OYO Hotels<br>
-      Marketing Associate · Campaigns, Influencer partnerships, Social growth</p>
-    </div>
-    <div class="timeline-event">
-      <h5>2022 – 2025</h5>
-      <p>Practo<br>
-      Performance Marketing Analyst · Multi-Channel Growth & Automation</p>
-    </div>
-    <div class="timeline-event">
-      <h5>2024 – 2025</h5>
-      <p>MBA, UCW<br>
-      Project Management & Strategy focus</p>
-    </div>
-    <div class="timeline-event">
-      <h5>Today</h5>
-      <p>Marketing Specialist<br>
-      Data-driven storytelling & Growth campaigns</p>
+    <div class="cta-row" role="region" aria-label="Primary call to actions">
+      <button class="btn btn-primary" data-aos="zoom-in" data-aos-delay="300"
+        onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">
+        View My Work
+      </button>
+      <a class="btn btn-ghost" href="#contact" data-aos="zoom-in" data-aos-delay="400">
+        Let’s Talk
+      </a>
     </div>
   </div>
-</div>
-  
+
+  <div class="hero-art parallax-float" aria-hidden="true" data-aos="fade-left" data-aos-delay="200">
+    <picture>
+      <!-- WebP sources -->
+      <source 
+        srcset="
+          https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=400&auto=format&fit=crop&fm=webp 400w,
+          https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop&fm=webp 800w,
+          https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop&fm=webp 1200w
+        "
+        sizes="(max-width: 768px) 100vw, 1200px"
+        type="image/webp"
+      >
+
+      <!-- JPG fallback -->
+      <img 
+        src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop" 
+        srcset="
+          https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=400&auto=format&fit=crop 400w,
+          https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop 800w,
+          https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop 1200w
+        "
+        sizes="(max-width: 768px) 100vw, 1200px"
+        alt="Marketing creative visual"
+      >
+    </picture>      
+  </div>
+</section>
+
+    <!-- ABOUT -->
+<section class="about" aria-labelledby="about-heading" data-aos="fade-up">
+  <div class="avatar" aria-hidden="true" data-aos="zoom-in" data-aos-delay="100">
+    <!-- Replace with your photo -->
+    <img src="myphoto.jpg" loading="lazy" alt="Portrait of Shresnth Saini" />
+  </div>
+
+  <div>
+    <h2 id="about-heading" data-aos="fade-up" data-aos-delay="150">About Me</h2>
+    <p data-aos="fade-up" data-aos-delay="250">
+      I'm a Marketing Specialist with 4+ years of experience in digital marketing and content strategy. 
+      I design campaigns that increase engagement, generate qualified leads, and deliver measurable ROI. 
+      I work across SEO, paid media, content creation, and performance analytics.
+    </p>
+
+    <div class="stats" aria-hidden="true">
+      <div class="stat" data-aos="fade-up" data-aos-delay="350">
+        <div class="num">4+</div>
+        <div class="label">Years of experience</div>
+      </div>
+      <div class="stat" data-aos="fade-up" data-aos-delay="450">
+        <div class="num">20+</div>
+        <div class="label">Campaigns managed</div>
+      </div>
+      <div class="stat" data-aos="fade-up" data-aos-delay="550">
+        <div class="num">Avg 2x</div>
+        <div class="label">ROI improvement</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONALITY & STORY -->
+<section id="story" data-aos="fade-up" data-aos-delay="150">
+  <h3>My Story</h3>
+
+  <p data-aos="fade-up" data-aos-delay="200">
+    I first stepped into marketing because I was fascinated by how creative storytelling and data analytics together can move people to act. While studying, I was drawn to projects where I could combine strategy with measurable impact, and that curiosity naturally led me into digital marketing.  </p>
+
+  <p data-aos="fade-up" data-aos-delay="250">
+    At <strong>OYO Hotels</strong>, I managed multi-location campaigns, influencer collaborations, and content calendars that lifted seasonal bookings by 15% and grew Instagram followers by 20% in six months. From there, I expanded into performance marketing at Practo, where I led multi-channel campaigns across Google Ads, LinkedIn, and Email—achieving a 22% increase in qualified leads and reducing cost-per-lead by 18% through analytics-driven optimizations.  </p>
+
+  <p data-aos="fade-up" data-aos-delay="300">
+    Today, I focus on <em>scalable e-commerce and growth marketing</em>: lifecycle campaigns, SEO-led content, and automation that boost conversions and customer LTV. I believe effective marketing is about creating clarity in a noisy digital world — connecting the right audience with genuine value.  </p>
+
+  <p data-aos="fade-up" data-aos-delay="350">
+Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching digital designs, and writing about emerging marketing trends. My goal is to join a team where I can keep solving growth challenges while bringing creative energy and data-driven rigor.</p>
+
+  <!-- HORIZONTAL TIMELINE -->
+  <div style="margin-top:28px">
+    <h4>Journey Timeline</h4>
+    <div class="timeline-horizontal">
+      <div class="timeline-event" data-aos="fade-right" data-aos-delay="100">
+        <h5>2020</h5>
+        <p>BBA · Project Management Major<br>Built strong foundations in strategy, operations, and leadership</p>
+      </div>
+      <div class="timeline-event" data-aos="fade-up" data-aos-delay="200">
+        <h5>2021</h5>
+        <p>OYO Hotels<br>Marketing Associate · Campaigns, Influencer partnerships, Social growth</p>
+      </div>
+      <div class="timeline-event" data-aos="fade-up" data-aos-delay="300">
+        <h5>2022 – 2025</h5>
+        <p>Practo<br>Performance Marketing Analyst · Multi-Channel Growth & Automation</p>
+      </div>
+      <div class="timeline-event" data-aos="fade-up" data-aos-delay="400">
+        <h5>2024 – 2025</h5>
+        <p>MBA, UCW<br>Project Management & Strategy focus</p>
+      </div>
+      <div class="timeline-event" data-aos="fade-left" data-aos-delay="500">
+        <h5>Today</h5>
+        <p>Marketing Specialist<br>Data-driven storytelling & Growth campaigns</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <div class="wave-divider">
@@ -1005,55 +1146,34 @@
         <stop offset="100%" stop-color="#10b981"/>
       </linearGradient>
     </defs>
-
-    <!-- Back wave -->
-    <path fill="url(#waveGrad)" fill-opacity="0.3"
-      d="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z">
-      <animate attributeName="d" dur="10s" repeatCount="indefinite"
+    <path fill="url(#waveGrad)" d="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z">
+      <animate attributeName="d" dur="8s" repeatCount="indefinite"
         values="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z;
                 M0,70L60,85C120,95,240,115,360,105C480,95,600,65,720,60C840,55,960,75,1080,90C1200,105,1320,115,1380,105L1440,95L1440,0L0,0Z;
                 M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z" />
     </path>
-
-    <!-- Mid wave -->
-    <path fill="url(#waveGrad)" fill-opacity="0.5"
-      d="M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z">
-      <animate attributeName="d" dur="8s" repeatCount="indefinite"
-        values="M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z;
-                M0,85L80,90C160,95,320,105,480,95C640,85,800,65,960,70C1120,75,1280,95,1360,105L1440,115L1440,0L0,0Z;
-                M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z" />
-    </path>
-
-    <!-- Front wave -->
-    <path fill="url(#waveGrad)" fill-opacity="1"
-      d="M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z">
-      <animate attributeName="d" dur="6s" repeatCount="indefinite"
-        values="M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z;
-                M0,95L60,100C120,105,240,115,360,110C480,105,600,85,720,80C840,75,960,95,1080,100C1200,105,1320,110,1380,105L1440,95L1440,0L0,0Z;
-                M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z" />
-    </path>
   </svg>
 </div>
     
-    <!-- TOOLS & SKILLS SECTION -->
-<section id="tools" style="margin-top:48px">
-  <h3 style="margin-bottom:18px">Tools & Technologies</h3>
-  <p style="color:var(--muted); margin-bottom:24px">
+   <!-- TOOLS & SKILLS SECTION -->
+<section id="tools" class="tools-section" aria-labelledby="tools-heading">
+  <h3 id="tools-heading" data-aos="fade-up">Tools & Technologies</h3>
+  <p class="tools-sub" data-aos="fade-up" data-aos-delay="100">
     A snapshot of the platforms and tools I use to design, optimize, and scale campaigns.
   </p>
 
   <!-- Ticker wrapper -->
-  <div class="tools-ticker">
+  <div class="tools-ticker" data-aos="fade-up" data-aos-delay="200">
     <div class="ticker-track">
 
-      <!-- Google Analytics -->
+      <!-- Example Tool -->
       <div class="tool">
         <svg xmlns="http://www.w3.org/2000/svg" fill="#E37400" viewBox="0 0 24 24" width="40" height="40">
           <path d="M10.2 0C8.99 0 8 1.01 8 2.25v19.5C8 22.99 8.99 24 10.2 24h1.55C12.99 24 14 22.99 14 21.75V2.25C14 1.01 12.99 0 11.75 0h-1.55zM2.25 16C1.01 16 0 17.01 0 18.25v3.5C0 22.99 1.01 24 2.25 24h1.5C4.99 24 6 22.99 6 21.75v-3.5C6 17.01 4.99 16 3.75 16h-1.5zM21.75 8C20.51 8 19.5 9.01 19.5 10.25v11.5c0 1.24 1.01 2.25 2.25 2.25h.25C23.99 24 25 22.99 25 21.75V10.25C25 9.01 23.99 8 22.75 8h-.25z"/>
         </svg>
         <span>Google Analytics</span>
       </div>
-
+      
       <!-- Google Ads -->
       <div class="tool">
         <svg xmlns="http://www.w3.org/2000/svg" fill="#4285F4" viewBox="0 0 24 24" width="40" height="40">
@@ -1170,57 +1290,31 @@
         <stop offset="100%" stop-color="#10b981"/>
       </linearGradient>
     </defs>
-
-    <!-- Back wave -->
-    <path fill="url(#waveGrad)" fill-opacity="0.3"
-      d="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z">
-      <animate attributeName="d" dur="10s" repeatCount="indefinite"
+    <path fill="url(#waveGrad)" d="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z">
+      <animate attributeName="d" dur="8s" repeatCount="indefinite"
         values="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z;
                 M0,70L60,85C120,95,240,115,360,105C480,95,600,65,720,60C840,55,960,75,1080,90C1200,105,1320,115,1380,105L1440,95L1440,0L0,0Z;
                 M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z" />
     </path>
-
-    <!-- Mid wave -->
-    <path fill="url(#waveGrad)" fill-opacity="0.5"
-      d="M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z">
-      <animate attributeName="d" dur="8s" repeatCount="indefinite"
-        values="M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z;
-                M0,85L80,90C160,95,320,105,480,95C640,85,800,65,960,70C1120,75,1280,95,1360,105L1440,115L1440,0L0,0Z;
-                M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z" />
-    </path>
-
-    <!-- Front wave -->
-    <path fill="url(#waveGrad)" fill-opacity="1"
-      d="M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z">
-      <animate attributeName="d" dur="6s" repeatCount="indefinite"
-        values="M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z;
-                M0,95L60,100C120,105,240,115,360,110C480,105,600,85,720,80C840,75,960,95,1080,100C1200,105,1320,110,1380,105L1440,95L1440,0L0,0Z;
-                M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z" />
-    </path>
   </svg>
 </div>
 
-    <section id="performance" aria-labelledby="performance-heading">
-  <!-- Section heading -->
-  <header class="section-header">
+  <!-- PERFORMANCE SECTION -->
+<section id="performance" aria-labelledby="performance-heading">
+  <header class="section-header" data-aos="fade-up">
     <h2 id="performance-heading" class="section-title">Website Performance</h2>
     <p class="section-subtitle">Real-time Core Web Vitals for my Portfolio</p>
   </header>
 
-  <!-- Performance content -->
   <div class="perf-container">
-    <!-- Gauge card with particles -->
-    <article class="perf-card">
-      <!-- Particle canvas -->
+    <!-- Gauge Card -->
+    <article class="perf-card" data-aos="zoom-in" data-aos-delay="100">
       <canvas id="perfParticles"></canvas>
-
-      <!-- Card content -->
       <div class="perf-content">
         <h3 class="card-title">Overall Performance</h3>
         <div class="gauge pulsing" aria-label="Performance score">
           <svg viewBox="0 0 36 36" class="circular-chart" role="img">
-            <path class="circle-bg"
-              stroke-width="3" fill="none" stroke="#e5e7eb"
+            <path class="circle-bg" stroke-width="3" fill="none" stroke="#e5e7eb"
               d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831a 15.9155 15.9155 0 0 1 0 -31.831"/>
             <path id="perfProgress" class="circle-progress"
               stroke-width="3" stroke-linecap="round" fill="none"
@@ -1239,8 +1333,8 @@
       </div>
     </article>
 
-    <!-- Vitals card -->
-    <article class="perf-card">
+    <!-- Vitals Card -->
+    <article class="perf-card" data-aos="fade-up" data-aos-delay="200">
       <h3 class="card-title">Core Web Vitals</h3>
       <div class="metrics-grid">
         <div class="metric"><span>FCP</span><strong id="m-fcp" class="shimmer">--</strong></div>
@@ -1252,6 +1346,7 @@
   </div>
 </section>
 
+<!-- Wave Divider -->
 <div class="wave-divider">
   <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
     <defs>
@@ -1260,140 +1355,62 @@
         <stop offset="100%" stop-color="#10b981"/>
       </linearGradient>
     </defs>
-
-    <!-- Back wave -->
-    <path fill="url(#waveGrad)" fill-opacity="0.3"
-      d="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z">
-      <animate attributeName="d" dur="10s" repeatCount="indefinite"
+    <path fill="url(#waveGrad)" d="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z">
+      <animate attributeName="d" dur="8s" repeatCount="indefinite"
         values="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z;
                 M0,70L60,85C120,95,240,115,360,105C480,95,600,65,720,60C840,55,960,75,1080,90C1200,105,1320,115,1380,105L1440,95L1440,0L0,0Z;
                 M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z" />
     </path>
-
-    <!-- Mid wave -->
-    <path fill="url(#waveGrad)" fill-opacity="0.5"
-      d="M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z">
-      <animate attributeName="d" dur="8s" repeatCount="indefinite"
-        values="M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z;
-                M0,85L80,90C160,95,320,105,480,95C640,85,800,65,960,70C1120,75,1280,95,1360,105L1440,115L1440,0L0,0Z;
-                M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z" />
-    </path>
-
-    <!-- Front wave -->
-    <path fill="url(#waveGrad)" fill-opacity="1"
-      d="M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z">
-      <animate attributeName="d" dur="6s" repeatCount="indefinite"
-        values="M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z;
-                M0,95L60,100C120,105,240,115,360,110C480,105,600,85,720,80C840,75,960,95,1080,100C1200,105,1320,110,1380,105L1440,95L1440,0L0,0Z;
-                M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z" />
-    </path>
   </svg>
 </div>
 
-    <section id="approach" aria-labelledby="approach-heading">
-  <h2 id="approach-heading">My Marketing Approach</h2>
-  <p class="sub">A structured 2-page plan for growth & measurable results.</p>
+<!-- APPROACH SECTION -->
+<section id="approach" aria-labelledby="approach-heading">
+  <h2 id="approach-heading" data-aos="fade-up">My Marketing Approach</h2>
+  <p class="sub" data-aos="fade-up" data-aos-delay="100">A structured 2-page plan for growth & measurable results.</p>
 
-  <!-- Steps -->
   <div class="approach-steps">
-    <div class="step-card">
-      <div class="circle">1</div>
-      <h4>Audit & Research</h4>
-      <p>Market trends, competitors, personas.</p>
-    </div>
-    <div class="step-card">
-      <div class="circle">2</div>
-      <h4>Strategy & Messaging</h4>
-      <p>Positioning, value proposition, brand voice.</p>
-    </div>
-    <div class="step-card">
-      <div class="circle">3</div>
-      <h4>Execution</h4>
-      <p>SEO, ads, social, content, and email campaigns.</p>
-    </div>
-    <div class="step-card">
-      <div class="circle">4</div>
-      <h4>Measurement</h4>
-      <p>KPI tracking, dashboards, transparent reporting.</p>
-    </div>
-    <div class="step-card">
-      <div class="circle">5</div>
-      <h4>Optimization</h4>
-      <p>Iterating weekly and scaling best channels.</p>
-    </div>
+    <div class="step-card" data-aos="fade-up" data-aos-delay="100"><div class="circle">1</div><h4>Audit & Research</h4><p>Market trends, competitors, personas.</p></div>
+    <div class="step-card" data-aos="fade-up" data-aos-delay="200"><div class="circle">2</div><h4>Strategy & Messaging</h4><p>Positioning, value proposition, brand voice.</p></div>
+    <div class="step-card" data-aos="fade-up" data-aos-delay="300"><div class="circle">3</div><h4>Execution</h4><p>SEO, ads, social, content, and email campaigns.</p></div>
+    <div class="step-card" data-aos="fade-up" data-aos-delay="400"><div class="circle">4</div><h4>Measurement</h4><p>KPI tracking, dashboards, transparent reporting.</p></div>
+    <div class="step-card" data-aos="fade-up" data-aos-delay="500"><div class="circle">5</div><h4>Optimization</h4><p>Iterating weekly and scaling best channels.</p></div>
   </div>
 
- <!-- Slide Deck Preview -->
-<div class="deck-preview">
-  <div class="slides" id="slides">
-    <!-- Page 1 -->
-    <div class="slide active">
-      <h4>📘 Page 1 – Strategy & Approach</h4>
-      <div class="slide-grid">
-        <div class="slide-item">
-          <span class="icon">🎯</span>
-          <div>
-            <h5>Objectives</h5>
-            <p>Awareness, traffic, sustainable growth.</p>
-          </div>
+  <!-- Slide Deck -->
+  <div class="deck-preview" data-aos="zoom-in" data-aos-delay="200">
+    <div class="slides" id="slides">
+      <!-- Page 1 -->
+      <div class="slide active">
+        <h4>📘 Page 1 – Strategy & Approach</h4>
+        <div class="slide-grid">
+          <div class="slide-item" data-aos="fade-up" data-aos-delay="100"><span class="icon">🎯</span><div><h5>Objectives</h5><p>Awareness, traffic, sustainable growth.</p></div></div>
+          <div class="slide-item" data-aos="fade-up" data-aos-delay="200"><span class="icon">🔍</span><div><h5>Research</h5><p>Competitors, personas, market insights.</p></div></div>
+          <div class="slide-item" data-aos="fade-up" data-aos-delay="300"><span class="icon">🌐</span><div><h5>Channels</h5><p>SEO, social media, email, ads.</p></div></div>
         </div>
-        <div class="slide-item">
-          <span class="icon">🔍</span>
-          <div>
-            <h5>Research</h5>
-            <p>Competitors, personas, market insights.</p>
-          </div>
-        </div>
-        <div class="slide-item">
-          <span class="icon">🌐</span>
-          <div>
-            <h5>Channels</h5>
-            <p>SEO, social media, email, ads.</p>
-          </div>
+      </div>
+
+      <!-- Page 2 -->
+      <div class="slide">
+        <h4>🚀 Page 2 – Execution & Measurement</h4>
+        <div class="slide-grid">
+          <div class="slide-item"><span class="icon">📈</span><div><h5>Execution</h5><p>SEO, PPC, social & email campaigns.</p></div></div>
+          <div class="slide-item"><span class="icon">📊</span><div><h5>Measurement</h5><p>KPI tracking, dashboards, reporting.</p></div></div>
+          <div class="slide-item"><span class="icon">♻️</span><div><h5>Optimization</h5><p>Iterating weekly, scaling best channels.</p></div></div>
         </div>
       </div>
     </div>
 
-    <!-- Page 2 -->
-    <div class="slide">
-      <h4>🚀 Page 2 – Execution & Measurement</h4>
-      <div class="slide-grid">
-        <div class="slide-item">
-          <span class="icon">📈</span>
-          <div>
-            <h5>Execution</h5>
-            <p>SEO, PPC, social & email campaigns.</p>
-          </div>
-        </div>
-        <div class="slide-item">
-          <span class="icon">📊</span>
-          <div>
-            <h5>Measurement</h5>
-            <p>KPI tracking, dashboards, reporting.</p>
-          </div>
-        </div>
-        <div class="slide-item">
-          <span class="icon">♻️</span>
-          <div>
-            <h5>Optimization</h5>
-            <p>Iterating weekly, scaling best channels.</p>
-          </div>
-        </div>
-      </div>
+    <!-- Controls -->
+    <button class="carousel-btn prev" onclick="moveSlide(-1)">‹</button>
+    <button class="carousel-btn next" onclick="moveSlide(1)">›</button>
+    <div class="indicators"></div>
+
+    <div class="download-box">
+      <span>Download my full Marketing Plan </span>
+      <a href="Marketing Proposal.pdf" class="download-btn" download>Download PDF</a>
     </div>
   </div>
-
-  <!-- Controls -->
-  <button class="carousel-btn prev" onclick="moveSlide(-1)">‹</button>
-  <button class="carousel-btn next" onclick="moveSlide(1)">›</button>
-  <div class="indicators"></div>
-
-  <!-- Download PDF (now inside the deck) -->
- <div class="download-box">
-  <span>Download my full Marketing Plan </span>
-  <a href="Marketing Proposal.pdf" class="download-btn" download>Download PDF</a>
-</div>
-
 </section>
 
 <div class="wave-divider">
@@ -1404,32 +1421,11 @@
         <stop offset="100%" stop-color="#10b981"/>
       </linearGradient>
     </defs>
-
-    <!-- Back wave -->
-    <path fill="url(#waveGrad)" fill-opacity="0.3"
-      d="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z">
-      <animate attributeName="d" dur="10s" repeatCount="indefinite"
+    <path fill="url(#waveGrad)" d="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z">
+      <animate attributeName="d" dur="8s" repeatCount="indefinite"
         values="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z;
                 M0,70L60,85C120,95,240,115,360,105C480,95,600,65,720,60C840,55,960,75,1080,90C1200,105,1320,115,1380,105L1440,95L1440,0L0,0Z;
                 M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z" />
-    </path>
-
-    <!-- Mid wave -->
-    <path fill="url(#waveGrad)" fill-opacity="0.5"
-      d="M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z">
-      <animate attributeName="d" dur="8s" repeatCount="indefinite"
-        values="M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z;
-                M0,85L80,90C160,95,320,105,480,95C640,85,800,65,960,70C1120,75,1280,95,1360,105L1440,115L1440,0L0,0Z;
-                M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z" />
-    </path>
-
-    <!-- Front wave -->
-    <path fill="url(#waveGrad)" fill-opacity="1"
-      d="M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z">
-      <animate attributeName="d" dur="6s" repeatCount="indefinite"
-        values="M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z;
-                M0,95L60,100C120,105,240,115,360,110C480,105,600,85,720,80C840,75,960,95,1080,100C1200,105,1320,110,1380,105L1440,95L1440,0L0,0Z;
-                M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z" />
     </path>
   </svg>
 </div>
@@ -1494,32 +1490,11 @@
         <stop offset="100%" stop-color="#10b981"/>
       </linearGradient>
     </defs>
-
-    <!-- Back wave -->
-    <path fill="url(#waveGrad)" fill-opacity="0.3"
-      d="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z">
-      <animate attributeName="d" dur="10s" repeatCount="indefinite"
+    <path fill="url(#waveGrad)" d="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z">
+      <animate attributeName="d" dur="8s" repeatCount="indefinite"
         values="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z;
                 M0,70L60,85C120,95,240,115,360,105C480,95,600,65,720,60C840,55,960,75,1080,90C1200,105,1320,115,1380,105L1440,95L1440,0L0,0Z;
                 M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z" />
-    </path>
-
-    <!-- Mid wave -->
-    <path fill="url(#waveGrad)" fill-opacity="0.5"
-      d="M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z">
-      <animate attributeName="d" dur="8s" repeatCount="indefinite"
-        values="M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z;
-                M0,85L80,90C160,95,320,105,480,95C640,85,800,65,960,70C1120,75,1280,95,1360,105L1440,115L1440,0L0,0Z;
-                M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z" />
-    </path>
-
-    <!-- Front wave -->
-    <path fill="url(#waveGrad)" fill-opacity="1"
-      d="M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z">
-      <animate attributeName="d" dur="6s" repeatCount="indefinite"
-        values="M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z;
-                M0,95L60,100C120,105,240,115,360,110C480,105,600,85,720,80C840,75,960,95,1080,100C1200,105,1320,110,1380,105L1440,95L1440,0L0,0Z;
-                M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z" />
     </path>
   </svg>
 </div>
@@ -1630,32 +1605,11 @@
         <stop offset="100%" stop-color="#10b981"/>
       </linearGradient>
     </defs>
-
-    <!-- Back wave -->
-    <path fill="url(#waveGrad)" fill-opacity="0.3"
-      d="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z">
-      <animate attributeName="d" dur="10s" repeatCount="indefinite"
+    <path fill="url(#waveGrad)" d="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z">
+      <animate attributeName="d" dur="8s" repeatCount="indefinite"
         values="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z;
                 M0,70L60,85C120,95,240,115,360,105C480,95,600,65,720,60C840,55,960,75,1080,90C1200,105,1320,115,1380,105L1440,95L1440,0L0,0Z;
                 M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z" />
-    </path>
-
-    <!-- Mid wave -->
-    <path fill="url(#waveGrad)" fill-opacity="0.5"
-      d="M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z">
-      <animate attributeName="d" dur="8s" repeatCount="indefinite"
-        values="M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z;
-                M0,85L80,90C160,95,320,105,480,95C640,85,800,65,960,70C1120,75,1280,95,1360,105L1440,115L1440,0L0,0Z;
-                M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z" />
-    </path>
-
-    <!-- Front wave -->
-    <path fill="url(#waveGrad)" fill-opacity="1"
-      d="M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z">
-      <animate attributeName="d" dur="6s" repeatCount="indefinite"
-        values="M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z;
-                M0,95L60,100C120,105,240,115,360,110C480,105,600,85,720,80C840,75,960,95,1080,100C1200,105,1320,110,1380,105L1440,95L1440,0L0,0Z;
-                M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z" />
     </path>
   </svg>
 </div>
@@ -1715,32 +1669,11 @@
         <stop offset="100%" stop-color="#10b981"/>
       </linearGradient>
     </defs>
-
-    <!-- Back wave -->
-    <path fill="url(#waveGrad)" fill-opacity="0.3"
-      d="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z">
-      <animate attributeName="d" dur="10s" repeatCount="indefinite"
+    <path fill="url(#waveGrad)" d="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z">
+      <animate attributeName="d" dur="8s" repeatCount="indefinite"
         values="M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z;
                 M0,70L60,85C120,95,240,115,360,105C480,95,600,65,720,60C840,55,960,75,1080,90C1200,105,1320,115,1380,105L1440,95L1440,0L0,0Z;
                 M0,80L60,90C120,100,240,120,360,110C480,100,600,70,720,65C840,60,960,80,1080,95C1200,110,1320,120,1380,110L1440,100L1440,0L0,0Z" />
-    </path>
-
-    <!-- Mid wave -->
-    <path fill="url(#waveGrad)" fill-opacity="0.5"
-      d="M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z">
-      <animate attributeName="d" dur="8s" repeatCount="indefinite"
-        values="M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z;
-                M0,85L80,90C160,95,320,105,480,95C640,85,800,65,960,70C1120,75,1280,95,1360,105L1440,115L1440,0L0,0Z;
-                M0,90L80,95C160,100,320,110,480,100C640,90,800,70,960,75C1120,80,1280,100,1360,110L1440,120L1440,0L0,0Z" />
-    </path>
-
-    <!-- Front wave -->
-    <path fill="url(#waveGrad)" fill-opacity="1"
-      d="M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z">
-      <animate attributeName="d" dur="6s" repeatCount="indefinite"
-        values="M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z;
-                M0,95L60,100C120,105,240,115,360,110C480,105,600,85,720,80C840,75,960,95,1080,100C1200,105,1320,110,1380,105L1440,95L1440,0L0,0Z;
-                M0,100L60,105C120,110,240,120,360,115C480,110,600,90,720,85C840,80,960,100,1080,105C1200,110,1320,115,1380,110L1440,100L1440,0L0,0Z" />
     </path>
   </svg>
 </div>
@@ -2128,6 +2061,20 @@ document.addEventListener("DOMContentLoaded", () => {
   slides.parentElement.addEventListener("mouseleave", startAutoPlay);
 });
 
+<!-- AOS Init -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    AOS.init({
+      duration: 900,
+      easing: "ease-out-cubic",
+      once: true,
+      offset: 80
+    });
+    // Init Rellax
+    new Rellax('.parallax', { speed: -2, center: true });
+  });
+  
   </script>
 </body>
 </html>
