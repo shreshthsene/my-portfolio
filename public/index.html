@@ -1818,120 +1818,123 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   timelineEvents.forEach(event => observer.observe(event));
 </script>
 
-<!-- Web Vitals -->
-<script src="https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js"></script>
+<!-- Website Performance Script -->
 <script>
 (function(){
   const canvas = document.getElementById('perfParticles');
-  if(canvas){
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    let particleColor = "59,130,246";
+  if(!canvas) return;
 
-    function sizeCanvas(){
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    }
-    function initParticles(){
-      particles = [];
-      for(let i=0;i<25;i++){
-        particles.push({
-          x: Math.random()*canvas.width,
-          y: Math.random()*canvas.height,
-          r: Math.random()*2+1,
-          dx:(Math.random()-.5)*.5,
-          dy:(Math.random()-.5)*.5,
-          o: Math.random()*.4+.3
-        });
-      }
-    }
-    function drawParticles(){
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      for(const p of particles){
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle=`rgba(${particleColor},${p.o})`;
-        ctx.fill();
-        p.x+=p.dx;p.y+=p.dy;
-        if(p.x<0||p.x>canvas.width)p.dx*=-1;
-        if(p.y<0||p.y>canvas.height)p.dy*=-1;
-      }
-      requestAnimationFrame(drawParticles);
-    }
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let particleColor = "59,130,246";
 
-    sizeCanvas(); initParticles(); drawParticles();
-    window.addEventListener('resize',()=>{sizeCanvas();initParticles();});
-
-    const progressEl = document.getElementById('perfProgress');
-    const scoreEl = document.getElementById('perfScore');
-    const labelEl = document.getElementById('perfLabel');
-    let currentScore = 0;
-
-    function setLabel(s){
-      if(s>=80){
-        labelEl.textContent="Excellent ✔️"; 
-        labelEl.style.color="#10b981";
-        particleColor="16,185,129";
-      } else if(s>=50){
-        labelEl.textContent="Needs Improvement ⚠️"; 
-        labelEl.style.color="#f59e0b";
-        particleColor="245,158,11";
-      } else {
-        labelEl.textContent="Poor ❌"; 
-        labelEl.style.color="#ef4444";
-        particleColor="239,68,68";
-      }
-    }
-
-    function calculateScore(fcp, lcp, cls, tbt){
-      let score=100;
-      if(fcp>1.8)score-=10;
-      if(fcp>3)score-=20;
-      if(lcp>2.5)score-=15;
-      if(lcp>4)score-=25;
-      if(cls>0.1)score-=10;
-      if(cls>0.25)score-=20;
-      if(tbt>200)score-=10;
-      if(tbt>500)score-=20;
-      return Math.max(0,Math.min(100,Math.round(score)));
-    }
-
-    function animateGauge(from,to){
-      let start=null;
-      function step(ts){
-        if(!start)start=ts;
-        const progress=Math.min((ts-start)/1000,1);
-        const value=from+(to-from)*progress;
-        progressEl.setAttribute("stroke-dasharray",`${value} 100`);
-        scoreEl.textContent=Math.round(value);
-        if(progress<1){
-          requestAnimationFrame(step);
-        } else {
-          currentScore=to;
-        }
-      }
-      requestAnimationFrame(step);
-    }
-
-    function updateUI(metrics){
-      const {fcp,lcp,cls,tbt}=metrics;
-      if(fcp) document.getElementById('m-fcp').textContent=fcp.toFixed(2)+'s';
-      if(lcp) document.getElementById('m-lcp').textContent=lcp.toFixed(2)+'s';
-      document.getElementById('m-cls').textContent=cls.toFixed(3);
-      if(tbt) document.getElementById('m-tbt').textContent=tbt+' ms';
-
-      const newScore=calculateScore(fcp,lcp,cls,tbt);
-      setLabel(newScore);
-      animateGauge(currentScore,newScore);
-    }
-
-    let metrics={fcp:0,lcp:0,cls:0,tbt:0};
-
-    webVitals.onFCP(({value})=>{metrics.fcp=value/1000; updateUI(metrics);});
-    webVitals.onLCP(({value})=>{metrics.lcp=value/1000; updateUI(metrics);});
-    webVitals.onCLS(({value})=>{metrics.cls=value; updateUI(metrics);});
-    webVitals.onFID(({value})=>{metrics.tbt=Math.round(value); updateUI(metrics);});
+  function sizeCanvas(){
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
   }
+  function initParticles(){
+    particles = [];
+    for(let i=0;i<25;i++){
+      particles.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        r: Math.random()*2+1,
+        dx:(Math.random()-.5)*.5,
+        dy:(Math.random()-.5)*.5,
+        o: Math.random()*.4+.3
+      });
+    }
+  }
+  function drawParticles(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(const p of particles){
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${particleColor},${p.o})`;
+      ctx.fill();
+      p.x+=p.dx;p.y+=p.dy;
+      if(p.x<0||p.x>canvas.width)p.dx*=-1;
+      if(p.y<0||p.y>canvas.height)p.dy*=-1;
+    }
+    requestAnimationFrame(drawParticles);
+  }
+
+  sizeCanvas(); initParticles(); drawParticles();
+  window.addEventListener('resize',()=>{sizeCanvas();initParticles();});
+
+  const progressEl = document.getElementById('perfProgress');
+  const scoreEl = document.getElementById('perfScore');
+  const labelEl = document.getElementById('perfLabel');
+  let currentScore = 0;
+
+  function setLabel(s){
+    if(s>=80){
+      labelEl.textContent="Excellent ✔️"; 
+      labelEl.style.color="#10b981";
+      particleColor="16,185,129";
+    } else if(s>=50){
+      labelEl.textContent="Needs Improvement ⚠️"; 
+      labelEl.style.color="#f59e0b";
+      particleColor="245,158,11";
+    } else {
+      labelEl.textContent="Poor ❌"; 
+      labelEl.style.color="#ef4444";
+      particleColor="239,68,68";
+    }
+  }
+
+  function animateGauge(from,to){
+    let start=null;
+    function step(ts){
+      if(!start)start=ts;
+      const progress=Math.min((ts-start)/1000,1);
+      const value=from+(to-from)*progress;
+      progressEl.setAttribute("stroke-dasharray",`${value} 100`);
+      scoreEl.textContent=Math.round(value);
+      if(progress<1){
+        requestAnimationFrame(step);
+      } else {
+        currentScore=to;
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  function updateUI(metrics){
+    const {score,fcp,lcp,cls,tbt}=metrics;
+    if(fcp) document.getElementById('m-fcp').textContent=fcp.toFixed(2)+'s';
+    if(lcp) document.getElementById('m-lcp').textContent=lcp.toFixed(2)+'s';
+    document.getElementById('m-cls').textContent=cls.toFixed(3);
+    if(tbt) document.getElementById('m-tbt').textContent=tbt+' ms';
+
+    if(score !== undefined){
+      setLabel(score);
+      animateGauge(currentScore,score);
+    }
+  }
+
+  // === Fetch live metrics from /api/performance ===
+  async function fetchPerformance(){
+    try{
+      const res = await fetch("/api/performance");
+      const data = await res.json();
+      // remove shimmer/loading classes
+      scoreEl.classList.remove("shimmer");
+      labelEl.classList.remove("shimmer");
+      document.querySelector(".gauge").classList.remove("pulsing");
+      ["m-fcp","m-lcp","m-cls","m-tbt"].forEach(
+        id=>document.getElementById(id).classList.remove("shimmer")
+      );
+      updateUI(data);
+    }catch(e){
+      console.error("⚠️ Performance fetch failed",e);
+      scoreEl.textContent="N/A";
+      labelEl.textContent="Error";
+    }
+  }
+
+  // Run on load
+  fetchPerformance();
 })();
 </script>
 
