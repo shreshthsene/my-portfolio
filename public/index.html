@@ -1738,112 +1738,95 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 </div>
 
 
-  <script>
-    // footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
+ <script>
+  // === Footer year ===
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Project modal functionality
-    const projectEls = document.querySelectorAll('.proj');
-    const modalBackdrop = document.getElementById('modalBackdrop');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDesc = document.getElementById('modalDesc');
-    const modalImage = document.getElementById('modalImage');
+  // === Project modal functionality ===
+  const projectEls = document.querySelectorAll('.proj');
+  const modalBackdrop = document.getElementById('modalBackdrop');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalImage = document.getElementById('modalImage');
 
-    projectEls.forEach(el => {
-      el.addEventListener('click', () => openProject(el));
-      el.addEventListener('keypress', (e) => { if(e.key === 'Enter' || e.key === ' ') openProject(el); });
-    });
+  projectEls.forEach(el => {
+    el.addEventListener('click', () => openProject(el));
+    el.addEventListener('keypress', (e) => { if(e.key === 'Enter' || e.key === ' ') openProject(el); });
+  });
 
-    function openProject(el){
-  const data = el.dataset.project ? JSON.parse(el.dataset.project) : null;
-  if(!data) return;
+  function openProject(el){
+    const data = el.dataset.project ? JSON.parse(el.dataset.project) : null;
+    if(!data) return;
 
-  // Title + subtitle
-  modalTitle.textContent = data.title;
-  document.getElementById("modalSubtitle").textContent = data.subtitle || "";
+    modalTitle.textContent = data.title;
+    document.getElementById("modalSubtitle").textContent = data.subtitle || "";
 
-  // Build sections
-  let contentHtml = "";
-  if(data.challenge) contentHtml += `<h4>Challenge</h4><p>${data.challenge}</p>`;
-  if(data.approach) contentHtml += `<h4>Approach</h4><p>${data.approach}</p>`;
-  if(data.execution) {
-  // Split execution into bullet points
-  const execItems = data.execution.split("\n").map(e => e.trim()).filter(e => e);
-  contentHtml += `<h4>Execution</h4><ul>${execItems.map(e => `<li>${e.replace(/^•\s*/, "")}</li>`).join("")}</ul>`;
-}
-  if(data.results) {
-  contentHtml += `<h4>Results</h4><ul>${data.results.map(r => `<li>${r}</li>`).join("")}</ul>`;
-}
-  if(data.takeaways) {
-  contentHtml += `<h4>Key Takeaways</h4><p>${data.takeaways}</p>`;
-}
-  
-  document.getElementById("modalContent").innerHTML = contentHtml;
+    let contentHtml = "";
+    if(data.challenge) contentHtml += `<h4>Challenge</h4><p>${data.challenge}</p>`;
+    if(data.approach) contentHtml += `<h4>Approach</h4><p>${data.approach}</p>`;
+    if(data.execution) {
+      const execItems = data.execution.split("\n").map(e => e.trim()).filter(e => e);
+      contentHtml += `<h4>Execution</h4><ul>${execItems.map(e => `<li>${e.replace(/^•\s*/, "")}</li>`).join("")}</ul>`;
+    }
+    if(data.results) {
+      contentHtml += `<h4>Results</h4><ul>${data.results.map(r => `<li>${r}</li>`).join("")}</ul>`;
+    }
+    if(data.takeaways) {
+      contentHtml += `<h4>Key Takeaways</h4><p>${data.takeaways}</p>`;
+    }
+    
+    document.getElementById("modalContent").innerHTML = contentHtml;
 
-  modalBackdrop.style.display = 'grid';
-  modalBackdrop.setAttribute('aria-hidden','false');
-  document.documentElement.style.overflow = 'hidden'; // lock scroll
-}
+    modalBackdrop.style.display = 'grid';
+    modalBackdrop.setAttribute('aria-hidden','false');
+    document.documentElement.style.overflow = 'hidden';
+  }
 
+  function openArticle(title, content){
+    modalTitle.textContent = title;
+    document.getElementById("modalSubtitle").textContent = "";
+    document.getElementById("modalContent").innerHTML = content;
 
- function openArticle(title, content){
-  modalTitle.textContent = title;
-  document.getElementById("modalSubtitle").textContent = ""; // no subtitle for articles
+    modalBackdrop.style.display = 'grid';
+    modalBackdrop.setAttribute('aria-hidden','false');
+    document.documentElement.style.overflow = 'hidden';
+  }
 
-  // Insert full article content into modalContent
-  document.getElementById("modalContent").innerHTML = content;
+  function closeModal(){
+    modalBackdrop.style.display = 'none';
+    modalBackdrop.setAttribute('aria-hidden','true');
+    modalTitle.textContent = '';
+    document.getElementById("modalSubtitle").textContent = '';
+    document.getElementById("modalContent").innerHTML = '';
+    document.documentElement.style.overflow = '';
+  }
 
-  modalBackdrop.style.display = 'grid';
-  modalBackdrop.setAttribute('aria-hidden','false');
-  document.documentElement.style.overflow = 'hidden'; // lock scroll
-}
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') closeModal();
+  });
+  modalBackdrop.addEventListener('click', (evt) => {
+    if(evt.target === modalBackdrop) closeModal();
+  });
 
-   function closeModal(){
-  modalBackdrop.style.display = 'none';
-  modalBackdrop.setAttribute('aria-hidden','true');
-  modalTitle.textContent = '';
-  document.getElementById("modalSubtitle").textContent = '';
-  document.getElementById("modalContent").innerHTML = '';
-  document.documentElement.style.overflow = ''; // restore scroll
-}
-
-    // close on ESC
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape') closeModal();
-    });
-
-    // click backdrop to close
-    modalBackdrop.addEventListener('click', (evt) => {
-      if(evt.target === modalBackdrop) closeModal();
-    });
-
-  
- // Reveal timeline events on scroll
+  // === Reveal timeline events on scroll ===
   const timelineEvents = document.querySelectorAll('.timeline-event');
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.2 });
-
   timelineEvents.forEach(event => observer.observe(event));
-
-  
+</script>
 
 <!-- Web Vitals -->
-<script src="https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js">
-
+<script src="https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js"></script>
 <script>
 (function(){
-  // === Floating Particles (only in Overall Performance card) ===
   const canvas = document.getElementById('perfParticles');
   if(canvas){
     const ctx = canvas.getContext('2d');
     let particles = [];
-    let particleColor = "59,130,246"; // default blue (rgb)
+    let particleColor = "59,130,246";
 
     function sizeCanvas(){
       canvas.width = canvas.offsetWidth;
@@ -1879,7 +1862,6 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     sizeCanvas(); initParticles(); drawParticles();
     window.addEventListener('resize',()=>{sizeCanvas();initParticles();});
 
-    // === Gauge + Metrics ===
     const progressEl = document.getElementById('perfProgress');
     const scoreEl = document.getElementById('perfScore');
     const labelEl = document.getElementById('perfLabel');
@@ -1889,19 +1871,18 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
       if(s>=80){
         labelEl.textContent="Excellent ✔️"; 
         labelEl.style.color="#10b981";
-        particleColor="16,185,129"; // green
+        particleColor="16,185,129";
       } else if(s>=50){
         labelEl.textContent="Needs Improvement ⚠️"; 
         labelEl.style.color="#f59e0b";
-        particleColor="245,158,11"; // orange
+        particleColor="245,158,11";
       } else {
         labelEl.textContent="Poor ❌"; 
         labelEl.style.color="#ef4444";
-        particleColor="239,68,68"; // red
+        particleColor="239,68,68";
       }
     }
 
-    // Weighted scoring
     function calculateScore(fcp, lcp, cls, tbt){
       let score=100;
       if(fcp>1.8)score-=10;
@@ -1915,7 +1896,6 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
       return Math.max(0,Math.min(100,Math.round(score)));
     }
 
-    // Animate gauge
     function animateGauge(from,to){
       let start=null;
       function step(ts){
@@ -1947,46 +1927,15 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 
     let metrics={fcp:0,lcp:0,cls:0,tbt:0};
 
-    // Hook into Web Vitals
     webVitals.onFCP(({value})=>{metrics.fcp=value/1000; updateUI(metrics);});
     webVitals.onLCP(({value})=>{metrics.lcp=value/1000; updateUI(metrics);});
     webVitals.onCLS(({value})=>{metrics.cls=value; updateUI(metrics);});
     webVitals.onFID(({value})=>{metrics.tbt=Math.round(value); updateUI(metrics);});
-
-    // Fallback: API data if available
-    (async function(){
-      try {
-        const res=await fetch("/api/performance");
-        const data=await res.json();
-        if(data.score!==undefined){
-          scoreEl.classList.remove("shimmer");
-          labelEl.classList.remove("shimmer");
-          document.querySelector(".gauge").classList.remove("pulsing");
-          animateGauge(0,data.score);
-          setLabel(data.score);
-        }
-        if(data.fcp!==undefined){
-          document.getElementById("m-fcp").textContent=data.fcp.toFixed(2)+"s";
-          document.getElementById("m-lcp").textContent=data.lcp.toFixed(2)+"s";
-          document.getElementById("m-cls").textContent=data.cls.toFixed(3);
-          document.getElementById("m-tbt").textContent=data.tbt+" ms";
-          ["m-fcp","m-lcp","m-cls","m-tbt"].forEach(
-            id=>document.getElementById(id).classList.remove("shimmer")
-          );
-        }
-      } catch(e){
-        console.error("⚠️ Performance fetch failed",e);
-        scoreEl.textContent="N/A";
-        labelEl.textContent="Error";
-      }
-    })();
-
-  } // end if canvas
+  }
 })();
+</script>
 
-  
-
-<!-- keep your service worker registration -->
+<!-- Service Worker -->
 <script>
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
@@ -1996,9 +1945,9 @@ if ("serviceWorker" in navigator) {
       .catch((err) => console.error("❌ Service Worker registration failed:", err));
   });
 }
-  
+</script>
 
-
+<!-- Carousel (Approach slides) -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const slides = document.querySelector(".slides");
@@ -2011,7 +1960,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const totalSlides = slideItems.length;
   let autoPlay;
 
-  // === Create indicators ===
+  // Indicators
   slideItems.forEach((_, idx) => {
     const dot = document.createElement("span");
     if (idx === 0) dot.classList.add("active");
@@ -2020,118 +1969,54 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   const dots = indicatorsContainer.querySelectorAll("span");
 
-  // === Move to a specific slide ===
   function moveToSlide(index) {
     currentSlide = index;
     slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-    dots.forEach((dot, i) => {
-      dot.classList.toggle("active", i === currentSlide);
-    });
+    dots.forEach((dot, i) => dot.classList.toggle("active", i === currentSlide));
   }
 
-  // === Handlers for buttons ===
   prevBtn.addEventListener("click", () => {
     const newIndex = (currentSlide - 1 + totalSlides) % totalSlides;
     moveToSlide(newIndex);
+    resetAutoplay();
   });
 
   nextBtn.addEventListener("click", () => {
     const newIndex = (currentSlide + 1) % totalSlides;
     moveToSlide(newIndex);
+    resetAutoplay();
   });
 
-  // === Auto-rotate ===
-  function startAutoPlay() {
+  function startAutoplay() {
     autoPlay = setInterval(() => {
       const newIndex = (currentSlide + 1) % totalSlides;
       moveToSlide(newIndex);
     }, 8000);
   }
-
-  function stopAutoPlay() {
-    clearInterval(autoPlay);
-  }
-
-  // Start autoplay
-  startAutoPlay();
-
-  // Pause on hover
-  slides.parentElement.addEventListener("mouseenter", stopAutoPlay);
-  slides.parentElement.addEventListener("mouseleave", startAutoPlay);
-});
-
-<!-- AOS Init -->
-<script src="https://unpkg.com/aos@next/dist/aos.js">
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    AOS.init({
-      duration: 900,
-      easing: "ease-out-cubic",
-      once: true,
-      offset: 80
-    });
-    // Init Rellax
-    new Rellax('.parallax', { speed: -2, center: true });
-  });
-
-  <script>
-  let currentSlide = 0;
-  let autoPlayInterval;
-
-  function showSlide(index) {
-    const slides = document.querySelectorAll(".slide");
-    const indicators = document.querySelectorAll(".indicators span");
-
-    if (index >= slides.length) currentSlide = 0;
-    else if (index < 0) currentSlide = slides.length - 1;
-    else currentSlide = index;
-
-    // Move slides smoothly
-    const slidesContainer = document.querySelector(".slides");
-    slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-    // Update indicators
-    indicators.forEach((dot, i) => {
-      dot.classList.toggle("active", i === currentSlide);
-    });
-  }
-
-  function moveSlide(step) {
-    showSlide(currentSlide + step);
-    resetAutoplay(); // reset timer when user clicks
-  }
-
-  // Autoplay function
-  function startAutoplay() {
-    autoPlayInterval = setInterval(() => {
-      moveSlide(1);
-    }, 5000); // change every 5 seconds
-  }
-
   function resetAutoplay() {
-    clearInterval(autoPlayInterval);
+    clearInterval(autoPlay);
     startAutoplay();
   }
 
-  // Initialize carousel on DOM load
-  document.addEventListener("DOMContentLoaded", () => {
-    const slides = document.querySelectorAll(".slide");
-    const indicatorsContainer = document.querySelector(".indicators");
+  startAutoplay();
+  slides.parentElement.addEventListener("mouseenter", () => clearInterval(autoPlay));
+  slides.parentElement.addEventListener("mouseleave", startAutoplay);
+});
+</script>
 
-    slides.forEach((_, i) => {
-      const dot = document.createElement("span");
-      dot.addEventListener("click", () => {
-        showSlide(i);
-        resetAutoplay();
-      });
-      indicatorsContainer.appendChild(dot);
-    });
-
-    showSlide(0);  // Show first slide
-    startAutoplay(); // Start autoplay
+<!-- AOS + Rellax -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://unpkg.com/rellax/rellax.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  AOS.init({
+    duration: 900,
+    easing: "ease-out-cubic",
+    once: true,
+    offset: 80
   });
-  
-  </script>
+  new Rellax('.parallax', { speed: -2, center: true });
+});
+</script>
 </body>
 </html>
