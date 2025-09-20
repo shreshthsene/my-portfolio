@@ -820,43 +820,30 @@
 }
 
 
-  /* Base divider */
-.section-divider {
-  width: 100%;
-  height: 80px;
+/* Base section */
+.section {
+  padding: 6rem 1rem;
   position: relative;
-  overflow: hidden;
+  z-index: 1;
+}
+
+/* Wave Divider */
+.wave-divider {
+  position: relative;
+  width: 100%;
+  height: 120px;
   line-height: 0;
+  overflow: hidden;
 }
 
-/* Pseudo-element for gradient fade */
-.section-divider::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0));
-  pointer-events: none;
+.wave-divider svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
-/* Left → Right slope */
-.section-divider.left-right {
-  background-color: var(--next-bg, #f9fafb); /* match next section bg */
-  clip-path: polygon(0 100%, 100% 0, 100% 100%);
-}
-
-/* Right → Left slope */
-.section-divider.right-left {
-  background-color: var(--next-bg, #f9fafb);
-  clip-path: polygon(0 0, 100% 100%, 0 100%);
-}
-
-/* === Responsive tweaks === */
-@media (max-width: 1024px) {   /* tablets */
-  .section-divider { height: 60px; }
-}
-
-@media (max-width: 640px) {    /* mobile */
-  .section-divider { height: 40px; }
+.wave-divider path {
+  fill: var(--wave-color, #f9fafb);
 }
     
   </style>
@@ -1011,9 +998,21 @@
   
 </section>
 
-    <div class="section-divider left-right" style="--next-bg:#f9fafb"></div>
-    
- <!-- TOOLS & SKILLS SECTION -->
+    <!-- Wave Divider -->
+    <div class="wave-divider" style="--wave-color:#f9fafb">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path d="M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z">
+      <animate attributeName="d" dur="6s" repeatCount="indefinite"
+        values="
+        M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z;
+        M0,54L48,59.3C96,65,192,75,288,80.7C384,86,480,96,576,100.7C672,110,768,129,864,123.3C960,118,1056,96,1152,90.7C1248,85,1344,97,1392,107.3L1440,118L1440,0L0,0Z;
+        M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z
+        " />
+    </path>
+  </svg>
+</div>
+
+    <!-- TOOLS & SKILLS SECTION -->
 <section id="tools" style="margin-top:48px">
   <h3 style="margin-bottom:18px">Tools & Technologies</h3>
   <p style="color:var(--muted); margin-bottom:24px">
@@ -1140,9 +1139,21 @@
   </div>
 </section>    
 
-    <div class="section-divider right-left" style="--next-bg:#ffffff"></div>
-    
-<section id="performance" aria-labelledby="performance-heading">
+    <!-- Wave Divider -->
+<div class="wave-divider" style="--wave-color:#f9fafb">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path d="M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z">
+      <animate attributeName="d" dur="6s" repeatCount="indefinite"
+        values="
+        M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z;
+        M0,54L48,59.3C96,65,192,75,288,80.7C384,86,480,96,576,100.7C672,110,768,129,864,123.3C960,118,1056,96,1152,90.7C1248,85,1344,97,1392,107.3L1440,118L1440,0L0,0Z;
+        M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z
+        " />
+    </path>
+  </svg>
+</div>
+
+    <section id="performance" aria-labelledby="performance-heading">
   <!-- Section heading -->
   <header class="section-header">
     <h2 id="performance-heading" class="section-title">Website Performance</h2>
@@ -1194,9 +1205,21 @@
   </div>
 </section>
 
-    <div class="section-divider left-right" style="--next-bg:#f9fafb"></div>
+<!-- Wave Divider -->
+<div class="wave-divider" style="--wave-color:#f9fafb">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path d="M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z">
+      <animate attributeName="d" dur="6s" repeatCount="indefinite"
+        values="
+        M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z;
+        M0,54L48,59.3C96,65,192,75,288,80.7C384,86,480,96,576,100.7C672,110,768,129,864,123.3C960,118,1056,96,1152,90.7C1248,85,1344,97,1392,107.3L1440,118L1440,0L0,0Z;
+        M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z
+        " />
+    </path>
+  </svg>
+</div>
 
-<section id="approach" aria-labelledby="approach-heading">
+    <section id="approach" aria-labelledby="approach-heading">
   <h2 id="approach-heading">My Marketing Approach</h2>
   <p class="sub">A structured 2-page plan for growth & measurable results.</p>
 
@@ -1302,7 +1325,19 @@
 
 </section>
 
-    <div class="section-divider right-left" style="--next-bg:#ffffff"></div>
+<!-- Wave Divider -->
+<div class="wave-divider" style="--wave-color:#f9fafb">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path d="M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z">
+      <animate attributeName="d" dur="6s" repeatCount="indefinite"
+        values="
+        M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z;
+        M0,54L48,59.3C96,65,192,75,288,80.7C384,86,480,96,576,100.7C672,110,768,129,864,123.3C960,118,1056,96,1152,90.7C1248,85,1344,97,1392,107.3L1440,118L1440,0L0,0Z;
+        M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z
+        " />
+    </path>
+  </svg>
+</div>
 
     <!-- SERVICES -->
     <section id="services" aria-labelledby="services-heading">
@@ -1356,7 +1391,19 @@
       </div>
     </section>
 
-    <div class="section-divider left-right" style="--next-bg:#f9fafb"></div>
+<!-- Wave Divider -->
+<div class="wave-divider" style="--wave-color:#f9fafb">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path d="M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z">
+      <animate attributeName="d" dur="6s" repeatCount="indefinite"
+        values="
+        M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z;
+        M0,54L48,59.3C96,65,192,75,288,80.7C384,86,480,96,576,100.7C672,110,768,129,864,123.3C960,118,1056,96,1152,90.7C1248,85,1344,97,1392,107.3L1440,118L1440,0L0,0Z;
+        M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z
+        " />
+    </path>
+  </svg>
+</div>
 
     <!-- PORTFOLIO -->
     <section id="work" class="portfolio" aria-labelledby="work-heading">
@@ -1456,7 +1503,19 @@
       </div>
     </section>
 
-    <div class="section-divider right-left" style="--next-bg:#ffffff"></div>
+<!-- Wave Divider -->
+<div class="wave-divider" style="--wave-color:#f9fafb">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path d="M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z">
+      <animate attributeName="d" dur="6s" repeatCount="indefinite"
+        values="
+        M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z;
+        M0,54L48,59.3C96,65,192,75,288,80.7C384,86,480,96,576,100.7C672,110,768,129,864,123.3C960,118,1056,96,1152,90.7C1248,85,1344,97,1392,107.3L1440,118L1440,0L0,0Z;
+        M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z
+        " />
+    </path>
+  </svg>
+</div>
 
     <!-- ARTICLES / BLOGS -->
     <section id="articles" aria-labelledby="articles-heading">
@@ -1505,7 +1564,19 @@
       </div>
     </section>
 
-    <div class="section-divider left-right" style="--next-bg:#f9fafb"></div>
+<!-- Wave Divider -->
+<div class="wave-divider" style="--wave-color:#f9fafb">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path d="M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z">
+      <animate attributeName="d" dur="6s" repeatCount="indefinite"
+        values="
+        M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z;
+        M0,54L48,59.3C96,65,192,75,288,80.7C384,86,480,96,576,100.7C672,110,768,129,864,123.3C960,118,1056,96,1152,90.7C1248,85,1344,97,1392,107.3L1440,118L1440,0L0,0Z;
+        M0,64L48,69.3C96,75,192,85,288,90.7C384,96,480,96,576,106.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L0,0Z
+        " />
+    </path>
+  </svg>
+</div>
 
     <!-- CONTACT -->
     <section id="contact" class="contact" aria-labelledby="contact-heading">
