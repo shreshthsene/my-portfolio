@@ -286,7 +286,7 @@
   }
 }
 
-/* Tools Section Wrapper */
+/* === Tools Section Wrapper === */
 .tools-section {
   margin-top: 80px;
   padding: 60px 20px;
@@ -310,44 +310,51 @@
   font-size: 16px;
 }
 
-/* Ticker Effect */
+/* === Ticker Effect === */
 .tools-ticker {
   overflow: hidden;
   width: 100%;
   position: relative;
 }
+
 .ticker-track {
   display: flex;
   gap: 40px;
-  animation: ticker 10s linear infinite;
+  width: max-content; /* let track expand to fit all tools */
+  animation: ticker 25s linear infinite;
   will-change: transform;
 }
+
+/* Keyframes: move by exactly half since we duplicate the tools */
 @keyframes ticker {
   from { transform: translateX(0); }
-  to   { transform: translateX(-100%); }
+  to   { transform: translateX(-50%); }
 }
 
-/* Tool Card */
+/* === Tool Card === */
 .tool {
   flex: 0 0 auto;
   min-width: 150px;
   padding: 18px 20px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(14px);
   text-align: center;
   box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
+
 .tool:hover {
   transform: translateY(-8px) scale(1.05);
   box-shadow: 0 14px 34px rgba(37, 99, 235, 0.25);
 }
+
 .tool svg {
   margin-bottom: 10px;
   width: 42px;
   height: 42px;
 }
+
 .tool span {
   display: block;
   font-size: 15px;
@@ -355,10 +362,10 @@
   color: #0f172a;
 }
 
-/* Responsive Tweaks */
+/* === Responsive Tweaks === */
 @media (max-width: 768px) {
   .ticker-track {
-    animation-duration: 20s; /* speed up for smaller screens */
+    animation-duration: 15s; /* a bit faster on mobile */
   }
   .tool {
     min-width: 120px;
