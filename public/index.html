@@ -1074,8 +1074,11 @@
 
   <!-- Performance content -->
   <div class="perf-container">
-    <!-- Gauge card -->
-    <article class="perf-card">
+    <!-- Gauge card with particles -->
+    <article class="perf-card relative overflow-hidden">
+      <!-- Particle background -->
+      <div id="performance-particles" class="absolute inset-0 -z-10"></div>
+
       <h3 class="card-title">Overall Performance</h3>
       <div class="gauge pulsing" aria-label="Performance score">
         <svg viewBox="0 0 36 36" class="circular-chart" role="img">
@@ -1110,7 +1113,7 @@
     </article>
   </div>
 </section>
-
+    
 <section id="approach" aria-labelledby="approach-heading">
   <h2 id="approach-heading">My Marketing Approach</h2>
   <p class="sub">A structured 2-page plan for growth & measurable results.</p>
@@ -1679,6 +1682,23 @@
   webVitals.onFID(({value}) => {metrics.tbt=Math.round(value); updateUI();});
 
 })();
+
+<!-- tsParticles script -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+<script>
+  tsParticles.load("performance-particles", {
+    background: { color: "transparent" },
+    particles: {
+      number: { value: 12, density: { enable: true, area: 400 } },
+      color: { value: ["#3b82f6", "#10b981"] }, // matches gradient
+      opacity: { value: 0.2 },
+      size: { value: 2 },
+      move: { enable: true, speed: 0.5, outModes: "bounce" }
+    },
+    interactivity: {
+      events: { onHover: { enable: false } }
+    }
+  });  
 </script>
   
 
