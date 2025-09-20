@@ -2074,6 +2074,63 @@ document.addEventListener("DOMContentLoaded", () => {
     // Init Rellax
     new Rellax('.parallax', { speed: -2, center: true });
   });
+
+  <script>
+  let currentSlide = 0;
+  let autoPlayInterval;
+
+  function showSlide(index) {
+    const slides = document.querySelectorAll(".slide");
+    const indicators = document.querySelectorAll(".indicators span");
+
+    if (index >= slides.length) currentSlide = 0;
+    else if (index < 0) currentSlide = slides.length - 1;
+    else currentSlide = index;
+
+    // Move slides smoothly
+    const slidesContainer = document.querySelector(".slides");
+    slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    // Update indicators
+    indicators.forEach((dot, i) => {
+      dot.classList.toggle("active", i === currentSlide);
+    });
+  }
+
+  function moveSlide(step) {
+    showSlide(currentSlide + step);
+    resetAutoplay(); // reset timer when user clicks
+  }
+
+  // Autoplay function
+  function startAutoplay() {
+    autoPlayInterval = setInterval(() => {
+      moveSlide(1);
+    }, 5000); // change every 5 seconds
+  }
+
+  function resetAutoplay() {
+    clearInterval(autoPlayInterval);
+    startAutoplay();
+  }
+
+  // Initialize carousel on DOM load
+  document.addEventListener("DOMContentLoaded", () => {
+    const slides = document.querySelectorAll(".slide");
+    const indicatorsContainer = document.querySelector(".indicators");
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement("span");
+      dot.addEventListener("click", () => {
+        showSlide(i);
+        resetAutoplay();
+      });
+      indicatorsContainer.appendChild(dot);
+    });
+
+    showSlide(0);  // Show first slide
+    startAutoplay(); // Start autoplay
+  });
   
   </script>
 </body>
