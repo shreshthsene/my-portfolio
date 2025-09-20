@@ -448,64 +448,154 @@
     .proj-title{font-weight:700; margin:0 0 6px 0}
     .proj-desc{color:var(--muted); font-size:14px; margin:0}
 
-   /* Articles */
+
+/* === Articles Grid === */
 .articles {
   margin-top: 44px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(2, minmax(340px, 1fr)); /* always 2 columns */
+  gap: 28px;
+  overflow-x: auto;  /* allow horizontal scroll on small screens */
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
 }
 
+.articles::-webkit-scrollbar {
+  height: 8px;
+}
+.articles::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 6px;
+}
+.articles::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* === Article Card === */
 .article {
-  background: #fff;
-  padding: 20px;
-  border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  padding: 24px 22px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  scroll-snap-align: start;
+  min-width: 340px; /* don’t shrink too much on small screens */
 }
 
 .article:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.15);
 }
 
+/* === Title === */
 .article h5 {
-  margin: 0 0 10px 0;
-  font-size: 17px;
+  margin: 0 0 14px 0;
+  font-size: 19px;
   font-weight: 700;
   color: #111827;
+  line-height: 1.3;
 }
 
+/* === Excerpt === */
 .article p {
-  margin: 0 0 16px 0;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.5;
+  margin: 0 0 18px 0;
+  color: #4b5563;
+  font-size: 15px;
+  line-height: 1.55;
+  flex-grow: 1;
 }
 
-/* Blue "Read More" button same as "View My Work" */
+/* === Read More Button === */
 .article .btn {
   align-self: flex-start;
-  padding: 10px 16px;
+  padding: 12px 20px;
   font-size: 14px;
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
   background: var(--accent);
   color: #fff;
-  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.25);
   transition: transform 0.2s ease, box-shadow 0.25s ease;
   text-decoration: none;
+  display: inline-block;
 }
 
 .article .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.35);
 }
 
+/* === Modal Backdrop === */
+#modalBackdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 1000;
+  place-items: center;
+  padding: 20px;
+}
+
+/* === Modal Box === */
+.modal {
+  background: #fff;
+  border-radius: 14px;
+  max-width: 700px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 28px;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+  animation: fadeIn 0.3s ease;
+  position: relative;
+}
+
+/* === Modal Content === */
+.modal h3 {
+  margin-top: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+}
+.modal h4 {
+  font-size: 18px;
+  margin: 20px 0 8px;
+  font-weight: 600;
+  color: #1f2937;
+}
+.modal p, .modal li {
+  font-size: 15px;
+  color: #374151;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+/* === Close Button === */
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.2s ease;
+}
+.modal-close:hover {
+  color: #111827;
+}
+
+/* === Animation === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+    
     /* Resume / CTA */
     .resume{
       margin-top:44px;
@@ -1672,42 +1762,52 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   </svg>
 </div>
 
-   <!-- ARTICLES / BLOGS -->
+<!-- ARTICLES / BLOGS -->
 <section id="articles" aria-labelledby="articles-heading" style="margin-top:64px">
   <h3 id="articles-heading">Articles & Insights</h3>
-  <div class="articles-grid">
-
+  <div class="articles">
+    
     <!-- Article 1 -->
-    <article class="article-card" role="listitem">
-      <h4>Maximizing ROI with Data-Driven Campaigns</h4>
+    <article class="article" role="listitem">
+      <h5>Maximizing ROI with Data-Driven Campaigns</h5>
       <p>How leveraging analytics and KPI tracking can reduce costs and increase conversions...</p>
-      <a class="btn btn-primary" href="#"
+      <button class="btn"
         onclick="openArticle(
           'Maximizing ROI with Data-Driven Campaigns',
           `<p>In today’s digital landscape, brands can’t afford to rely on intuition alone. Data-driven campaigns have become the backbone of high-performing marketing strategies, ensuring every dollar spent is accountable and measurable.</p>
           <p>At Practo, I experienced firsthand how structured KPI tracking transformed performance marketing. By leveraging Google Analytics and HubSpot dashboards, we optimized campaigns across Google Ads, LinkedIn, and email — ultimately reducing cost-per-lead (CPL) by 18% while increasing qualified lead volume by more than 20%. The key was not just collecting data, but interpreting it to refine targeting, messaging, and budget allocation.</p>
           <p>A strong data strategy means going beyond vanity metrics. Instead of focusing solely on clicks or impressions, the real power lies in mapping metrics to business objectives — whether that’s pipeline growth, revenue attribution, or customer lifetime value. When marketing and sales teams align on these KPIs, campaigns become far more effective.</p>
           <p>The result is scalable, predictable growth. Data turns marketing from a cost center into a revenue engine, enabling brands to continuously test, learn, and optimize. For companies aiming to grow in competitive markets, data-driven campaigns aren’t optional — they’re the foundation of sustainable ROI.</p>`
-        )">Read More</a>
+        )">Read More →</button>
     </article>
 
     <!-- Article 2 -->
-    <article class="article-card" role="listitem">
-      <h4>The Power of Influencer Partnerships in Local Growth</h4>
+    <article class="article" role="listitem">
+      <h5>The Power of Influencer Partnerships in Local Growth</h5>
       <p>Why micro-influencer collaborations and event partnerships drive stronger engagement...</p>
-      <a class="btn btn-primary" href="#"
+      <button class="btn"
         onclick="openArticle(
           'The Power of Influencer Partnerships in Local Growth',
           `<p>While paid media can deliver reach, nothing builds authentic brand connection like influencer partnerships. Especially in community-focused industries such as hospitality, micro-influencers offer a powerful way to generate awareness and trust.</p>
           <p>During my time at OYO Hotels, we executed influencer-led campaigns and local event partnerships that directly boosted seasonal bookings by 15%. By collaborating with creators who already had established credibility in their communities, we amplified OYO’s message in a way that felt authentic and relatable. Unlike traditional ads, this strategy built trust faster and engaged audiences at a deeper level.</p>
           <p>Micro-influencers in particular hold unique value. Their audiences are smaller but highly engaged, making them ideal for driving conversions rather than just impressions. Pairing their voices with event-based activations created a word-of-mouth effect that extended well beyond the campaign window.</p>
           <p>The takeaway is simple: when brands view influencers as long-term partners instead of one-off channels, they create stronger community ties and lasting impact. In a digital world where consumers crave authenticity, influencer marketing is more than a trend — it’s a sustainable growth lever for modern brands.</p>`
-        )">Read More</a>
+        )">Read More →</button>
     </article>
 
   </div>
 </section>
 
+<!-- MODAL STRUCTURE -->
+<div id="modalBackdrop" aria-hidden="true">
+  <div class="modal">
+    <span class="modal-close" onclick="closeModal()">×</span>
+    <h3 id="modalTitle"></h3>
+    <h4 id="modalSubtitle"></h4>
+    <div id="modalContent"></div>
+  </div>
+</div>
+    
     <!-- RESUME -->
     <section class="resume" aria-labelledby="resume-heading">
       <div>
