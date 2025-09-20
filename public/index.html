@@ -891,24 +891,31 @@
   line-height: 1.5;
 }
 
-/* Carousel controls */
 .carousel-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.9);
   border: none;
   font-size: 22px;
   cursor: pointer;
   padding: 8px 12px;
   border-radius: 8px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: background 0.3s ease;
+  
+  /* 🔒 fix button height/line-height so it doesn’t jump */
+  height: 40px;
+  line-height: 1; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .carousel-btn:hover {
   background: #f3f4f6;
-  transform: scale(1.1);
 }
+
 .carousel-btn.prev { left: 12px; }
 .carousel-btn.next { right: 12px; }
 
