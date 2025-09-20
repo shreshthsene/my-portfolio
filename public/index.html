@@ -642,18 +642,27 @@
   .perf-container { grid-template-columns: 1fr; }
 }
 
+/* === Performance Section Cards (more contrast + depth) === */
 .perf-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 18px;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.06);
-  padding: 32px;
+  background: #ffffff;               /* crisp white */
+  border-radius: 16px;
+  padding: 28px;
   overflow: hidden;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+  /* 🔥 stronger shadow */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+
+  /* ✨ subtle border for separation */
+  border: 1px solid rgba(229, 231, 235, 0.7);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+
+/* Hover effect for premium feel */
 .perf-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 32px rgba(37, 99, 235, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
 }
 
 /* Particle canvas */
