@@ -1147,11 +1147,12 @@ nav a.active::after {
 
 /* === Performance Section === */
 #performance {
-  padding: 6rem 1rem 4rem;   /* ⬆ extra top padding */
+  padding: 7rem 1rem 4rem;   /* ⬆ more top padding for navbar clearance */
   background: var(--card);
   position: relative;
   z-index: 1;
-  margin-top: 5rem;          /* ✅ ensures gap below Tools & Tech section */
+  margin-top: 6rem;          /* ✅ ensures gap below Tools & Tech section */
+  scroll-margin-top: 6rem;   /* ✅ anchors stop below fixed navbar */
 }
 
 /* Section Header (no box, centered, clean) */
@@ -1162,11 +1163,13 @@ nav a.active::after {
   border: none !important;
   box-shadow: none !important;
   padding: 0 !important;
+  position: relative;        /* ✅ prevents overlap */
+  z-index: 2;                /* sits above particles/cards */
 }
 
 /* Gradient Heading */
 .section-title {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 0.5rem;
@@ -1179,11 +1182,12 @@ nav a.active::after {
 
 /* Subtitle under heading */
 .section-subtitle {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 400;
   color: var(--muted);
-  margin: 0.5rem auto 0;      /* ✅ spacing under title */
-  max-width: 600px;
+  margin: 0.75rem auto 0;    /* ✅ spacing under title */
+  max-width: 640px;
+  line-height: 1.6;
 }
 
 /* Layout Grid for cards */
@@ -1204,7 +1208,10 @@ nav a.active::after {
     gap: var(--gap);
   }
   .section-title {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
+  }
+  .section-subtitle {
+    font-size: 1rem;
   }
 }
 
@@ -1226,7 +1233,7 @@ nav a.active::after {
   height: 100%;
 }
 
-/* Gradient border */
+/* Gradient border for cards only */
 .perf-card::before {
   content: "";
   position: absolute;
@@ -1962,14 +1969,16 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 <!-- ===================== PERFORMANCE SECTION ===================== -->
 <section id="performance" aria-labelledby="performance-heading">
 
-  <!-- Section Header (independent, clean) -->
+  <!-- Section Header (independent, clean, spaced) -->
   <header class="section-header" data-aos="fade-up">
-    <h2 id="performance-heading" class="section-title">
-      Website Performance
-    </h2>
-    <p class="section-subtitle">
-      Real-time Core Web Vitals for my portfolio
-    </p>
+    <div class="section-header-inner">
+      <h2 id="performance-heading" class="section-title">
+        Website Performance
+      </h2>
+      <p class="section-subtitle">
+        Real-time Core Web Vitals for my portfolio
+      </p>
+    </div>
   </header>
 
   <!-- Performance Cards -->
