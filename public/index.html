@@ -700,18 +700,111 @@ nav a.active::after {
   }
 }
     
-    /* Resume / CTA */
-    .resume{
-      margin-top:44px;
-      display:flex;
-      gap:18px;
-      align-items:center;
-      justify-content:center;
-      padding:26px;
-      background:linear-gradient(180deg,#fff,#f8fbff);
-      border-radius:12px;
-      box-shadow:0 8px 20px rgba(15,23,42,0.03);
-    }
+   /* Resume / CTA */
+.resume {
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 30px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.12);
+  position: relative;
+  overflow: hidden;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Animated gradient border */
+.resume::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(270deg, var(--gradient-colors));
+  background-size: 300% 300%;
+  animation: gradientBG 8s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Heading */
+.resume h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, var(--gradient-colors));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtitle */
+.resume p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin-bottom: 28px;
+  max-width: 600px;
+}
+
+/* Buttons */
+.resume .resume-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.resume .btn {
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Primary button */
+.resume .btn-primary {
+  background: linear-gradient(270deg, var(--gradient-colors));
+  background-size: 300% 300%;
+  animation: gradientBG 8s ease infinite;
+  color: white;
+  box-shadow: 0 6px 20px rgba(99,102,241,0.4);
+}
+
+.resume .btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(99,102,241,0.6);
+}
+
+/* Outline button */
+.resume .btn-outline {
+  border: 2px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+}
+
+.resume .btn-outline:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-3px);
+}
+
+/* Shared gradient animation */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
     /* Contact */
     .contact{
@@ -2074,16 +2167,23 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   </div>
 </div>
     
-    <!-- RESUME -->
-    <section class="resume" aria-labelledby="resume-heading">
-      <div>
-        <h3 id="resume-heading" style="margin:0 0 8px 0">Resume</h3>
-        <p style="color:var(--muted); margin:0 0 12px 0">Download a PDF version of my resume or view my experience online.</p>
-        <div style="display:flex; gap:12px; justify-content:center">
-          <a class="btn btn-primary" href="Shreshth_Marketing_Resume.pdf" download aria-label="Download resume">Download Resume (PDF)</a>
-        </div>
-      </div>
-    </section>
+<!-- RESUME -->
+<section class="resume" id="resume" aria-labelledby="resume-heading">
+  <div class="resume-card">
+    <h3 id="resume-heading">Resume</h3>
+    <p>
+      Download a PDF version of my resume or explore my professional journey online.
+    </p>
+    <div class="resume-actions">
+      <a class="btn btn-primary" href="Shreshth_Marketing_Resume.pdf" download aria-label="Download resume as PDF">
+        📄 Download Resume (PDF)
+      </a>
+      <a class="btn btn-outline" href="#work" aria-label="View work experience section">
+        🔍 View Experience
+      </a>
+    </div>
+  </div>
+</section>
 
 <div class="wave-divider">
   <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
