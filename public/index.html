@@ -1190,7 +1190,7 @@ nav a.active::after {
   color: transparent;
 }
 
-/* Subtitle (muted gray) */
+/* Subtitle (muted gray, below heading) */
 #performance .section-subtitle {
   font-size: 1.15rem;
   font-weight: 400;
@@ -1224,7 +1224,7 @@ nav a.active::after {
   }
 }
 
-/* === Glassmorphism Cards with Gradient Border === */
+/* === Glassmorphism Cards (clean, no gradient border) === */
 #performance .perf-card {
   position: relative;
   background: var(--glass);
@@ -1242,22 +1242,7 @@ nav a.active::after {
   height: 100%;
 }
 
-/* Gradient animated border */
-#performance .perf-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  padding: 2px;
-  background: linear-gradient(90deg, var(--gradient-colors));
-  background-size: 300% 300%;
-  animation: gradientBG 6s ease infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: destination-out;
-  mask-composite: exclude;
-  pointer-events: none;
-  z-index: -1;
-}
+/* Removed gradient animated border (::before) */
 
 /* Hover lift */
 #performance .perf-card:hover {
@@ -1370,13 +1355,6 @@ nav a.active::after {
 @keyframes pulse {
   0%,100% { transform: scale(1); }
   50% { transform: scale(1.05); }
-}
-
-/* Gradient animation */
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
     
 /* === Approach Section === */
@@ -1982,7 +1960,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 
     <!-- Section Header -->
     <header class="section-header" data-aos="fade-up">
-      <h2 id="performance-heading" class="section-title">
+      <h2 id="performance-heading" class="section-title gradient-text">
         Website Performance
       </h2>
       <p class="section-subtitle">
