@@ -460,22 +460,11 @@
 .articles {
   margin-top: 44px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(340px, 1fr)); /* always 2 columns */
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 28px;
-  overflow-x: auto;  /* allow horizontal scroll on small screens */
-  scroll-snap-type: x mandatory;
-  padding-bottom: 10px;
-}
-
-.articles::-webkit-scrollbar {
-  height: 8px;
-}
-.articles::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.2);
-  border-radius: 6px;
-}
-.articles::-webkit-scrollbar-track {
-  background: transparent;
+  margin-bottom: 20px;
+  align-items: stretch; /* ensures all cards stretch equally */
+  grid-auto-rows: 1fr;  /* equal height rows */
 }
 
 /* === Article Card === */
@@ -490,12 +479,14 @@
   position: relative;
   overflow: hidden;
   scroll-snap-align: start;
-  min-width: 340px; /* don’t shrink too much on small screens */
+  height: 100%; /* force cards to fill row height */
 }
 
 .article:hover {
   transform: translateY(-6px);
-  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.15);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.15),
+              0 0 18px rgba(37, 99, 235, 0.15),   /* soft blue glow */
+              0 0 28px rgba(37, 99, 235, 0.10);   /* outer glow */
 }
 
 /* === Banner Image === */
@@ -504,6 +495,11 @@
   height: 200px;
   object-fit: cover;
   display: block;
+  transition: transform 0.4s ease;
+}
+
+.article:hover img {
+  transform: scale(1.05); /* hover zoom */
 }
 
 /* === Content Wrapper === */
@@ -529,7 +525,7 @@
   color: #4b5563;
   font-size: 15px;
   line-height: 1.55;
-  flex-grow: 1;
+  flex-grow: 1; /* pushes button to bottom */
 }
 
 /* === Read More Button === */
@@ -550,7 +546,8 @@
 
 .article .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.35),
+              0 0 12px rgba(37, 99, 235, 0.3); /* glow around button */
 }
 
 /* === Modal Backdrop === */
@@ -616,6 +613,17 @@
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
   to   { opacity: 1; transform: scale(1); }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .articles {
+    grid-template-columns: 1fr; /* stack on mobile */
+    gap: 20px;
+  }
+  .article img {
+    height: 180px;
+  }
 }
     
     /* Resume / CTA */
@@ -1979,6 +1987,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
           )">Read More →</button>
       </div>
     </article>
+
   </div>
 </section>
     
