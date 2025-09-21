@@ -1142,10 +1142,9 @@ nav a.active::after {
   }
 }
 
-
-/* === Root variable (shared gradient colors) === */
+/* === Root variables === */
 :root {
-  --gradient-colors: #6366f1, #3b82f6, #06b6d4; /* 3 stops same as Resume */
+  --gradient-colors: #6366f1, #06b6d4;
 }
 
 /* === Performance Section === */
@@ -1164,10 +1163,10 @@ nav a.active::after {
   text-align: center;
   margin-bottom: 3rem;
   position: relative;
-  z-index: 5; /* above particles */
+  z-index: 5;
 }
 
-/* ✅ Gradient Section Title (same as Resume h3) */
+/* ✅ Gradient Section Title (same style as Resume h3) */
 .section-title {
   font-size: 2.2rem;
   font-weight: 800;
@@ -1258,7 +1257,7 @@ nav a.active::after {
   z-index: 1;
 }
 
-/* ✅ Card titles always solid black */
+/* ✅ Card titles solid black */
 .card-title {
   margin: 0 0 20px 0;
   font-weight: 700;
@@ -1328,13 +1327,15 @@ nav a.active::after {
   color:#0f172a;
 }
 
-/* === Loading Effects === */
-.shimmer {
+/* === Shimmer (only metrics, NOT headings) === */
+.metric .shimmer,
+.gauge-score.shimmer,
+.gauge-label.shimmer {
   background: linear-gradient(90deg,#f3f3f3 25%,#ecebeb 50%,#f3f3f3 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: 8px;
-  color: transparent; /* only for placeholders */
+  color: transparent;
 }
 
 /* Pulse */
@@ -1957,7 +1958,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 
 <!-- PERFORMANCE SECTION -->
 <section id="performance" aria-labelledby="performance-heading">
-  <!-- Section Heading -->
+  <!-- Section Header -->
   <header class="section-header" data-aos="fade-up">
     <h2 id="performance-heading" class="section-title">
       Website Performance
