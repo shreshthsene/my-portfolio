@@ -1147,52 +1147,42 @@ nav a.active::after {
 
 /* === Performance Section === */
 #performance {
-  padding: 8rem 1rem 4rem;   /* ⬆ extra top padding for navbar clearance */
+  padding: 8rem 1rem 4rem;   /* ⬆ top padding for navbar clearance */
   background: var(--card);
   position: relative;
   z-index: 1;
-  margin-top: 6rem;          /* ✅ ensures gap below Tools & Tech section */
-  scroll-margin-top: 7rem;   /* ✅ anchors stop below fixed navbar */
+  margin-top: 6rem;          /* ✅ gap below previous section */
+  scroll-margin-top: 7rem;   /* ✅ anchor offset for fixed navbar */
 }
 
-/* Section Header (independent, centered full-width) */
-.section-header {
+/* Wrapper aligns header + cards */
+.performance-wrapper {
   max-width: var(--container);
-  margin: 0 auto 3.5rem;   /* centered + spacing before cards */
-  text-align: center;
-
+  margin: 0 auto;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  position: relative;
-  z-index: 2;
 }
 
-.section-header::before,
-.section-header::after {
-  content: none !important;
+/* Section Header (centered, full width) */
+.section-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 3.5rem;   /* spacing before cards */
 }
 
-/* Gradient Heading */
 .section-title {
   font-size: 2.6rem;
   font-weight: 800;
   line-height: 1.2;
   margin: 0;
-
   background: linear-gradient(90deg, var(--gradient-colors));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Subtitle under heading */
 .section-subtitle {
   font-size: 1.15rem;
   font-weight: 400;
@@ -1200,28 +1190,23 @@ nav a.active::after {
   margin-top: 0.75rem;
   max-width: 640px;
   line-height: 1.6;
-  text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
 
 /* Layout Grid for cards */
 .perf-container {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 0 20px;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--gap);
-  align-items: stretch;        /* ✅ cards stay aligned */
+  align-items: stretch;    /* ✅ cards stay aligned */
 }
 
 @media (max-width: 900px) {
   .perf-container {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: var(--gap);
-    align-items: center;
   }
   .section-title {
     font-size: 1.9rem;
@@ -1266,7 +1251,7 @@ nav a.active::after {
   z-index: -1;
 }
 
-/* Hover */
+/* Hover effect */
 .perf-card:hover {
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 14px 32px rgba(0,0,0,0.12);
@@ -1359,7 +1344,7 @@ nav a.active::after {
   color: var(--text);
 }
 
-/* Shimmer */
+/* Shimmer loading effect */
 .metric .shimmer,
 .gauge-score.shimmer,
 .gauge-label.shimmer {
@@ -1370,7 +1355,7 @@ nav a.active::after {
   color: transparent;
 }
 
-/* Pulse */
+/* Pulse animation */
 .gauge.pulsing {
   animation: pulse 1.5s infinite;
 }
@@ -1985,67 +1970,65 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 <!-- ===================== PERFORMANCE SECTION ===================== -->
 <section id="performance" aria-labelledby="performance-heading">
 
-  <!-- Section Header (independent, centered full-width) -->
-  <header class="section-header" data-aos="fade-up">
-    <h2 id="performance-heading" class="section-title">
-      Website Performance
-    </h2>
-    <p class="section-subtitle">
-      Real-time Core Web Vitals for my portfolio
-    </p>
-  </header>
+  <div class="performance-wrapper">
 
-  <!-- Performance Cards (grid only for cards) -->
-  <div class="perf-container" role="list">
+    <!-- Section Header -->
+    <header class="section-header" data-aos="fade-up">
+      <h2 id="performance-heading" class="section-title">
+        Website Performance
+      </h2>
+      <p class="section-subtitle">
+        Real-time Core Web Vitals for my portfolio
+      </p>
+    </header>
 
-    <!-- Gauge Card -->
-    <article class="perf-card" data-aos="zoom-in" data-aos-delay="100" role="listitem">
-      <canvas id="perfParticles"></canvas>
-      <div class="perf-content">
-        <h3 class="card-title">Overall Performance</h3>
-        <div class="gauge pulsing" aria-label="Performance score">
-          <svg viewBox="0 0 36 36" class="circular-chart" role="img" aria-hidden="true">
-            <!-- Background Circle -->
-            <path class="circle-bg" stroke-width="3" fill="none" stroke="#e5e7eb"
-              d="M18 2.0845 
-                 a 15.9155 15.9155 0 0 1 0 31.831 
-                 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-            <!-- Progress Circle -->
-            <path id="perfProgress" class="circle-progress"
-              stroke-width="3" stroke-linecap="round" fill="none"
-              stroke="url(#perfGrad)" stroke-dasharray="0 100"
-              d="M18 2.0845 
-                 a 15.9155 15.9155 0 0 1 0 31.831 
-                 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-            <!-- Gradient -->
-            <defs>
-              <linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#6366f1"/>
-                <stop offset="100%" stop-color="#06b6d4"/>
-              </linearGradient>
-            </defs>
-          </svg>
-          <!-- Gauge Score -->
-          <div id="perfScore" class="gauge-score shimmer">--</div>
+    <!-- Performance Cards -->
+    <div class="perf-container" role="list">
+
+      <!-- Gauge Card -->
+      <article class="perf-card" data-aos="zoom-in" data-aos-delay="100" role="listitem">
+        <canvas id="perfParticles"></canvas>
+        <div class="perf-content">
+          <h3 class="card-title">Overall Performance</h3>
+          <div class="gauge pulsing" aria-label="Performance score">
+            <svg viewBox="0 0 36 36" class="circular-chart" role="img" aria-hidden="true">
+              <path class="circle-bg" stroke-width="3" fill="none" stroke="#e5e7eb"
+                d="M18 2.0845 
+                   a 15.9155 15.9155 0 0 1 0 31.831 
+                   a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              <path id="perfProgress" class="circle-progress"
+                stroke-width="3" stroke-linecap="round" fill="none"
+                stroke="url(#perfGrad)" stroke-dasharray="0 100"
+                d="M18 2.0845 
+                   a 15.9155 15.9155 0 0 1 0 31.831 
+                   a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              <defs>
+                <linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#6366f1"/>
+                  <stop offset="100%" stop-color="#06b6d4"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <div id="perfScore" class="gauge-score shimmer">--</div>
+          </div>
+          <p id="perfLabel" class="gauge-label shimmer">Loading…</p>
         </div>
-        <!-- Gauge Label -->
-        <p id="perfLabel" class="gauge-label shimmer">Loading…</p>
-      </div>
-    </article>
+      </article>
 
-    <!-- Vitals Card -->
-    <article class="perf-card" data-aos="fade-up" data-aos-delay="200" role="listitem">
-      <div class="perf-content">
-        <h3 class="card-title">Core Web Vitals</h3>
-        <div class="metrics-grid">
-          <div class="metric"><span>FCP</span><strong id="m-fcp" class="shimmer">--</strong></div>
-          <div class="metric"><span>LCP</span><strong id="m-lcp" class="shimmer">--</strong></div>
-          <div class="metric"><span>CLS</span><strong id="m-cls" class="shimmer">--</strong></div>
-          <div class="metric"><span>TBT</span><strong id="m-tbt" class="shimmer">--</strong></div>
+      <!-- Vitals Card -->
+      <article class="perf-card" data-aos="fade-up" data-aos-delay="200" role="listitem">
+        <div class="perf-content">
+          <h3 class="card-title">Core Web Vitals</h3>
+          <div class="metrics-grid">
+            <div class="metric"><span>FCP</span><strong id="m-fcp" class="shimmer">--</strong></div>
+            <div class="metric"><span>LCP</span><strong id="m-lcp" class="shimmer">--</strong></div>
+            <div class="metric"><span>CLS</span><strong id="m-cls" class="shimmer">--</strong></div>
+            <div class="metric"><span>TBT</span><strong id="m-tbt" class="shimmer">--</strong></div>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
 
+    </div>
   </div>
 </section>
 <!-- ===================== END PERFORMANCE SECTION ===================== -->
