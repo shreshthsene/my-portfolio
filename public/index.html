@@ -1147,36 +1147,39 @@ nav a.active::after {
 
 /* === Performance Section === */
 #performance {
-  padding: 8rem 1rem 4rem;   /* top padding for navbar clearance */
+  padding: 6rem 1rem 4rem;   /* reduced top padding to avoid nav overlap */
   background: var(--card);
   position: relative;
   z-index: 1;
-  margin-top: 6rem;          /* gap below previous section */
+  margin-top: 0;             /* removed extra gap pushing into nav */
   scroll-margin-top: 7rem;   /* anchor offset for fixed navbar */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Wrapper aligns header + cards */
-.performance-wrapper {
+#performance .performance-wrapper {
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;   /* ✅ centers content vertically */
+  text-align: center;        /* ✅ centers text horizontally */
 }
 
 /* Section Header (clean, no box/line) */
-.section-header {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 3rem;   
-  background: none;        /* ✅ removes box */
-  border: none;
-  box-shadow: none;
+#performance .section-header {
+  margin-bottom: 3rem;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-/* Gradient Heading */
-.section-title {
+/* Gradient Heading (no underline/box) */
+#performance .section-title {
   font-size: 2.6rem;
   font-weight: 800;
   line-height: 1.2;
@@ -1184,16 +1187,16 @@ nav a.active::after {
   background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text; /* ensure cross-browser */
-  color: transparent;    /* fallback */
+  background-clip: text;
+  color: transparent;
 }
 
-/* Subtitle below heading */
-.section-subtitle {
+/* Subtitle directly under heading */
+#performance .section-subtitle {
   font-size: 1.15rem;
   font-weight: 400;
   color: var(--muted);
-  margin-top: 0.75rem; 
+  margin-top: 0.75rem;
   max-width: 640px;
   line-height: 1.6;
   margin-left: auto;
@@ -1201,29 +1204,30 @@ nav a.active::after {
 }
 
 /* Layout Grid for cards */
-.perf-container {
+#performance .perf-container {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--gap);
   align-items: start;
+  margin-top: 2rem;   /* spacing between header/subtitle and cards */
 }
 
 @media (max-width: 900px) {
-  .perf-container {
+  #performance .perf-container {
     grid-template-columns: 1fr;
     gap: var(--gap);
   }
-  .section-title {
+  #performance .section-title {
     font-size: 1.9rem;
   }
-  .section-subtitle {
+  #performance .section-subtitle {
     font-size: 1rem;
   }
 }
 
 /* === Performance Cards === */
-.perf-card {
+#performance .perf-card {
   position: relative;
   background: var(--glass);
   backdrop-filter: blur(14px);
@@ -1241,7 +1245,7 @@ nav a.active::after {
 }
 
 /* Gradient border for cards only */
-.perf-card::before {
+#performance .perf-card::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -1258,13 +1262,13 @@ nav a.active::after {
 }
 
 /* Hover effect */
-.perf-card:hover {
+#performance .perf-card:hover {
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 14px 32px rgba(0,0,0,0.12);
 }
 
 /* Particle canvas */
-#perfParticles {
+#performance #perfParticles {
   position: absolute;
   top: 0; left: 0;
   width: 100%;
@@ -1273,7 +1277,7 @@ nav a.active::after {
   pointer-events: none;
 }
 
-.perf-content {
+#performance .perf-content {
   position: relative;
   z-index: 1;
   flex-grow: 1;
@@ -1283,7 +1287,7 @@ nav a.active::after {
 }
 
 /* Card titles */
-.card-title {
+#performance .card-title {
   margin: 0 0 20px 0;
   font-weight: 700;
   font-size: 1.25rem;
@@ -1291,26 +1295,26 @@ nav a.active::after {
 }
 
 /* === Gauge === */
-.gauge { 
+#performance .gauge { 
   position: relative; 
   width: 220px; 
   height: 220px; 
   margin: 0 auto; 
 }
-.circular-chart { 
+#performance .circular-chart { 
   transform: rotate(-90deg); 
   width: 100%; 
   height: 100%; 
 }
-.circle-progress { 
+#performance .circle-progress { 
   transition: stroke-dasharray 1s ease; 
 }
-.gauge-score {
+#performance .gauge-score {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
   font-weight: 800; font-size: 48px; color: var(--text);
 }
-.gauge-label { 
+#performance .gauge-label { 
   text-align: center; 
   margin-top: 14px; 
   font-weight: 700; 
@@ -1318,13 +1322,13 @@ nav a.active::after {
 }
 
 /* === Metrics === */
-.metrics-grid {
+#performance .metrics-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   flex-grow: 1;
 }
-.metric {
+#performance .metric {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
   border-radius: 14px;
@@ -1332,17 +1336,17 @@ nav a.active::after {
   box-shadow: 0 4px 16px rgba(0,0,0,0.06);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.metric:hover {
+#performance .metric:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 22px rgba(37, 99, 235, 0.18);
 }
-.metric span {
+#performance .metric span {
   display:block;
   color: var(--muted);
   font-weight:600;
   font-size:13px;
 }
-.metric strong {
+#performance .metric strong {
   display:block;
   margin-top:6px;
   font-size:20px;
@@ -1351,9 +1355,9 @@ nav a.active::after {
 }
 
 /* Shimmer loading effect */
-.metric .shimmer,
-.gauge-score.shimmer,
-.gauge-label.shimmer {
+#performance .metric .shimmer,
+#performance .gauge-score.shimmer,
+#performance .gauge-label.shimmer {
   background: linear-gradient(90deg,#f3f3f3 25%,#ecebeb 50%,#f3f3f3 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
@@ -1362,7 +1366,7 @@ nav a.active::after {
 }
 
 /* Pulse animation */
-.gauge.pulsing {
+#performance .gauge.pulsing {
   animation: pulse 1.5s infinite;
 }
 @keyframes pulse {
