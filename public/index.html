@@ -56,37 +56,173 @@
     }
 
     /* Header */
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:18px 20px;
-      position:sticky;
-      top:0;
-      background:rgba(255,255,255,0.75);
-      backdrop-filter: blur(6px);
-      border-bottom:1px solid rgba(15,23,42,0.04);
-      z-index:40;
-    }
-    .logo{
-      font-weight:700;
-      letter-spacing:0.2px;
-      color:var(--text);
-    }
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 32px;
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+  z-index: 40;
+  overflow: hidden;
+}
+header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(270deg, var(--gradient-colors));
+  background-size: 300% 300%;
+  animation: gradientBG 8s ease infinite;
+}
 
-    nav{display:flex; gap:12px; align-items:center;}
-    nav a{
-      color:var(--muted);
-      text-decoration:none;
-      font-weight:600;
-      padding:8px 10px;
-      border-radius:8px;
-      transition: all .18s ease;
-      font-size:14px;
-    }
-    nav a:hover{background:rgba(37,99,235,0.06); color:var(--accent-600)}
+.logo {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #111827;
+  font-size: 18px;
+}
 
+nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+nav a {
+  color: #6b7280;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+  font-size: 15px;
+}
+nav a:hover {
+  background: rgba(37, 99, 235, 0.08);
+  color: #2563eb;
+}
+
+/* Banner */
+.banner {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+  text-align: center;
+  padding: 120px 20px;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner::before,
+.banner::after {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.5), transparent 70%);
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: float 6s ease-in-out infinite;
+}
+.banner::after {
+  top: auto;
+  bottom: -120px;
+  right: -150px;
+  left: auto;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-25px); }
+}
+
+/* Glassmorphism Card */
+.banner-content {
+  position: relative;
+  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 50px 70px;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+  max-width: 720px;
+  overflow: hidden;
+  z-index: 1;
+}
+.banner-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 20px;
+  background: linear-gradient(270deg, var(--gradient-colors));
+  background-size: 300% 300%;
+  animation: gradientBG 8s ease infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+.banner-content h1 {
+  font-size: 3.25rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+.banner-content p {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+/* CTA Button */
+.banner .btn {
+  position: relative;
+  display: inline-block;
+  padding: 16px 34px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: linear-gradient(270deg, var(--gradient-colors));
+  background-size: 300% 300%;
+  animation: gradientBG 8s ease infinite;
+  box-shadow: 0 6px 25px rgba(99,102,241,0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  z-index: 1;
+}
+.banner .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(99,102,241,0.6);
+}
+.banner .btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 25px rgba(99,102,241,0.4);
+}
+
+/* Shared gradient animation */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+    
 /* Hero Section */
 .hero {
   display: grid;
