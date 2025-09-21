@@ -1155,10 +1155,12 @@ nav a.active::after {
   scroll-margin-top: 7rem;   /* ✅ anchors stop below fixed navbar */
 }
 
-/* Section Header (centered, independent of grid) */
+/* Section Header (centered, spans full grid width) */
 .section-header {
+  grid-column: 1 / -1;        /* ✅ forces header to span across both grid columns */
   max-width: var(--container);
-  margin: 0 auto 3.5rem;   /* ✅ centered + spacing before cards */
+  margin: 0 auto 3.5rem;      /* ✅ centered + spacing before cards */
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1175,7 +1177,7 @@ nav a.active::after {
 
 .section-header::before,
 .section-header::after {
-  content: none !important; /* ✅ remove gradient/pseudo elements */
+  content: none !important;   /* ✅ ensure no unwanted decoration */
 }
 
 /* Gradient Heading */
@@ -1988,7 +1990,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   <div class="perf-container" role="list">
 
     <!-- Section Header (spans both columns, centered) -->
-    <header class="section-header" data-aos="fade-up">
+    <header class="section-header" data-aos="fade-up" style="grid-column: 1 / -1;">
       <h2 id="performance-heading" class="section-title">
         Website Performance
       </h2>
