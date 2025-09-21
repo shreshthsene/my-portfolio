@@ -1155,9 +1155,10 @@ nav a.active::after {
   scroll-margin-top: 7rem;   /* ✅ anchors stop below fixed navbar */
 }
 
-/* Section Header (spans full grid, centered above both cards) */
+/* Section Header (independent, centered full-width) */
 .section-header {
-  grid-column: 1 / -1;        /* spans across both columns */
+  max-width: var(--container);
+  margin: 0 auto 3.5rem;   /* centered + spacing before cards */
   text-align: center;
 
   display: flex;
@@ -1165,8 +1166,6 @@ nav a.active::after {
   align-items: center;
   justify-content: center;
 
-  margin-bottom: 3.5rem;      /* spacing before cards */
-  max-width: 100%;            /* ✅ ensures it stretches same width as grid */
   background: none !important;
   border: none !important;
   box-shadow: none !important;
@@ -1179,7 +1178,7 @@ nav a.active::after {
 .section-header::after {
   content: none !important;
 }
-    
+
 /* Gradient Heading */
 .section-title {
   font-size: 2.6rem;
@@ -1203,7 +1202,7 @@ nav a.active::after {
   line-height: 1.6;
   text-align: center;
   margin-left: auto;
-  margin-right: auto;         /* ✅ centers subtitle block */
+  margin-right: auto;
 }
 
 /* Layout Grid for cards */
@@ -1214,8 +1213,7 @@ nav a.active::after {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--gap);
-  align-items: start;         /* aligns header and cards neatly */
-  justify-items: center;      /* ✅ centers all children including header */
+  align-items: stretch;        /* ✅ cards stay aligned */
 }
 
 @media (max-width: 900px) {
@@ -1224,10 +1222,6 @@ nav a.active::after {
     flex-direction: column;
     gap: var(--gap);
     align-items: center;
-  }
-  .section-header {
-    grid-column: auto;
-    margin-bottom: 2.5rem;
   }
   .section-title {
     font-size: 1.9rem;
@@ -1991,18 +1985,18 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 <!-- ===================== PERFORMANCE SECTION ===================== -->
 <section id="performance" aria-labelledby="performance-heading">
 
-  <!-- Performance Container (grid: header + cards) -->
-  <div class="perf-container" role="list">
+  <!-- Section Header (independent, centered full-width) -->
+  <header class="section-header" data-aos="fade-up">
+    <h2 id="performance-heading" class="section-title">
+      Website Performance
+    </h2>
+    <p class="section-subtitle">
+      Real-time Core Web Vitals for my portfolio
+    </p>
+  </header>
 
-    <!-- Section Header (spans both columns, centered) -->
-    <header class="section-header" data-aos="fade-up">
-      <h2 id="performance-heading" class="section-title">
-        Website Performance
-      </h2>
-      <p class="section-subtitle">
-        Real-time Core Web Vitals for my portfolio
-      </p>
-    </header>
+  <!-- Performance Cards (grid only for cards) -->
+  <div class="perf-container" role="list">
 
     <!-- Gauge Card -->
     <article class="perf-card" data-aos="zoom-in" data-aos-delay="100" role="listitem">
