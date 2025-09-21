@@ -1153,12 +1153,17 @@ nav a.active::after {
   z-index: 1;
   margin-top: 6rem;          /* ✅ ensures gap below Tools & Tech section */
   scroll-margin-top: 7rem;   /* ✅ anchors stop below fixed navbar */
-  text-align: center;        /* ✅ center heading + subtitle */
 }
 
-/* Section Header (no box, centered, clean) */
+/* Section Header (centered, no box, stacked) */
 .section-header {
-  margin-bottom: 3rem;       /* ✅ gap before cards */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  margin-bottom: 3.5rem;     /* ✅ spacing before cards */
   background: none !important;
   border: none !important;
   box-shadow: none !important;
@@ -1169,15 +1174,15 @@ nav a.active::after {
 
 .section-header::before,
 .section-header::after {
-  content: none !important;  /* ✅ remove any gradient pseudo-elements */
+  content: none !important;  /* ✅ remove gradient/pseudo elements */
 }
 
 /* Gradient Heading */
 .section-title {
-  font-size: 2.4rem;
+  font-size: 2.6rem;
   font-weight: 800;
   line-height: 1.2;
-  margin-bottom: 0.5rem;
+  margin: 0;
 
   background: linear-gradient(90deg, var(--gradient-colors));
   -webkit-background-clip: text;
@@ -1187,12 +1192,13 @@ nav a.active::after {
 
 /* Subtitle under heading */
 .section-subtitle {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 400;
   color: var(--muted);
-  margin: 0.75rem auto 0;
+  margin-top: 0.75rem;       /* ✅ always directly under heading */
   max-width: 640px;
   line-height: 1.6;
+  text-align: center;
 }
 
 /* Layout Grid for cards */
@@ -1213,7 +1219,7 @@ nav a.active::after {
     gap: var(--gap);
   }
   .section-title {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
   }
   .section-subtitle {
     font-size: 1rem;
