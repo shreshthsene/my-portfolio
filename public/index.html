@@ -1165,11 +1165,12 @@ nav a.active::after {
   align-items: center;
 }
 
-/* Section Header (centered, full width) */
+/* Section Header (centered, full width, placed above cards in middle) */
 .section-header {
   width: 100%;
   text-align: center;
-  margin-bottom: 3.5rem;   /* spacing before cards */
+  margin-bottom: 3rem;   /* spacing before cards */
+  grid-column: 1 / -1;   /* ensures it spans across both columns */
 }
 
 .section-title {
@@ -1187,7 +1188,7 @@ nav a.active::after {
   font-size: 1.15rem;
   font-weight: 400;
   color: var(--muted);
-  margin-top: 0.75rem;
+  margin-top: 0.75rem; /* ✅ placed below heading */
   max-width: 640px;
   line-height: 1.6;
   margin-left: auto;
@@ -1200,7 +1201,7 @@ nav a.active::after {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--gap);
-  align-items: stretch;    /* ✅ cards stay aligned */
+  align-items: start;
 }
 
 @media (max-width: 900px) {
