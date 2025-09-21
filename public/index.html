@@ -1142,9 +1142,6 @@ nav a.active::after {
   }
 }
 
-:root {
-  --gradient-colors: #6366f1, #06b6d4; /* purple → cyan */
-}
 
 /* === Performance Section === */
 #performance {
@@ -1165,6 +1162,10 @@ nav a.active::after {
   z-index: 5; /* ensures header stays above particles */
 }
 
+:root {
+  --gradient-colors: #6366f1, #06b6d4;
+}
+
 .section-title {
   font-size: 2.2rem;
   font-weight: 800;
@@ -1172,14 +1173,12 @@ nav a.active::after {
   margin-bottom: 0.75rem;
   text-align: center;
 
-  background: linear-gradient(90deg, #6366f1, #06b6d4);
-  background-clip: text;
+  background: linear-gradient(90deg, var(--gradient-colors));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text; /* Firefox */
 
   display: inline-block;
-  position: relative;
-  z-index: 10;
 }
     
 /* Subtitle muted gray */
