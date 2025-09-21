@@ -551,8 +551,11 @@ nav a.active::after {
 .services {
   margin-top: 64px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(4, 1fr); /* 4 cards in a row by default */
   gap: 28px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Service Card */
@@ -628,6 +631,19 @@ nav a.active::after {
   color: var(--muted);
   font-size: 14px;
   line-height: 1.5;
+}
+
+/* Responsive Layouts */
+@media (max-width: 992px) {
+  .services {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  }
+}
+
+@media (max-width: 600px) {
+  .services {
+    grid-template-columns: 1fr; /* stack vertically */
+  }
 }
 
 /* Shared gradient animation */
