@@ -24,38 +24,41 @@
 <link rel="preload" as="image" href="/images/hero.avif" type="image/avif" fetchpriority="high">
   
   <style>
-    :root{
-      --bg:#F7FAFC;
-      --card:#ffffff;
-      --muted:#6B7280;
-      --accent:#2563EB;
-      --accent-600:#1D4ED8;
-      --text:#0f172a;
-      --glass: rgba(255,255,255,0.6);
-      --gap: clamp(16px, 2.5vw, 32px);
-      --container: 1100px;
-    }
+:root {
+  --bg:#F7FAFC;
+  --card:#ffffff;
+  --muted:#6B7280;
+  --accent:#2563EB;
+  --accent-600:#1D4ED8;
+  --text:#0f172a;
+  --glass: rgba(255,255,255,0.6);
+  --gap: clamp(16px, 2.5vw, 32px);
+  --container: 1100px;
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:linear-gradient(180deg,var(--bg),#fff);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.4;
-    }
+  /* 🔥 New gradient palette */
+  --gradient-colors: #6366f1, #9333ea, #06b6d4, #6366f1;
+}
 
-    /* Layout container */
-    .wrap{
-      max-width:var(--container);
-      margin:0 auto;
-      padding:48px 20px;
-    }
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:linear-gradient(180deg,var(--bg),#fff);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.4;
+}
 
-    /* Header */
+/* Layout container */
+.wrap{
+  max-width:var(--container);
+  margin:0 auto;
+  padding:48px 20px;
+}
+
+/* Header */
 header {
   display: flex;
   align-items: center;
@@ -214,6 +217,25 @@ nav a:hover {
 .banner .btn:active {
   transform: translateY(0);
   box-shadow: 0 6px 25px rgba(99,102,241,0.4);
+}
+
+/* Gradient Underline for Section Headings */
+section h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  display: inline-block;
+  position: relative;
+  margin-bottom: 32px;
+}
+section h3::after {
+  content: "";
+  display: block;
+  height: 4px;
+  border-radius: 2px;
+  margin-top: 8px;
+  background: linear-gradient(270deg, var(--gradient-colors));
+  background-size: 300% 300%;
+  animation: gradientBG 8s ease infinite;
 }
 
 /* Shared gradient animation */
