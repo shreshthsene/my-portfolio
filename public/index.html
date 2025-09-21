@@ -682,7 +682,7 @@
   max-width: 1100px;
 }
 
-/* Connecting line */
+/* Gradient connecting line */
 .timeline-horizontal::before {
   content: "";
   position: absolute;
@@ -690,7 +690,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: #ddd;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
   z-index: 1;
 }
 
@@ -715,7 +715,7 @@
   position: relative;
   top: 0;
   z-index: 2;
-  box-shadow: 0 0 0 5px #fff; /* white outline */
+  box-shadow: 0 0 0 5px #fff; /* white outline for separation */
 }
 
 /* Headings */
@@ -758,6 +758,7 @@
     left: 20px;
     width: 2px;
     height: 100%;
+    background: linear-gradient(180deg, #00c6ff, #0072ff);
   }
 
   .timeline-event {
