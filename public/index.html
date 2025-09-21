@@ -677,57 +677,64 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 40px 0;
+  margin: 60px auto;
   position: relative;
+  max-width: 1100px;
 }
 
+/* Connecting line */
 .timeline-horizontal::before {
   content: "";
   position: absolute;
-  top: 25px;
+  top: 20px; /* aligns with circle center */
   left: 0;
   right: 0;
-  height: 3px;
-  background: #ddd; /* lighter line for contrast */
+  height: 2px;
+  background: #ddd;
   z-index: 1;
 }
 
+/* Events */
 .timeline-event {
   text-align: center;
   position: relative;
-  width: 18%;
+  flex: 1;
+  padding: 0 15px;
   z-index: 2;
 }
 
-/* Gradient circles (like Marketing Approach) */
+/* Gradient Circles */
 .timeline-event::before {
   content: "";
   display: block;
-  margin: 0 auto 12px auto;
-  width: 22px;
-  height: 22px;
+  margin: 0 auto 20px auto;
+  width: 40px;
+  height: 40px;
   background: linear-gradient(135deg, #00c6ff, #0072ff);
   border-radius: 50%;
-  box-shadow: 0 0 0 4px #fff;
   position: relative;
   top: 0;
   z-index: 2;
+  box-shadow: 0 0 0 5px #fff; /* white outline */
 }
 
+/* Headings */
 .timeline-event h5 {
-  margin: 6px 0;
-  font-size: 15px;
+  margin: 8px 0;
+  font-size: 16px;
   font-weight: 700;
   color: var(--text);
 }
 
+/* Paragraph */
 .timeline-event p {
   font-size: 14px;
   color: var(--muted);
   margin: 0;
+  line-height: 1.5;
 }
 
-/* === Animation styles === */
+/* === Animation === */
 .timeline-event {
   opacity: 0;
   transform: translateY(20px);
@@ -737,6 +744,35 @@
 .timeline-event.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* === Responsive (mobile) === */
+@media (max-width: 768px) {
+  .timeline-horizontal {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .timeline-horizontal::before {
+    top: 0;
+    left: 20px;
+    width: 2px;
+    height: 100%;
+  }
+
+  .timeline-event {
+    width: 100%;
+    text-align: left;
+    padding-left: 60px;
+    margin-bottom: 40px;
+  }
+
+  .timeline-event::before {
+    margin: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 }
 
 /* === Performance Section === */
