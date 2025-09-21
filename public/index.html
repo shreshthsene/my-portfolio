@@ -1143,6 +1143,11 @@ nav a.active::after {
 }
 
 
+/* === Root variable (shared gradient colors) === */
+:root {
+  --gradient-colors: #6366f1, #3b82f6, #06b6d4; /* 3 stops same as Resume */
+}
+
 /* === Performance Section === */
 #performance {
   padding: 4rem 1rem;
@@ -1159,13 +1164,10 @@ nav a.active::after {
   text-align: center;
   margin-bottom: 3rem;
   position: relative;
-  z-index: 5; /* ensures header stays above particles */
+  z-index: 5; /* above particles */
 }
 
-:root {
-  --gradient-colors: #6366f1, #06b6d4;
-}
-
+/* ✅ Gradient Section Title (same as Resume h3) */
 .section-title {
   font-size: 2.2rem;
   font-weight: 800;
@@ -1179,8 +1181,10 @@ nav a.active::after {
   background-clip: text; /* Firefox */
 
   display: inline-block;
+  position: relative;
+  z-index: 10;
 }
-    
+
 /* Subtitle muted gray */
 .section-subtitle {
   font-size: 1.05rem;
@@ -1330,15 +1334,7 @@ nav a.active::after {
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: 8px;
-  color: transparent; /* keep for placeholders only */
-}
-
-/* Prevent shimmer from breaking headings */
-.section-title.shimmer {
-  background: none !important;
-  -webkit-background-clip: unset !important;
-  -webkit-text-fill-color: unset !important;
-  color: inherit !important;
+  color: transparent; /* only for placeholders */
 }
 
 /* Pulse */
@@ -1963,7 +1959,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 <section id="performance" aria-labelledby="performance-heading">
   <!-- Section Heading -->
   <header class="section-header" data-aos="fade-up">
-    <h2 id="performance-heading" class="section-title gradient-heading">
+    <h2 id="performance-heading" class="section-title">
       Website Performance
     </h2>
     <p class="section-subtitle">
