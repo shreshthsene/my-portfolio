@@ -1142,6 +1142,11 @@ nav a.active::after {
   }
 }
 
+/* === Root variable (safe default) === */
+:root {
+  --gradient-colors: #6366f1, #3b82f6, #06b6d4;
+}
+
 /* === Performance Section === */
 #performance {
   padding: 4rem 1rem;
@@ -1161,7 +1166,7 @@ nav a.active::after {
   z-index: 5; /* ensures header stays above particles */
 }
 
-/* ✅ Gradient heading (same style as Resume h3) */
+/* ✅ Gradient heading (like Resume) */
 .section-title {
   font-size: 2.2rem; 
   font-weight: 800;
@@ -1169,16 +1174,16 @@ nav a.active::after {
   margin-bottom: 0.75rem;
   text-align: center;
 
-  background: linear-gradient(90deg, var(--gradient-colors));
+  background: linear-gradient(90deg, var(--gradient-colors, #6366f1, #3b82f6, #06b6d4));
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;      /* for Firefox */
-  color: transparent;         /* ensure gradient shows in all browsers */
+  color: transparent; /* ensure gradient shows in all browsers */
 
-  display: inline-block;
+  display: inline-block; /* gradient clips properly */
 }
 
-/* Subtitle stays muted gray */
+/* Subtitle muted gray */
 .section-subtitle {
   font-size: 1.05rem;
   font-weight: 400;
@@ -1213,14 +1218,14 @@ nav a.active::after {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Gradient border for premium look */
+/* Gradient border */
 .perf-card::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 20px;
   padding: 2px;
-  background: linear-gradient(90deg, var(--gradient-colors));
+  background: linear-gradient(90deg, var(--gradient-colors, #6366f1, #3b82f6, #06b6d4));
   background-size: 300% 300%;
   animation: gradientBG 6s ease infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -1251,7 +1256,7 @@ nav a.active::after {
   z-index: 1;
 }
 
-/* ✅ Card titles stay plain black */
+/* ✅ Card titles plain black */
 .card-title {
   margin: 0 0 20px 0;
   font-weight: 700;
