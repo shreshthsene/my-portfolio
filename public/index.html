@@ -2656,18 +2656,20 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener('DOMContentLoaded', () => {
     const dock = document.querySelector('.header-dock.premium-dock');
     const toggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('#main-nav'); // make sure nav has id="main-nav"
+    const nav = document.querySelector('#main-nav'); // nav must have id="main-nav"
+    const navLinks = document.querySelectorAll('#main-nav a');
 
     // Dock entrance animation
     setTimeout(() => {
-      dock.classList.add('show');
+      dock?.classList.add('show');
     }, 200);
 
     // Dropdown toggle (for mobile)
     if (toggle && nav) {
-      toggle.addEventListener('click', () => {
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation(); // prevent closing immediately
         const expanded = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', !expanded);
+        toggle.setAttribute('aria-expanded', String(!expanded));
         nav.classList.toggle('show');
       });
     }
@@ -2675,9 +2677,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // Close dropdown if clicked outside
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.header-dock')) {
-        nav.classList.remove('show');
+        nav?.classList.remove('show');
         toggle?.setAttribute('aria-expanded', 'false');
       }
+    });
+
+    // Close nav when clicking a link (on mobile)
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('show');
+        toggle?.setAttribute('aria-expanded', 'false');
+      });
     });
   });
 
@@ -2688,7 +2698,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let current = '';
 
     sections.forEach(sec => {
-      const top = sec.offsetTop - 120; // offset for dock height
+      const top = sec.offsetTop - 120; // adjust offset for dock height
       if (window.scrollY >= top) {
         current = sec.getAttribute('id');
       }
