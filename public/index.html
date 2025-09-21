@@ -35,7 +35,7 @@
   --gap: clamp(16px, 2.5vw, 32px);
   --container: 1100px;
 
-  /* 🔥 New gradient palette */
+  /* 🔥 Gradient palette */
   --gradient-colors: #6366f1, #9333ea, #06b6d4, #6366f1;
 }
 
@@ -1142,15 +1142,10 @@ nav a.active::after {
   }
 }
 
-/* === Root variables === */
-:root {
-  --gradient-colors: #6366f1, #06b6d4;
-}
-
 /* === Performance Section === */
 #performance {
   padding: 4rem 1rem;
-  background: #ffffff;
+  background: var(--card);
   position: relative;
   z-index: 1;
 }
@@ -1163,10 +1158,10 @@ nav a.active::after {
   text-align: center;
   margin-bottom: 3rem;
   position: relative;
-  z-index: 5;
+  z-index: 5; /* above particles */
 }
 
-/* ✅ Gradient Section Title (same style as Resume h3) */
+/* ✅ Gradient Section Title (same as Resume h3) */
 .section-title {
   font-size: 2.2rem;
   font-weight: 800;
@@ -1184,23 +1179,23 @@ nav a.active::after {
   z-index: 10;
 }
 
-/* Subtitle muted gray */
+/* Subtitle */
 .section-subtitle {
   font-size: 1.05rem;
   font-weight: 400;
-  color: #6b7280;
+  color: var(--muted);
   margin: 0;
   text-align: center;
 }
 
 /* Layout Grid */
 .perf-container {
-  max-width: 1100px;
+  max-width: var(--container);
   margin: 0 auto;
   padding: 0 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  gap: var(--gap);
 }
 @media (max-width: 900px) {
   .perf-container { grid-template-columns: 1fr; }
@@ -1209,7 +1204,7 @@ nav a.active::after {
 /* === Performance Cards === */
 .perf-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.65);
+  background: var(--glass);
   backdrop-filter: blur(14px);
   border-radius: 20px;
   padding: 28px;
@@ -1257,12 +1252,12 @@ nav a.active::after {
   z-index: 1;
 }
 
-/* ✅ Card titles solid black */
+/* ✅ Card titles solid */
 .card-title {
   margin: 0 0 20px 0;
   font-weight: 700;
   font-size: 1.25rem;
-  color: #0f172a !important;
+  color: var(--text) !important;
   background: none !important;
   -webkit-background-clip: unset !important;
   -webkit-text-fill-color: unset !important;
@@ -1286,7 +1281,7 @@ nav a.active::after {
 .gauge-score {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 48px; color: #0f172a;
+  font-weight: 800; font-size: 48px; color: var(--text);
 }
 .gauge-label { 
   text-align: center; 
@@ -1315,7 +1310,7 @@ nav a.active::after {
 }
 .metric span {
   display:block;
-  color:#6B7280;
+  color: var(--muted);
   font-weight:600;
   font-size:13px;
 }
@@ -1324,10 +1319,10 @@ nav a.active::after {
   margin-top:6px;
   font-size:20px;
   font-weight:800;
-  color:#0f172a;
+  color: var(--text);
 }
 
-/* === Shimmer (only metrics, NOT headings) === */
+/* === Shimmer (only for metrics, not titles) === */
 .metric .shimmer,
 .gauge-score.shimmer,
 .gauge-label.shimmer {
@@ -1347,7 +1342,7 @@ nav a.active::after {
   50% { transform: scale(1.05); }
 }
 
-/* Shared Gradient Animation */
+/* Gradient animation */
 @keyframes gradientBG {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
