@@ -1166,7 +1166,7 @@ nav a.active::after {
   z-index: 5; /* ensures header stays above particles */
 }
 
-/* Gradient Section Title (same style as Resume h3) */
+/* ✅ Gradient Section Title */
 .section-title {
   font-size: 2.2rem; 
   font-weight: 800;
@@ -1174,17 +1174,15 @@ nav a.active::after {
   margin-bottom: 0.75rem;
   text-align: center;
 
-  /* Gradient text */
-  background: linear-gradient(90deg, var(--gradient-colors, #6366f1, #3b82f6, #06b6d4));
+  background: linear-gradient(90deg, var(--gradient-colors));
   background-clip: text;
   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Chrome/Safari/Edge */
+  color: transparent;                   /* Firefox + fallback */
 
-  color: transparent;               /* required for Firefox + general */
-  -webkit-text-fill-color: transparent; /* required for Chrome/Safari/Edge */
-
-  display: inline-block; /* ensures gradient covers text properly */
+  display: inline-block;
 }
-    
+
 /* Subtitle muted gray */
 .section-subtitle {
   font-size: 1.05rem;
@@ -1227,7 +1225,7 @@ nav a.active::after {
   inset: 0;
   border-radius: 20px;
   padding: 2px;
-  background: linear-gradient(90deg, var(--gradient-colors, #6366f1, #3b82f6, #06b6d4));
+  background: linear-gradient(90deg, var(--gradient-colors));
   background-size: 300% 300%;
   animation: gradientBG 6s ease infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -1258,12 +1256,12 @@ nav a.active::after {
   z-index: 1;
 }
 
-/* ✅ Card titles plain black */
+/* ✅ Card titles always solid black */
 .card-title {
   margin: 0 0 20px 0;
   font-weight: 700;
   font-size: 1.25rem;
-  color: #0f172a;
+  color: #0f172a !important;
   background: none !important;
   -webkit-background-clip: unset !important;
   -webkit-text-fill-color: unset !important;
@@ -1334,11 +1332,6 @@ nav a.active::after {
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: 8px;
-  color: transparent !important;
-}
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
 }
 
 /* Pulse */
