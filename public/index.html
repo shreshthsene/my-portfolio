@@ -1168,12 +1168,14 @@ nav a.active::after {
   margin-bottom: 0.75rem;
   text-align: center;
 
-  /* ✅ Gradient text only */
+  /* ✅ Same gradient style as Resume heading */
   background: linear-gradient(90deg, #6366f1, #3b82f6, #06b6d4);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-fill-color: transparent; /* Firefox support */
+  text-fill-color: transparent; /* Firefox */
+  
+  display: inline-block; /* ensures gradient covers text properly */
 }
 
 .section-subtitle {
