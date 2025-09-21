@@ -1150,6 +1150,7 @@ nav a.active::after {
   z-index: 1;
 }
 
+/* Section Header */
 .section-header {
   display: flex;
   flex-direction: column;
@@ -1159,11 +1160,13 @@ nav a.active::after {
 }
 
 .section-title {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 0.5rem;
-  color: #0f172a;
+  background: linear-gradient(90deg, var(--gradient-colors));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .section-subtitle {
@@ -1173,6 +1176,7 @@ nav a.active::after {
   margin: 0;
 }
 
+/* Layout Grid */
 .perf-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -1185,27 +1189,40 @@ nav a.active::after {
   .perf-container { grid-template-columns: 1fr; }
 }
 
-/* === Performance Section Cards (more contrast + depth) === */
+/* === Performance Cards === */
 .perf-card {
   position: relative;
-  background: #ffffff;               /* crisp white */
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
   padding: 28px;
   overflow: hidden;
-
-  /* 🔥 stronger shadow */
   box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-
-  /* ✨ subtle border for separation */
-  border: 1px solid rgba(229, 231, 235, 0.7);
-
+  border: 1px solid rgba(229, 231, 235, 0.5);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Hover effect for premium feel */
+/* Gradient border for premium look */
+.perf-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(90deg, var(--gradient-colors));
+  background-size: 300% 300%;
+  animation: gradientBG 6s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Hover */
 .perf-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.12);
 }
 
 /* Particle canvas */
@@ -1226,11 +1243,13 @@ nav a.active::after {
 .card-title {
   margin: 0 0 20px 0;
   font-weight: 800;
-  color: #0f172a;
   font-size: 20px;
+  background: linear-gradient(90deg, var(--gradient-colors));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Gauge */
+/* === Gauge === */
 .gauge { 
   position: relative; 
   width: 220px; 
@@ -1257,14 +1276,15 @@ nav a.active::after {
   color: #10b981; 
 }
 
-/* Metrics */
+/* === Metrics === */
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 .metric {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
   border-radius: 14px;
   padding: 18px 20px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.06);
@@ -1288,7 +1308,7 @@ nav a.active::after {
   color:#0f172a;
 }
 
-/* Shimmer while loading */
+/* === Loading Effects === */
 .shimmer {
   background: linear-gradient(90deg,#f3f3f3 25%,#ecebeb 50%,#f3f3f3 75%);
   background-size: 200% 100%;
@@ -1308,6 +1328,13 @@ nav a.active::after {
 @keyframes pulse {
   0%,100% { transform: scale(1); }
   50% { transform: scale(1.05); }
+}
+
+/* Shared Gradient Animation */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* === Approach Section === */
@@ -1912,17 +1939,21 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   </div>
 </section>
 
-
-  <!-- PERFORMANCE SECTION -->
+<!-- PERFORMANCE SECTION -->
 <section id="performance" aria-labelledby="performance-heading">
+  <!-- Section Heading -->
   <header class="section-header" data-aos="fade-up">
-    <h2 id="performance-heading" class="section-title">Website Performance</h2>
-    <p class="section-subtitle">Real-time Core Web Vitals for my Portfolio</p>
+    <h2 id="performance-heading" class="section-title">
+      Website Performance
+    </h2>
+    <p class="section-subtitle">
+      Real-time Core Web Vitals for my portfolio
+    </p>
   </header>
 
   <div class="perf-container">
     <!-- Gauge Card -->
-    <article class="perf-card" data-aos="zoom-in" data-aos-delay="100">
+    <article class="perf-card" data-aos="zoom-in" data-aos-delay="100" role="listitem">
       <canvas id="perfParticles"></canvas>
       <div class="perf-content">
         <h3 class="card-title">Overall Performance</h3>
@@ -1936,7 +1967,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
               d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831a 15.9155 15.9155 0 0 1 0 -31.831"/>
             <defs>
               <linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%"  stop-color="#3b82f6"/>
+                <stop offset="0%" stop-color="#3b82f6"/>
                 <stop offset="100%" stop-color="#10b981"/>
               </linearGradient>
             </defs>
@@ -1948,18 +1979,32 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     </article>
 
     <!-- Vitals Card -->
-    <article class="perf-card" data-aos="fade-up" data-aos-delay="200">
-      <h3 class="card-title">Core Web Vitals</h3>
-      <div class="metrics-grid">
-        <div class="metric"><span>FCP</span><strong id="m-fcp" class="shimmer">--</strong></div>
-        <div class="metric"><span>LCP</span><strong id="m-lcp" class="shimmer">--</strong></div>
-        <div class="metric"><span>CLS</span><strong id="m-cls" class="shimmer">--</strong></div>
-        <div class="metric"><span>TBT</span><strong id="m-tbt" class="shimmer">--</strong></div>
+    <article class="perf-card" data-aos="fade-up" data-aos-delay="200" role="listitem">
+      <div class="perf-content">
+        <h3 class="card-title">Core Web Vitals</h3>
+        <div class="metrics-grid">
+          <div class="metric">
+            <span>FCP</span>
+            <strong id="m-fcp" class="shimmer">--</strong>
+          </div>
+          <div class="metric">
+            <span>LCP</span>
+            <strong id="m-lcp" class="shimmer">--</strong>
+          </div>
+          <div class="metric">
+            <span>CLS</span>
+            <strong id="m-cls" class="shimmer">--</strong>
+          </div>
+          <div class="metric">
+            <span>TBT</span>
+            <strong id="m-tbt" class="shimmer">--</strong>
+          </div>
+        </div>
       </div>
     </article>
   </div>
 </section>
-
+    
 <!-- APPROACH SECTION -->
 <section id="approach" aria-labelledby="approach-heading">
   <h2 id="approach-heading" data-aos="fade-up">My Marketing Approach</h2>
