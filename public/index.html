@@ -1153,33 +1153,26 @@ nav a.active::after {
   z-index: 1;
 }
 
-/* Section Header */
+/* Section Header (now grid-aligned) */
 .section-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  grid-column: 1 / 3; /* span across both columns */
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   position: relative;
   z-index: 5; /* above particles */
 }
 
-/* ✅ Gradient Section Title (same as Resume h3) */
+/* ✅ Gradient Section Title (centered, no border box) */
 .section-title {
   font-size: 2.2rem;
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 0.75rem;
-  text-align: center;
 
   background: linear-gradient(90deg, var(--gradient-colors));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text; /* Firefox */
-
-  display: inline-block;
-  position: relative;
-  z-index: 10;
 }
 
 /* Subtitle */
@@ -1188,7 +1181,6 @@ nav a.active::after {
   font-weight: 400;
   color: var(--muted);
   margin: 0;
-  text-align: center;
 }
 
 /* Layout Grid */
@@ -1199,9 +1191,11 @@ nav a.active::after {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--gap);
+  align-items: start;
 }
 @media (max-width: 900px) {
   .perf-container { grid-template-columns: 1fr; }
+  .section-header { grid-column: 1; } /* fallback for single column */
 }
 
 /* === Performance Cards === */
@@ -1950,19 +1944,18 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 
 <!-- ===================== PERFORMANCE SECTION ===================== -->
 <section id="performance" aria-labelledby="performance-heading">
-  <!-- Section Header -->
-  <header class="section-header" data-aos="fade-up">
-    <h2 id="performance-heading" class="section-title">
-      Website Performance
-    </h2>
-    <p class="section-subtitle">
-      Real-time Core Web Vitals for my portfolio
-    </p>
-  </header>
-
-  <!-- Performance Cards -->
   <div class="perf-container" role="list">
     
+    <!-- Section Header (now inside grid, spans both columns) -->
+    <header class="section-header" data-aos="fade-up">
+      <h2 id="performance-heading" class="section-title">
+        Website Performance
+      </h2>
+      <p class="section-subtitle">
+        Real-time Core Web Vitals for my portfolio
+      </p>
+    </header>
+
     <!-- Gauge Card -->
     <article class="perf-card" data-aos="zoom-in" data-aos-delay="100" role="listitem">
       <!-- Background Particles -->
