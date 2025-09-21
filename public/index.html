@@ -1153,13 +1153,17 @@ nav a.active::after {
   z-index: 1;
 }
 
-/* Section Header (grid-aligned above both cards) */
+/* Section Header (grid-aligned above both cards, no box/border) */
 .section-header {
   grid-column: 1 / -1; /* span across both columns */
   text-align: center;
   margin-bottom: 2.5rem;
   position: relative;
-  z-index: 5; /* above particles */
+  z-index: 5;
+  background: none;   /* ✅ remove background */
+  border: none;       /* ✅ remove border */
+  box-shadow: none;   /* ✅ remove shadow */
+  padding: 0;         /* ✅ reset padding */
 }
 
 /* Gradient Section Title */
@@ -1193,11 +1197,19 @@ nav a.active::after {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--gap);
-  align-items: stretch; /* ✅ stretch children equally */
+  align-items: stretch;
 }
+
 @media (max-width: 900px) {
-  .perf-container { grid-template-columns: 1fr; }
-  .section-header { grid-column: 1; }
+  .perf-container {
+    display: flex;          /* ✅ switch to flex for stacking */
+    flex-direction: column; /* ✅ stack items vertically */
+    gap: var(--gap);
+  }
+  .section-header {
+    grid-column: auto;
+    margin-bottom: 2rem;
+  }
 }
 
 /* === Performance Cards === */
@@ -1212,7 +1224,7 @@ nav a.active::after {
   border: 1px solid rgba(229, 231, 235, 0.5);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 
-  display: flex;             /* ✅ equal heights */
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
@@ -1254,7 +1266,7 @@ nav a.active::after {
 .perf-content {
   position: relative;
   z-index: 1;
-  flex-grow: 1; /* ✅ makes content expand evenly */
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -1303,7 +1315,7 @@ nav a.active::after {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-  flex-grow: 1; /* ✅ ensures metrics fill vertical space */
+  flex-grow: 1;
 }
 .metric {
   background: rgba(255, 255, 255, 0.85);
@@ -1958,7 +1970,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 <section id="performance" aria-labelledby="performance-heading">
   <div class="perf-container" role="list">
     
-    <!-- Section Header (inside grid, spans both columns) -->
+    <!-- Section Header (spans across both cards) -->
     <header class="section-header" data-aos="fade-up">
       <h2 id="performance-heading" class="section-title">
         Website Performance
@@ -2035,6 +2047,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
         </div>
       </div>
     </article>
+
   </div>
 </section>
 <!-- ===================== END PERFORMANCE SECTION ===================== -->
