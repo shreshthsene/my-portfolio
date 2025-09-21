@@ -1153,20 +1153,18 @@ nav a.active::after {
   z-index: 1;
 }
 
-/* Section Header (grid-aligned above both cards, no box/border) */
+/* Section Header (no box, just centered text) */
 .section-header {
   grid-column: 1 / -1; /* span across both columns */
   text-align: center;
   margin-bottom: 2.5rem;
-  position: relative;
-  z-index: 5;
-  background: none;   /* ✅ remove background */
-  border: none;       /* ✅ remove border */
-  box-shadow: none;   /* ✅ remove shadow */
-  padding: 0;         /* ✅ reset padding */
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
 }
 
-/* Gradient Section Title */
+/* Gradient Heading */
 .section-title {
   font-size: 2.2rem;
   font-weight: 800;
@@ -1179,14 +1177,15 @@ nav a.active::after {
   background-clip: text;
 }
 
-/* Subtitle below title */
+/* Subtitle below heading */
 .section-subtitle {
   display: block;
   font-size: 1.05rem;
   font-weight: 400;
   color: var(--muted);
-  margin: 0;
+  margin: 0 auto;
   margin-top: 0.25rem;
+  max-width: 600px; /* ✅ keeps line-length comfortable */
 }
 
 /* Layout Grid */
@@ -1202,13 +1201,16 @@ nav a.active::after {
 
 @media (max-width: 900px) {
   .perf-container {
-    display: flex;          /* ✅ switch to flex for stacking */
+    display: flex;          
     flex-direction: column; /* ✅ stack items vertically */
     gap: var(--gap);
   }
   .section-header {
     grid-column: auto;
     margin-bottom: 2rem;
+  }
+  .section-title {
+    font-size: 1.6rem; /* ✅ smaller heading on mobile */
   }
 }
 
@@ -1970,7 +1972,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 <section id="performance" aria-labelledby="performance-heading">
   <div class="perf-container" role="list">
     
-    <!-- Section Header (spans across both cards) -->
+    <!-- Section Header (centered, no box/border) -->
     <header class="section-header" data-aos="fade-up">
       <h2 id="performance-heading" class="section-title">
         Website Performance
