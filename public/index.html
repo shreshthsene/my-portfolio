@@ -1244,13 +1244,15 @@ nav a.active::after {
   z-index: 1;
 }
 
+/* ✅ Card titles now plain black */
 .card-title {
   margin: 0 0 20px 0;
-  font-weight: 700; /* slightly lighter so section title dominates */
+  font-weight: 700;
   font-size: 1.25rem;
-  background: linear-gradient(90deg, var(--gradient-colors));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0f172a;   /* solid black */
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
 }
 
 /* === Gauge === */
@@ -1944,6 +1946,18 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 </section>
 
 <!-- PERFORMANCE SECTION -->
+<section id="performance" aria-labelledby="performance-heading">
+  <!-- Section Heading -->
+  <header class="section-header" data-aos="fade-up">
+    <h2 id="performance-heading" class="section-title">
+      Website Performance
+    </h2>
+    <p class="section-subtitle">
+      Real-time Core Web Vitals for my portfolio
+    </p>
+  </header>
+
+ <!-- PERFORMANCE SECTION -->
 <section id="performance" aria-labelledby="performance-heading">
   <!-- Section Heading -->
   <header class="section-header" data-aos="fade-up">
