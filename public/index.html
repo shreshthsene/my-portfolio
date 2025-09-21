@@ -59,90 +59,91 @@ body{
 }
 
 /* Header */
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 16px 32px;
-  position: sticky;
-  top: 0;
-  background: rgba(255, 255, 255, 0.8);
+header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:16px 32px;
+  position:sticky;
+  top:0;
+  background:rgba(255,255,255,0.8);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid transparent;
-  z-index: 40;
-  overflow: hidden;
-
-  /* 👇 ensure ::after is anchored */
-  position: relative;
+  /* remove the flat border so the gradient is the only line */
+  border-bottom:none;
+  z-index:40;
+  overflow:hidden;
+  position:relative; /* anchor pseudo elements */
 }
 
-header::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 3px; /* thicker for visibility */
-  background: linear-gradient(90deg, var(--gradient-colors));
-  background-size: 300% 300%;
-  animation: gradientBG 8s ease infinite;
-  border-radius: 2px;
+/* soft glow behind the line */
+header::before{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  bottom:-8px;               /* sit a bit below and blur */
+  height:12px;
+  background:linear-gradient(90deg, var(--gradient-colors));
+  background-size:400% 400%;
+  animation:gradientBG 6s ease infinite;
+  filter:blur(10px);
+  opacity:.55;
+  pointer-events:none;
 }
 
-.logo {
-  font-weight: 700;
-  letter-spacing: 0.3px;
-  color: #111827;
-  font-size: 18px;
+/* crisp animated underline */
+header::after{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  bottom:0;
+  height:3px;                /* visible */
+  background:linear-gradient(90deg, var(--gradient-colors));
+  background-size:400% 400%;
+  animation:gradientBG 6s ease infinite;
+  border-radius:2px;
+  pointer-events:none;
 }
 
-nav {
-  display: flex;
-  gap: 16px;
-  align-items: center;
+.logo{
+  font-weight:700;
+  letter-spacing:.3px;
+  color:#111827;
+  font-size:18px;
 }
 
-nav a {
-  color: #6b7280;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 8px 14px;
-  border-radius: 6px;
-  font-size: 15px;
-  transition: color 0.25s ease;
-  position: relative;
+nav{display:flex; gap:16px; align-items:center;}
+nav a{
+  color:#6b7280;
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 14px;
+  border-radius:6px;
+  font-size:15px;
+  transition:color .25s ease;
+  position:relative;
 }
 
-/* Gradient underline on hover */
-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--gradient-colors));
-  background-size: 300% 300%;
-  animation: gradientBG 6s ease infinite;
-  transition: width 0.3s ease;
-  border-radius: 2px;
+/* matching animated underline on hover */
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0; bottom:-6px;
+  width:0%; height:2px;
+  background:linear-gradient(90deg, var(--gradient-colors));
+  background-size:400% 400%;
+  animation:gradientBG 6s ease infinite;
+  transition:width .3s ease;
+  border-radius:2px;
 }
+nav a:hover{color:#2563eb;}
+nav a:hover::after{width:100%;}
 
-nav a:hover {
-  color: #2563eb;
-}
-
-nav a:hover::after {
-  width: 100%;
-}
-
-/* Optional: active link (if you add .active class) */
-nav a.active {
-  color: #2563eb;
-}
-nav a.active::after {
-  width: 100%;
+/* keep the shared keyframes somewhere once */
+@keyframes gradientBG{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
     
 /* Hero Section */
