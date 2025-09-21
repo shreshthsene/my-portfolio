@@ -1166,7 +1166,7 @@ nav a.active::after {
   z-index: 5; /* ensures header stays above particles */
 }
 
-/* ✅ Gradient Section Title */
+/* ✅ Gradient Section Title (always visible) */
 .section-title {
   font-size: 2.2rem; 
   font-weight: 800;
@@ -1177,10 +1177,12 @@ nav a.active::after {
   background: linear-gradient(90deg, var(--gradient-colors));
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; /* Chrome/Safari/Edge */
-  color: transparent;                   /* Firefox + fallback */
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 
   display: inline-block;
+  position: relative;
+  z-index: 10; /* ensures heading is above any shimmer/particles */
 }
 
 /* Subtitle muted gray */
@@ -1332,6 +1334,15 @@ nav a.active::after {
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: 8px;
+  color: transparent; /* keep for placeholders only */
+}
+
+/* Prevent shimmer from breaking headings */
+.section-title.shimmer {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  color: inherit !important;
 }
 
 /* Pulse */
