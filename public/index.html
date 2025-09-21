@@ -1161,6 +1161,7 @@ nav a.active::after {
   z-index: 5; /* ensures header stays above particles */
 }
 
+/* ✅ Gradient ONLY for main heading */
 .section-title {
   font-size: 2.2rem; 
   font-weight: 800;
@@ -1168,16 +1169,16 @@ nav a.active::after {
   margin-bottom: 0.75rem;
   text-align: center;
 
-  /* ✅ Same gradient style as Resume heading */
   background: linear-gradient(90deg, #6366f1, #3b82f6, #06b6d4);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-fill-color: transparent; /* Firefox */
   
-  display: inline-block; /* ensures gradient covers text properly */
+  display: inline-block; /* ensures gradient applies correctly */
 }
 
+/* Subtitle remains gray */
 .section-subtitle {
   font-size: 1.05rem;
   font-weight: 400;
@@ -1250,7 +1251,7 @@ nav a.active::after {
   z-index: 1;
 }
 
-/* ✅ Card titles plain black */
+/* ✅ Card titles solid black only */
 .card-title {
   margin: 0 0 20px 0;
   font-weight: 700;
