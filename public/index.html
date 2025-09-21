@@ -1165,7 +1165,7 @@ nav a.active::after {
   align-items: center;
 }
 
-/* Section Header (styled like Resume) */
+/* Section Header (clean, no box/line) */
 .section-header {
   width: 100%;
   text-align: center;
@@ -1175,7 +1175,7 @@ nav a.active::after {
   box-shadow: none;
 }
 
-/* Gradient Section Title */
+/* Gradient Heading */
 .section-title {
   font-size: 2.6rem;
   font-weight: 800;
@@ -1184,9 +1184,11 @@ nav a.active::after {
   background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text; /* ensure cross-browser */
+  color: transparent;    /* fallback */
 }
 
-/* Subtitle below title */
+/* Subtitle below heading */
 .section-subtitle {
   font-size: 1.15rem;
   font-weight: 400;
