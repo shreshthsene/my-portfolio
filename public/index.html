@@ -58,92 +58,107 @@ body{
   padding:48px 20px;
 }
 
-/* Header */
-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:16px 32px;
-  position:sticky;
-  top:0;
-  background:rgba(255,255,255,0.8);
-  backdrop-filter: blur(8px);
-  /* remove the flat border so the gradient is the only line */
-  border-bottom:none;
-  z-index:40;
-  overflow:hidden;
-  position:relative; /* anchor pseudo elements */
+/* Header (Dock-Style Premium) */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 28px;
+  position: fixed;               /* float like a dock */
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-30px);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(14px);
+  border: none;
+  border-radius: 40px;           /* rounded pill dock */
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  z-index: 100;
+  overflow: hidden;
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
-/* soft glow behind the line */
-header::before{
-  content:"";
-  position:absolute;
-  left:0; right:0;
-  bottom:-8px;               /* sit a bit below and blur */
-  height:12px;
-  background:linear-gradient(90deg, var(--gradient-colors));
-  background-size:400% 400%;
-  animation:gradientBG 6s ease infinite;
-  filter:blur(10px);
-  opacity:.55;
-  pointer-events:none;
+/* Animate header entrance */
+header.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
 }
 
-/* crisp animated underline */
-header::after{
-  content:"";
-  position:absolute;
-  left:0; right:0;
-  bottom:0;
-  height:3px;                /* visible */
-  background:linear-gradient(90deg, var(--gradient-colors));
-  background-size:400% 400%;
-  animation:gradientBG 6s ease infinite;
-  border-radius:2px;
-  pointer-events:none;
+/* soft glow behind the dock */
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 40px;
+  padding: 2px;
+  background: linear-gradient(90deg, var(--gradient-colors));
+  background-size: 400% 400%;
+  animation: gradientBG 6s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
 }
 
-.logo{
-  font-weight:700;
-  letter-spacing:.3px;
-  color:#111827;
-  font-size:18px;
+.logo {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #111827;
+  font-size: 18px;
 }
 
-nav{display:flex; gap:16px; align-items:center;}
-nav a{
-  color:#6b7280;
-  text-decoration:none;
-  font-weight:600;
-  padding:8px 14px;
-  border-radius:6px;
-  font-size:15px;
-  transition:color .25s ease;
-  position:relative;
+/* Nav Links */
+nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
 }
 
-/* matching animated underline on hover */
-nav a::after{
-  content:"";
-  position:absolute;
-  left:0; bottom:-6px;
-  width:0%; height:2px;
-  background:linear-gradient(90deg, var(--gradient-colors));
-  background-size:400% 400%;
-  animation:gradientBG 6s ease infinite;
-  transition:width .3s ease;
-  border-radius:2px;
+nav a {
+  color: #374151;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 15px;
+  position: relative;
+  transition: color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
-nav a:hover{color:#2563eb;}
-nav a:hover::after{width:100%;}
 
-/* keep the shared keyframes somewhere once */
-@keyframes gradientBG{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+/* Hover glow + micro interaction */
+nav a:hover {
+  color: #2563eb;
+  transform: scale(1.06);
+  background: rgba(99,102,241,0.08);
+  box-shadow: 0 4px 14px rgba(99,102,241,0.2);
+}
+
+/* Gradient underline indicator */
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -6px;
+  width: 0%; height: 2px;
+  background: linear-gradient(90deg, var(--gradient-colors));
+  background-size: 400% 400%;
+  animation: gradientBG 6s ease infinite;
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
+}
+
+/* Shared gradient animation */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
     
 /* Hero Section */
@@ -1285,13 +1300,12 @@ nav a:hover::after{width:100%;}
 </head>
 <body>
 
-  <header aria-label="Main header">
+ <header aria-label="Main header" class="header-dock premium-dock">
   <div class="logo">Shreshth's Portfolio</div>
   <nav role="navigation" aria-label="Primary">
     <a href="#work">Work</a>
     <a href="#tools">Tools</a>
-    <a href="#services">Services</a>
-    <a href="#articles">Articles</a>
+    <a href="#resume">Resume</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
@@ -2430,6 +2444,37 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   new Rellax('.parallax', { speed: -2, center: true });
 });
+
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const dock = document.querySelector('.header-dock.premium-dock');
+    // Add class to trigger entrance animation
+    setTimeout(() => {
+      dock.classList.add('show');
+    }, 200); // slight delay so it's smooth
+  });
+
+  // Optional: update active link based on scroll
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.header-dock .nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      const top = sec.offsetTop - 100;
+      if (pageYOffset >= top) {
+        current = sec.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  });
+
+  
 </script>
 </body>
 </html>
