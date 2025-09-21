@@ -547,48 +547,96 @@ nav a.active::after {
   }
 }
     
-    /* Services */
-    .services{
-      margin-top:48px;
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap:18px;
-    }
-    .service-card{
-      background:var(--card);
-      padding:18px;
-      border-radius:12px;
-      box-shadow:0 6px 18px rgba(15,23,42,0.03);
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-    }
-    .icon{
-      width:44px; height:44px; border-radius:10px; display:grid; place-items:center; background:linear-gradient(180deg,#f3f8ff,#fff);
-      box-shadow:0 4px 12px rgba(15,23,42,0.03);
-      flex-shrink:0;
-    }
-    /* Default state */
-.service-card .icon {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+/* Services Section */
+.services {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
 }
 
-/* Hover effect */
-.service-card:hover .icon {
-  transform: scale(1.15); /* make it bigger */
-  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25); /* glowing effect */
-}
-    .service-card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+/* Service Card */
+.service-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(14px);
+  padding: 28px 22px;
+  border-radius: 20px;
+  box-shadow: 0 8px 26px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
+/* Gradient border effect */
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(90deg, var(--gradient-colors));
+  background-size: 300% 300%;
+  animation: gradientBG 6s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Hover lift */
 .service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
 }
-    .svc h4{margin:0 0 6px 0}
-    .svc p{margin:0; color:var(--muted); font-size:14px}
 
+/* Icon */
+.icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
+  color: white;
+  font-size: 22px;
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover .icon {
+  transform: scale(1.2) rotate(8deg);
+  box-shadow: 0 10px 24px rgba(99, 102, 241, 0.4);
+}
+
+/* Text */
+.svc h4 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--gradient-colors));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.svc p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Shared gradient animation */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+    
     /* Portfolio */
     .portfolio{
       margin-top:44px;
@@ -2037,57 +2085,68 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   </svg>
 </div>
 
-    <!-- SERVICES -->
-    <section id="services" aria-labelledby="services-heading">
-      <h3 style="margin-top:42px">Services</h3>
-      <p style="color:var(--muted)">Strategic services I offer — modular or full-service campaign execution.</p>
+   <!-- SERVICES -->
+<section id="services" aria-labelledby="services-heading">
+  <h3 id="services-heading" style="margin-top:42px">Services</h3>
+  <p style="color:var(--muted)">Strategic services I offer — modular or full-service campaign execution.</p>
 
-      <div class="services" role="list">
-        <article class="service-card" role="listitem">
-          <div class="icon" aria-hidden="true">
-            <!-- simple SEO icon -->
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11 17l-5-5 5-5" stroke="#1e293b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 19l-7-7 7-7" stroke="#1e293b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/></svg>
-          </div>
-          <div class="svc">
-            <h4>SEO & Content</h4>
-            <p>Keyword-led content and technical SEO that increases organic discoverability and quality traffic.</p>
-          </div>
-        </article>
-
-        <article class="service-card" role="listitem">
-          <div class="icon" aria-hidden="true">
-            <!-- paid ads icon -->
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 7h18M7 21V7" stroke="#1e293b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="svc">
-            <h4>Paid Media (PPC)</h4>
-            <p>Audience-first paid campaigns across Meta, Google, and LinkedIn focused on LTV and CPA optimization.</p>
-          </div>
-        </article>
-
-        <article class="service-card" role="listitem">
-          <div class="icon" aria-hidden="true">
-            <!-- social icon -->
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#1e293b" stroke-width="1.6"/><path d="M19 12c0 4-3 7-7 7s-7-3-7-7" stroke="#1e293b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="svc">
-            <h4>Social Media Strategy</h4>
-            <p>Content calendars, creative briefs, and paid-social experiments to grow brand awareness and engagement.</p>
-          </div>
-        </article>
-
-        <article class="service-card" role="listitem">
-          <div class="icon" aria-hidden="true">
-            <!-- email icon -->
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#1e293b" stroke-width="1.6"/><path d="M3 7l9 6 9-6" stroke="#1e293b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="svc">
-            <h4>Email Campaigns</h4>
-            <p>Lifecycle emails, automations, and A/B testing to increase conversions and LTV.</p>
-          </div>
-        </article>
+  <div class="services" role="list">
+    <!-- SEO -->
+    <article class="service-card" role="listitem">
+      <div class="icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M11 17l-5-5 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 19l-7-7 7-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+        </svg>
       </div>
-    </section>
+      <div class="svc">
+        <h4>SEO & Content</h4>
+        <p>Keyword-led content and technical SEO that increases organic discoverability and quality traffic.</p>
+      </div>
+    </article>
+
+    <!-- Paid Media -->
+    <article class="service-card" role="listitem">
+      <div class="icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M3 7h18M7 21V7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="svc">
+        <h4>Paid Media (PPC)</h4>
+        <p>Audience-first paid campaigns across Meta, Google, and LinkedIn focused on LTV and CPA optimization.</p>
+      </div>
+    </article>
+
+    <!-- Social Media -->
+    <article class="service-card" role="listitem">
+      <div class="icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="3" stroke="white" stroke-width="1.8"/>
+          <path d="M19 12c0 4-3 7-7 7s-7-3-7-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="svc">
+        <h4>Social Media Strategy</h4>
+        <p>Content calendars, creative briefs, and paid-social experiments to grow brand awareness and engagement.</p>
+      </div>
+    </article>
+
+    <!-- Email Campaigns -->
+    <article class="service-card" role="listitem">
+      <div class="icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="5" width="18" height="14" rx="2" stroke="white" stroke-width="1.8"/>
+          <path d="M3 7l9 6 9-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="svc">
+        <h4>Email Campaigns</h4>
+        <p>Lifecycle emails, automations, and A/B testing to increase conversions and LTV.</p>
+      </div>
+    </article>
+  </div>
+</section>
 
 <div class="wave-divider">
   <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
