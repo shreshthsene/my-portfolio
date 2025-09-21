@@ -1951,7 +1951,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   </div>
 </section>
 
-<!-- PERFORMANCE SECTION -->
+<!-- ===================== PERFORMANCE SECTION ===================== -->
 <section id="performance" aria-labelledby="performance-heading">
   <!-- Section Header -->
   <header class="section-header" data-aos="fade-up">
@@ -1968,17 +1968,28 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     
     <!-- Gauge Card -->
     <article class="perf-card" data-aos="zoom-in" data-aos-delay="100" role="listitem">
+      <!-- Background Particles -->
       <canvas id="perfParticles"></canvas>
+
       <div class="perf-content">
         <h3 class="card-title">Overall Performance</h3>
+
+        <!-- Gauge -->
         <div class="gauge pulsing" aria-label="Performance score">
           <svg viewBox="0 0 36 36" class="circular-chart" role="img" aria-hidden="true">
+            <!-- Background Circle -->
             <path class="circle-bg" stroke-width="3" fill="none" stroke="#e5e7eb"
-              d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              d="M18 2.0845
+                 a 15.9155 15.9155 0 0 1 0 31.831
+                 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+            <!-- Progress Circle -->
             <path id="perfProgress" class="circle-progress"
               stroke-width="3" stroke-linecap="round" fill="none"
               stroke="url(#perfGrad)" stroke-dasharray="0 100"
-              d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              d="M18 2.0845
+                 a 15.9155 15.9155 0 0 1 0 31.831
+                 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+            <!-- Gradient -->
             <defs>
               <linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stop-color="#6366f1"/>
@@ -1986,8 +1997,12 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
               </linearGradient>
             </defs>
           </svg>
+
+          <!-- Gauge Score -->
           <div id="perfScore" class="gauge-score shimmer">--</div>
         </div>
+
+        <!-- Gauge Label -->
         <p id="perfLabel" class="gauge-label shimmer">Loading…</p>
       </div>
     </article>
@@ -1996,6 +2011,8 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     <article class="perf-card" data-aos="fade-up" data-aos-delay="200" role="listitem">
       <div class="perf-content">
         <h3 class="card-title">Core Web Vitals</h3>
+
+        <!-- Metrics Grid -->
         <div class="metrics-grid">
           <div class="metric">
             <span>FCP</span>
@@ -2018,6 +2035,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     </article>
   </div>
 </section>
+<!-- ===================== END PERFORMANCE SECTION ===================== -->
     
 <!-- APPROACH SECTION -->
 <section id="approach" aria-labelledby="approach-heading">
