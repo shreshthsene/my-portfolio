@@ -688,7 +688,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--accent-600);
+  background: #ddd; /* lighter line for contrast */
   z-index: 1;
 }
 
@@ -699,17 +699,19 @@
   z-index: 2;
 }
 
+/* Gradient circles (like Marketing Approach) */
 .timeline-event::before {
   content: "";
   display: block;
   margin: 0 auto 12px auto;
-  width: 18px;
-  height: 18px;
-  background: var(--accent-600);
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
   border-radius: 50%;
   box-shadow: 0 0 0 4px #fff;
   position: relative;
   top: 0;
+  z-index: 2;
 }
 
 .timeline-event h5 {
@@ -725,7 +727,7 @@
   margin: 0;
 }
 
-    /* === Animation styles (new) === */
+/* === Animation styles === */
 .timeline-event {
   opacity: 0;
   transform: translateY(20px);
@@ -736,7 +738,6 @@
   opacity: 1;
   transform: translateY(0);
 }
-    
 
 /* === Performance Section === */
 #performance {
@@ -1265,34 +1266,39 @@
   <p data-aos="fade-up" data-aos-delay="350">
 Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching digital designs, and writing about emerging marketing trends. My goal is to join a team where I can keep solving growth challenges while bringing creative energy and data-driven rigor.</p>
 
-  <!-- HORIZONTAL TIMELINE -->
-  <div style="margin-top:28px">
-    <h4>Journey Timeline</h4>
-    <div class="timeline-horizontal">
-      <div class="timeline-event" data-aos="fade-right" data-aos-delay="100">
-        <h5>2020</h5>
-        <p>BBA · Project Management Major<br>Built strong foundations in strategy, operations, and leadership</p>
-      </div>
-      <div class="timeline-event" data-aos="fade-up" data-aos-delay="200">
-        <h5>2021</h5>
-        <p>OYO Hotels<br>Marketing Associate · Campaigns, Influencer partnerships, Social growth</p>
-      </div>
-      <div class="timeline-event" data-aos="fade-up" data-aos-delay="300">
-        <h5>2022 – 2025</h5>
-        <p>Practo<br>Performance Marketing Analyst · Multi-Channel Growth & Automation</p>
-      </div>
-      <div class="timeline-event" data-aos="fade-up" data-aos-delay="400">
-        <h5>2024 – 2025</h5>
-        <p>MBA, UCW<br>Project Management & Strategy focus</p>
-      </div>
-      <div class="timeline-event" data-aos="fade-left" data-aos-delay="500">
-        <h5>Today</h5>
-        <p>Marketing Specialist<br>Data-driven storytelling & Growth campaigns</p>
-      </div>
+ <!-- HORIZONTAL TIMELINE -->
+<div style="margin-top:28px">
+  <h4>Journey Timeline</h4>
+  <div class="timeline-horizontal">
+    <div class="timeline-event" data-aos="fade-right" data-aos-delay="100">
+      <div class="circle"></div>
+      <h5>2020</h5>
+      <p>BBA · Project Management Major<br>Built strong foundations in strategy, operations, and leadership</p>
+    </div>
+    <div class="timeline-event" data-aos="fade-up" data-aos-delay="200">
+      <div class="circle"></div>
+      <h5>2021</h5>
+      <p>OYO Hotels<br>Marketing Associate · Campaigns, Influencer partnerships, Social growth</p>
+    </div>
+    <div class="timeline-event" data-aos="fade-up" data-aos-delay="300">
+      <div class="circle"></div>
+      <h5>2022 – 2025</h5>
+      <p>Practo<br>Performance Marketing Analyst · Multi-Channel Growth & Automation</p>
+    </div>
+    <div class="timeline-event" data-aos="fade-up" data-aos-delay="400">
+      <div class="circle"></div>
+      <h5>2024 – 2025</h5>
+      <p>MBA, UCW<br>Project Management & Strategy focus</p>
+    </div>
+    <div class="timeline-event" data-aos="fade-left" data-aos-delay="500">
+      <div class="circle"></div>
+      <h5>Today</h5>
+      <p>Marketing Specialist<br>Data-driven storytelling & Growth campaigns</p>
     </div>
   </div>
+</div>
 </section>
-
+    
 <div class="wave-divider">
   <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
     <defs>
