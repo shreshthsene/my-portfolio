@@ -1166,6 +1166,7 @@ nav a.active::after {
   justify-content: center;
 
   margin-bottom: 3.5rem;      /* spacing before cards */
+  max-width: 100%;            /* ✅ ensures it stretches same width as grid */
   background: none !important;
   border: none !important;
   box-shadow: none !important;
@@ -1201,6 +1202,8 @@ nav a.active::after {
   max-width: 640px;
   line-height: 1.6;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;         /* ✅ centers subtitle block */
 }
 
 /* Layout Grid for cards */
@@ -1211,7 +1214,8 @@ nav a.active::after {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--gap);
-  align-items: start;        /* ✅ aligns header and cards neatly */
+  align-items: start;         /* aligns header and cards neatly */
+  justify-items: center;      /* ✅ centers all children including header */
 }
 
 @media (max-width: 900px) {
@@ -1219,9 +1223,11 @@ nav a.active::after {
     display: flex;
     flex-direction: column;
     gap: var(--gap);
+    align-items: center;
   }
   .section-header {
     grid-column: auto;
+    margin-bottom: 2.5rem;
   }
   .section-title {
     font-size: 1.9rem;
