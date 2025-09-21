@@ -22,6 +22,9 @@
   
 <!-- Preload Hero (AVIF preferred) -->
 <link rel="preload" as="image" href="/images/hero.avif" type="image/avif" fetchpriority="high">
+
+  <!-- AOS (Scroll Animations) -->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   
   <style>
 :root {
@@ -1560,12 +1563,6 @@ nav a.active::after {
 }
 .deck-preview .download-btn:hover { background: #1d4ed8; }
 
-
-<!-- AOS (Scroll Animations) -->
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-<!-- Rellax (Parallax Scrolling) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>
     
   </style>
 </head>
@@ -2644,19 +2641,19 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<!-- AOS + Rellax -->
+ <!-- AOS + Rellax -->
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script src="https://unpkg.com/rellax/rellax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  AOS.init({
-    duration: 900,
-    easing: "ease-out-cubic",
-    once: true,
-    offset: 80
+  document.addEventListener("DOMContentLoaded", () => {
+    AOS.init({
+      duration: 900,
+      easing: "ease-out-cubic",
+      once: true,
+      offset: 80
+    });
+    new Rellax('.parallax', { speed: -2, center: true });
   });
-  new Rellax('.parallax', { speed: -2, center: true });
-});
 </script>
   
 <script>
