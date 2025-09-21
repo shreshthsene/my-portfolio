@@ -1147,20 +1147,21 @@ nav a.active::after {
 
 /* === Performance Section === */
 #performance {
-  padding: 4rem 1rem;
+  padding: 6rem 1rem 4rem;   /* ⬆ extra top padding */
   background: var(--card);
   position: relative;
   z-index: 1;
+  margin-top: 5rem;          /* ✅ ensures gap below Tools & Tech section */
 }
 
-/* Section Header (no box, centered) */
+/* Section Header (no box, centered, clean) */
 .section-header {
   text-align: center;
-  margin-bottom: 2.5rem;
-  background: none;
-  border: none;
-  box-shadow: none;
-  padding: 0;
+  margin-bottom: 3rem;       /* ✅ gap before cards */
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
 
 /* Gradient Heading */
@@ -1176,12 +1177,12 @@ nav a.active::after {
   background-clip: text;
 }
 
-/* Subtitle */
+/* Subtitle under heading */
 .section-subtitle {
   font-size: 1.05rem;
   font-weight: 400;
   color: var(--muted);
-  margin: 0.25rem auto 0;
+  margin: 0.5rem auto 0;      /* ✅ spacing under title */
   max-width: 600px;
 }
 
@@ -1961,7 +1962,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 <!-- ===================== PERFORMANCE SECTION ===================== -->
 <section id="performance" aria-labelledby="performance-heading">
 
-  <!-- Section Header (independent of grid) -->
+  <!-- Section Header (independent, clean) -->
   <header class="section-header" data-aos="fade-up">
     <h2 id="performance-heading" class="section-title">
       Website Performance
@@ -1971,7 +1972,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     </p>
   </header>
 
-  <!-- Performance Cards Grid -->
+  <!-- Performance Cards -->
   <div class="perf-container" role="list">
 
     <!-- Gauge Card -->
@@ -1979,14 +1980,23 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
       <canvas id="perfParticles"></canvas>
       <div class="perf-content">
         <h3 class="card-title">Overall Performance</h3>
+
+        <!-- Gauge -->
         <div class="gauge pulsing" aria-label="Performance score">
           <svg viewBox="0 0 36 36" class="circular-chart" role="img" aria-hidden="true">
+            <!-- Background Circle -->
             <path class="circle-bg" stroke-width="3" fill="none" stroke="#e5e7eb"
-              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              d="M18 2.0845 
+                 a 15.9155 15.9155 0 0 1 0 31.831 
+                 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+            <!-- Progress Circle -->
             <path id="perfProgress" class="circle-progress"
               stroke-width="3" stroke-linecap="round" fill="none"
               stroke="url(#perfGrad)" stroke-dasharray="0 100"
-              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              d="M18 2.0845 
+                 a 15.9155 15.9155 0 0 1 0 31.831 
+                 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+            <!-- Gradient -->
             <defs>
               <linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stop-color="#6366f1"/>
@@ -1994,8 +2004,11 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
               </linearGradient>
             </defs>
           </svg>
+          <!-- Gauge Score -->
           <div id="perfScore" class="gauge-score shimmer">--</div>
         </div>
+
+        <!-- Gauge Label -->
         <p id="perfLabel" class="gauge-label shimmer">Loading…</p>
       </div>
     </article>
