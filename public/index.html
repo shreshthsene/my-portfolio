@@ -1156,24 +1156,28 @@ nav a.active::after {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem; /* more breathing space */
 }
 
 .section-title {
-  font-size: 2rem;
+  font-size: 2.2rem; /* slightly bigger for section title */
   font-weight: 800;
   line-height: 1.2;
-  margin-bottom: 0.5rem;
-  background: linear-gradient(90deg, var(--gradient-colors));
+  margin-bottom: 0.75rem;
+  text-align: center;
+
+  /* Gradient like Resume */
+  background: linear-gradient(90deg, #6366f1, #3b82f6, #06b6d4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .section-subtitle {
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 400;
   color: #6b7280;
   margin: 0;
+  text-align: center;
 }
 
 /* Layout Grid */
@@ -1242,8 +1246,8 @@ nav a.active::after {
 
 .card-title {
   margin: 0 0 20px 0;
-  font-weight: 800;
-  font-size: 20px;
+  font-weight: 700; /* slightly lighter so section title dominates */
+  font-size: 1.25rem;
   background: linear-gradient(90deg, var(--gradient-colors));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1951,14 +1955,15 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     </p>
   </header>
 
-  <div class="perf-container">
+  <!-- Performance Cards -->
+  <div class="perf-container" role="list">
     <!-- Gauge Card -->
     <article class="perf-card" data-aos="zoom-in" data-aos-delay="100" role="listitem">
       <canvas id="perfParticles"></canvas>
       <div class="perf-content">
         <h3 class="card-title">Overall Performance</h3>
         <div class="gauge pulsing" aria-label="Performance score">
-          <svg viewBox="0 0 36 36" class="circular-chart" role="img">
+          <svg viewBox="0 0 36 36" class="circular-chart" role="img" aria-hidden="true">
             <path class="circle-bg" stroke-width="3" fill="none" stroke="#e5e7eb"
               d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831a 15.9155 15.9155 0 0 1 0 -31.831"/>
             <path id="perfProgress" class="circle-progress"
@@ -1967,8 +1972,8 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
               d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831a 15.9155 15.9155 0 0 1 0 -31.831"/>
             <defs>
               <linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#3b82f6"/>
-                <stop offset="100%" stop-color="#10b981"/>
+                <stop offset="0%" stop-color="#6366f1"/>
+                <stop offset="100%" stop-color="#06b6d4"/>
               </linearGradient>
             </defs>
           </svg>
