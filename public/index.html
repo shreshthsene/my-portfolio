@@ -1142,9 +1142,8 @@ nav a.active::after {
   }
 }
 
-/* === Root variable (safe default) === */
 :root {
-  --gradient-colors: #6366f1, #3b82f6, #06b6d4;
+  --gradient-colors: #6366f1, #06b6d4; /* purple → cyan */
 }
 
 /* === Performance Section === */
@@ -1166,25 +1165,23 @@ nav a.active::after {
   z-index: 5; /* ensures header stays above particles */
 }
 
-/* ✅ Gradient Section Title (always visible) */
 .section-title {
-  font-size: 2.2rem; 
+  font-size: 2.2rem;
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 0.75rem;
   text-align: center;
 
-  background: linear-gradient(90deg, var(--gradient-colors));
+  background: linear-gradient(90deg, #6366f1, #06b6d4);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: transparent;
 
   display: inline-block;
   position: relative;
-  z-index: 10; /* ensures heading is above any shimmer/particles */
+  z-index: 10;
 }
-
+    
 /* Subtitle muted gray */
 .section-subtitle {
   font-size: 1.05rem;
