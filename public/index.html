@@ -1151,12 +1151,31 @@ nav a.active::after {
   position: relative;
   z-index: 1;
   scroll-margin-top: 8rem; /* ensures nav doesn't overlap */
+  display: flex;
+  justify-content: center;
 }
 
-/* Section Header OUTSIDE the box */
+/* Big Box Wrapper (now holds header + cards) */
+#performance .performance-wrapper {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 4rem 2rem 3rem; /* extra top padding */
+  background: #fff; /* solid card background */
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Section Header INSIDE the box */
 #performance .section-header {
   margin-bottom: 2.5rem;
   text-align: center;
+  width: 100%;
 }
 
 #performance .section-title {
@@ -1180,21 +1199,6 @@ nav a.active::after {
   margin-left: auto;
   margin-right: auto;
   line-height: 1.6;
-}
-
-/* Big Box Wrapper (only wraps cards now) */
-#performance .performance-wrapper {
-  max-width: 1100px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 3rem 2rem;
-  background: #fff; /* solid card background */
-  border-radius: 20px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-
-  /* Only layout for cards now */
-  display: flex;
-  flex-direction: column;
 }
 
 /* Cards Grid */
@@ -1943,19 +1947,17 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 
 <!-- ===================== PERFORMANCE SECTION ===================== -->
 <section id="performance" aria-labelledby="performance-heading">
-
-  <!-- Section Header OUTSIDE the box -->
-  <header class="section-header" data-aos="fade-up">
-    <h2 id="performance-heading" class="section-title gradient-text">
-      Website Performance
-    </h2>
-    <p class="section-subtitle">
-      Real-time Core Web Vitals for my portfolio
-    </p>
-  </header>
-
-  <!-- Big Box Wrapper (only for the cards now) -->
   <div class="performance-wrapper">
+
+    <!-- Section Header now INSIDE the box -->
+    <header class="section-header" data-aos="fade-up">
+      <h2 id="performance-heading" class="section-title gradient-text">
+        Website Performance
+      </h2>
+      <p class="section-subtitle">
+        Real-time Core Web Vitals for my portfolio
+      </p>
+    </header>
 
     <!-- Performance Cards -->
     <div class="perf-container" role="list">
@@ -1966,17 +1968,14 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
         <div class="perf-content">
           <h3 class="card-title">Overall Performance</h3>
           <div class="gauge pulsing" aria-label="Performance score">
+            <!-- Gauge SVG -->
             <svg viewBox="0 0 36 36" class="circular-chart" role="img" aria-hidden="true">
               <path class="circle-bg" stroke-width="3" fill="none" stroke="#e5e7eb"
-                d="M18 2.0845 
-                   a 15.9155 15.9155 0 0 1 0 31.831 
-                   a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
               <path id="perfProgress" class="circle-progress"
                 stroke-width="3" stroke-linecap="round" fill="none"
                 stroke="url(#perfGrad)" stroke-dasharray="0 100"
-                d="M18 2.0845 
-                   a 15.9155 15.9155 0 0 1 0 31.831 
-                   a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
               <defs>
                 <linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stop-color="#6366f1"/>
