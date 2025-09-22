@@ -2368,55 +2368,65 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
   try {
+    // === Show shimmer placeholders until API responds ===
+    document.querySelectorAll(".score").forEach(el => {
+      el.textContent = "..."; // shimmer placeholder
+      el.classList.add("loading");
+    });
+
     // Fetch live data from your API
     const res = await fetch("/api/performance");
     const data = await res.json();
 
-    // Map API values to metrics (normalized to percentages for gauge)
+    // Normalize values for gauge (0–100 for arc fill)
     const values = {
-      fcp: Math.min(100, Math.round((3 / data.fcp) * 100)), // lower FCP is better
-      lcp: Math.min(100, Math.round((4 / data.lcp) * 100)), // lower LCP is better
-      cls: Math.min(100, Math.round((0.25 / (data.cls || 0.001)) * 100)), // smaller CLS is better
-      tbt: Math.min(100, Math.round((600 / data.tbt) * 100)) // lower TBT is better
+      fcp: Math.min(100, Math.round((3 / (data.fcp || 3)) * 100)),  
+      lcp: Math.min(100, Math.round((4 / (data.lcp || 4)) * 100)),  
+      cls: Math.min(100, Math.round((0.25 / (data.cls || 0.001)) * 100)), 
+      tbt: Math.min(100, Math.round((600 / (data.tbt || 600)) * 100)) 
     };
 
-    // Loop through metrics and animate gauges
-    for (const [metric, val] of Object.entries(values)) {
+    // Actual values to display inside gauges
+    const display = {
+      fcp: `${data.fcp.toFixed(2)}s`,
+      lcp: `${data.lcp.toFixed(2)}s`,
+      cls: data.cls.toFixed(3),
+      tbt: `${Math.round(data.tbt)}ms`
+    };
+
+    // Loop through metrics and animate
+    for (const metric of Object.keys(values)) {
       const circle = document.querySelector(`.fg[data-metric="${metric}"]`);
       const scoreEl = circle?.parentElement.querySelector(".score");
       if (!circle) continue;
 
       const radius = circle.getAttribute("r");
       const circumference = 2 * Math.PI * radius;
+      const val = values[metric];
       const offset = circumference - (val / 100) * circumference;
 
+      // Reset shimmer
+      scoreEl?.classList.remove("loading");
+
+      // Animate arc fill
       circle.style.strokeDasharray = circumference;
       circle.style.strokeDashoffset = circumference;
-
-      // Animate gauge
       setTimeout(() => {
         circle.style.transition = "stroke-dashoffset 1.8s ease";
         circle.style.strokeDashoffset = offset;
       }, 200);
 
-      // Animate number counting
+      // Show the real value immediately after load
       if (scoreEl) {
-        let current = 0;
-        const step = Math.ceil(val / 40);
-        const animate = () => {
-          current += step;
-          if (current >= val) {
-            scoreEl.textContent = val;
-          } else {
-            scoreEl.textContent = current;
-            requestAnimationFrame(animate);
-          }
-        };
-        animate();
+        scoreEl.textContent = display[metric];
       }
     }
   } catch (err) {
     console.error("❌ Failed to load performance data:", err);
+    document.querySelectorAll(".score").forEach(el => {
+      el.textContent = "N/A";
+      el.classList.remove("loading");
+    });
   }
 });
 </script>
