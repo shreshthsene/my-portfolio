@@ -1145,130 +1145,130 @@ nav a.active::after {
   }
 }
 
-/* ===== Base Styles ===== */
-body {
-  background: #0b0f19;
-  font-family: 'Inter', sans-serif;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  margin: 0;
-}
-
-/* Section container */
+/* === Performance Section === */
 .performance-section {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
+  background: rgba(20, 20, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
-  padding: 3rem;
-  max-width: 1000px;
-  width: 100%;
+  padding: 2rem;
+  margin: 4rem auto;
+  max-width: 900px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Title */
+.performance-section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* === Heading === */
 .performance-section h2 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  background: linear-gradient(90deg, #06b6d4, #a855f7, #ec4899);
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00d4ff, #7a5cff, #ff4ecd);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-size: 200% 200%;
-  animation: gradientShift 6s ease infinite;
+  background-clip: text;
+  margin-bottom: 0.5rem;
 }
 
 .performance-section p {
-  color: #9ca3af;
-  margin-top: 0.5rem;
   font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2rem;
 }
 
-/* Grid layout */
-.metrics-grid {
-  margin-top: 2.5rem;
+/* === Grid Layout === */
+.metrics {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
 }
 
-/* Metric card */
+/* === Metric Cards === */
 .metric-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   padding: 1.5rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .metric-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6),
-              0 0 20px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
 }
 
-/* Circular gauge container */
+/* === Metric Labels === */
+.metric-card .label {
+  display: block;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+/* === Gauges === */
 .gauge {
-  position: relative;
-  width: 130px;
-  height: 130px;
+  width: 100px;
+  height: 100px;
   margin: 0 auto;
+  position: relative;
 }
 
 .gauge svg {
   transform: rotate(-90deg);
-  width: 100%;
-  height: 100%;
+  width: 100px;
+  height: 100px;
 }
 
-/* Background circle */
-.gauge circle.bg {
-  stroke: rgba(255, 255, 255, 0.1);
+.bg {
+  stroke: rgba(255, 255, 255, 0.15);
   stroke-width: 12;
   fill: none;
 }
 
-/* Foreground arc */
-.gauge circle.fg {
+.fg {
   stroke-width: 12;
+  fill: none;
   stroke-linecap: round;
-  fill: none;
   stroke-dasharray: 351;
-  stroke-dashoffset: var(--offset);
-  animation: drawArc 2s ease forwards;
+  stroke-dashoffset: 351;
+  transition: stroke-dashoffset 2s ease;
 }
 
-/* Score in center */
-.gauge .score {
+/* === Gradient Strokes === */
+.fg[data-metric="fcp"] {
+  stroke: url(#gradFCP);
+}
+.fg[data-metric="lcp"] {
+  stroke: url(#gradLCP);
+}
+.fg[data-metric="cls"] {
+  stroke: url(#gradCLS);
+}
+.fg[data-metric="tbt"] {
+  stroke: url(#gradTBT);
+}
+
+/* === Score Numbers === */
+.score {
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: 800;
-}
-
-/* Label */
-.metric-card p {
-  margin-top: 1rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-/* ===== Animations ===== */
-@keyframes drawArc {
-  from { stroke-dashoffset: 351; }
-  to { stroke-dashoffset: var(--offset); }
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
 }
     
 /* === Approach Section === */
@@ -1867,92 +1867,96 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   </div>
 </section>
 
-<section class="performance-section">
-    <h2>Performance Metrics</h2>
-    <p>Live insights that highlight speed, stability, and interactivity</p>
+<!-- === Performance Section === -->
+<section id="performance" class="performance-section">
+  <h2>Performance Metrics</h2>
+  <p>Live insights that highlight speed, stability, and interactivity</p>
 
-    <div class="metrics-grid">
-      <!-- FCP -->
-      <div class="metric-card">
-        <div class="gauge">
-          <svg>
-            <circle class="bg" cx="64" cy="64" r="56"></circle>
-            <circle class="fg" cx="64" cy="64" r="56"
-              style="--offset: calc(351 - (351 * 92 / 100));
-                     stroke: url(#grad1);"></circle>
-            <defs>
-              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="cyan"/>
-                <stop offset="100%" stop-color="blue"/>
-              </linearGradient>
-            </defs>
-          </svg>
-          <span class="score" style="color: cyan;">92</span>
-        </div>
-        <p>FCP</p>
+  <div class="metrics">
+    <!-- Overall Performance Score -->
+    <div class="metric-card">
+      <div class="gauge">
+        <svg viewBox="0 0 120 120">
+          <circle class="bg" cx="60" cy="60" r="56"></circle>
+          <circle class="fg" data-metric="score" cx="60" cy="60" r="56"
+                  stroke-dasharray="351" stroke-dashoffset="351"></circle>
+          <defs>
+            <linearGradient id="gradFCP" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00d4ff"/>
+              <stop offset="100%" stop-color="#0077ff"/>
+            </linearGradient>
+            <linearGradient id="gradLCP" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#9a4dff"/>
+              <stop offset="100%" stop-color="#ff4ecd"/>
+            </linearGradient>
+            <linearGradient id="gradCLS" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00ffb2"/>
+              <stop offset="100%" stop-color="#00995c"/>
+            </linearGradient>
+            <linearGradient id="gradTBT" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#ff8c00"/>
+              <stop offset="100%" stop-color="#ff3d3d"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="score">0</span>
       </div>
-
-      <!-- LCP -->
-      <div class="metric-card">
-        <div class="gauge">
-          <svg>
-            <circle class="bg" cx="64" cy="64" r="56"></circle>
-            <circle class="fg" cx="64" cy="64" r="56"
-              style="--offset: calc(351 - (351 * 88 / 100));
-                     stroke: url(#grad2);"></circle>
-            <defs>
-              <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="purple"/>
-                <stop offset="100%" stop-color="magenta"/>
-              </linearGradient>
-            </defs>
-          </svg>
-          <span class="score" style="color: violet;">88</span>
-        </div>
-        <p>LCP</p>
-      </div>
-
-      <!-- CLS -->
-      <div class="metric-card">
-        <div class="gauge">
-          <svg>
-            <circle class="bg" cx="64" cy="64" r="56"></circle>
-            <circle class="fg" cx="64" cy="64" r="56"
-              style="--offset: calc(351 - (351 * 95 / 100));
-                     stroke: url(#grad3);"></circle>
-            <defs>
-              <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="lime"/>
-                <stop offset="100%" stop-color="green"/>
-              </linearGradient>
-            </defs>
-          </svg>
-          <span class="score" style="color: lime;">95</span>
-        </div>
-        <p>CLS</p>
-      </div>
-
-      <!-- TBT -->
-      <div class="metric-card">
-        <div class="gauge">
-          <svg>
-            <circle class="bg" cx="64" cy="64" r="56"></circle>
-            <circle class="fg" cx="64" cy="64" r="56"
-              style="--offset: calc(351 - (351 * 90 / 100));
-                     stroke: url(#grad4);"></circle>
-            <defs>
-              <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="orange"/>
-                <stop offset="100%" stop-color="red"/>
-              </linearGradient>
-            </defs>
-          </svg>
-          <span class="score" style="color: orange;">90</span>
-        </div>
-        <p>TBT</p>
-      </div>
+      <span class="label">Overall</span>
     </div>
-  </section>
+
+    <!-- FCP -->
+    <div class="metric-card">
+      <div class="gauge">
+        <svg viewBox="0 0 120 120">
+          <circle class="bg" cx="60" cy="60" r="56"></circle>
+          <circle class="fg" data-metric="fcp" cx="60" cy="60" r="56"
+                  stroke="url(#gradFCP)" stroke-dasharray="351" stroke-dashoffset="351"></circle>
+        </svg>
+        <span class="score">0</span>
+      </div>
+      <span class="label">FCP</span>
+    </div>
+
+    <!-- LCP -->
+    <div class="metric-card">
+      <div class="gauge">
+        <svg viewBox="0 0 120 120">
+          <circle class="bg" cx="60" cy="60" r="56"></circle>
+          <circle class="fg" data-metric="lcp" cx="60" cy="60" r="56"
+                  stroke="url(#gradLCP)" stroke-dasharray="351" stroke-dashoffset="351"></circle>
+        </svg>
+        <span class="score">0</span>
+      </div>
+      <span class="label">LCP</span>
+    </div>
+
+    <!-- CLS -->
+    <div class="metric-card">
+      <div class="gauge">
+        <svg viewBox="0 0 120 120">
+          <circle class="bg" cx="60" cy="60" r="56"></circle>
+          <circle class="fg" data-metric="cls" cx="60" cy="60" r="56"
+                  stroke="url(#gradCLS)" stroke-dasharray="351" stroke-dashoffset="351"></circle>
+        </svg>
+        <span class="score">0</span>
+      </div>
+      <span class="label">CLS</span>
+    </div>
+
+    <!-- TBT -->
+    <div class="metric-card">
+      <div class="gauge">
+        <svg viewBox="0 0 120 120">
+          <circle class="bg" cx="60" cy="60" r="56"></circle>
+          <circle class="fg" data-metric="tbt" cx="60" cy="60" r="56"
+                  stroke="url(#gradTBT)" stroke-dasharray="351" stroke-dashoffset="351"></circle>
+        </svg>
+        <span class="score">0</span>
+      </div>
+      <span class="label">TBT</span>
+    </div>
+  </div>
+</section>
     
 <!-- APPROACH SECTION -->
 <section id="approach" aria-labelledby="approach-heading">
@@ -2374,40 +2378,72 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const counters = document.querySelectorAll(".score");
-  const arcs = document.querySelectorAll(".fg");
+  const section = document.getElementById("performance");
+  const counters = section.querySelectorAll(".score");
+  const arcs = section.querySelectorAll(".fg");
+  let animated = false;
 
-  counters.forEach((counter, index) => {
-    const target = parseInt(counter.textContent, 10);
-    counter.textContent = "0";
-    let current = 0;
+  async function fetchPerformance() {
+    try {
+      // Call your live API
+      const res = await fetch(`/api/handler?url=${encodeURIComponent(window.location.href)}`);
+      const data = await res.json();
 
-    // Animate counter
-    const updateCounter = () => {
-      const increment = Math.ceil(target / 60); // ~60 steps
-      current += increment;
+      console.log("Live Performance Data:", data);
 
-      if (current >= target) {
-        counter.textContent = target;
-      } else {
-        counter.textContent = current;
-        requestAnimationFrame(updateCounter);
-      }
-    };
+      // Map values
+      const values = [
+        { el: counters[0], value: data.fcp, label: "s", precision: 2 },   // FCP
+        { el: counters[1], value: data.lcp, label: "s", precision: 2 },   // LCP
+        { el: counters[2], value: data.cls, label: "", precision: 3 },    // CLS
+        { el: counters[3], value: data.tbt, label: "ms", precision: 0 }   // TBT
+      ];
 
-    updateCounter();
+      // Animate counters
+      values.forEach((item, index) => {
+        let current = 0;
+        const target = item.value;
 
-    // Animate arcs (reset then animate forward)
-    const arc = arcs[index];
-    if (arc) {
-      const offset = arc.style.getPropertyValue("--offset");
-      arc.style.strokeDashoffset = 351; // reset
-      setTimeout(() => {
-        arc.style.transition = "stroke-dashoffset 2s ease";
-        arc.style.strokeDashoffset = `calc(${offset})`;
-      }, 200);
+        const updateCounter = () => {
+          const step = (target - current) / 20; // smooth steps
+          current += step;
+
+          if (Math.abs(target - current) < 0.01) {
+            item.el.textContent = target.toFixed(item.precision) + (item.label || "");
+          } else {
+            item.el.textContent = current.toFixed(item.precision) + (item.label || "");
+            requestAnimationFrame(updateCounter);
+          }
+        };
+
+        updateCounter();
+
+        // Animate arc ONLY for performance score
+        if (index === 0) {
+          const arc = arcs[index];
+          const offset = `calc(351 - (351 * ${data.score} / 100))`;
+          arc.style.strokeDashoffset = 351; // reset
+          setTimeout(() => {
+            arc.style.transition = "stroke-dashoffset 2s ease";
+            arc.style.strokeDashoffset = offset;
+          }, 200);
+        }
+      });
+    } catch (err) {
+      console.error("❌ Failed to fetch live performance:", err);
     }
-  });
+  }
+
+  // Trigger only once when section enters viewport
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !animated) {
+        animated = true;
+        fetchPerformance();
+      }
+    });
+  }, { threshold: 0.3 });
+  observer.observe(section);
 });
 </script>
 
