@@ -1145,47 +1145,45 @@ nav a.active::after {
   }
 }
 
-/* === Performance Section === */
+/* === Performance Section (Optimized) === */
 #performance {
   padding: 5rem 1rem;
   position: relative;
   z-index: 1;
-
-  /* Match navbar height for smooth anchor scroll */
   scroll-margin-top: 6rem; 
   display: flex;
   justify-content: center;
 }
 
-/* Big Box Wrapper (holds header + cards) */
 #performance .performance-wrapper {
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
-
-  /* Extra padding at the top so header clears navbar visually */
-  padding: 5rem 2rem 3rem; 
+  
+  /* Balanced spacing */
+  padding: 3.5rem 2rem; 
   background: #fff; 
   border-radius: 20px;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  /* Unified layout */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;  /* spacing between header & cards */
   text-align: center;
+  align-items: start;
 }
 
-/* Section Header (inside the box) */
 #performance .section-header {
-  margin-bottom: 2.5rem;
+  max-width: 800px;
+  margin: 0 auto;
   text-align: center;
-  width: 100%;
 }
 
 #performance .section-title {
   font-size: 2rem;
   font-weight: 800;
-  margin: 0 auto;
+  margin: 0 0 0.75rem 0;
   background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1198,14 +1196,11 @@ nav a.active::after {
   font-size: 1rem;
   font-weight: 400;
   color: var(--muted);
-  margin-top: 0.75rem;
   max-width: 520px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   line-height: 1.6;
 }
 
-/* Cards Grid */
 #performance .perf-container {
   width: 100%;
   display: grid;
@@ -1225,7 +1220,6 @@ nav a.active::after {
   }
 }
 
-/* Cards */
 #performance .perf-card {
   position: relative;
   background: var(--glass, rgba(255, 255, 255, 0.75));
@@ -1239,7 +1233,6 @@ nav a.active::after {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
 }
 
 #performance .perf-card:hover {
