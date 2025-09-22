@@ -1147,12 +1147,11 @@ nav a.active::after {
 
 /* === Performance Section === */
 #performance {
-  padding: 10rem 1rem 5rem;   /* extra top padding to clear navbar */
+  padding: 10rem 1rem 5rem;   /* enough top padding to clear navbar */
   background: var(--card);
   position: relative;
   z-index: 1;
-  margin-top: 0;
-  scroll-margin-top: 7rem;   /* anchor offset for fixed navbar */
+  scroll-margin-top: 7rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1160,7 +1159,7 @@ nav a.active::after {
 
 /* Wrapper aligns header + cards */
 #performance .performance-wrapper {
-  max-width: 1100px;   /* wider so heading + cards align */
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
@@ -1169,72 +1168,78 @@ nav a.active::after {
   text-align: center;
 }
 
-/* Section Header (clean, no box/border/line) */
+/* Section Header – clean + centered */
 #performance .section-header {
   margin-bottom: 3rem;
-  width: 100%;
-  max-width: 800px;   /* readable width for heading/subtitle */
+  width: 100%;              /* span across cards */
+  max-width: 1100px;        /* align with card grid */
   margin-left: auto;
   margin-right: auto;
   background: none !important;
   border: none !important;
   box-shadow: none !important;
+  outline: none !important;
   padding: 0 !important;
   text-align: center;
+  display: block;
   position: relative;
   z-index: 2;
 }
 
-/* Gradient Heading */
+/* Gradient Heading – single line */
 #performance .section-title {
   font-size: 2.6rem;
   font-weight: 800;
   line-height: 1.2;
-  margin: 0;
+  margin: 0 auto;
+  white-space: nowrap;      /* force heading into one line */
   background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  display: inline-block;
 }
 
-/* Subtitle (muted gray, below heading) */
+/* Subtitle – stacked below heading */
 #performance .section-subtitle {
   font-size: 1.15rem;
   font-weight: 400;
   color: var(--muted);
   margin-top: 0.75rem;
-  max-width: 640px;
+  max-width: 1100px;        /* align with cards */
   line-height: 1.6;
   margin-left: auto;
   margin-right: auto;
+  white-space: normal;      /* allow wrapping */
 }
 
 /* Layout Grid for cards */
 #performance .perf-container {
   width: 100%;
-  max-width: 1100px;   /* align with wrapper */
+  max-width: 1100px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--gap);
-  align-items: stretch;   /* ensures equal height cards */
+  align-items: stretch;     /* ensures equal height cards */
   margin-top: 2rem;
 }
 
 @media (max-width: 900px) {
   #performance .perf-container {
     grid-template-columns: 1fr;
-    max-width: 600px;   /* narrower on mobile */
+    max-width: 600px;       /* narrower on mobile */
   }
   #performance .section-title {
     font-size: 1.9rem;
+    white-space: normal;    /* allow wrapping on small screens */
   }
   #performance .section-subtitle {
     font-size: 1rem;
   }
 }
 
-/* === Glassmorphism Cards (clean, equal height) === */
+/* === Glassmorphism Cards (equal height) === */
 #performance .perf-card {
   position: relative;
   background: var(--glass);
@@ -1249,7 +1254,7 @@ nav a.active::after {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;   /* equal heights across grid */
+  height: 100%;
 }
 
 /* Hover lift */
