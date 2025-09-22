@@ -1190,18 +1190,29 @@ nav a.active::after {
   margin-bottom: 2rem;
 }
 
+/* Grid layout for metrics */
 .metrics {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .metrics {
+    grid-template-columns: repeat(2, 1fr); /* 2x2 on smaller screens */
+  }
 }
 
 .metric-card {
   background: #fff;
   border: 1px solid #eee;
   border-radius: 16px;
-  padding: 1.5rem;
-  text-align: center;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 160px; /* equal height for alignment */
   transition: transform .3s ease, box-shadow .3s ease;
 }
 
@@ -1218,30 +1229,30 @@ nav a.active::after {
 }
 
 .gauge {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   margin: 0 auto;
   position: relative;
 }
 
 .gauge svg {
   transform: rotate(-90deg);
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
 }
 
 .bg {
   stroke: #eee;
-  stroke-width: 12;
+  stroke-width: 10;
   fill: none;
 }
 
 .fg {
-  stroke-width: 12;
+  stroke-width: 10;
   fill: none;
   stroke-linecap: round;
-  stroke-dasharray: 351;
-  stroke-dashoffset: 351;
+  stroke-dasharray: 283; /* circle perimeter for r=45 */
+  stroke-dashoffset: 283;
   transition: stroke-dashoffset 2s ease;
 }
 
@@ -1250,7 +1261,7 @@ nav a.active::after {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #111;
 }
@@ -1880,17 +1891,6 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   <p>Live insights highlighting speed, stability, and interactivity</p>
 
   <div class="metrics">
-    <!-- Overall Score -->
-    <div class="metric-card">
-      <div class="gauge">
-        <svg viewBox="0 0 120 120">
-          <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="score" cx="60" cy="60" r="56"></circle>
-        </svg>
-        <span class="score">0</span>
-      </div>
-      <span class="label">Overall</span>
-    </div>
 
     <!-- FCP -->
     <div class="metric-card">
