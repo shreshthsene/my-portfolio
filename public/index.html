@@ -1147,17 +1147,17 @@ nav a.active::after {
 
 /* === Performance Section === */
 #performance {
-  padding: 10rem 1rem 5rem;   /* enough top padding to clear navbar */
+  padding: 5rem 1rem;                /* balanced like other sections */
   background: var(--card);
   position: relative;
   z-index: 1;
-  scroll-margin-top: 7rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  scroll-margin-top: 8rem;           /* ensures header isn’t hidden */
 }
 
-/* Wrapper aligns header + cards */
+/* Wrapper aligns header + cards grid */
 #performance .performance-wrapper {
   max-width: 1100px;
   margin: 0 auto;
@@ -1168,11 +1168,11 @@ nav a.active::after {
   text-align: center;
 }
 
-/* Section Header – align with cards grid */
+/* Section Header */
 #performance .section-header {
   margin-bottom: 3rem;
   width: 100%;
-  max-width: 1100px;     /* ✅ same as cards grid */
+  max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -1183,7 +1183,7 @@ nav a.active::after {
   padding: 0 !important;
   display: block;
 }
-    
+
 /* Heading */
 #performance .section-title {
   font-size: 2rem;
@@ -1195,10 +1195,10 @@ nav a.active::after {
   background-clip: text;
   color: transparent;
   display: block;
-  text-align: center;   /* ✅ keep centered */
+  text-align: center;
   white-space: nowrap;
 }
-    
+
 /* Subtitle */
 #performance .section-subtitle {
   font-size: 1rem;
@@ -1209,35 +1209,35 @@ nav a.active::after {
   margin-left: auto;
   margin-right: auto;
   line-height: 1.6;
-  text-align: center;   /* ✅ centered under heading */
+  text-align: center;
 }
 
-/* Cards Grid – wider and equal height */
+/* Cards Grid */
 #performance .perf-container {
   width: 100%;
-  max-width: 1100px;    /* ✅ matches header */
+  max-width: 1100px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* equal widths */
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--gap);
-  align-items: stretch; /* ✅ equal heights */
+  align-items: stretch;
   margin-top: 2rem;
 }
-    
+
 @media (max-width: 900px) {
   #performance .perf-container {
     grid-template-columns: 1fr;
-    max-width: 600px;       /* narrower on mobile */
+    max-width: 600px;
   }
   #performance .section-title {
     font-size: 1.9rem;
-    white-space: normal;    /* allow wrapping on small screens */
+    white-space: normal;
   }
   #performance .section-subtitle {
     font-size: 1rem;
   }
 }
 
-/* === Glassmorphism Cards (equal height) === */
+/* Glassmorphism Cards */
 #performance .perf-card {
   position: relative;
   background: var(--glass);
@@ -1248,20 +1248,18 @@ nav a.active::after {
   box-shadow: 0 8px 24px rgba(0,0,0,0.08);
   border: 1px solid rgba(229, 231, 235, 0.5);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
 }
 
-/* Hover lift */
 #performance .perf-card:hover {
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 14px 32px rgba(0,0,0,0.12);
 }
 
-/* Particle canvas */
+/* Particle Canvas */
 #performance #perfParticles {
   position: absolute;
   top: 0; left: 0;
@@ -1288,7 +1286,7 @@ nav a.active::after {
   color: var(--text);
 }
 
-/* === Gauge === */
+/* Gauge */
 #performance .gauge { 
   position: relative; 
   width: 220px; 
@@ -1315,7 +1313,7 @@ nav a.active::after {
   color: #10b981; 
 }
 
-/* === Metrics === */
+/* Metrics Grid */
 #performance .metrics-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1348,7 +1346,7 @@ nav a.active::after {
   color: var(--text);
 }
 
-/* Shimmer loading effect */
+/* Loading effects */
 #performance .metric .shimmer,
 #performance .gauge-score.shimmer,
 #performance .gauge-label.shimmer {
@@ -1359,7 +1357,6 @@ nav a.active::after {
   color: transparent;
 }
 
-/* Pulse animation */
 #performance .gauge.pulsing {
   animation: pulse 1.5s infinite;
 }
