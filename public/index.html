@@ -1156,7 +1156,6 @@ nav a.active::after {
   padding: 60px 30px;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(14px);
-  border-radius: 20px;
   box-shadow: 0 10px 40px rgba(15, 23, 42, 0.12);
   position: relative;
   overflow: hidden;
@@ -1209,7 +1208,7 @@ nav a.active::after {
 /* Metrics Grid */
 #performance .perf-container {
   width: 100%;
-  display: center;
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--gap, 2rem);
   align-items: stretch;
