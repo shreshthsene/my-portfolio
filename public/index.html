@@ -1145,184 +1145,130 @@ nav a.active::after {
   }
 }
 
-/* === Performance Section (Premium Style) === */
-#performance {
-  margin: 64px auto;
+/* ===== Base Styles ===== */
+body {
+  background: #0b0f19;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
   display: flex;
-  flex-direction: column;
-  gap: 40px;
   align-items: center;
   justify-content: center;
-  padding: 60px 30px;
-  max-width: 1100px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.25);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+  min-height: 100vh;
+  margin: 0;
 }
 
-/* Section Header */
-#performance .section-header {
-  max-width: 800px;
-  margin: 0 auto;
+/* Section container */
+.performance-section {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 3rem;
+  max-width: 1000px;
+  width: 100%;
   text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
-#performance .section-title {
-  font-size: 2rem;
+
+/* Title */
+.performance-section h2 {
+  font-size: 2.5rem;
   font-weight: 800;
-  margin-bottom: 12px;
-  background: linear-gradient(90deg, #06b6d4, #9333ea, #ec4899);
+  background: linear-gradient(90deg, #06b6d4, #a855f7, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-#performance .section-subtitle {
-  color: #d1d5db;
-  font-size: 1.1rem;
-  margin: 0 auto;
-  max-width: 600px;
-  line-height: 1.6;
+  background-size: 200% 200%;
+  animation: gradientShift 6s ease infinite;
 }
 
-/* Performance Grid */
-#performance .perf-container {
-  width: 100%;
+.performance-section p {
+  color: #9ca3af;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Grid layout */
+.metrics-grid {
+  margin-top: 2.5rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
-  align-items: stretch;
-}
-@media (max-width: 900px) {
-  #performance .perf-container {
-    grid-template-columns: 1fr;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  #performance .section-title {
-    font-size: 1.9rem;
-  }
 }
 
-/* Card Style */
-#performance .perf-card {
-  position: relative;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
+/* Metric card */
+.metric-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-#performance .perf-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(147, 51, 234, 0.4);
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Card Titles */
-#performance .card-title {
-  margin-bottom: 20px;
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: #fff;
+.metric-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6),
+              0 0 20px rgba(255, 255, 255, 0.1);
 }
 
-/* Gauge */
-#performance .gauge {
+/* Circular gauge container */
+.gauge {
   position: relative;
-  width: 220px;
-  height: 220px;
+  width: 130px;
+  height: 130px;
   margin: 0 auto;
 }
-#performance .circular-chart {
+
+.gauge svg {
+  transform: rotate(-90deg);
   width: 100%;
   height: 100%;
-  transform: rotate(-90deg);
 }
-#performance .circle-progress {
-  transition: stroke-dashoffset 1.2s ease-in-out;
-  filter: drop-shadow(0 0 10px rgba(147, 51, 234, 0.5));
+
+/* Background circle */
+.gauge circle.bg {
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 12;
+  fill: none;
 }
-#performance .gauge-score {
+
+/* Foreground arc */
+.gauge circle.fg {
+  stroke-width: 12;
+  stroke-linecap: round;
+  fill: none;
+  stroke-dasharray: 351;
+  stroke-dashoffset: var(--offset);
+  animation: drawArc 2s ease forwards;
+}
+
+/* Score in center */
+.gauge .score {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 2rem;
   font-weight: 800;
-  font-size: 48px;
-  background: linear-gradient(90deg, #06b6d4, #9333ea, #ec4899);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-#performance .gauge-label {
-  text-align: center;
-  margin-top: 14px;
-  font-weight: 700;
-  color: #facc15; /* Default: yellow warning */
 }
 
-/* Metrics Grid */
-#performance .metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-#performance .metric {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-}
-#performance .metric:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(147, 51, 234, 0.3);
-  border: 1px solid rgba(147, 51, 234, 0.3);
-}
-#performance .metric span {
-  display: block;
-  color: #d1d5db;
+/* Label */
+.metric-card p {
+  margin-top: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  font-size: 13px;
-}
-#performance .metric strong {
-  display: block;
-  margin-top: 6px;
-  font-size: 20px;
-  font-weight: 800;
-  background: linear-gradient(90deg, #06b6d4, #9333ea, #ec4899);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
-/* Shimmer Effect (loading state) */
-#performance .shimmer {
-  background: linear-gradient(90deg, rgba(255,255,255,0.2) 25%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.2) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+/* ===== Animations ===== */
+@keyframes drawArc {
+  from { stroke-dashoffset: 351; }
+  to { stroke-dashoffset: var(--offset); }
 }
 
-/* Gauge pulse animation */
-#performance .gauge.pulsing {
-  animation: pulse 1.5s infinite;
-}
-@keyframes pulse {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
     
 /* === Approach Section === */
@@ -1921,73 +1867,92 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   </div>
 </section>
 
-<!-- ===================== PERFORMANCE SECTION ===================== -->
-<section id="performance" aria-labelledby="performance-heading">
-  <div class="performance-wrapper">
+<section class="performance-section">
+    <h2>Performance Metrics</h2>
+    <p>Live insights that highlight speed, stability, and interactivity</p>
 
-    <!-- Section Header -->
-    <header class="section-header">
-      <h2 id="performance-heading" class="section-title">
-        Website Performance
-      </h2>
-      <p class="section-subtitle">
-        Real-time Core Web Vitals for my portfolio
-      </p>
-    </header>
-
-    <!-- Performance Grid -->
-    <div class="perf-container">
-
-      <!-- Gauge Card -->
-      <article class="perf-card">
-        <div class="perf-content">
-          <h3 class="card-title">Overall Performance</h3>
-          <div class="gauge pulsing">
-            <svg viewBox="0 0 200 200" class="circular-chart">
-              <!-- Background ring -->
-              <circle cx="100" cy="100" r="90"
-                stroke="rgba(255,255,255,0.15)"
-                stroke-width="16" fill="transparent"/>
-              <!-- Progress ring -->
-              <circle id="perfProgress"
-                cx="100" cy="100" r="90"
-                stroke="url(#perfGrad)"
-                stroke-width="16"
-                fill="transparent"
-                stroke-linecap="round"
-                stroke-dasharray="565"
-                stroke-dashoffset="565"/>
-              <defs>
-                <linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#06b6d4"/>
-                  <stop offset="50%" stop-color="#9333ea"/>
-                  <stop offset="100%" stop-color="#ec4899"/>
-                </linearGradient>
-              </defs>
-            </svg>
-            <div id="perfScore" class="gauge-score shimmer">--</div>
-          </div>
-          <p id="perfLabel" class="gauge-label shimmer">Loading…</p>
+    <div class="metrics-grid">
+      <!-- FCP -->
+      <div class="metric-card">
+        <div class="gauge">
+          <svg>
+            <circle class="bg" cx="64" cy="64" r="56"></circle>
+            <circle class="fg" cx="64" cy="64" r="56"
+              style="--offset: calc(351 - (351 * 92 / 100));
+                     stroke: url(#grad1);"></circle>
+            <defs>
+              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="cyan"/>
+                <stop offset="100%" stop-color="blue"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="score" style="color: cyan;">92</span>
         </div>
-      </article>
+        <p>FCP</p>
+      </div>
 
-      <!-- Metrics Card -->
-      <article class="perf-card">
-        <div class="perf-content">
-          <h3 class="card-title">Core Web Vitals</h3>
-          <div class="metrics-grid">
-            <div class="metric"><span>⚡ FCP</span><strong id="m-fcp" class="shimmer">--</strong></div>
-            <div class="metric"><span>📊 LCP</span><strong id="m-lcp" class="shimmer">--</strong></div>
-            <div class="metric"><span>🟢 CLS</span><strong id="m-cls" class="shimmer">--</strong></div>
-            <div class="metric"><span>⏱️ TBT</span><strong id="m-tbt" class="shimmer">--</strong></div>
-          </div>
+      <!-- LCP -->
+      <div class="metric-card">
+        <div class="gauge">
+          <svg>
+            <circle class="bg" cx="64" cy="64" r="56"></circle>
+            <circle class="fg" cx="64" cy="64" r="56"
+              style="--offset: calc(351 - (351 * 88 / 100));
+                     stroke: url(#grad2);"></circle>
+            <defs>
+              <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="purple"/>
+                <stop offset="100%" stop-color="magenta"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="score" style="color: violet;">88</span>
         </div>
-      </article>
+        <p>LCP</p>
+      </div>
 
+      <!-- CLS -->
+      <div class="metric-card">
+        <div class="gauge">
+          <svg>
+            <circle class="bg" cx="64" cy="64" r="56"></circle>
+            <circle class="fg" cx="64" cy="64" r="56"
+              style="--offset: calc(351 - (351 * 95 / 100));
+                     stroke: url(#grad3);"></circle>
+            <defs>
+              <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="lime"/>
+                <stop offset="100%" stop-color="green"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="score" style="color: lime;">95</span>
+        </div>
+        <p>CLS</p>
+      </div>
+
+      <!-- TBT -->
+      <div class="metric-card">
+        <div class="gauge">
+          <svg>
+            <circle class="bg" cx="64" cy="64" r="56"></circle>
+            <circle class="fg" cx="64" cy="64" r="56"
+              style="--offset: calc(351 - (351 * 90 / 100));
+                     stroke: url(#grad4);"></circle>
+            <defs>
+              <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="orange"/>
+                <stop offset="100%" stop-color="red"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="score" style="color: orange;">90</span>
+        </div>
+        <p>TBT</p>
+      </div>
     </div>
-  </div>
-</section>
-<!-- ===================== END PERFORMANCE SECTION ===================== -->
+  </section>
     
 <!-- APPROACH SECTION -->
 <section id="approach" aria-labelledby="approach-heading">
@@ -2408,84 +2373,42 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 </script>
 
 <script>
-(function(){
-  const progressEl = document.getElementById('perfProgress');
-  const scoreEl = document.getElementById('perfScore');
-  const labelEl = document.getElementById('perfLabel');
-  const radius = 90;
-  const circumference = 2 * Math.PI * radius;
-  progressEl.setAttribute("stroke-dasharray", circumference);
-  progressEl.setAttribute("stroke-dashoffset", circumference);
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".score");
+  const arcs = document.querySelectorAll(".fg");
 
-  let currentScore = 0;
+  counters.forEach((counter, index) => {
+    const target = parseInt(counter.textContent, 10);
+    counter.textContent = "0";
+    let current = 0;
 
-  function setLabel(s){
-    if(s>=80){
-      labelEl.textContent="Excellent ✔️"; 
-      labelEl.style.color="#10b981";
-    } else if(s>=50){
-      labelEl.textContent="Needs Improvement ⚠️"; 
-      labelEl.style.color="#facc15";
-    } else {
-      labelEl.textContent="Poor ❌"; 
-      labelEl.style.color="#ef4444";
-    }
-  }
+    // Animate counter
+    const updateCounter = () => {
+      const increment = Math.ceil(target / 60); // ~60 steps
+      current += increment;
 
-  function animateGauge(from,to){
-    let start=null;
-    function step(ts){
-      if(!start) start=ts;
-      const progress = Math.min((ts-start)/1000,1);
-      const value = from+(to-from)*progress;
-
-      const offset = circumference - (value/100)*circumference;
-      progressEl.setAttribute("stroke-dashoffset", offset);
-
-      scoreEl.textContent = Math.round(value);
-
-      if(progress<1){
-        requestAnimationFrame(step);
+      if (current >= target) {
+        counter.textContent = target;
       } else {
-        currentScore = to;
+        counter.textContent = current;
+        requestAnimationFrame(updateCounter);
       }
+    };
+
+    updateCounter();
+
+    // Animate arcs (reset then animate forward)
+    const arc = arcs[index];
+    if (arc) {
+      const offset = arc.style.getPropertyValue("--offset");
+      arc.style.strokeDashoffset = 351; // reset
+      setTimeout(() => {
+        arc.style.transition = "stroke-dashoffset 2s ease";
+        arc.style.strokeDashoffset = `calc(${offset})`;
+      }, 200);
     }
-    requestAnimationFrame(step);
-  }
-
-  function updateUI(metrics){
-    const {score,fcp,lcp,cls,tbt}=metrics;
-    if(fcp) document.getElementById('m-fcp').textContent=fcp.toFixed(2)+'s';
-    if(lcp) document.getElementById('m-lcp').textContent=lcp.toFixed(2)+'s';
-    document.getElementById('m-cls').textContent=cls.toFixed(3);
-    if(tbt) document.getElementById('m-tbt').textContent=tbt+' ms';
-
-    if(score !== undefined){
-      setLabel(score);
-      animateGauge(currentScore,score);
-    }
-  }
-
-  async function fetchPerformance(){
-    try{
-      const res = await fetch("/api/performance");
-      const data = await res.json();
-      scoreEl.classList.remove("shimmer");
-      labelEl.classList.remove("shimmer");
-      document.querySelector(".gauge").classList.remove("pulsing");
-      ["m-fcp","m-lcp","m-cls","m-tbt"].forEach(
-        id=>document.getElementById(id).classList.remove("shimmer")
-      );
-      updateUI(data);
-    }catch(e){
-      console.error("⚠️ Performance fetch failed",e);
-      scoreEl.textContent="N/A";
-      labelEl.textContent="Error";
-    }
-  }
-
-  fetchPerformance();
-})();
+  });
+});
 </script>
 
 <!-- Service Worker -->
