@@ -1145,12 +1145,12 @@ nav a.active::after {
   }
 }
 
-/* === Performance Section (Centered Header Above Grid) === */
+/* === Performance Section === */
 #performance {
   margin-top: 64px;
   display: flex;
   flex-direction: column;
-  gap: 40px; /* more space between header & grid */
+  gap: 40px;
   align-items: center;
   justify-content: center;
   padding: 60px 30px;
@@ -1166,12 +1166,6 @@ nav a.active::after {
   text-align: center;
 }
 
-/* Remove gradient border line from header box */
-#performance::before {
-  display: none; 
-}
-
-/* Section Header */
 #performance .section-header {
   max-width: 800px;
   margin: 0 auto;
@@ -1182,7 +1176,7 @@ nav a.active::after {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 12px;
-  background: linear-gradient(90deg, var(--gradient-colors));
+  background: linear-gradient(90deg, #06b6d4, #9333ea, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -1202,7 +1196,7 @@ nav a.active::after {
   grid-template-columns: repeat(2, 1fr);
   gap: var(--gap, 2rem);
   align-items: stretch;
-  margin-top: 10px; /* tighter spacing under header */
+  margin-top: 10px;
 }
 
 @media (max-width: 900px) {
@@ -1226,7 +1220,7 @@ nav a.active::after {
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.25);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1234,9 +1228,10 @@ nav a.active::after {
 
 #performance .perf-card:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(147, 51, 234, 0.4);
 }
-    
+
 /* Particle Canvas */
 #performance #perfParticles {
   position: absolute;
@@ -1278,11 +1273,15 @@ nav a.active::after {
 }
 #performance .circle-progress { 
   transition: stroke-dasharray 1s ease; 
+  filter: drop-shadow(0 0 8px rgba(147, 51, 234, 0.5));
 }
 #performance .gauge-score {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 48px; color: var(--text);
+  font-weight: 800; font-size: 48px;
+  background: linear-gradient(90deg, #06b6d4, #9333ea, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 #performance .gauge-label { 
   text-align: center; 
@@ -1304,11 +1303,12 @@ nav a.active::after {
   border-radius: 14px;
   padding: 18px 20px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
 }
 #performance .metric:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.18);
+  box-shadow: 0 8px 22px rgba(147, 51, 234, 0.25);
+  border: 1px solid rgba(147, 51, 234, 0.3);
 }
 #performance .metric span {
   display:block;
@@ -1321,20 +1321,26 @@ nav a.active::after {
   margin-top:6px;
   font-size:20px;
   font-weight:800;
-  color: var(--text);
+  background: linear-gradient(90deg, #06b6d4, #9333ea, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Loading effects */
-#performance .metric .shimmer,
-#performance .gauge-score.shimmer,
-#performance .gauge-label.shimmer {
-  background: linear-gradient(90deg,#f3f3f3 25%,#ecebeb 50%,#f3f3f3 75%);
+/* Shimmer Effect */
+#performance .shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.2) 25%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.2) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
-  border-radius: 8px;
-  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Gauge pulsing animation */
 #performance .gauge.pulsing {
   animation: pulse 1.5s infinite;
 }
@@ -1943,9 +1949,9 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 <section id="performance" aria-labelledby="performance-heading">
   <div class="performance-wrapper">
 
-    <!-- Section Header (inside the white box, centered) -->
+    <!-- Section Header -->
     <header class="section-header" data-aos="fade-up">
-      <h2 id="performance-heading" class="section-title gradient-text">
+      <h2 id="performance-heading" class="section-title">
         Website Performance
       </h2>
       <p class="section-subtitle">
@@ -1976,8 +1982,9 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
                    a 15.9155 15.9155 0 0 1 0 -31.831"/>
               <defs>
                 <linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#6366f1"/>
-                  <stop offset="100%" stop-color="#06b6d4"/>
+                  <stop offset="0%" stop-color="#06b6d4"/>  <!-- cyan -->
+                  <stop offset="50%" stop-color="#9333ea"/> <!-- purple -->
+                  <stop offset="100%" stop-color="#ec4899"/> <!-- pink -->
                 </linearGradient>
               </defs>
             </svg>
