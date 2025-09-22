@@ -2587,6 +2587,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const circumference = 2 * Math.PI * radius;
       const offset = circumference - (valNorm / 100) * circumference;
 
+      // Animate gauge
       circle.style.strokeDasharray = circumference;
       circle.style.strokeDashoffset = circumference;
       setTimeout(() => {
@@ -2594,7 +2595,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         circle.style.strokeDashoffset = offset;
       }, 200);
 
-      // ✅ show normalized score as percentage
+      // ✅ Show percentage instead of raw
       scoreEl.classList.remove("shimmer");
       scoreEl.textContent = `${valNorm}%`;
 
