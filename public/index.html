@@ -1150,18 +1150,22 @@ nav a.active::after {
   padding: 5rem 1rem;
   position: relative;
   z-index: 1;
-  scroll-margin-top: 8rem; /* ensures nav doesn't overlap */
+
+  /* Match navbar height for smooth anchor scroll */
+  scroll-margin-top: 6rem; 
   display: flex;
   justify-content: center;
 }
 
-/* Big Box Wrapper (now holds header + cards) */
+/* Big Box Wrapper (holds header + cards) */
 #performance .performance-wrapper {
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
-  padding: 4rem 2rem 3rem; /* extra top padding */
-  background: #fff; /* solid card background */
+
+  /* Extra padding at the top so header clears navbar visually */
+  padding: 5rem 2rem 3rem; 
+  background: #fff; 
   border-radius: 20px;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
 
@@ -1171,7 +1175,7 @@ nav a.active::after {
   text-align: center;
 }
 
-/* Section Header INSIDE the box */
+/* Section Header (inside the box) */
 #performance .section-header {
   margin-bottom: 2.5rem;
   text-align: center;
