@@ -16,18 +16,25 @@ export default async function handler(req, res) {
     const cls = audits["cumulative-layout-shift"].numericValue;
     const tbt = audits["total-blocking-time"].numericValue; // ms
 
+    // --- Normalization helper ---
+    function normalize(value, good, poor) {
+      if (value <= good) return 100;
+      if (value >= poor) return 0;
+      return Math.round(((poor - value) / (poor - good)) * 100);
+    }
+
     res.status(200).json({
       score: Math.round(lighthouse * 100),
 
-      // raw values
+      // raw values (for optional debugging / display)
       raw: { fcp, lcp, cls, tbt },
 
-      // normalized scores (0 = poor, 100 = excellent)
+      // normalized scores (%) using thresholds
       norm: {
-        fcp: Math.min(100, Math.max(0, Math.round((1 - (fcp / 3)) * 100))),
-        lcp: Math.min(100, Math.max(0, Math.round((1 - (lcp / 4)) * 100))),
-        cls: Math.min(100, Math.max(0, Math.round((1 - (cls / 0.25)) * 100))),
-        tbt: Math.min(100, Math.max(0, Math.round((1 - (tbt / 600)) * 100)))
+        fcp: normalize(fcp, 1.8, 3.0),   // good ≤ 1.8s, poor ≥ 3.0s
+        lcp: normalize(lcp, 2.5, 4.0),   // good ≤ 2.5s, poor ≥ 4.0s
+        cls: normalize(cls, 0.1, 0.25),  // good ≤ 0.1,  poor ≥ 0.25
+        tbt: normalize(tbt, 200, 600)    // good ≤ 200ms, poor ≥ 600ms
       },
 
       // industry benchmark averages (%)
