@@ -1148,23 +1148,28 @@ nav a.active::after {
 /* === Performance Section (Premium Style) === */
 #performance {
   margin: 64px auto;
-  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
   padding: 60px 30px;
-  border-radius: 24px;
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.06);
+  max-width: 1100px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(14px);
   box-shadow: 0 10px 40px rgba(15, 23, 42, 0.25);
-  border: 2px solid transparent;
-  background-clip: padding-box, border-box;
-  background-image: 
-    linear-gradient(rgba(255,255,255,0.06), rgba(255,255,255,0.06)),
-    linear-gradient(90deg, #06b6d4, #9333ea, #ec4899);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Section Header */
+#performance .section-header {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
 #performance .section-title {
   font-size: 2rem;
   font-weight: 800;
@@ -1176,34 +1181,56 @@ nav a.active::after {
 #performance .section-subtitle {
   color: #d1d5db;
   font-size: 1.1rem;
+  margin: 0 auto;
+  max-width: 600px;
   line-height: 1.6;
 }
 
 /* Performance Grid */
 #performance .perf-container {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  margin-top: 30px;
+  align-items: stretch;
 }
 @media (max-width: 900px) {
   #performance .perf-container {
     grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  #performance .section-title {
+    font-size: 1.9rem;
   }
 }
 
-/* Cards */
+/* Card Style */
 #performance .perf-card {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 18px;
-  padding: 28px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(12px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 #performance .perf-card:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(147, 51, 234, 0.4);
+}
+
+/* Card Titles */
+#performance .card-title {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #fff;
 }
 
 /* Gauge */
@@ -1213,10 +1240,14 @@ nav a.active::after {
   height: 220px;
   margin: 0 auto;
 }
+#performance .circular-chart {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
 #performance .circle-progress {
-  stroke-dasharray: 439.6;
-  stroke-dashoffset: 439.6;
   transition: stroke-dashoffset 1.2s ease-in-out;
+  filter: drop-shadow(0 0 10px rgba(147, 51, 234, 0.5));
 }
 #performance .gauge-score {
   position: absolute;
@@ -1224,36 +1255,46 @@ nav a.active::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 48px;
   font-weight: 800;
+  font-size: 48px;
   background: linear-gradient(90deg, #06b6d4, #9333ea, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 #performance .gauge-label {
+  text-align: center;
   margin-top: 14px;
   font-weight: 700;
-  color: #facc15;
+  color: #facc15; /* Default: yellow warning */
 }
 
-/* Metrics */
+/* Metrics Grid */
+#performance .metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
 #performance .metric {
   background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   border-radius: 14px;
-  padding: 16px;
-  text-align: center;
-  transition: transform 0.3s ease;
+  padding: 18px 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
 }
 #performance .metric:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(147, 51, 234, 0.3);
+  border: 1px solid rgba(147, 51, 234, 0.3);
 }
 #performance .metric span {
+  display: block;
   color: #d1d5db;
-  font-size: 13px;
   font-weight: 600;
+  font-size: 13px;
 }
 #performance .metric strong {
+  display: block;
   margin-top: 6px;
   font-size: 20px;
   font-weight: 800;
@@ -1262,7 +1303,7 @@ nav a.active::after {
   -webkit-text-fill-color: transparent;
 }
 
-/* Shimmer Loading */
+/* Shimmer Effect (loading state) */
 #performance .shimmer {
   background: linear-gradient(90deg, rgba(255,255,255,0.2) 25%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.2) 75%);
   background-size: 200% 100%;
@@ -1273,6 +1314,15 @@ nav a.active::after {
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
+}
+
+/* Gauge pulse animation */
+#performance .gauge.pulsing {
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
     
 /* === Approach Section === */
@@ -1877,7 +1927,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 
     <!-- Section Header -->
     <header class="section-header">
-      <h2 id="performance-heading" class="section-title gradient-text">
+      <h2 id="performance-heading" class="section-title">
         Website Performance
       </h2>
       <p class="section-subtitle">
@@ -1893,20 +1943,20 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
         <div class="perf-content">
           <h3 class="card-title">Overall Performance</h3>
           <div class="gauge pulsing">
-            <svg viewBox="0 0 160 160" class="circular-chart">
+            <svg viewBox="0 0 200 200" class="circular-chart">
               <!-- Background ring -->
-              <circle cx="80" cy="80" r="70"
+              <circle cx="100" cy="100" r="90"
                 stroke="rgba(255,255,255,0.15)"
-                stroke-width="12" fill="transparent"/>
+                stroke-width="16" fill="transparent"/>
               <!-- Progress ring -->
               <circle id="perfProgress"
-                cx="80" cy="80" r="70"
+                cx="100" cy="100" r="90"
                 stroke="url(#perfGrad)"
-                stroke-width="12"
+                stroke-width="16"
                 fill="transparent"
                 stroke-linecap="round"
-                stroke-dasharray="439.6"
-                stroke-dashoffset="439.6"/>
+                stroke-dasharray="565"
+                stroke-dashoffset="565"/>
               <defs>
                 <linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stop-color="#06b6d4"/>
@@ -2362,7 +2412,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   const progressEl = document.getElementById('perfProgress');
   const scoreEl = document.getElementById('perfScore');
   const labelEl = document.getElementById('perfLabel');
-  const radius = 70; // matches <circle r="70" />
+  const radius = 90;
   const circumference = 2 * Math.PI * radius;
   progressEl.setAttribute("stroke-dasharray", circumference);
   progressEl.setAttribute("stroke-dashoffset", circumference);
@@ -2375,7 +2425,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
       labelEl.style.color="#10b981";
     } else if(s>=50){
       labelEl.textContent="Needs Improvement ⚠️"; 
-      labelEl.style.color="#f59e0b";
+      labelEl.style.color="#facc15";
     } else {
       labelEl.textContent="Poor ❌"; 
       labelEl.style.color="#ef4444";
