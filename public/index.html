@@ -2367,60 +2367,46 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
-  // Set shimmer placeholders
-  document.querySelectorAll(".score").forEach(el => {
-    el.textContent = "...";
-  });
+  // show shimmer first
+  document.querySelectorAll(".score").forEach(el => (el.textContent = "..."));
 
   try {
-    // Fetch live data
-    const res = await fetch("/api/performance.js");
+    const res = await fetch("/api/performance");
     const data = await res.json();
 
-    // Normalize values for gauge arcs
-    const values = {
-      fcp: Math.min(100, Math.round((3 / data.fcp) * 100)), // ideal <= 3s
-      lcp: Math.min(100, Math.round((4 / data.lcp) * 100)), // ideal <= 4s
-      cls: Math.min(100, Math.round((0.25 / (data.cls || 0.001)) * 100)), // ideal <= 0.25
-      tbt: Math.min(100, Math.round((600 / data.tbt) * 100)) // ideal <= 600ms
-    };
+    const raw = data.raw;   // real values
+    const norm = data.norm; // % for gauges
 
-    // Display values
     const displayValues = {
-      fcp: data.fcp.toFixed(2) + "s",
-      lcp: data.lcp.toFixed(2) + "s",
-      cls: data.cls.toFixed(3),
-      tbt: data.tbt + "ms"
+      fcp: raw.fcp.toFixed(2) + "s",
+      lcp: raw.lcp.toFixed(2) + "s",
+      cls: raw.cls.toFixed(3),
+      tbt: raw.tbt + "ms"
     };
 
-    // Loop through metrics
-    for (const metric of Object.keys(values)) {
+    for (const metric of Object.keys(norm)) {
       const circle = document.querySelector(`.fg[data-metric="${metric}"]`);
       const scoreEl = circle?.parentElement.querySelector(".score");
       if (!circle || !scoreEl) continue;
 
-      // Gauge math
       const radius = circle.getAttribute("r");
       const circumference = 2 * Math.PI * radius;
-      const offset = circumference - (values[metric] / 100) * circumference;
+      const offset = circumference - (norm[metric] / 100) * circumference;
 
       circle.style.strokeDasharray = circumference;
       circle.style.strokeDashoffset = circumference;
 
-      // Animate gauge
+      // Animate arc
       setTimeout(() => {
         circle.style.transition = "stroke-dashoffset 1.8s ease";
         circle.style.strokeDashoffset = offset;
       }, 200);
 
-      // Show the *real raw metric value* (not percent)
+      // Insert real metric text
       scoreEl.textContent = displayValues[metric];
     }
   } catch (err) {
     console.error("❌ Failed to load performance data:", err);
-    document.querySelectorAll(".score").forEach(el => {
-      el.textContent = "ERR";
-    });
   }
 });
 </script>
