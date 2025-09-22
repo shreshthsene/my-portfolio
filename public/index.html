@@ -1145,68 +1145,75 @@ nav a.active::after {
   }
 }
 
-/* === Performance Section (Optimized) === */
+/* === Performance Section (Resume-Style) === */
 #performance {
-  padding: 5rem 1rem;
-  position: relative;
-  z-index: 1;
-  scroll-margin-top: 6rem; 
+  margin-top: 64px;
   display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
   justify-content: center;
-}
-
-#performance .performance-wrapper {
-  max-width: 1100px;
-  width: 100%;
-  margin: 0 auto;
-  
-  /* Balanced spacing */
-  padding: 3.5rem 2rem; 
-  background: #fff; 
+  padding: 60px 30px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
   border-radius: 20px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-
-  /* Unified layout */
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;  /* spacing between header & cards */
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.12);
+  position: relative;
+  overflow: hidden;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
-  align-items: start;
 }
 
+/* Animated gradient border */
+#performance::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(270deg, var(--gradient-colors));
+  background-size: 300% 300%;
+  animation: gradientBG 8s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Section Header */
 #performance .section-header {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 auto 28px auto;
   text-align: center;
 }
 
 #performance .section-title {
   font-size: 2rem;
-  font-weight: 800;
-  margin: 0 0 0.75rem 0;
-  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+  font-weight: 700;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, var(--gradient-colors));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  line-height: 1.3;
 }
 
 #performance .section-subtitle {
-  font-size: 1rem;
-  font-weight: 400;
   color: var(--muted);
-  max-width: 520px;
+  font-size: 1.1rem;
   margin: 0 auto;
+  max-width: 600px;
   line-height: 1.6;
 }
 
+/* Metrics Grid */
 #performance .perf-container {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--gap, 2rem);
   align-items: stretch;
+  margin-top: 32px;
 }
 
 @media (max-width: 900px) {
@@ -1220,15 +1227,16 @@ nav a.active::after {
   }
 }
 
+/* Card Style */
 #performance .perf-card {
   position: relative;
-  background: var(--glass, rgba(255, 255, 255, 0.75));
-  backdrop-filter: blur(14px);
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
   padding: 28px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(229, 231, 235, 0.5);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   display: flex;
   flex-direction: column;
@@ -1237,9 +1245,9 @@ nav a.active::after {
 
 #performance .perf-card:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 }
-
+    
 /* Particle Canvas */
 #performance #perfParticles {
   position: absolute;
