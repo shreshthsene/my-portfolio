@@ -1144,72 +1144,98 @@ nav a.active::after {
     top: 0;
   }
 }
-
+    
 
 .performance-section {
-  background: rgba(20,20,30,0.6);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: #f9f9f9; /* Light background */
   border-radius: 20px;
   padding: 2rem;
   margin: 4rem auto;
   max-width: 900px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
-  backdrop-filter: blur(12px) saturate(180%);
   text-align: center;
-  color: #fff;
+  color: #111;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
 }
+
+/* Gradient border effect */
+.performance-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 3px; /* thickness of border */
+  background: linear-gradient(90deg, #00d4ff, #7a5cff, #ff4ecd);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude; 
+  pointer-events: none;
+}
+
 .performance-section h2 {
   font-size: 2rem;
   font-weight: 700;
-  background: linear-gradient(90deg,#00d4ff,#7a5cff,#ff4ecd);
+  background: linear-gradient(90deg, #00d4ff, #7a5cff, #ff4ecd);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.5rem;
 }
+
 .performance-section p {
   font-size: 1rem;
-  color: rgba(255,255,255,0.7);
+  color: #333; /* dark subtitle */
   margin-bottom: 2rem;
 }
+
 .metrics {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 1.5rem;
 }
+
 .metric-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: #fff;
+  border: 1px solid #eee;
   border-radius: 16px;
   padding: 1.5rem;
   text-align: center;
   transition: transform .3s ease, box-shadow .3s ease;
 }
+
 .metric-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
+
 .metric-card .label {
   display: block;
   font-size: 0.9rem;
-  color: rgba(255,255,255,0.65);
+  color: #444;
   margin-top: 0.75rem;
 }
+
 .gauge {
   width: 100px;
   height: 100px;
   margin: 0 auto;
   position: relative;
 }
+
 .gauge svg {
   transform: rotate(-90deg);
   width: 100px;
   height: 100px;
 }
+
 .bg {
-  stroke: rgba(255,255,255,0.15);
+  stroke: #eee;
   stroke-width: 12;
   fill: none;
 }
+
 .fg {
   stroke-width: 12;
   fill: none;
@@ -1218,16 +1244,17 @@ nav a.active::after {
   stroke-dashoffset: 351;
   transition: stroke-dashoffset 2s ease;
 }
+
 .score {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   font-size: 1.3rem;
   font-weight: 700;
-  color: #fff;
-  text-shadow: 0 0 6px rgba(0,0,0,0.4);
+  color: #111;
 }
+
     
 /* === Approach Section === */
 #approach {
