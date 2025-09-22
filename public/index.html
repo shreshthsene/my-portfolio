@@ -1150,36 +1150,15 @@ nav a.active::after {
   padding: 5rem 1rem;
   position: relative;
   z-index: 1;
-  scroll-margin-top: 8rem;      /* ensures nav doesn't overlap on scroll */
-  display: flex;
-  justify-content: center;      /* centers the big wrapper */
+  scroll-margin-top: 8rem; /* ensures nav doesn't overlap */
 }
 
-/* Big Box Wrapper */
-#performance .performance-wrapper {
-  max-width: 1100px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 3rem 2rem;
-  background: #fff;             /* solid card-like box */
-  border-radius: 20px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-
-  /* Use grid so header + cards align naturally */
-  display: grid;
-  grid-template-rows: auto 1fr;
-  gap: 2.5rem;
-  text-align: center;
-}
-
-/* Section Header inside the box */
+/* Section Header OUTSIDE the box */
 #performance .section-header {
-  width: 100%;
-  margin: 0 auto;
+  margin-bottom: 2.5rem;
   text-align: center;
 }
 
-/* Heading */
 #performance .section-title {
   font-size: 2rem;
   font-weight: 800;
@@ -1189,11 +1168,9 @@ nav a.active::after {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  text-align: center;
   line-height: 1.3;
 }
 
-/* Subtitle */
 #performance .section-subtitle {
   font-size: 1rem;
   font-weight: 400;
@@ -1203,7 +1180,21 @@ nav a.active::after {
   margin-left: auto;
   margin-right: auto;
   line-height: 1.6;
-  text-align: center;
+}
+
+/* Big Box Wrapper (only wraps cards now) */
+#performance .performance-wrapper {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  background: #fff; /* solid card background */
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+
+  /* Only layout for cards now */
+  display: flex;
+  flex-direction: column;
 }
 
 /* Cards Grid */
@@ -1953,42 +1944,39 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 <!-- ===================== PERFORMANCE SECTION ===================== -->
 <section id="performance" aria-labelledby="performance-heading">
 
-  <!-- Big Box Wrapper -->
-  <div class="performance-wrapper">
+  <!-- Section Header OUTSIDE the box -->
+  <header class="section-header" data-aos="fade-up">
+    <h2 id="performance-heading" class="section-title gradient-text">
+      Website Performance
+    </h2>
+    <p class="section-subtitle">
+      Real-time Core Web Vitals for my portfolio
+    </p>
+  </header>
 
-    <!-- Section Header -->
-    <header class="section-header" data-aos="fade-up">
-      <h2 id="performance-heading" class="section-title gradient-text">
-        Website Performance
-      </h2>
-      <p class="section-subtitle">
-        Real-time Core Web Vitals for my portfolio
-      </p>
-    </header>
+  <!-- Big Box Wrapper (only for the cards now) -->
+  <div class="performance-wrapper">
 
     <!-- Performance Cards -->
     <div class="perf-container" role="list">
 
-      <!-- Overall Performance Card -->
+      <!-- Gauge Card -->
       <article class="perf-card" data-aos="zoom-in" data-aos-delay="100" role="listitem">
         <canvas id="perfParticles"></canvas>
         <div class="perf-content">
           <h3 class="card-title">Overall Performance</h3>
           <div class="gauge pulsing" aria-label="Performance score">
             <svg viewBox="0 0 36 36" class="circular-chart" role="img" aria-hidden="true">
-              <!-- Background Circle -->
               <path class="circle-bg" stroke-width="3" fill="none" stroke="#e5e7eb"
                 d="M18 2.0845 
                    a 15.9155 15.9155 0 0 1 0 31.831 
                    a 15.9155 15.9155 0 0 1 0 -31.831"/>
-              <!-- Progress Circle -->
               <path id="perfProgress" class="circle-progress"
                 stroke-width="3" stroke-linecap="round" fill="none"
                 stroke="url(#perfGrad)" stroke-dasharray="0 100"
                 d="M18 2.0845 
                    a 15.9155 15.9155 0 0 1 0 31.831 
                    a 15.9155 15.9155 0 0 1 0 -31.831"/>
-              <!-- Gradient Definition -->
               <defs>
                 <linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stop-color="#6366f1"/>
@@ -2002,27 +1990,15 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
         </div>
       </article>
 
-      <!-- Core Web Vitals Card -->
+      <!-- Vitals Card -->
       <article class="perf-card" data-aos="fade-up" data-aos-delay="200" role="listitem">
         <div class="perf-content">
           <h3 class="card-title">Core Web Vitals</h3>
           <div class="metrics-grid">
-            <div class="metric">
-              <span>FCP</span>
-              <strong id="m-fcp" class="shimmer">--</strong>
-            </div>
-            <div class="metric">
-              <span>LCP</span>
-              <strong id="m-lcp" class="shimmer">--</strong>
-            </div>
-            <div class="metric">
-              <span>CLS</span>
-              <strong id="m-cls" class="shimmer">--</strong>
-            </div>
-            <div class="metric">
-              <span>TBT</span>
-              <strong id="m-tbt" class="shimmer">--</strong>
-            </div>
+            <div class="metric"><span>FCP</span><strong id="m-fcp" class="shimmer">--</strong></div>
+            <div class="metric"><span>LCP</span><strong id="m-lcp" class="shimmer">--</strong></div>
+            <div class="metric"><span>CLS</span><strong id="m-cls" class="shimmer">--</strong></div>
+            <div class="metric"><span>TBT</span><strong id="m-tbt" class="shimmer">--</strong></div>
           </div>
         </div>
       </article>
