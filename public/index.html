@@ -473,18 +473,21 @@ nav a.active::after {
   text-align: center;
 }
 
-/* Title */
+/* Title – gradient style like Performance Metrics */
 .tools-section h3 {
-  font-size: 28px;
-  font-weight: 800;
-  margin-bottom: 12px;
-  color: #0f172a;
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00d4ff, #7a5cff, #ff4ecd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
 }
 
+/* Subtitle – match performance subtitle */
 .tools-sub {
-  color: var(--muted, #6b7280);
-  margin-bottom: 32px;
-  font-size: 16px;
+  font-size: 1rem;
+  color: #333; /* darker subtitle text */
+  margin-bottom: 2rem;
 }
 
 /* === Ticker Effect === */
@@ -497,12 +500,11 @@ nav a.active::after {
 .ticker-track {
   display: flex;
   gap: 40px;
-  width: max-content; /* let track expand to fit all tools */
+  width: max-content;
   animation: ticker 25s linear infinite;
   will-change: transform;
 }
 
-/* Keyframes: move by exactly half since we duplicate the tools */
 @keyframes ticker {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -542,7 +544,7 @@ nav a.active::after {
 /* === Responsive Tweaks === */
 @media (max-width: 768px) {
   .ticker-track {
-    animation-duration: 15s; /* a bit faster on mobile */
+    animation-duration: 15s; /* faster on mobile */
   }
   .tool {
     min-width: 120px;
@@ -1655,9 +1657,9 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 </section>
     
     
-  <!-- TOOLS & SKILLS SECTION -->
+ <!-- TOOLS & SKILLS SECTION -->
 <section id="tools" class="tools-section" aria-labelledby="tools-heading">
-  <h3 id="tools-heading" data-aos="fade-up">Tools & Technologies</h3>
+  <h2 id="tools-heading" data-aos="fade-up">Tools & Technologies</h2>
   <p class="tools-sub" data-aos="fade-up" data-aos-delay="100">
     A snapshot of the platforms and tools I use to design, optimize, and scale campaigns.
   </p>
@@ -1665,7 +1667,6 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   <!-- Ticker wrapper -->
   <div class="tools-ticker" data-aos="fade-up" data-aos-delay="200">
     <div class="ticker-track">
-
       <!-- === First Set of Tools === -->
       <!-- Google Analytics -->
       <div class="tool">
