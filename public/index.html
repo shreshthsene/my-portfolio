@@ -2388,23 +2388,25 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
-  // Add shimmer placeholders
+  // Add shimmer placeholders first
   document.querySelectorAll(".score").forEach(el => {
     el.textContent = "...";
     el.classList.add("shimmer");
   });
 
   try {
+    // Fetch from API
     const res = await fetch("/api/performance");
     const data = await res.json();
 
-    // 🔍 Debug: log API response
+    // 🔍 Debug: log API response in console
     console.log("✅ API Response:", data);
 
-    // Use the values from API
+    // Use values from API
     const raw = data.raw || {};
     const norm = data.norm || {};
 
+    // Values to display inside the circles
     const displayValues = {
       fcp: raw.fcp !== undefined ? raw.fcp.toFixed(2) + "s" : "N/A",
       lcp: raw.lcp !== undefined ? raw.lcp.toFixed(2) + "s" : "N/A",
@@ -2412,23 +2414,27 @@ document.addEventListener("DOMContentLoaded", async () => {
       tbt: raw.tbt !== undefined ? raw.tbt.toFixed(0) + "ms" : "N/A"
     };
 
-    // Thresholds like Lighthouse
+    // Thresholds for coloring like Lighthouse
     const thresholds = {
-      fcp: { good: 1.8, poor: 3.0 },
-      lcp: { good: 2.5, poor: 4.0 },
-      cls: { good: 0.1, poor: 0.25 },
-      tbt: { good: 200, poor: 600 }
+      fcp: { good: 1.8, poor: 3.0 }, // in seconds
+      lcp: { good: 2.5, poor: 4.0 }, // in seconds
+      cls: { good: 0.1, poor: 0.25 }, // unitless
+      tbt: { good: 200, poor: 600 }   // in ms
     };
 
-    // Animate gauges + update text
-    for (const metric of Object.keys(norm)) {
+    // Loop through the 4 metrics
+    for (const metric of ["fcp","lcp","cls","tbt"]) {
       const circle = document.querySelector(`.fg[data-metric="${metric}"]`);
       const scoreEl = circle?.parentElement.querySelector(".score");
       if (!circle || !scoreEl) continue;
 
+      // Normalized value for gauge
+      const valNorm = norm[metric] ?? 0;
+      const valRaw = raw[metric];
+
       const radius = circle.getAttribute("r");
       const circumference = 2 * Math.PI * radius;
-      const offset = circumference - (norm[metric] / 100) * circumference;
+      const offset = circumference - (valNorm / 100) * circumference;
 
       circle.style.strokeDasharray = circumference;
       circle.style.strokeDashoffset = circumference;
@@ -2443,13 +2449,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       scoreEl.classList.remove("shimmer");
       scoreEl.textContent = displayValues[metric];
 
-      // ✅ Apply Lighthouse-style coloring
-      const rawVal = raw[metric];
-      if (rawVal !== undefined) {
+      // Apply coloring based on thresholds
+      if (valRaw !== undefined) {
         let status = "good";
-        if (rawVal > thresholds[metric].poor) {
+        if (valRaw > thresholds[metric].poor) {
           status = "poor";
-        } else if (rawVal > thresholds[metric].good) {
+        } else if (valRaw > thresholds[metric].good) {
           status = "needs";
         }
         scoreEl.classList.remove("good", "needs", "poor");
