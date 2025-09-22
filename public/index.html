@@ -1168,63 +1168,66 @@ nav a.active::after {
   text-align: center;
 }
 
-/* Section Header – clean + centered */
+/* Section Header – align with cards grid */
 #performance .section-header {
   margin-bottom: 3rem;
-  width: 100%;              /* span across cards */
-  max-width: 1100px;        /* align with card grid */
+  width: 100%;
+  max-width: 1100px;     /* ✅ same as cards grid */
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
   background: none !important;
   border: none !important;
   box-shadow: none !important;
   outline: none !important;
   padding: 0 !important;
-  text-align: center;
   display: block;
-  position: relative;
-  z-index: 2;
 }
-
-/* Gradient Heading – single line */
+    
+/* Heading */
 #performance .section-title {
   font-size: 2.6rem;
   font-weight: 800;
-  line-height: 1.2;
   margin: 0 auto;
-  white-space: nowrap;      /* force heading into one line */
   background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  display: inline-block;
+  display: block;
+  text-align: center;   /* ✅ keep centered */
+  white-space: nowrap;
 }
-
-/* Subtitle – stacked below heading */
+    
+/* Subtitle */
 #performance .section-subtitle {
   font-size: 1.15rem;
   font-weight: 400;
   color: var(--muted);
   margin-top: 0.75rem;
-  max-width: 1100px;        /* align with cards */
-  line-height: 1.6;
+  max-width: 640px;
   margin-left: auto;
   margin-right: auto;
-  white-space: normal;      /* allow wrapping */
+  line-height: 1.6;
+  text-align: center;   /* ✅ centered under heading */
 }
 
-/* Layout Grid for cards */
+/* Cards Grid – wider and equal height */
 #performance .perf-container {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1100px;    /* ✅ matches header */
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr); /* equal widths */
   gap: var(--gap);
-  align-items: stretch;     /* ensures equal height cards */
+  align-items: stretch; /* ✅ equal heights */
   margin-top: 2rem;
 }
 
+/* Perf Cards */
+#performance .perf-card {
+  height: 100%;         /* ✅ force equal height */
+}
+    
 @media (max-width: 900px) {
   #performance .perf-container {
     grid-template-columns: 1fr;
