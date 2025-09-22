@@ -2567,13 +2567,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const norm = data.norm || {};
     const industry = data.industry || { fcp: 70, lcp: 65, cls: 80, tbt: 75 }; // % fallback
 
-    const displayValues = {
-      fcp: raw.fcp !== undefined ? raw.fcp.toFixed(2) + "s" : "N/A",
-      lcp: raw.lcp !== undefined ? raw.lcp.toFixed(2) + "s" : "N/A",
-      cls: raw.cls !== undefined ? raw.cls.toFixed(3) : "N/A",
-      tbt: raw.tbt !== undefined ? raw.tbt.toFixed(0) + "ms" : "N/A"
-    };
-
     const thresholds = {
       fcp: { good: 1.8, poor: 3.0 },
       lcp: { good: 2.5, poor: 4.0 },
@@ -2582,33 +2575,34 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
 
     for (const metric of ["fcp","lcp","cls","tbt"]) {
-      const circle = document.querySelector(`.fg[data-metric=\"${metric}\"]`);
-      const scoreEl = circle?.parentElement.querySelector(\".score\");
-      const youBar = document.querySelector(`.you[data-you=\"${metric}\"]`);
-      const avgBar = document.querySelector(`.avg[data-avg=\"${metric}\"]`);
+      const circle = document.querySelector(`.fg[data-metric="${metric}"]`);
+      const scoreEl = circle?.parentElement.querySelector(".score");
+      const youBar = document.querySelector(`.you[data-you="${metric}"]`);
+      const avgBar = document.querySelector(`.avg[data-avg="${metric}"]`);
       if (!circle || !scoreEl) continue;
 
       const valNorm = norm[metric] ?? 0;
       const valRaw = raw[metric];
-      const radius = circle.getAttribute(\"r\");
+      const radius = circle.getAttribute("r");
       const circumference = 2 * Math.PI * radius;
       const offset = circumference - (valNorm / 100) * circumference;
 
       circle.style.strokeDasharray = circumference;
       circle.style.strokeDashoffset = circumference;
       setTimeout(() => {
-        circle.style.transition = \"stroke-dashoffset 1.8s ease\";
+        circle.style.transition = "stroke-dashoffset 1.8s ease";
         circle.style.strokeDashoffset = offset;
       }, 200);
 
-      scoreEl.classList.remove(\"shimmer\");
-      scoreEl.textContent = displayValues[metric];
+      // ✅ show normalized score as percentage
+      scoreEl.classList.remove("shimmer");
+      scoreEl.textContent = `${valNorm}%`;
 
-      // Status coloring
+      // Status coloring still based on raw thresholds
       if (valRaw !== undefined) {
-        let status = \"good\";
-        if (valRaw > thresholds[metric].poor) status = \"poor\";
-        else if (valRaw > thresholds[metric].good) status = \"needs\";
+        let status = "good";
+        if (valRaw > thresholds[metric].poor) status = "poor";
+        else if (valRaw > thresholds[metric].good) status = "needs";
         scoreEl.classList.add(status);
       }
 
@@ -2617,10 +2611,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (avgBar) avgBar.style.width = `${industry[metric]}%`;
     }
   } catch (err) {
-    console.error(\"❌ Failed to load performance data:\", err);
-    document.querySelectorAll(\".score\").forEach(el => {
-      el.textContent = \"ERR\";
-      el.classList.remove(\"shimmer\"); 
+    console.error("❌ Failed to load performance data:", err);
+    document.querySelectorAll(".score").forEach(el => {
+      el.textContent = "ERR";
+      el.classList.remove("shimmer"); 
     });
   }
 });
