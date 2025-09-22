@@ -2366,70 +2366,58 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const perfSection = document.querySelector("#performance");
-  let animated = false;
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    // Fetch live data from your API
+    const res = await fetch("/api/performance");
+    const data = await res.json();
 
-  async function fetchAndAnimate() {
-    if (animated) return;
-    animated = true;
+    // Map API values to metrics (normalized to percentages for gauge)
+    const values = {
+      fcp: Math.min(100, Math.round((3 / data.fcp) * 100)), // lower FCP is better
+      lcp: Math.min(100, Math.round((4 / data.lcp) * 100)), // lower LCP is better
+      cls: Math.min(100, Math.round((0.25 / (data.cls || 0.001)) * 100)), // smaller CLS is better
+      tbt: Math.min(100, Math.round((600 / data.tbt) * 100)) // lower TBT is better
+    };
 
-    try {
-      const res = await fetch("/api/performance");
-      const data = await res.json();
+    // Loop through metrics and animate gauges
+    for (const [metric, val] of Object.entries(values)) {
+      const circle = document.querySelector(`.fg[data-metric="${metric}"]`);
+      const scoreEl = circle?.parentElement.querySelector(".score");
+      if (!circle) continue;
 
-      // map API values to percentages (0–100)
-      const values = {
-        fcp: Math.min(100, Math.round((1 - data.fcp / 3) * 100)), // scale example
-        lcp: Math.min(100, Math.round((1 - data.lcp / 4) * 100)),
-        cls: Math.min(100, Math.round((1 - data.cls / 0.25) * 100)),
-        tbt: Math.min(100, Math.round((1 - data.tbt / 600) * 100))
-      };
+      const radius = circle.getAttribute("r");
+      const circumference = 2 * Math.PI * radius;
+      const offset = circumference - (val / 100) * circumference;
 
-      for (const [metric, val] of Object.entries(values)) {
-        const circle = document.querySelector(`.fg[data-metric="${metric}"]`);
-        const scoreEl = circle?.parentElement.querySelector(".score");
-        if (!circle) continue;
+      circle.style.strokeDasharray = circumference;
+      circle.style.strokeDashoffset = circumference;
 
-        const radius = circle.getAttribute("r");
-        const circumference = 2 * Math.PI * radius;
-        const offset = circumference - (val / 100) * circumference;
+      // Animate gauge
+      setTimeout(() => {
+        circle.style.transition = "stroke-dashoffset 1.8s ease";
+        circle.style.strokeDashoffset = offset;
+      }, 200);
 
-        circle.style.strokeDasharray = circumference;
-        circle.style.strokeDashoffset = circumference;
-
-        setTimeout(() => {
-          circle.style.transition = "stroke-dashoffset 2s ease";
-          circle.style.strokeDashoffset = offset;
-        }, 200);
-
-        if (scoreEl) {
-          let current = 0;
-          const animateCounter = () => {
-            current += Math.ceil(val / 40);
-            if (current >= val) {
-              scoreEl.textContent = val;
-            } else {
-              scoreEl.textContent = current;
-              requestAnimationFrame(animateCounter);
-            }
-          };
-          animateCounter();
-        }
+      // Animate number counting
+      if (scoreEl) {
+        let current = 0;
+        const step = Math.ceil(val / 40);
+        const animate = () => {
+          current += step;
+          if (current >= val) {
+            scoreEl.textContent = val;
+          } else {
+            scoreEl.textContent = current;
+            requestAnimationFrame(animate);
+          }
+        };
+        animate();
       }
-    } catch (err) {
-      console.error("❌ Failed to fetch performance data", err);
     }
+  } catch (err) {
+    console.error("❌ Failed to load performance data:", err);
   }
-
-  // Trigger when section comes into view
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) fetchAndAnimate();
-    });
-  }, { threshold: 0.3 });
-
-  if (perfSection) observer.observe(perfSection);
 });
 </script>
   
