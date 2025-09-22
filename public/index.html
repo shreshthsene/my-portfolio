@@ -1886,18 +1886,20 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 </svg>
 
 <!-- === Performance Section === -->
-<section id="performance" class="performance-section">
-  <h2>Performance Metrics</h2>
-  <p>Live insights highlighting speed, stability, and interactivity</p>
+<section id="performance" class="performance-section" data-aos="fade-up">
+  <h2 data-aos="fade-up" data-aos-delay="100">Performance Metrics</h2>
+  <p data-aos="fade-up" data-aos-delay="200">
+    Live insights highlighting speed, stability, and interactivity
+  </p>
 
   <div class="metrics">
-
     <!-- FCP -->
-    <div class="metric-card">
+    <div class="metric-card" data-aos="zoom-in" data-aos-delay="300">
       <div class="gauge">
         <svg viewBox="0 0 120 120">
           <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="fcp" stroke="url(#gradFCP)" cx="60" cy="60" r="56"></circle>
+          <circle class="fg" data-metric="fcp" stroke="url(#gradFCP)" cx="60" cy="60" r="56"
+                  stroke-dasharray="351" stroke-dashoffset="351"></circle>
         </svg>
         <span class="score">0</span>
       </div>
@@ -1905,11 +1907,12 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     </div>
 
     <!-- LCP -->
-    <div class="metric-card">
+    <div class="metric-card" data-aos="zoom-in" data-aos-delay="400">
       <div class="gauge">
         <svg viewBox="0 0 120 120">
           <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="lcp" stroke="url(#gradLCP)" cx="60" cy="60" r="56"></circle>
+          <circle class="fg" data-metric="lcp" stroke="url(#gradLCP)" cx="60" cy="60" r="56"
+                  stroke-dasharray="351" stroke-dashoffset="351"></circle>
         </svg>
         <span class="score">0</span>
       </div>
@@ -1917,11 +1920,12 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     </div>
 
     <!-- CLS -->
-    <div class="metric-card">
+    <div class="metric-card" data-aos="zoom-in" data-aos-delay="500">
       <div class="gauge">
         <svg viewBox="0 0 120 120">
           <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="cls" stroke="url(#gradCLS)" cx="60" cy="60" r="56"></circle>
+          <circle class="fg" data-metric="cls" stroke="url(#gradCLS)" cx="60" cy="60" r="56"
+                  stroke-dasharray="351" stroke-dashoffset="351"></circle>
         </svg>
         <span class="score">0</span>
       </div>
@@ -1929,11 +1933,12 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     </div>
 
     <!-- TBT -->
-    <div class="metric-card">
+    <div class="metric-card" data-aos="zoom-in" data-aos-delay="600">
       <div class="gauge">
         <svg viewBox="0 0 120 120">
           <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="tbt" stroke="url(#gradTBT)" cx="60" cy="60" r="56"></circle>
+          <circle class="fg" data-metric="tbt" stroke="url(#gradTBT)" cx="60" cy="60" r="56"
+                  stroke-dasharray="351" stroke-dashoffset="351"></circle>
         </svg>
         <span class="score">0</span>
       </div>
@@ -2362,26 +2367,69 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // Example static values (replace with live API fetch)
-  const values = { score: 82, fcp: 91, lcp: 88, cls: 95, tbt: 90 };
+  const perfSection = document.querySelector("#performance");
+  let animated = false;
 
-  for (const [metric, val] of Object.entries(values)) {
-    const circle = document.querySelector(`.fg[data-metric="${metric}"]`);
-    const scoreEl = circle?.parentElement.querySelector(".score");
-    if (!circle) continue;
+  async function fetchAndAnimate() {
+    if (animated) return;
+    animated = true;
 
-    const radius = circle.getAttribute("r");
-    const circumference = 2 * Math.PI * radius;
-    const offset = circumference - (val / 100) * circumference;
+    try {
+      const res = await fetch("/api/performance");
+      const data = await res.json();
 
-    circle.style.strokeDasharray = circumference;
-    circle.style.strokeDashoffset = circumference;
-    setTimeout(() => {
-      circle.style.strokeDashoffset = offset;
-    }, 200);
+      // map API values to percentages (0–100)
+      const values = {
+        fcp: Math.min(100, Math.round((1 - data.fcp / 3) * 100)), // scale example
+        lcp: Math.min(100, Math.round((1 - data.lcp / 4) * 100)),
+        cls: Math.min(100, Math.round((1 - data.cls / 0.25) * 100)),
+        tbt: Math.min(100, Math.round((1 - data.tbt / 600) * 100))
+      };
 
-    if (scoreEl) scoreEl.textContent = val;
+      for (const [metric, val] of Object.entries(values)) {
+        const circle = document.querySelector(`.fg[data-metric="${metric}"]`);
+        const scoreEl = circle?.parentElement.querySelector(".score");
+        if (!circle) continue;
+
+        const radius = circle.getAttribute("r");
+        const circumference = 2 * Math.PI * radius;
+        const offset = circumference - (val / 100) * circumference;
+
+        circle.style.strokeDasharray = circumference;
+        circle.style.strokeDashoffset = circumference;
+
+        setTimeout(() => {
+          circle.style.transition = "stroke-dashoffset 2s ease";
+          circle.style.strokeDashoffset = offset;
+        }, 200);
+
+        if (scoreEl) {
+          let current = 0;
+          const animateCounter = () => {
+            current += Math.ceil(val / 40);
+            if (current >= val) {
+              scoreEl.textContent = val;
+            } else {
+              scoreEl.textContent = current;
+              requestAnimationFrame(animateCounter);
+            }
+          };
+          animateCounter();
+        }
+      }
+    } catch (err) {
+      console.error("❌ Failed to fetch performance data", err);
+    }
   }
+
+  // Trigger when section comes into view
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) fetchAndAnimate();
+    });
+  }, { threshold: 0.3 });
+
+  if (perfSection) observer.observe(perfSection);
 });
 </script>
   
