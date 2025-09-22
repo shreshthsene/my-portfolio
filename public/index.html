@@ -1200,147 +1200,176 @@ footer {
   }
 }
     
-
 .performance-section {
-  background: #f9f9f9; /* Light background */
-  border-radius: 20px;
-  padding: 2rem;
+  background: linear-gradient(135deg, #0b0b0f, #0d0d1a, #0a0a0f);
+  border-radius: 24px;
+  padding: 4rem 2rem;
   margin: 4rem auto;
-  max-width: 900px;
+  max-width: 1200px;
   text-align: center;
-  color: #111;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  color: #f0f0f0;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
 }
 
-/* Gradient border effect */
 .performance-section::before {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 20px;
-  padding: 3px; /* thickness of border */
+  border-radius: 24px;
+  padding: 2px;
   background: linear-gradient(90deg, #00d4ff, #7a5cff, #ff4ecd);
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+                 linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-  mask-composite: exclude; 
+  mask-composite: exclude;
   pointer-events: none;
 }
 
 .performance-section h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #00d4ff, #7a5cff, #ff4ecd);
+  font-size: 2.8rem;
+  font-weight: 900;
+  background: linear-gradient(90deg, #ff4ecd, #a86bff, #00d4ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-.performance-section p {
-  font-size: 1rem;
-  color: #333; /* dark subtitle */
-  margin-bottom: 2rem;
+.performance-section p.subtitle {
+  font-size: 1.1rem;
+  color: #bbb;
+  margin-bottom: 3rem;
 }
 
-/* Grid layout for metrics */
+/* Grid */
 .metrics {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  gap: 2rem;
+}
+@media (max-width: 900px) {
+  .metrics { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 500px) {
+  .metrics { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 768px) {
-  .metrics {
-    grid-template-columns: repeat(2, 1fr); /* 2x2 on smaller screens */
-  }
-}
-
+/* Metric card */
 .metric-card {
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 16px;
-  padding: 1.2rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 160px; /* equal height for alignment */
   transition: transform .3s ease, box-shadow .3s ease;
 }
-
 .metric-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.metric-card .label {
-  display: block;
-  font-size: 0.9rem;
-  color: #444;
-  margin-top: 0.75rem;
+  box-shadow: 0 0 20px rgba(255,78,205,0.3);
 }
 
 .gauge {
-  width: 90px;
-  height: 90px;
-  margin: 0 auto;
+  width: 110px;
+  height: 110px;
   position: relative;
 }
-
 .gauge svg {
   transform: rotate(-90deg);
-  width: 90px;
-  height: 90px;
+  width: 110px;
+  height: 110px;
 }
-
 .bg {
-  stroke: #eee;
-  stroke-width: 10;
+  stroke: rgba(255,255,255,0.08);
+  stroke-width: 12;
   fill: none;
 }
-
 .fg {
-  stroke-width: 10;
+  stroke-width: 12;
   fill: none;
   stroke-linecap: round;
-  stroke-dasharray: 283; /* circle perimeter for r=45 */
-  stroke-dashoffset: 283;
+  stroke-dasharray: 351;
+  stroke-dashoffset: 351;
   transition: stroke-dashoffset 2s ease;
 }
-
 .score {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #111;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
 }
 
-    /* Shimmer effect */
+.label {
+  margin-top: 1rem;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.full-form {
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-top: 0.25rem;
+  min-height: 20px;
+}
+
+/* Comparison bar */
+.compare {
+  width: 100%;
+  margin-top: 1.2rem;
+}
+.compare-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #aaa;
+  margin-bottom: 0.25rem;
+}
+.compare-bar {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: #222;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.compare-bar .you {
+  position: absolute;
+  top: 0; left: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #ff4ecd, #7a5cff);
+}
+.compare-bar .avg {
+  position: absolute;
+  top: 0; left: 0;
+  height: 6px;
+  background: rgba(255,255,255,0.2);
+}
+
+/* Status colors */
+.score.good { color: #0cce6b; }
+.score.needs { color: #ffa400; }
+.score.poor { color: #ff4e42; }
+
+/* Shimmer loader */
 .score.shimmer {
   color: transparent;
-  background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+  background: linear-gradient(90deg, #333 25%, #555 50%, #333 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
-  border-radius: 4px;
+  border-radius: 6px;
   min-width: 40px;
-  min-height: 18px;
+  min-height: 20px;
   display: inline-block;
 }
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
-
-/* Status colors */
-.score.good { color: #0cce6b; }     /* green */
-.score.needs { color: #ffa400; }    /* orange */
-.score.poor { color: #ff4e42; }     /* red */
 
     
 /* === Approach Section === */
@@ -1988,64 +2017,107 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   </defs>
 </svg>
 
-<!-- === Performance Section === -->
-<section id="performance" class="performance-section" data-aos="fade-up">
-  <h2 data-aos="fade-up" data-aos-delay="100">Performance Metrics</h2>
-  <p data-aos="fade-up" data-aos-delay="200">
-    Live insights highlighting speed, stability, and interactivity
-  </p>
+<!-- Gradients for stroke -->
+<svg style="position:absolute;width:0;height:0" aria-hidden="true">
+  <defs>
+    <linearGradient id="gradFCP" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#0077ff"/>
+    </linearGradient>
+    <linearGradient id="gradLCP" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9a4dff"/><stop offset="100%" stop-color="#ff4ecd"/>
+    </linearGradient>
+    <linearGradient id="gradCLS" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00ffb2"/><stop offset="100%" stop-color="#00995c"/>
+    </linearGradient>
+    <linearGradient id="gradTBT" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff8c00"/><stop offset="100%" stop-color="#ff3d3d"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<section id="performance" class="performance-section">
+  <h2>Performance Metrics</h2>
+  <p class="subtitle">Live insights highlighting speed, stability, and interactivity — compared with industry benchmarks.</p>
 
   <div class="metrics">
     <!-- FCP -->
-    <div class="metric-card" data-aos="zoom-in" data-aos-delay="300">
+    <div class="metric-card">
       <div class="gauge">
         <svg viewBox="0 0 120 120">
           <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="fcp" stroke="url(#gradFCP)" cx="60" cy="60" r="56"
-                  stroke-dasharray="351" stroke-dashoffset="351"></circle>
+          <circle class="fg" data-metric="fcp" stroke="url(#gradFCP)" cx="60" cy="60" r="56"></circle>
         </svg>
-        <span class="score">0</span>
+        <span class="score shimmer">0</span>
       </div>
       <span class="label">FCP</span>
+      <span class="full-form">First Contentful Paint</span>
+      <div class="compare">
+        <div class="compare-labels"><span>You</span><span>Industry Avg</span></div>
+        <div class="compare-bar">
+          <div class="you" data-you="fcp"></div>
+          <div class="avg" data-avg="fcp"></div>
+        </div>
+      </div>
     </div>
 
     <!-- LCP -->
-    <div class="metric-card" data-aos="zoom-in" data-aos-delay="400">
+    <div class="metric-card">
       <div class="gauge">
         <svg viewBox="0 0 120 120">
           <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="lcp" stroke="url(#gradLCP)" cx="60" cy="60" r="56"
-                  stroke-dasharray="351" stroke-dashoffset="351"></circle>
+          <circle class="fg" data-metric="lcp" stroke="url(#gradLCP)" cx="60" cy="60" r="56"></circle>
         </svg>
-        <span class="score">0</span>
+        <span class="score shimmer">0</span>
       </div>
       <span class="label">LCP</span>
+      <span class="full-form">Largest Contentful Paint</span>
+      <div class="compare">
+        <div class="compare-labels"><span>You</span><span>Industry Avg</span></div>
+        <div class="compare-bar">
+          <div class="you" data-you="lcp"></div>
+          <div class="avg" data-avg="lcp"></div>
+        </div>
+      </div>
     </div>
 
     <!-- CLS -->
-    <div class="metric-card" data-aos="zoom-in" data-aos-delay="500">
+    <div class="metric-card">
       <div class="gauge">
         <svg viewBox="0 0 120 120">
           <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="cls" stroke="url(#gradCLS)" cx="60" cy="60" r="56"
-                  stroke-dasharray="351" stroke-dashoffset="351"></circle>
+          <circle class="fg" data-metric="cls" stroke="url(#gradCLS)" cx="60" cy="60" r="56"></circle>
         </svg>
-        <span class="score">0</span>
+        <span class="score shimmer">0</span>
       </div>
       <span class="label">CLS</span>
+      <span class="full-form">Cumulative Layout Shift</span>
+      <div class="compare">
+        <div class="compare-labels"><span>You</span><span>Industry Avg</span></div>
+        <div class="compare-bar">
+          <div class="you" data-you="cls"></div>
+          <div class="avg" data-avg="cls"></div>
+        </div>
+      </div>
     </div>
 
     <!-- TBT -->
-    <div class="metric-card" data-aos="zoom-in" data-aos-delay="600">
+    <div class="metric-card">
       <div class="gauge">
         <svg viewBox="0 0 120 120">
           <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="tbt" stroke="url(#gradTBT)" cx="60" cy="60" r="56"
-                  stroke-dasharray="351" stroke-dashoffset="351"></circle>
+          <circle class="fg" data-metric="tbt" stroke="url(#gradTBT)" cx="60" cy="60" r="56"></circle>
         </svg>
-        <span class="score">0</span>
+        <span class="score shimmer">0</span>
       </div>
       <span class="label">TBT</span>
+      <span class="full-form">Total Blocking Time</span>
+      <div class="compare">
+        <div class="compare-labels"><span>You</span><span>Industry Avg</span></div>
+        <div class="compare-bar">
+          <div class="you" data-you="tbt"></div>
+          <div class="avg" data-avg="tbt"></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -2486,25 +2558,15 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
-  // Add shimmer placeholders first
-  document.querySelectorAll(".score").forEach(el => {
-    el.textContent = "...";
-    el.classList.add("shimmer");
-  });
+  document.querySelectorAll(".score").forEach(el => el.classList.add("shimmer"));
 
   try {
-    // Fetch from API
     const res = await fetch("/api/performance");
     const data = await res.json();
-
-    // 🔍 Debug: log API response in console
-    console.log("✅ API Response:", data);
-
-    // Use values from API
     const raw = data.raw || {};
     const norm = data.norm || {};
+    const industry = data.industry || { fcp: 70, lcp: 65, cls: 80, tbt: 75 }; // % fallback
 
-    // Values to display inside the circles
     const displayValues = {
       fcp: raw.fcp !== undefined ? raw.fcp.toFixed(2) + "s" : "N/A",
       lcp: raw.lcp !== undefined ? raw.lcp.toFixed(2) + "s" : "N/A",
@@ -2512,58 +2574,53 @@ document.addEventListener("DOMContentLoaded", async () => {
       tbt: raw.tbt !== undefined ? raw.tbt.toFixed(0) + "ms" : "N/A"
     };
 
-    // Thresholds for coloring like Lighthouse
     const thresholds = {
-      fcp: { good: 1.8, poor: 3.0 }, // in seconds
-      lcp: { good: 2.5, poor: 4.0 }, // in seconds
-      cls: { good: 0.1, poor: 0.25 }, // unitless
-      tbt: { good: 200, poor: 600 }   // in ms
+      fcp: { good: 1.8, poor: 3.0 },
+      lcp: { good: 2.5, poor: 4.0 },
+      cls: { good: 0.1, poor: 0.25 },
+      tbt: { good: 200, poor: 600 }
     };
 
-    // Loop through the 4 metrics
     for (const metric of ["fcp","lcp","cls","tbt"]) {
-      const circle = document.querySelector(`.fg[data-metric="${metric}"]`);
-      const scoreEl = circle?.parentElement.querySelector(".score");
+      const circle = document.querySelector(`.fg[data-metric=\"${metric}\"]`);
+      const scoreEl = circle?.parentElement.querySelector(\".score\");
+      const youBar = document.querySelector(`.you[data-you=\"${metric}\"]`);
+      const avgBar = document.querySelector(`.avg[data-avg=\"${metric}\"]`);
       if (!circle || !scoreEl) continue;
 
-      // Normalized value for gauge
       const valNorm = norm[metric] ?? 0;
       const valRaw = raw[metric];
-
-      const radius = circle.getAttribute("r");
+      const radius = circle.getAttribute(\"r\");
       const circumference = 2 * Math.PI * radius;
       const offset = circumference - (valNorm / 100) * circumference;
 
       circle.style.strokeDasharray = circumference;
       circle.style.strokeDashoffset = circumference;
-
-      // Animate arc
       setTimeout(() => {
-        circle.style.transition = "stroke-dashoffset 1.8s ease";
+        circle.style.transition = \"stroke-dashoffset 1.8s ease\";
         circle.style.strokeDashoffset = offset;
       }, 200);
 
-      // Replace shimmer with real value
-      scoreEl.classList.remove("shimmer");
+      scoreEl.classList.remove(\"shimmer\");
       scoreEl.textContent = displayValues[metric];
 
-      // Apply coloring based on thresholds
+      // Status coloring
       if (valRaw !== undefined) {
-        let status = "good";
-        if (valRaw > thresholds[metric].poor) {
-          status = "poor";
-        } else if (valRaw > thresholds[metric].good) {
-          status = "needs";
-        }
-        scoreEl.classList.remove("good", "needs", "poor");
+        let status = \"good\";
+        if (valRaw > thresholds[metric].poor) status = \"poor\";
+        else if (valRaw > thresholds[metric].good) status = \"needs\";
         scoreEl.classList.add(status);
       }
+
+      // Comparison bars
+      if (youBar) youBar.style.width = `${valNorm}%`;
+      if (avgBar) avgBar.style.width = `${industry[metric]}%`;
     }
   } catch (err) {
-    console.error("❌ Failed to load performance data:", err);
-    document.querySelectorAll(".score").forEach(el => {
-      el.textContent = "ERR";
-      el.classList.remove("shimmer");
+    console.error(\"❌ Failed to load performance data:\", err);
+    document.querySelectorAll(\".score\").forEach(el => {
+      el.textContent = \"ERR\";
+      el.classList.remove(\"shimmer\"); 
     });
   }
 });
