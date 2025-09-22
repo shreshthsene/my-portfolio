@@ -653,7 +653,7 @@ nav a.active::after {
   100% { background-position: 0% 50%; }
 }
     
-   /* Portfolio Section */
+  /* Portfolio Section */
 .portfolio {
   margin-top: 64px; /* more breathing room */
   max-width: 1200px;
@@ -665,7 +665,7 @@ nav a.active::after {
 .portfolio-grid {
   display: grid;
   gap: 24px; /* slightly bigger gap for premium feel */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr); /* 2x2 default */
   align-items: stretch; /* keep cards equal height */
 }
 
@@ -691,11 +691,34 @@ nav a.active::after {
   transform: scale(1.05);
   transition: transform 0.3s ease;
 }
-    .proj-thumb{height:120px; background:#eef2ff; display:block}
-    .proj-body{padding:12px}
-    .proj-title{font-weight:700; margin:0 0 6px 0}
-    .proj-desc{color:var(--muted); font-size:14px; margin:0}
 
+.proj-thumb {
+  height: 120px;
+  background: #eef2ff;
+  display: block;
+}
+
+.proj-body {
+  padding: 12px;
+}
+
+.proj-title {
+  font-weight: 700;
+  margin: 0 0 6px 0;
+}
+
+.proj-desc {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Responsive Layouts */
+@media (max-width: 600px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr; /* stack vertically (1x4) */
+  }
+}
 
 /* === Articles Grid === */
 .articles, .articles-grid {
