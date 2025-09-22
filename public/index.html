@@ -2398,15 +2398,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     const res = await fetch("/api/performance");
     const data = await res.json();
 
-    // ✅ Use the values from API response
-    const raw = data.raw;   // real metrics
-    const norm = data.norm; // normalized for gauge animation
+    // 🔍 Debug: log API response
+    console.log("✅ API Response:", data);
+
+    // Use the values from API
+    const raw = data.raw || {};
+    const norm = data.norm || {};
 
     const displayValues = {
-      fcp: raw.fcp.toFixed(2) + "s",
-      lcp: raw.lcp.toFixed(2) + "s",
-      cls: raw.cls.toFixed(3),
-      tbt: raw.tbt.toFixed(0) + "ms"
+      fcp: raw.fcp !== undefined ? raw.fcp.toFixed(2) + "s" : "N/A",
+      lcp: raw.lcp !== undefined ? raw.lcp.toFixed(2) + "s" : "N/A",
+      cls: raw.cls !== undefined ? raw.cls.toFixed(3) : "N/A",
+      tbt: raw.tbt !== undefined ? raw.tbt.toFixed(0) + "ms" : "N/A"
     };
 
     // Thresholds like Lighthouse
@@ -2442,14 +2445,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       // ✅ Apply Lighthouse-style coloring
       const rawVal = raw[metric];
-      let status = "good";
-      if (rawVal > thresholds[metric].poor) {
-        status = "poor";
-      } else if (rawVal > thresholds[metric].good) {
-        status = "needs";
+      if (rawVal !== undefined) {
+        let status = "good";
+        if (rawVal > thresholds[metric].poor) {
+          status = "poor";
+        } else if (rawVal > thresholds[metric].good) {
+          status = "needs";
+        }
+        scoreEl.classList.remove("good", "needs", "poor");
+        scoreEl.classList.add(status);
       }
-      scoreEl.classList.remove("good", "needs", "poor");
-      scoreEl.classList.add(status);
     }
   } catch (err) {
     console.error("❌ Failed to load performance data:", err);
