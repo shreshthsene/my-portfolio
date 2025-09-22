@@ -22,13 +22,21 @@ export default async function handler(req, res) {
       // raw values
       raw: { fcp, lcp, cls, tbt },
 
-      // normalized % for gauges
-      norm: {
-        fcp: Math.min(100, Math.round((3 / fcp) * 100)),
-        lcp: Math.min(100, Math.round((4 / lcp) * 100)),
-        cls: Math.min(100, Math.round((0.25 / (cls || 0.001)) * 100)),
-        tbt: Math.min(100, Math.round((600 / tbt) * 100))
-      }
+      // normalized scores
+norm: {
+  fcp: Math.min(100, Math.round((3 / fcp) * 100)),   // good ≤ 1.8s, poor ≥ 3s
+  lcp: Math.min(100, Math.round((4 / lcp) * 100)),   // good ≤ 2.5s, poor ≥ 4s
+  cls: Math.min(100, Math.round((0.25 / (cls || 0.001)) * 100)), // good ≤ 0.1, poor ≥ 0.25
+  tbt: Math.min(100, Math.round((600 / tbt) * 100))  // good ≤ 200ms, poor ≥ 600ms
+},
+
+// add industry benchmark % values
+industry: {
+  fcp: 75,  // 75% avg score
+  lcp: 70,  // 70% avg score
+  cls: 85,  // 85% avg score
+  tbt: 65   // 65% avg score
+}
     });
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch PageSpeed data" });
