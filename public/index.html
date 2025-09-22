@@ -2371,7 +2371,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.querySelectorAll(".score").forEach(el => (el.textContent = "..."));
 
   try {
-    const res = await fetch("/api/performance");
+    const res = await fetch("api/performance.js");
     const data = await res.json();
 
     const raw = data.raw;   // real values
