@@ -1145,60 +1145,55 @@ nav a.active::after {
   }
 }
 
-/* === Performance Section === */
+/* === Performance Section (Premium Style) === */
 #performance {
-  margin-top: 64px;
+  margin: 64px auto;
   display: flex;
   flex-direction: column;
   gap: 40px;
   align-items: center;
   justify-content: center;
   padding: 60px 30px;
+  max-width: 1100px;
+  border-radius: 20px;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(14px);
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.25);
+  text-align: center;
   position: relative;
   overflow: hidden;
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
 }
 
+/* Section Header */
 #performance .section-header {
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
 }
-
 #performance .section-title {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 12px;
   background: linear-gradient(90deg, #06b6d4, #9333ea, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 #performance .section-subtitle {
-  color: var(--muted);
+  color: #d1d5db;
   font-size: 1.1rem;
   margin: 0 auto;
   max-width: 600px;
   line-height: 1.6;
 }
 
-/* Metrics Grid */
+/* Performance Grid */
 #performance .perf-container {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--gap, 2rem);
+  gap: 2rem;
   align-items: stretch;
-  margin-top: 10px;
 }
-
 @media (max-width: 900px) {
   #performance .perf-container {
     grid-template-columns: 1fr;
@@ -1217,77 +1212,60 @@ nav a.active::after {
   backdrop-filter: blur(12px);
   border-radius: 16px;
   padding: 28px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.25);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-
 #performance .perf-card:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(147, 51, 234, 0.4);
 }
 
-/* Particle Canvas */
-#performance #perfParticles {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
-
-#performance .perf-content {
-  position: relative;
-  z-index: 1;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-/* Card titles */
+/* Card Titles */
 #performance .card-title {
-  margin: 0 0 20px 0;
+  margin-bottom: 20px;
   font-weight: 700;
   font-size: 1.25rem;
-  color: var(--text);
+  color: #fff;
 }
 
 /* Gauge */
-#performance .gauge { 
-  position: relative; 
-  width: 220px; 
-  height: 220px; 
-  margin: 0 auto; 
+#performance .gauge {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
 }
-#performance .circular-chart { 
-  transform: rotate(-90deg); 
-  width: 100%; 
-  height: 100%; 
+#performance .circular-chart {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
 }
-#performance .circle-progress { 
-  transition: stroke-dasharray 1s ease; 
-  filter: drop-shadow(0 0 8px rgba(147, 51, 234, 0.5));
+#performance .circle-progress {
+  transition: stroke-dashoffset 1.2s ease-in-out;
+  filter: drop-shadow(0 0 10px rgba(147, 51, 234, 0.5));
 }
 #performance .gauge-score {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 48px;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 48px;
   background: linear-gradient(90deg, #06b6d4, #9333ea, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-#performance .gauge-label { 
-  text-align: center; 
-  margin-top: 14px; 
-  font-weight: 700; 
-  color: #10b981; 
+#performance .gauge-label {
+  text-align: center;
+  margin-top: 14px;
+  font-weight: 700;
+  color: #facc15; /* yellow warning */
 }
 
 /* Metrics Grid */
@@ -1295,38 +1273,37 @@ nav a.active::after {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-  flex-grow: 1;
 }
 #performance .metric {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 14px;
   padding: 18px 20px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
 }
 #performance .metric:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 22px rgba(147, 51, 234, 0.25);
+  box-shadow: 0 8px 24px rgba(147, 51, 234, 0.3);
   border: 1px solid rgba(147, 51, 234, 0.3);
 }
 #performance .metric span {
-  display:block;
-  color: var(--muted);
-  font-weight:600;
-  font-size:13px;
+  display: block;
+  color: #d1d5db;
+  font-weight: 600;
+  font-size: 13px;
 }
 #performance .metric strong {
-  display:block;
-  margin-top:6px;
-  font-size:20px;
-  font-weight:800;
+  display: block;
+  margin-top: 6px;
+  font-size: 20px;
+  font-weight: 800;
   background: linear-gradient(90deg, #06b6d4, #9333ea, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Shimmer Effect */
+/* Shimmer Effect (loading state) */
 #performance .shimmer {
   background: linear-gradient(90deg, rgba(255,255,255,0.2) 25%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.2) 75%);
   background-size: 200% 100%;
@@ -1334,13 +1311,12 @@ nav a.active::after {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
 
-/* Gauge pulsing animation */
+/* Gauge pulse animation */
 #performance .gauge.pulsing {
   animation: pulse 1.5s infinite;
 }
@@ -1950,7 +1926,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   <div class="performance-wrapper">
 
     <!-- Section Header -->
-    <header class="section-header" data-aos="fade-up">
+    <header class="section-header">
       <h2 id="performance-heading" class="section-title">
         Website Performance
       </h2>
@@ -1959,56 +1935,56 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
       </p>
     </header>
 
-    <!-- Performance Cards -->
-    <div class="perf-container" role="list">
+    <!-- Performance Grid -->
+    <div class="perf-container">
 
       <!-- Gauge Card -->
-      <article class="perf-card" data-aos="zoom-in" data-aos-delay="100" role="listitem">
-        <canvas id="perfParticles"></canvas>
+      <article class="perf-card">
         <div class="perf-content">
           <h3 class="card-title">Overall Performance</h3>
-          <div class="gauge pulsing" aria-label="Performance score">
-            <!-- Gauge SVG -->
-            <svg viewBox="0 0 36 36" class="circular-chart" role="img" aria-hidden="true">
-              <path class="circle-bg" stroke-width="3" fill="none" stroke="#e5e7eb"
-                d="M18 2.0845 
-                   a 15.9155 15.9155 0 0 1 0 31.831 
-                   a 15.9155 15.9155 0 0 1 0 -31.831"/>
-              <path id="perfProgress" class="circle-progress"
-                stroke-width="3" stroke-linecap="round" fill="none"
-                stroke="url(#perfGrad)" stroke-dasharray="0 100"
-                d="M18 2.0845 
-                   a 15.9155 15.9155 0 0 1 0 31.831 
-                   a 15.9155 15.9155 0 0 1 0 -31.831"/>
+          <div class="gauge">
+            <svg viewBox="0 0 200 200" class="circular-chart">
+              <circle cx="100" cy="100" r="90"
+                stroke="rgba(255,255,255,0.15)"
+                stroke-width="16" fill="transparent"/>
+              <circle id="perfProgress"
+                cx="100" cy="100" r="90"
+                stroke="url(#perfGrad)"
+                stroke-width="16" fill="transparent"
+                stroke-linecap="round"
+                stroke-dasharray="565"
+                stroke-dashoffset="209"/>
               <defs>
                 <linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#06b6d4"/>  <!-- cyan -->
-                  <stop offset="50%" stop-color="#9333ea"/> <!-- purple -->
-                  <stop offset="100%" stop-color="#ec4899"/> <!-- pink -->
+                  <stop offset="0%" stop-color="#06b6d4"/>
+                  <stop offset="50%" stop-color="#9333ea"/>
+                  <stop offset="100%" stop-color="#ec4899"/>
                 </linearGradient>
               </defs>
             </svg>
-            <div id="perfScore" class="gauge-score shimmer">--</div>
+            <div id="perfScore" class="gauge-score">63</div>
           </div>
-          <p id="perfLabel" class="gauge-label shimmer">Loading…</p>
+          <p id="perfLabel" class="gauge-label">
+            ⚠ Needs Improvement
+          </p>
         </div>
       </article>
 
-      <!-- Vitals Card -->
-      <article class="perf-card" data-aos="fade-up" data-aos-delay="200" role="listitem">
+      <!-- Metrics Card -->
+      <article class="perf-card">
         <div class="perf-content">
           <h3 class="card-title">Core Web Vitals</h3>
           <div class="metrics-grid">
-            <div class="metric"><span>FCP</span><strong id="m-fcp" class="shimmer">--</strong></div>
-            <div class="metric"><span>LCP</span><strong id="m-lcp" class="shimmer">--</strong></div>
-            <div class="metric"><span>CLS</span><strong id="m-cls" class="shimmer">--</strong></div>
-            <div class="metric"><span>TBT</span><strong id="m-tbt" class="shimmer">--</strong></div>
+            <div class="metric"><span>⚡ FCP</span><strong>0.76s</strong></div>
+            <div class="metric"><span>📊 LCP</span><strong>3.40s</strong></div>
+            <div class="metric"><span>🟢 CLS</span><strong>0.000</strong></div>
+            <div class="metric"><span>⏱️ TBT</span><strong>394.5ms</strong></div>
           </div>
         </div>
       </article>
 
-    </div><!-- /.perf-container -->
-  </div><!-- /.performance-wrapper -->
+    </div>
+  </div>
 </section>
 <!-- ===================== END PERFORMANCE SECTION ===================== -->
     
