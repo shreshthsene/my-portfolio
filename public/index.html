@@ -1147,41 +1147,38 @@ nav a.active::after {
 
 /* === Performance Section === */
 #performance {
-  padding: 5rem 1rem;                /* balanced like other sections */
-  background: var(--card);
+  padding: 5rem 1rem;
   position: relative;
   z-index: 1;
+  scroll-margin-top: 8rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  scroll-margin-top: 8rem;           /* ensures header isn’t hidden */
+  justify-content: center; /* centers the box */
 }
 
-/* Wrapper aligns header + cards grid */
+/* Big Box Wrapper (like Marketing Approach) */
 #performance .performance-wrapper {
   max-width: 1100px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 3rem 2rem;
+  background: #fff; /* solid card background */
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-/* Section Header */
+/* Section Header inside the box */
 #performance .section-header {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   width: 100%;
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
   text-align: center;
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  outline: none !important;
-  padding: 0 !important;
-  display: block;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
 }
 
 /* Heading */
@@ -1194,9 +1191,7 @@ nav a.active::after {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  display: block;
   text-align: center;
-  white-space: nowrap;
 }
 
 /* Subtitle */
@@ -1212,10 +1207,9 @@ nav a.active::after {
   text-align: center;
 }
 
-/* Cards Grid */
+/* Cards Grid inside the box */
 #performance .perf-container {
   width: 100%;
-  max-width: 1100px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--gap);
@@ -1227,17 +1221,14 @@ nav a.active::after {
   #performance .perf-container {
     grid-template-columns: 1fr;
     max-width: 600px;
+    margin: 0 auto;
   }
   #performance .section-title {
     font-size: 1.9rem;
-    white-space: normal;
-  }
-  #performance .section-subtitle {
-    font-size: 1rem;
   }
 }
 
-/* Glassmorphism Cards */
+/* Cards */
 #performance .perf-card {
   position: relative;
   background: var(--glass);
@@ -1245,7 +1236,7 @@ nav a.active::after {
   border-radius: 20px;
   padding: 28px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(229, 231, 235, 0.5);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   display: flex;
@@ -1256,7 +1247,7 @@ nav a.active::after {
 
 #performance .perf-card:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 14px 32px rgba(0,0,0,0.12);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
 }
 
 /* Particle Canvas */
@@ -1962,9 +1953,9 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 </section>
 
 <!-- ===================== PERFORMANCE SECTION ===================== -->
-<section id="performance" aria-labelledby="performance-heading">
+<section id="performance" aria-labelledby="performance-heading" class="section-box">
 
-  <div class="performance-wrapper">
+  <div class="performance-wrapper big-box">
 
     <!-- Section Header -->
     <header class="section-header" data-aos="fade-up">
@@ -1977,7 +1968,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     </header>
 
     <!-- Performance Cards -->
-    <div class="perf-container" role="list">
+    <div class="perf-container cards-grid" role="list">
 
       <!-- Gauge Card -->
       <article class="perf-card" data-aos="zoom-in" data-aos-delay="100" role="listitem">
