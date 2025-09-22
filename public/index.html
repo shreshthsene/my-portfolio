@@ -2558,6 +2558,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
+  // Add shimmer effect until data loads
   document.querySelectorAll(".score").forEach(el => el.classList.add("shimmer"));
 
   try {
@@ -2565,8 +2566,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const data = await res.json();
     const raw = data.raw || {};
     const norm = data.norm || {};
-    const industry = data.industry || { fcp: 70, lcp: 65, cls: 80, tbt: 75 }; // % fallback
+    const industry = data.industry || { fcp: 70, lcp: 65, cls: 80, tbt: 75 }; // fallback % values
 
+    // Thresholds for status coloring
     const thresholds = {
       fcp: { good: 1.8, poor: 3.0 },
       lcp: { good: 2.5, poor: 4.0 },
@@ -2576,7 +2578,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     for (const metric of ["fcp","lcp","cls","tbt"]) {
       const circle = document.querySelector(`.fg[data-metric="${metric}"]`);
-      const scoreEl = circle?.parentElement.querySelector(".score");
+      const scoreEl = circle?.closest(".gauge")?.querySelector(".score"); // ✅ fixed
       const youBar = document.querySelector(`.you[data-you="${metric}"]`);
       const avgBar = document.querySelector(`.avg[data-avg="${metric}"]`);
       if (!circle || !scoreEl) continue;
@@ -2587,7 +2589,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const circumference = 2 * Math.PI * radius;
       const offset = circumference - (valNorm / 100) * circumference;
 
-      // Animate gauge
+      // Animate gauge stroke
       circle.style.strokeDasharray = circumference;
       circle.style.strokeDashoffset = circumference;
       setTimeout(() => {
@@ -2595,11 +2597,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         circle.style.strokeDashoffset = offset;
       }, 200);
 
-      // ✅ Show percentage instead of raw
+      // Show normalized percentage
       scoreEl.classList.remove("shimmer");
       scoreEl.textContent = `${valNorm}%`;
 
-      // Status coloring still based on raw thresholds
+      // Status coloring (still based on raw thresholds)
       if (valRaw !== undefined) {
         let status = "good";
         if (valRaw > thresholds[metric].poor) status = "poor";
