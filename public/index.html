@@ -2414,7 +2414,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 
   const ctx = canvas.getContext('2d');
   let particles = [];
-  let particleColor = "59,130,246";
+  let particleColor = "59,130,246"; // default blue
 
   function sizeCanvas(){
     canvas.width = canvas.offsetWidth;
@@ -2427,7 +2427,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
         x: Math.random()*canvas.width,
         y: Math.random()*canvas.height,
         r: Math.random()*3+2,
-        dx:(Math.random()-.5)*.7,    // slightly faster drift
+        dx:(Math.random()-.5)*.7,
         dy:(Math.random()-.5)*.7,
         o: Math.random()*.4+.3
       });
@@ -2450,11 +2450,18 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   sizeCanvas(); initParticles(); drawParticles();
   window.addEventListener('resize',()=>{sizeCanvas();initParticles();});
 
+  // === Gauge Elements ===
   const progressEl = document.getElementById('perfProgress');
   const scoreEl = document.getElementById('perfScore');
   const labelEl = document.getElementById('perfLabel');
+  const radius = 90; // must match SVG r
+  const circumference = 2 * Math.PI * radius;
+  progressEl.setAttribute("stroke-dasharray", circumference);
+  progressEl.setAttribute("stroke-dashoffset", circumference);
+
   let currentScore = 0;
 
+  // === Set Label + Color ===
   function setLabel(s){
     if(s>=80){
       labelEl.textContent="Excellent ✔️"; 
@@ -2471,23 +2478,31 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     }
   }
 
+  // === Animate Gauge + Score Counter ===
   function animateGauge(from,to){
     let start=null;
     function step(ts){
-      if(!start)start=ts;
-      const progress=Math.min((ts-start)/1000,1);
-      const value=from+(to-from)*progress;
-      progressEl.setAttribute("stroke-dasharray",`${value} 100`);
-      scoreEl.textContent=Math.round(value);
+      if(!start) start=ts;
+      const progress = Math.min((ts-start)/1000,1); // 1s animation
+      const value = from+(to-from)*progress;
+
+      // update stroke
+      const offset = circumference - (value/100)*circumference;
+      progressEl.setAttribute("stroke-dashoffset", offset);
+
+      // update number
+      scoreEl.textContent = Math.round(value);
+
       if(progress<1){
         requestAnimationFrame(step);
       } else {
-        currentScore=to;
+        currentScore = to;
       }
     }
     requestAnimationFrame(step);
   }
 
+  // === Update UI with metrics ===
   function updateUI(metrics){
     const {score,fcp,lcp,cls,tbt}=metrics;
     if(fcp) document.getElementById('m-fcp').textContent=fcp.toFixed(2)+'s';
@@ -2501,18 +2516,20 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     }
   }
 
-  // === Fetch live metrics from /api/performance ===
+  // === Fetch live metrics ===
   async function fetchPerformance(){
     try{
       const res = await fetch("/api/performance");
       const data = await res.json();
-      // remove shimmer/loading classes
+
+      // remove shimmer/loading
       scoreEl.classList.remove("shimmer");
       labelEl.classList.remove("shimmer");
       document.querySelector(".gauge").classList.remove("pulsing");
       ["m-fcp","m-lcp","m-cls","m-tbt"].forEach(
         id=>document.getElementById(id).classList.remove("shimmer")
       );
+
       updateUI(data);
     }catch(e){
       console.error("⚠️ Performance fetch failed",e);
