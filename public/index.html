@@ -1145,97 +1145,71 @@ nav a.active::after {
   }
 }
 
-/* === Performance Section === */
+
 .performance-section {
-  background: rgba(20, 20, 30, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(20,20,30,0.6);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 20px;
   padding: 2rem;
   margin: 4rem auto;
   max-width: 900px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
   backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
   text-align: center;
   color: #fff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-.performance-section:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-}
-
-/* === Heading === */
 .performance-section h2 {
   font-size: 2rem;
   font-weight: 700;
-  background: linear-gradient(90deg, #00d4ff, #7a5cff, #ff4ecd);
+  background: linear-gradient(90deg,#00d4ff,#7a5cff,#ff4ecd);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
   margin-bottom: 0.5rem;
 }
-
 .performance-section p {
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255,255,255,0.7);
   margin-bottom: 2rem;
 }
-
-/* === Grid Layout === */
 .metrics {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
   gap: 1.5rem;
 }
-
-/* === Metric Cards === */
 .metric-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 16px;
   padding: 1.5rem;
   text-align: center;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform .3s ease, box-shadow .3s ease;
 }
-
 .metric-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
 }
-
-/* === Metric Labels === */
 .metric-card .label {
   display: block;
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255,255,255,0.65);
   margin-top: 0.75rem;
-  letter-spacing: 0.5px;
 }
-
-/* === Gauges === */
 .gauge {
   width: 100px;
   height: 100px;
   margin: 0 auto;
   position: relative;
 }
-
 .gauge svg {
   transform: rotate(-90deg);
   width: 100px;
   height: 100px;
 }
-
 .bg {
-  stroke: rgba(255, 255, 255, 0.15);
+  stroke: rgba(255,255,255,0.15);
   stroke-width: 12;
   fill: none;
 }
-
 .fg {
   stroke-width: 12;
   fill: none;
@@ -1244,31 +1218,15 @@ nav a.active::after {
   stroke-dashoffset: 351;
   transition: stroke-dashoffset 2s ease;
 }
-
-/* === Gradient Strokes === */
-.fg[data-metric="fcp"] {
-  stroke: url(#gradFCP);
-}
-.fg[data-metric="lcp"] {
-  stroke: url(#gradLCP);
-}
-.fg[data-metric="cls"] {
-  stroke: url(#gradCLS);
-}
-.fg[data-metric="tbt"] {
-  stroke: url(#gradTBT);
-}
-
-/* === Score Numbers === */
 .score {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%,-50%);
   font-size: 1.3rem;
   font-weight: 700;
   color: #fff;
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 6px rgba(0,0,0,0.4);
 }
     
 /* === Approach Section === */
@@ -1867,37 +1825,40 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   </div>
 </section>
 
+<!-- === Global Gradients (put once in <body>, before section) === -->
+<svg style="position:absolute;width:0;height:0" aria-hidden="true">
+  <defs>
+    <linearGradient id="gradFCP" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#0077ff"/>
+    </linearGradient>
+    <linearGradient id="gradLCP" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9a4dff"/>
+      <stop offset="100%" stop-color="#ff4ecd"/>
+    </linearGradient>
+    <linearGradient id="gradCLS" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00ffb2"/>
+      <stop offset="100%" stop-color="#00995c"/>
+    </linearGradient>
+    <linearGradient id="gradTBT" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff8c00"/>
+      <stop offset="100%" stop-color="#ff3d3d"/>
+    </linearGradient>
+  </defs>
+</svg>
+
 <!-- === Performance Section === -->
 <section id="performance" class="performance-section">
   <h2>Performance Metrics</h2>
-  <p>Live insights that highlight speed, stability, and interactivity</p>
+  <p>Live insights highlighting speed, stability, and interactivity</p>
 
   <div class="metrics">
-    <!-- Overall Performance Score -->
+    <!-- Overall Score -->
     <div class="metric-card">
       <div class="gauge">
         <svg viewBox="0 0 120 120">
           <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="score" cx="60" cy="60" r="56"
-                  stroke-dasharray="351" stroke-dashoffset="351"></circle>
-          <defs>
-            <linearGradient id="gradFCP" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#00d4ff"/>
-              <stop offset="100%" stop-color="#0077ff"/>
-            </linearGradient>
-            <linearGradient id="gradLCP" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#9a4dff"/>
-              <stop offset="100%" stop-color="#ff4ecd"/>
-            </linearGradient>
-            <linearGradient id="gradCLS" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#00ffb2"/>
-              <stop offset="100%" stop-color="#00995c"/>
-            </linearGradient>
-            <linearGradient id="gradTBT" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#ff8c00"/>
-              <stop offset="100%" stop-color="#ff3d3d"/>
-            </linearGradient>
-          </defs>
+          <circle class="fg" data-metric="score" cx="60" cy="60" r="56"></circle>
         </svg>
         <span class="score">0</span>
       </div>
@@ -1909,8 +1870,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
       <div class="gauge">
         <svg viewBox="0 0 120 120">
           <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="fcp" cx="60" cy="60" r="56"
-                  stroke="url(#gradFCP)" stroke-dasharray="351" stroke-dashoffset="351"></circle>
+          <circle class="fg" data-metric="fcp" stroke="url(#gradFCP)" cx="60" cy="60" r="56"></circle>
         </svg>
         <span class="score">0</span>
       </div>
@@ -1922,8 +1882,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
       <div class="gauge">
         <svg viewBox="0 0 120 120">
           <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="lcp" cx="60" cy="60" r="56"
-                  stroke="url(#gradLCP)" stroke-dasharray="351" stroke-dashoffset="351"></circle>
+          <circle class="fg" data-metric="lcp" stroke="url(#gradLCP)" cx="60" cy="60" r="56"></circle>
         </svg>
         <span class="score">0</span>
       </div>
@@ -1935,8 +1894,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
       <div class="gauge">
         <svg viewBox="0 0 120 120">
           <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="cls" cx="60" cy="60" r="56"
-                  stroke="url(#gradCLS)" stroke-dasharray="351" stroke-dashoffset="351"></circle>
+          <circle class="fg" data-metric="cls" stroke="url(#gradCLS)" cx="60" cy="60" r="56"></circle>
         </svg>
         <span class="score">0</span>
       </div>
@@ -1948,8 +1906,7 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
       <div class="gauge">
         <svg viewBox="0 0 120 120">
           <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="tbt" cx="60" cy="60" r="56"
-                  stroke="url(#gradTBT)" stroke-dasharray="351" stroke-dashoffset="351"></circle>
+          <circle class="fg" data-metric="tbt" stroke="url(#gradTBT)" cx="60" cy="60" r="56"></circle>
         </svg>
         <span class="score">0</span>
       </div>
@@ -2378,75 +2335,29 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const section = document.getElementById("performance");
-  const counters = section.querySelectorAll(".score");
-  const arcs = section.querySelectorAll(".fg");
-  let animated = false;
+  // Example static values (replace with live API fetch)
+  const values = { score: 82, fcp: 91, lcp: 88, cls: 95, tbt: 90 };
 
-  async function fetchPerformance() {
-    try {
-      // Call your live API
-      const res = await fetch(`/api/handler?url=${encodeURIComponent(window.location.href)}`);
-      const data = await res.json();
+  for (const [metric, val] of Object.entries(values)) {
+    const circle = document.querySelector(`.fg[data-metric="${metric}"]`);
+    const scoreEl = circle?.parentElement.querySelector(".score");
+    if (!circle) continue;
 
-      console.log("Live Performance Data:", data);
+    const radius = circle.getAttribute("r");
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference - (val / 100) * circumference;
 
-      // Map values
-      const values = [
-        { el: counters[0], value: data.fcp, label: "s", precision: 2 },   // FCP
-        { el: counters[1], value: data.lcp, label: "s", precision: 2 },   // LCP
-        { el: counters[2], value: data.cls, label: "", precision: 3 },    // CLS
-        { el: counters[3], value: data.tbt, label: "ms", precision: 0 }   // TBT
-      ];
+    circle.style.strokeDasharray = circumference;
+    circle.style.strokeDashoffset = circumference;
+    setTimeout(() => {
+      circle.style.strokeDashoffset = offset;
+    }, 200);
 
-      // Animate counters
-      values.forEach((item, index) => {
-        let current = 0;
-        const target = item.value;
-
-        const updateCounter = () => {
-          const step = (target - current) / 20; // smooth steps
-          current += step;
-
-          if (Math.abs(target - current) < 0.01) {
-            item.el.textContent = target.toFixed(item.precision) + (item.label || "");
-          } else {
-            item.el.textContent = current.toFixed(item.precision) + (item.label || "");
-            requestAnimationFrame(updateCounter);
-          }
-        };
-
-        updateCounter();
-
-        // Animate arc ONLY for performance score
-        if (index === 0) {
-          const arc = arcs[index];
-          const offset = `calc(351 - (351 * ${data.score} / 100))`;
-          arc.style.strokeDashoffset = 351; // reset
-          setTimeout(() => {
-            arc.style.transition = "stroke-dashoffset 2s ease";
-            arc.style.strokeDashoffset = offset;
-          }, 200);
-        }
-      });
-    } catch (err) {
-      console.error("❌ Failed to fetch live performance:", err);
-    }
+    if (scoreEl) scoreEl.textContent = val;
   }
-
-  // Trigger only once when section enters viewport
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !animated) {
-        animated = true;
-        fetchPerformance();
-      }
-    });
-  }, { threshold: 0.3 });
-  observer.observe(section);
 });
 </script>
-
+  
 <!-- Service Worker -->
 <script>
 if ("serviceWorker" in navigator) {
