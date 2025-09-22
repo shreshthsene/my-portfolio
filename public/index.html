@@ -1147,7 +1147,7 @@ nav a.active::after {
 
 /* === Performance Section === */
 #performance {
-  padding: 8rem 1rem 4rem;   /* enough top padding to clear navbar */
+  padding: 10rem 1rem 5rem;   /* extra top padding to clear navbar */
   background: var(--card);
   position: relative;
   z-index: 1;
@@ -1160,7 +1160,7 @@ nav a.active::after {
 
 /* Wrapper aligns header + cards */
 #performance .performance-wrapper {
-  max-width: var(--container);
+  max-width: 1100px;   /* wider so heading + cards align */
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
@@ -1169,12 +1169,19 @@ nav a.active::after {
   text-align: center;
 }
 
-/* Section Header (clean, no box/line) */
+/* Section Header (centered across grid) */
 #performance .section-header {
   margin-bottom: 3rem;
+  width: 100%;
+  max-width: 800px;   /* readable width for heading/subtitle */
+  margin-left: auto;
+  margin-right: auto;
   background: none !important;
   border: none !important;
   box-shadow: none !important;
+  text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 /* Gradient Heading */
@@ -1205,16 +1212,18 @@ nav a.active::after {
 /* Layout Grid for cards */
 #performance .perf-container {
   width: 100%;
+  max-width: 1100px;   /* align with wrapper */
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--gap);
-  align-items: start;
-  margin-top: 2rem; /* spacing below header/subtitle */
+  align-items: stretch;   /* ensures equal height cards */
+  margin-top: 2rem;
 }
 
 @media (max-width: 900px) {
   #performance .perf-container {
     grid-template-columns: 1fr;
+    max-width: 600px;   /* narrower on mobile */
   }
   #performance .section-title {
     font-size: 1.9rem;
@@ -1224,7 +1233,7 @@ nav a.active::after {
   }
 }
 
-/* === Glassmorphism Cards (clean, no gradient border) === */
+/* === Glassmorphism Cards (clean, equal height) === */
 #performance .perf-card {
   position: relative;
   background: var(--glass);
@@ -1239,10 +1248,8 @@ nav a.active::after {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  height: 100%;   /* equal heights across grid */
 }
-
-/* Removed gradient animated border (::before) */
 
 /* Hover lift */
 #performance .perf-card:hover {
