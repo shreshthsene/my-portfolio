@@ -1150,9 +1150,9 @@ nav a.active::after {
   padding: 5rem 1rem;
   position: relative;
   z-index: 1;
-  scroll-margin-top: 8rem;
+  scroll-margin-top: 8rem;      /* ensures nav doesn't overlap on scroll */
   display: flex;
-  justify-content: center; /* centers the box */
+  justify-content: center;      /* centers the big wrapper */
 }
 
 /* Big Box Wrapper */
@@ -1161,19 +1161,21 @@ nav a.active::after {
   width: 100%;
   margin: 0 auto;
   padding: 3rem 2rem;
-  background: #fff; /* solid card background */
+  background: #fff;             /* solid card-like box */
   border-radius: 20px;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+  /* Use grid so header + cards align naturally */
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 2.5rem;
   text-align: center;
 }
 
-/* Section Header (inside the box) */
+/* Section Header inside the box */
 #performance .section-header {
-  margin-bottom: 2.5rem;
   width: 100%;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -1209,9 +1211,8 @@ nav a.active::after {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--gap, 2rem); /* fallback gap if --gap not defined */
+  gap: var(--gap, 2rem);
   align-items: stretch;
-  margin-top: 2rem;
 }
 
 @media (max-width: 900px) {
