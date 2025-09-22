@@ -1145,7 +1145,7 @@ nav a.active::after {
   }
 }
 
-/* === Performance Section (Premium Style) === */
+/* === Performance Section (Premium Gradient Style) === */
 #performance {
   margin: 64px auto;
   display: flex;
@@ -1156,9 +1156,9 @@ nav a.active::after {
   padding: 60px 30px;
   max-width: 1100px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.25);
+  background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,27,75,0.9));
+  backdrop-filter: blur(20px);
+  box-shadow: 0 12px 48px rgba(0,0,0,0.4);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -1168,22 +1168,21 @@ nav a.active::after {
 #performance .section-header {
   max-width: 800px;
   margin: 0 auto;
-  text-align: center;
 }
 #performance .section-title {
-  font-size: 2rem;
-  font-weight: 800;
+  font-size: 2.2rem;
+  font-weight: 900;
   margin-bottom: 12px;
   background: linear-gradient(90deg, #06b6d4, #9333ea, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 #performance .section-subtitle {
-  color: #d1d5db;
+  color: #e5e7eb;
   font-size: 1.1rem;
   margin: 0 auto;
   max-width: 600px;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 /* Performance Grid */
@@ -1208,28 +1207,28 @@ nav a.active::after {
 /* Card Style */
 #performance .perf-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 #performance .perf-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(147, 51, 234, 0.4);
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 16px 40px rgba(147, 51, 234, 0.35);
+  border: 1px solid rgba(147, 51, 234, 0.45);
 }
 
 /* Card Titles */
 #performance .card-title {
   margin-bottom: 20px;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: #fff;
 }
 
@@ -1247,7 +1246,7 @@ nav a.active::after {
 }
 #performance .circle-progress {
   transition: stroke-dashoffset 1.2s ease-in-out;
-  filter: drop-shadow(0 0 10px rgba(147, 51, 234, 0.5));
+  filter: drop-shadow(0 0 12px rgba(147, 51, 234, 0.6));
 }
 #performance .gauge-score {
   position: absolute;
@@ -1255,8 +1254,9 @@ nav a.active::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 800;
-  font-size: 48px;
+  font-weight: 900;
+  font-size: 52px;
+  letter-spacing: -1px;
   background: linear-gradient(90deg, #06b6d4, #9333ea, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1265,27 +1265,28 @@ nav a.active::after {
   text-align: center;
   margin-top: 14px;
   font-weight: 700;
-  color: #facc15; /* yellow warning */
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
 }
 
 /* Metrics Grid */
 #performance .metrics-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 18px;
 }
 #performance .metric {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
   border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
 }
 #performance .metric:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(147, 51, 234, 0.3);
-  border: 1px solid rgba(147, 51, 234, 0.3);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 26px rgba(147, 51, 234, 0.35);
+  border: 1px solid rgba(147, 51, 234, 0.4);
 }
 #performance .metric span {
   display: block;
@@ -1305,7 +1306,7 @@ nav a.active::after {
 
 /* Shimmer Effect (loading state) */
 #performance .shimmer {
-  background: linear-gradient(90deg, rgba(255,255,255,0.2) 25%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.2) 75%);
+  background: linear-gradient(90deg, rgba(255,255,255,0.15) 25%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.15) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   -webkit-background-clip: text;
@@ -1942,18 +1943,21 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
       <article class="perf-card">
         <div class="perf-content">
           <h3 class="card-title">Overall Performance</h3>
-          <div class="gauge">
+          <div class="gauge pulsing">
             <svg viewBox="0 0 200 200" class="circular-chart">
+              <!-- Background ring -->
               <circle cx="100" cy="100" r="90"
                 stroke="rgba(255,255,255,0.15)"
                 stroke-width="16" fill="transparent"/>
+              <!-- Progress ring -->
               <circle id="perfProgress"
                 cx="100" cy="100" r="90"
                 stroke="url(#perfGrad)"
-                stroke-width="16" fill="transparent"
+                stroke-width="16"
+                fill="transparent"
                 stroke-linecap="round"
                 stroke-dasharray="565"
-                stroke-dashoffset="209"/>
+                stroke-dashoffset="565"/>
               <defs>
                 <linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stop-color="#06b6d4"/>
@@ -1962,11 +1966,9 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
                 </linearGradient>
               </defs>
             </svg>
-            <div id="perfScore" class="gauge-score">63</div>
+            <div id="perfScore" class="gauge-score shimmer">--</div>
           </div>
-          <p id="perfLabel" class="gauge-label">
-            ⚠ Needs Improvement
-          </p>
+          <p id="perfLabel" class="gauge-label shimmer">Loading…</p>
         </div>
       </article>
 
@@ -1975,10 +1977,10 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
         <div class="perf-content">
           <h3 class="card-title">Core Web Vitals</h3>
           <div class="metrics-grid">
-            <div class="metric"><span>⚡ FCP</span><strong>0.76s</strong></div>
-            <div class="metric"><span>📊 LCP</span><strong>3.40s</strong></div>
-            <div class="metric"><span>🟢 CLS</span><strong>0.000</strong></div>
-            <div class="metric"><span>⏱️ TBT</span><strong>394.5ms</strong></div>
+            <div class="metric"><span>⚡ FCP</span><strong id="m-fcp" class="shimmer">--</strong></div>
+            <div class="metric"><span>📊 LCP</span><strong id="m-lcp" class="shimmer">--</strong></div>
+            <div class="metric"><span>🟢 CLS</span><strong id="m-cls" class="shimmer">--</strong></div>
+            <div class="metric"><span>⏱️ TBT</span><strong id="m-tbt" class="shimmer">--</strong></div>
           </div>
         </div>
       </article>
@@ -2406,91 +2408,41 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
   timelineEvents.forEach(event => observer.observe(event));
 </script>
 
-<!-- Website Performance Script -->
 <script>
 (function(){
-  const canvas = document.getElementById('perfParticles');
-  if(!canvas) return;
-
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  let particleColor = "59,130,246"; // default blue
-
-  function sizeCanvas(){
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-  function initParticles(){
-    particles = [];
-    for(let i=0;i<55;i++){
-      particles.push({
-        x: Math.random()*canvas.width,
-        y: Math.random()*canvas.height,
-        r: Math.random()*3+2,
-        dx:(Math.random()-.5)*.7,
-        dy:(Math.random()-.5)*.7,
-        o: Math.random()*.4+.3
-      });
-    }
-  }
-  function drawParticles(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    for(const p of particles){
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(${particleColor},${p.o})`;
-      ctx.fill();
-      p.x+=p.dx;p.y+=p.dy;
-      if(p.x<0||p.x>canvas.width)p.dx*=-1;
-      if(p.y<0||p.y>canvas.height)p.dy*=-1;
-    }
-    requestAnimationFrame(drawParticles);
-  }
-
-  sizeCanvas(); initParticles(); drawParticles();
-  window.addEventListener('resize',()=>{sizeCanvas();initParticles();});
-
-  // === Gauge Elements ===
   const progressEl = document.getElementById('perfProgress');
   const scoreEl = document.getElementById('perfScore');
   const labelEl = document.getElementById('perfLabel');
-  const radius = 90; // must match SVG r
+  const radius = 90;
   const circumference = 2 * Math.PI * radius;
   progressEl.setAttribute("stroke-dasharray", circumference);
   progressEl.setAttribute("stroke-dashoffset", circumference);
 
   let currentScore = 0;
 
-  // === Set Label + Color ===
   function setLabel(s){
     if(s>=80){
       labelEl.textContent="Excellent ✔️"; 
       labelEl.style.color="#10b981";
-      particleColor="16,185,129";
     } else if(s>=50){
       labelEl.textContent="Needs Improvement ⚠️"; 
       labelEl.style.color="#f59e0b";
-      particleColor="245,158,11";
     } else {
       labelEl.textContent="Poor ❌"; 
       labelEl.style.color="#ef4444";
-      particleColor="239,68,68";
     }
   }
 
-  // === Animate Gauge + Score Counter ===
   function animateGauge(from,to){
     let start=null;
     function step(ts){
       if(!start) start=ts;
-      const progress = Math.min((ts-start)/1000,1); // 1s animation
+      const progress = Math.min((ts-start)/1000,1);
       const value = from+(to-from)*progress;
 
-      // update stroke
       const offset = circumference - (value/100)*circumference;
       progressEl.setAttribute("stroke-dashoffset", offset);
 
-      // update number
       scoreEl.textContent = Math.round(value);
 
       if(progress<1){
@@ -2502,7 +2454,6 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     requestAnimationFrame(step);
   }
 
-  // === Update UI with metrics ===
   function updateUI(metrics){
     const {score,fcp,lcp,cls,tbt}=metrics;
     if(fcp) document.getElementById('m-fcp').textContent=fcp.toFixed(2)+'s';
@@ -2516,20 +2467,16 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     }
   }
 
-  // === Fetch live metrics ===
   async function fetchPerformance(){
     try{
       const res = await fetch("/api/performance");
       const data = await res.json();
-
-      // remove shimmer/loading
       scoreEl.classList.remove("shimmer");
       labelEl.classList.remove("shimmer");
       document.querySelector(".gauge").classList.remove("pulsing");
       ["m-fcp","m-lcp","m-cls","m-tbt"].forEach(
         id=>document.getElementById(id).classList.remove("shimmer")
       );
-
       updateUI(data);
     }catch(e){
       console.error("⚠️ Performance fetch failed",e);
@@ -2538,7 +2485,6 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     }
   }
 
-  // Run on load
   fetchPerformance();
 })();
 </script>
