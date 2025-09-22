@@ -1303,7 +1303,9 @@ nav a.active::after {
   font-weight: 800;
   text-align: center;
   margin-bottom: 12px;
-  color: #0f172a;
+  background: linear-gradient(90deg, #00d4ff, #7a5cff, #ff4ecd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 #approach p.sub {
@@ -1971,9 +1973,13 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
     
 <!-- APPROACH SECTION -->
 <section id="approach" aria-labelledby="approach-heading">
-  <h2 id="approach-heading" data-aos="fade-up">My Marketing Approach</h2>
-  <p class="sub" data-aos="fade-up" data-aos-delay="100">A structured 2-page plan for growth & measurable results.</p>
-
+  <h2 id="approach-heading" class="section-title" data-aos="fade-up">
+    My Marketing Approach
+  </h2>
+  <p class="sub" data-aos="fade-up" data-aos-delay="100">
+    A structured 2-page plan for growth & measurable results.
+  </p>
+  
   <div class="approach-steps">
     <div class="step-card" data-aos="fade-up" data-aos-delay="100"><div class="circle">1</div><h4>Audit & Research</h4><p>Market trends, competitors, personas.</p></div>
     <div class="step-card" data-aos="fade-up" data-aos-delay="200"><div class="circle">2</div><h4>Strategy & Messaging</h4><p>Positioning, value proposition, brand voice.</p></div>
