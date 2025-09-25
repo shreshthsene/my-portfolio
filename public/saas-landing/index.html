@@ -51,25 +51,27 @@
     .logos img { max-height: 40px; margin: 1rem 2rem; opacity: 0.85; filter: brightness(0) invert(1); transition: 0.3s; }
     .logos img:hover { opacity: 1; transform: scale(1.1); }
 
-  /* Features */
-.features {
+ .features {
   padding: 6rem 2rem;
   background: #0f0f11;
 }
+
 .features h2 {
   text-align: center;
   font-size: 2.8rem;
   margin-bottom: 4rem;
   font-weight: 700;
-  background: linear-gradient(90deg, #6366f1, #06b6d4);
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2.5rem;
 }
+
 .feature {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 1.5rem;
@@ -79,10 +81,12 @@
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.1);
 }
+
 .feature:hover {
   transform: translateY(-12px) scale(1.03);
   box-shadow: 0 20px 50px rgba(99,102,241,0.4);
 }
+
 .feature .icon-wrapper {
   background: radial-gradient(circle at 30% 30%, #3b82f6, #6366f1);
   width: 90px;
@@ -95,18 +99,9 @@
   box-shadow: 0 15px 40px rgba(99,102,241,0.4);
 }
 
-.feature .icon-wrapper img {
-  height: 45px;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
-}
-.feature h3 {
-  margin: 0.5rem 0;
-  font-size: 1.4rem;
-}
-.feature p {
-  color: #aaa;
-  font-size: 1rem;
-  margin-top: 0.5rem;
+.feature .icon-wrapper svg {
+  height: 42px;
+  width: 42px;
 }
 
     /* Showcase */
@@ -175,33 +170,59 @@
     <h2>Why teams choose us</h2>
     <div class="features-grid">
 
+      <!-- Analytics -->
       <div class="feature" data-aos="fade-up">
         <div class="icon-wrapper">
-          <img src="https://cdn.jsdelivr.net/gh/icons-pack/premium-icons/analytics-gradient.svg" alt="Analytics">
+          <!-- Gradient Bar Chart -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#3b82f6"/>
+                <stop offset="100%" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+            <line x1="12" y1="20" x2="12" y2="10"/>
+            <line x1="18" y1="20" x2="18" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="16"/>
+          </svg>
         </div>
         <h3>Advanced Analytics</h3>
         <p>Beautiful real-time dashboards and insights that help you move fast.</p>
       </div>
 
+      <!-- Security -->
       <div class="feature" data-aos="fade-up" data-aos-delay="100">
         <div class="icon-wrapper">
-          <img src="https://cdn.jsdelivr.net/gh/icons-pack/premium-icons/lock-gradient.svg" alt="Security">
+          <!-- Gradient Lock -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0110 0v4"/>
+          </svg>
         </div>
         <h3>Enterprise Security</h3>
         <p>Bank grade encryption, compliance, and privacy built from day one.</p>
       </div>
 
+      <!-- Fast Setup -->
       <div class="feature" data-aos="fade-up" data-aos-delay="200">
         <div class="icon-wrapper">
-          <img src="https://cdn.jsdelivr.net/gh/icons-pack/premium-icons/lightning-gradient.svg" alt="Setup">
+          <!-- Gradient Lightning -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
         </div>
         <h3>Blazing Fast Setup</h3>
         <p>Onboard your team in minutes with a sleek and intuitive flow.</p>
       </div>
 
+      <!-- API -->
       <div class="feature" data-aos="fade-up" data-aos-delay="300">
         <div class="icon-wrapper">
-          <img src="https://cdn.jsdelivr.net/gh/icons-pack/premium-icons/rocket-gradient.svg" alt="API">
+          <!-- Gradient Rocket -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 13a8 8 0 018-8h4l2 2v4a8 8 0 01-8 8H7l-3 3v-5z"/>
+            <path d="M9 9h.01"/>
+          </svg>
         </div>
         <h3>Scalable API</h3>
         <p>Robust APIs built to scale with your growth — from startup to enterprise.</p>
