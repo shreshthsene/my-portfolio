@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cinematic Creative Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-black text-white font-serif">
+
+    <!-- Hero Section -->
+    <section class="relative h-screen w-full flex flex-col justify-center items-center text-center overflow-hidden">
+      <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-60">
+        <source src="videos/fashion-cinematic.mp4" type="video/mp4" />
+      </video>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90"></div>
+
+      <h1 class="relative z-10 text-6xl md:text-8xl font-extrabold uppercase tracking-wide mb-6 drop-shadow-2xl">
+        Cinematic Luxury
+      </h1>
+      <p class="relative z-10 max-w-3xl text-lg md:text-xl text-gray-200 mb-10">
+        An immersive creative studio experience blending motion, sound, and visual artistry for ultra-premium brands.
+      </p>
+      <button class="relative z-10 px-10 py-4 rounded-full bg-white text-black font-bold text-lg shadow-[0_0_40px_rgba(255,255,255,0.6)]">
+        Watch the Film
+      </button>
+    </section>
+
+    <!-- Showcase -->
+    <section class="py-20 px-6 bg-gradient-to-b from-black via-[#0a0a0a] to-black">
+      <h2 class="text-4xl md:text-5xl font-light text-center mb-12 uppercase tracking-[0.2em] text-gray-300">
+        Our Stories
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+        <div class="relative rounded-2xl overflow-hidden shadow-lg group">
+          <img src="images/cinematic-1.jpg" alt="Story 1" class="h-80 w-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 flex items-center justify-center transition">
+            <span class="text-2xl font-semibold">Story 1</span>
+          </div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden shadow-lg group">
+          <img src="images/cinematic-2.jpg" alt="Story 2" class="h-80 w-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 flex items-center justify-center transition">
+            <span class="text-2xl font-semibold">Story 2</span>
+          </div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden shadow-lg group">
+          <img src="images/cinematic-3.jpg" alt="Story 3" class="h-80 w-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 flex items-center justify-center transition">
+            <span class="text-2xl font-semibold">Story 3</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 px-6 bg-black border-t border-gray-800">
+      <h2 class="text-4xl md:text-5xl font-light text-center mb-12 uppercase tracking-[0.25em] text-gray-400">
+        Acclaim
+      </h2>
+      <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+        <div class="bg-gradient-to-br from-[#111] to-black p-8 rounded-2xl shadow-lg border border-gray-800 text-center">
+          <p class="italic text-gray-300 mb-6">“Felt like a cinematic journey.”</p>
+          <span class="font-semibold text-white">Client 1</span>
+        </div>
+        <div class="bg-gradient-to-br from-[#111] to-black p-8 rounded-2xl shadow-lg border border-gray-800 text-center">
+          <p class="italic text-gray-300 mb-6">“Luxury storytelling at its peak.”</p>
+          <span class="font-semibold text-white">Client 2</span>
+        </div>
+        <div class="bg-gradient-to-br from-[#111] to-black p-8 rounded-2xl shadow-lg border border-gray-800 text-center">
+          <p class="italic text-gray-300 mb-6">“Immersive and unforgettable.”</p>
+          <span class="font-semibold text-white">Client 3</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Footer -->
+    <section class="py-20 text-center bg-gradient-to-r from-gray-900 to-black">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-8 uppercase">Let’s Create Your Film</h2>
+      <button class="px-10 py-4 rounded-full bg-white text-black font-bold text-lg shadow-lg hover:scale-105 transition">
+        Begin the Experience
+      </button>
+    </section>
+  </body>
+</html>
