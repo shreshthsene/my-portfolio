@@ -37,14 +37,16 @@
     .btn.secondary { border: 2px solid #fff; color: #fff; }
     .btn.secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
 
-    .hero-video {
-      margin-top: 2rem;
-      max-width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-      animation: fadeInUp 1.2s ease forwards;
-      opacity: 0;
-    }
+ .hero-video {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  animation: fadeInUp 1.2s ease forwards;
+  opacity: 0;
+}
 
     @keyframes fadeInUp {
       from { transform: translateY(40px); opacity: 0; }
@@ -97,21 +99,28 @@
 </head>
 <body>
   <!-- Hero -->
-  <section class="hero" data-aos="fade-up">
-    <div class="container">
-      <h1>Build. Launch. Scale.</h1>
-      <p>All-in-one SaaS platform trusted by high-growth startups and enterprises worldwide.</p>
-      <div class="cta">
-        <a href="#signup" class="btn primary">Get Started Free</a>
-        <a href="#features" class="btn secondary">Explore Features</a>
-      </div>
-      <!-- Hero Video instead of image -->
-      <video autoplay loop muted playsinline class="hero-video">
-        <source src="https://cdn.coverr.co/videos/coverr-dashboard-animation-4800/1080p.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+<section class="hero" data-aos="fade-up">
+  <div class="container">
+    <h1>Build. Launch. Scale.</h1>
+    <p>All-in-one SaaS platform trusted by high-growth startups and enterprises worldwide.</p>
+    <div class="cta">
+      <a href="#signup" class="btn primary">Get Started Free</a>
+      <a href="#features" class="btn secondary">Explore Features</a>
     </div>
-  </section>
+
+    <!-- Hero Video with Poster fallback -->
+    <video 
+      class="hero-video" 
+      autoplay 
+      loop 
+      muted 
+      playsinline 
+      poster="https://images.unsplash.com/photo-1665686314327-1a5cb364a7e3?auto=format&fit=crop&w=1200&q=80">
+      <source src="https://player.vimeo.com/external/449973911.sd.mp4?s=64cb3e6c1a5c879b2b2e9d4f7e8b2e67b2cfe0c6&profile_id=165&download=1" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</section>
 
   <!-- Logos -->
   <section class="logos">
