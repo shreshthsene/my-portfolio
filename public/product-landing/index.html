@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Smartwatch – Time, Reimagined</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+  @keyframes fadeInUp {
+    from {opacity: 0; transform: translateY(40px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+  .animate-fadeInUp {
+    animation: fadeInUp 1s ease-out forwards;
+  }
+</style>  
 </head>
 <body class="bg-gray-50 text-gray-900">
 
@@ -140,5 +150,6 @@
     <p class="text-sm">&copy; 2025 Smartwatch Inc. All rights reserved.</p>
   </footer>
 
+  
 </body>
 </html>
