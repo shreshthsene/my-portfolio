@@ -9,9 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <!-- Lottie Player -->
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
   <style>
     body { margin: 0; font-family: 'Inter', sans-serif; background: #0f0f11; color: #f8f8f8; }
     h1, h2, h3, h4 { margin: 0; }
@@ -40,14 +37,13 @@
     .btn.secondary { border: 2px solid #fff; color: #fff; }
     .btn.secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
 
-    .hero-animation {
+    /* Hero Image */
+    .hero-image {
       margin-top: 2rem;
       max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
+      width: 100%;
       border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-      overflow: hidden;
+      box-shadow: 0 0 25px rgba(99,102,241,0.6), 0 0 60px rgba(99,102,241,0.3);
     }
 
     /* Logos */
@@ -97,28 +93,21 @@
 <body>
 
   <!-- Hero -->
-<section class="hero" data-aos="fade-up">
-  <div class="container">
-    <h1>Build. Launch. Scale.</h1>
-    <p>All-in-one SaaS platform trusted by high-growth startups and enterprises worldwide.</p>
-    <div class="cta">
-      <a href="#signup" class="btn primary">Get Started Free</a>
-      <a href="#features" class="btn secondary">Explore Features</a>
-    </div>
+  <section class="hero" data-aos="fade-up">
+    <div class="container">
+      <h1>Build. Launch. Scale.</h1>
+      <p>All-in-one SaaS platform trusted by high-growth startups and enterprises worldwide.</p>
+      <div class="cta">
+        <a href="#signup" class="btn primary">Get Started Free</a>
+        <a href="#features" class="btn secondary">Explore Features</a>
+      </div>
 
-    <!-- Lottie Animation (Hero Dashboard) -->
-    <div class="hero-animation">
-      <lottie-player 
-        src="https://assets5.lottiefiles.com/packages/lf20_q5pk6p1k.json"
-        background="transparent"
-        speed="1"
-        style="width: 100%; height: 420px;"
-        loop
-        autoplay>
-      </lottie-player>
+      <!-- Hero Dashboard Image -->
+      <img src="https://cdn.openai.com/chatgpt/dashboards/saas-dashboard-preview.png" 
+           alt="Hero Dashboard" 
+           class="hero-image">
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- Logos -->
   <section class="logos">
@@ -137,22 +126,22 @@
       <h2>Why teams choose us</h2>
       <div class="features-grid">
         <div class="feature" data-aos="fade-up">
-          <img src="https://undraw.co/api/illustrations/statistics.svg" alt="Analytics">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Analytics">
           <h3>📊 Advanced Analytics</h3>
           <p>Real-time dashboards that drive smarter decisions.</p>
         </div>
         <div class="feature" data-aos="fade-up" data-aos-delay="100">
-          <img src="https://undraw.co/api/illustrations/security.svg" alt="Security">
+          <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Security">
           <h3>🔒 Enterprise Security</h3>
           <p>Compliance, encryption, and privacy built from day one.</p>
         </div>
         <div class="feature" data-aos="fade-up" data-aos-delay="200">
-          <img src="https://undraw.co/api/illustrations/setup.svg" alt="Setup">
+          <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Setup">
           <h3>🚀 Fast Setup</h3>
           <p>Onboard in minutes with our streamlined setup.</p>
         </div>
         <div class="feature" data-aos="fade-up" data-aos-delay="300">
-          <img src="https://undraw.co/api/illustrations/api.svg" alt="API">
+          <img src="https://cdn-icons-png.flaticon.com/512/432/432310.png" alt="API">
           <h3>⚡ Scalable API</h3>
           <p>Robust APIs to power growth at any scale.</p>
         </div>
