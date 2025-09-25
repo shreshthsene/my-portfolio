@@ -36,25 +36,20 @@
     .btn.primary:hover { background: #4f46e5; transform: translateY(-3px); }
     .btn.secondary { border: 2px solid #fff; color: #fff; }
     .btn.secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
-    .hero-img {
-  margin-top: 2rem;
-  max-width: 100%;
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-  animation: fadeInUp 1.2s ease forwards;
-  opacity: 0;
-}
 
-@keyframes fadeInUp {
-  from {
-    transform: translateY(40px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
+    .hero-video {
+      margin-top: 2rem;
+      max-width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      animation: fadeInUp 1.2s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
 
     /* Logos */
     .logos { padding: 3rem 2rem; text-align: center; background: #111; }
@@ -110,8 +105,11 @@
         <a href="#signup" class="btn primary">Get Started Free</a>
         <a href="#features" class="btn secondary">Explore Features</a>
       </div>
-      <img src="https://cdn.dribbble.com/userupload/7551748/file/original-3e5f5db423f19f7886d2f5af6502c6ab.png?compress=1&resize=1200x600" 
-     alt="Hero Dashboard" class="hero-img">
+      <!-- Hero Video instead of image -->
+      <video autoplay loop muted playsinline class="hero-video">
+        <source src="https://cdn.coverr.co/videos/coverr-dashboard-animation-4800/1080p.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </section>
 
@@ -132,22 +130,22 @@
       <h2>Why teams choose us</h2>
       <div class="features-grid">
         <div class="feature" data-aos="fade-up">
-          <img src="https://undraw.co/api/illustrations/statistics.svg" alt="Analytics">
+          <img src="https://undraw.co/illustrations/statistics.svg" alt="Analytics">
           <h3>📊 Advanced Analytics</h3>
           <p>Real-time dashboards that drive smarter decisions.</p>
         </div>
         <div class="feature" data-aos="fade-up" data-aos-delay="100">
-          <img src="https://undraw.co/api/illustrations/security.svg" alt="Security">
+          <img src="https://undraw.co/illustrations/security.svg" alt="Security">
           <h3>🔒 Enterprise Security</h3>
           <p>Compliance, encryption, and privacy built from day one.</p>
         </div>
         <div class="feature" data-aos="fade-up" data-aos-delay="200">
-          <img src="https://undraw.co/api/illustrations/setup.svg" alt="Setup">
+          <img src="https://undraw.co/illustrations/setup.svg" alt="Setup">
           <h3>🚀 Fast Setup</h3>
           <p>Onboard in minutes with our streamlined setup.</p>
         </div>
         <div class="feature" data-aos="fade-up" data-aos-delay="300">
-          <img src="https://undraw.co/api/illustrations/api.svg" alt="API">
+          <img src="https://undraw.co/illustrations/api.svg" alt="API">
           <h3>⚡ Scalable API</h3>
           <p>Robust APIs to power growth at any scale.</p>
         </div>
