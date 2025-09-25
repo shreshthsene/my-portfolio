@@ -107,51 +107,75 @@
   filter: drop-shadow(0 0 6px rgba(255,255,255,0.8)); /* glow */
 }
 
-    /* Showcase */
 .showcase { 
   padding: 6rem 2rem; 
   text-align: center; 
   background: #111; 
 }
+
 .showcase h2 { 
   margin-bottom: 2rem; 
   font-size: 2.4rem; 
 }
 
-.video-mockup {
-  display: flex;
-  justify-content: center;
-}
-
-.laptop-frame {
-  background: #000;
+.before-after-container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-  max-width: 900px;
+}
+
+.before-after-wrapper {
+  position: relative;
   width: 100%;
   aspect-ratio: 16/9;
-  position: relative;
 }
 
-.laptop-frame::before {
-  content: "";
-  display: block;
-  height: 12px;
-  background: #333;
-  border-radius: 6px 6px 0 0;
-  width: 100%;
+.before-image,
+.after-image {
   position: absolute;
-  top: -12px;
-  left: 0;
-}
-
-.laptop-frame video {
+  top: 0; left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+.after-image {
+  clip-path: inset(0 0 0 50%); /* Show right half initially */
+  transition: clip-path 0.2s linear;
+}
+
+.slider {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #6366f1;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(99,102,241,0.8);
+}
+
+.labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  color: #aaa;
+  font-size: 0.95rem;
+}
+    
     /* Pricing */
     .pricing { padding: 6rem 2rem; text-align: center; background: linear-gradient(180deg, #111, #0f0f11); }
     .pricing h2 { font-size: 2.5rem; margin-bottom: 3rem; font-weight: 700; }
@@ -291,22 +315,27 @@
   </div>
 </section>
 
-  <!-- Showcase -->
-  <section class="showcase">
-    <div class="container">
-      <h2>See it in action</h2>
-      <div class="video-mockup">
-        <div class="laptop-frame">
-          <video autoplay loop muted playsinline>
-            <source src="https://videos.pexels.com/video-files/3184292/3184292-hd_1920_1080_25fps.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
+<!-- Showcase -->
+<section class="showcase">
+  <div class="container">
+    <h2>See it in action</h2>
+    
+    <div class="before-after-container">
+      <div class="before-after-wrapper">
+        <img src="/before.png" alt="Before SaaS" class="before-image" />
+        <img src="/after.png" alt="After SaaS" class="after-image" />
+        <input type="range" min="0" max="100" value="50" class="slider" id="beforeAfterSlider">
       </div>
-      <a href="#signup" class="btn primary" style="margin-top: 1.5rem;">Watch Full Demo</a>
+      <div class="labels">
+        <span>Before</span>
+        <span>After</span>
+      </div>
     </div>
-  </section>
 
+    <a href="#signup" class="btn primary" style="margin-top: 1.5rem;">Try it Yourself</a>
+  </div>
+</section>
+  
   <!-- Pricing -->
   <section class="pricing">
     <div class="container">
@@ -371,5 +400,16 @@
       });
     });
   </script>
+
+<script>
+  const slider = document.getElementById("beforeAfterSlider");
+  const afterImage = document.querySelector(".after-image");
+
+  slider.addEventListener("input", (e) => {
+    const value = e.target.value;
+    afterImage.style.clipPath = `inset(0 0 0 ${value}%)`;
+  });
+</script>
+  
 </body>
 </html>
