@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ultra Premium SaaS Landing</title>
+  
+  <!-- Fonts + AOS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #0f0f11;
+      color: #f8f8f8;
+      line-height: 1.5;
+    }
+    a { text-decoration: none; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 7rem 2rem;
+      background: radial-gradient(circle at top left, #6366f1, #3b82f6, #0f0f11);
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: #ddd;
+      max-width: 650px;
+      margin: 0 auto 2rem;
+    }
+    .btn {
+      padding: 0.9rem 2rem;
+      border-radius: 999px;
+      font-weight: 600;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+    .btn.primary {
+      background: #6366f1;
+      color: #fff;
+      margin-right: 1rem;
+    }
+    .btn.primary:hover { background: #4f46e5; transform: translateY(-3px); }
+    .btn.secondary {
+      border: 2px solid #fff;
+      color: #fff;
+    }
+    .btn.secondary:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-3px);
+    }
+    .hero-img {
+      margin-top: 3rem;
+      max-width: 90%;
+      border-radius: 1rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    /* Logos */
+    .logos { padding: 3rem 2rem; text-align: center; background: #111; }
+    .logos img {
+      max-height: 40px; margin: 1rem 2rem; opacity: 0.6; transition: opacity 0.3s;
+    }
+    .logos img:hover { opacity: 1; }
+
+    /* Features */
+    .features { padding: 6rem 2rem; background: #0f0f11; }
+    .features h2 { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .feature {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 1rem;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+    .feature:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+
+    /* Showcase */
+    .showcase { padding: 6rem 2rem; text-align: center; background: #111; }
+    .showcase img {
+      max-width: 100%; border-radius: 1rem; box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+
+    /* Pricing */
+    .pricing { padding: 6rem 2rem; text-align: center; background: linear-gradient(180deg, #111, #0f0f11); }
+    .pricing h2 { font-size: 2.5rem; margin-bottom: 3rem; }
+    .plans { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; }
+    .plan {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      padding: 3rem 2rem; border-radius: 1rem; min-width: 260px;
+      transition: all 0.3s ease;
+    }
+    .plan:hover { transform: scale(1.05); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+    .plan h3 { margin: 0; }
+    .plan p { font-size: 2rem; margin: 1rem 0; }
+
+    /* FAQ */
+    .faq { padding: 6rem 2rem; background: #0f0f11; }
+    .faq h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; }
+    .faq-item { max-width: 700px; margin: 1.5rem auto; }
+    .faq-item h4 { margin: 0; font-size: 1.2rem; }
+    .faq-item p { color: #aaa; margin-top: 0.5rem; }
+
+    /* Footer */
+    footer { text-align: center; padding: 2rem; background: #111; color: #888; }
+  </style>
+</head>
+<body>
+  <!-- Hero -->
+  <section class="hero" data-aos="fade-up">
+    <div class="container">
+      <h1 data-aos="zoom-in">Build. Launch. Scale.</h1>
+      <p data-aos="fade-up" data-aos-delay="200">The modern SaaS platform that powers high-growth startups and enterprises worldwide.</p>
+      <div class="cta" data-aos="fade-up" data-aos-delay="400">
+        <a href="#signup" class="btn primary">Get Started Free</a>
+        <a href="#features" class="btn secondary">See Features</a>
+      </div>
+      <img src="https://via.placeholder.com/1200x600/1f2937/ffffff?text=Product+Mockup" alt="App Preview" class="hero-img" data-aos="zoom-in-up" data-aos-delay="600">
+    </div>
+  </section>
+
+  <!-- Logos -->
+  <section class="logos" data-aos="fade-up">
+    <div class="container">
+      <p>Trusted by teams at</p>
+      <img src="https://via.placeholder.com/120x40?text=Logo1" alt="Logo1">
+      <img src="https://via.placeholder.com/120x40?text=Logo2" alt="Logo2">
+      <img src="https://via.placeholder.com/120x40?text=Logo3" alt="Logo3">
+      <img src="https://via.placeholder.com/120x40?text=Logo4" alt="Logo4">
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2 data-aos="fade-up">Why teams choose us</h2>
+      <div class="features-grid">
+        <div class="feature" data-aos="fade-up" data-aos-delay="100">
+          <h3>🚀 Fast Setup</h3>
+          <p>Go live in minutes with streamlined onboarding.</p>
+        </div>
+        <div class="feature" data-aos="fade-up" data-aos-delay="200">
+          <h3>🔒 Enterprise Security</h3>
+          <p>Compliance and privacy are built in from day one.</p>
+        </div>
+        <div class="feature" data-aos="fade-up" data-aos-delay="300">
+          <h3>📊 Advanced Analytics</h3>
+          <p>Smarter decisions with real-time dashboards.</p>
+        </div>
+        <div class="feature" data-aos="fade-up" data-aos-delay="400">
+          <h3>⚡ Scalable API</h3>
+          <p>Robust APIs designed to scale with your growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase -->
+  <section class="showcase" data-aos="fade-up">
+    <div class="container">
+      <h2>See it in action</h2>
+      <img src="https://via.placeholder.com/1000x500/000/fff?text=App+Dashboard" alt="Dashboard Preview">
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing" data-aos="fade-up">
+    <div class="container">
+      <h2>Pricing that scales with you</h2>
+      <div class="plans">
+        <div class="plan" data-aos="zoom-in" data-aos-delay="100">
+          <h3>Starter</h3>
+          <p>$0<span style="font-size:1rem">/month</span></p>
+          <a href="#signup" class="btn primary">Get Started</a>
+        </div>
+        <div class="plan" data-aos="zoom-in" data-aos-delay="200">
+          <h3>Pro</h3>
+          <p>$29<span style="font-size:1rem">/month</span></p>
+          <a href="#signup" class="btn primary">Start Free Trial</a>
+        </div>
+        <div class="plan" data-aos="zoom-in" data-aos-delay="300">
+          <h3>Enterprise</h3>
+          <p>Custom</p>
+          <a href="#signup" class="btn primary">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" data-aos="fade-up">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h4>How long is the free trial?</h4>
+        <p>14 days, with access to all premium features.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Can I cancel anytime?</h4>
+        <p>Yes, cancel or switch plans at any time.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Is my data secure?</h4>
+        <p>We use enterprise-grade encryption and compliance standards.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Do you offer support?</h4>
+        <p>Yes, 24/7 support is included in all paid plans.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Ultra Premium SaaS. All rights reserved.</p>
+  </footer>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
+</body>
+</html>
