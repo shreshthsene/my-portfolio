@@ -1,101 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cinematic Creative Studio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-black text-white font-serif">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creative Studio — Editorial Image‑Heavy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* soft film grain */
+    .grain:before{content:"";position:absolute;inset:0;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.035"/></svg>');pointer-events:none}
+  </style>
+</head>
+<body class="bg-neutral-50 text-neutral-900 antialiased">
+  <!-- Top Bar -->
+  <header class="sticky top-0 z-40 bg-white/70 backdrop-blur border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="font-black tracking-tight text-xl">Artnest Studio</div>
+      <nav class="hidden md:flex gap-8 text-sm">
+        <a class="hover:opacity-70" href="#work">Work</a>
+        <a class="hover:opacity-70" href="#about">About</a>
+        <a class="hover:opacity-70" href="#voices">Voices</a>
+        <a class="hover:opacity-70" href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="px-4 py-2 rounded-full bg-black text-white text-sm font-semibold">Let’s Talk</a>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="relative h-screen w-full flex flex-col justify-center items-center text-center overflow-hidden">
-      <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-60">
-        <source src="/videos/fashion-cinematic.mp4" type="video/mp4" />
-      </video>
-      <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90"></div>
-
-      <h1 class="relative z-10 text-6xl md:text-8xl font-extrabold uppercase tracking-wide mb-6 drop-shadow-2xl">
-        Cinematic Luxury
-      </h1>
-      <p class="relative z-10 max-w-3xl text-lg md:text-xl text-gray-200 mb-10">
-        An immersive creative studio experience blending motion, sound, and visual artistry for ultra-premium brands.
-      </p>
-      <button class="relative z-10 px-10 py-4 rounded-full bg-white text-black font-bold text-lg shadow-[0_0_40px_rgba(255,255,255,0.6)]">
-        Watch the Film
-      </button>
-    </section>
-
-    <!-- Showcase -->
-    <section class="py-20 px-6 bg-gradient-to-b from-black via-[#0a0a0a] to-black">
-      <h2 class="text-4xl md:text-5xl font-light text-center mb-12 uppercase tracking-[0.2em] text-gray-300">
-        Our Stories
-      </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
-        
-        <!-- Story 1 Video -->
-        <div class="relative rounded-2xl overflow-hidden shadow-lg group">
-          <video autoplay loop muted playsinline
-            class="h-80 w-full object-cover group-hover:scale-110 transition-transform duration-500">
-            <source src="/videos/story-1.mp4" type="video/mp4" />
-          </video>
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 flex items-center justify-center transition">
-            <span class="text-2xl font-semibold">Story 1</span>
-          </div>
-        </div>
-
-        <!-- Story 2 Video -->
-        <div class="relative rounded-2xl overflow-hidden shadow-lg group">
-          <video autoplay loop muted playsinline
-            class="h-80 w-full object-cover group-hover:scale-110 transition-transform duration-500">
-            <source src="/videos/story-2.mp4" type="video/mp4" />
-          </video>
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 flex items-center justify-center transition">
-            <span class="text-2xl font-semibold">Story 2</span>
-          </div>
-        </div>
-
-        <!-- Story 3 Video -->
-        <div class="relative rounded-2xl overflow-hidden shadow-lg group">
-          <video autoplay loop muted playsinline
-            class="h-80 w-full object-cover group-hover:scale-110 transition-transform duration-500">
-            <source src="/videos/story-3.mp4" type="video/mp4" />
-          </video>
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 flex items-center justify-center transition">
-            <span class="text-2xl font-semibold">Story 3</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="py-20 px-6 bg-black border-t border-gray-800">
-      <h2 class="text-4xl md:text-5xl font-light text-center mb-12 uppercase tracking-[0.25em] text-gray-400">
-        Acclaim
-      </h2>
-      <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-        <div class="bg-gradient-to-br from-[#111] to-black p-8 rounded-2xl shadow-lg border border-gray-800 text-center">
-          <p class="italic text-gray-300 mb-6">“Felt like a cinematic journey.”</p>
-          <span class="font-semibold text-white">Client 1</span>
-        </div>
-        <div class="bg-gradient-to-br from-[#111] to-black p-8 rounded-2xl shadow-lg border border-gray-800 text-center">
-          <p class="italic text-gray-300 mb-6">“Luxury storytelling at its peak.”</p>
-          <span class="font-semibold text-white">Client 2</span>
-        </div>
-        <div class="bg-gradient-to-br from-[#111] to-black p-8 rounded-2xl shadow-lg border border-gray-800 text-center">
-          <p class="italic text-gray-300 mb-6">“Immersive and unforgettable.”</p>
-          <span class="font-semibold text-white">Client 3</span>
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <p class="uppercase tracking-[0.25em] text-xs text-neutral-500 mb-6">Creative Studio</p>
+        <h1 class="text-5xl md:text-6xl font-black leading-[1.05]">We are your brand’s <span class="underline decoration-4 decoration-neutral-900">best self</span> — awaits</h1>
+        <p class="mt-6 text-neutral-600 max-w-xl">We craft editorial, fashion and product visuals with uncompromising taste. Image‑first experiences for premium brands.</p>
+        <div class="mt-8 flex gap-3">
+          <a href="#work" class="px-5 py-3 rounded-full bg-neutral-900 text-white text-sm font-semibold">See Our Work</a>
+          <a href="#about" class="px-5 py-3 rounded-full border border-neutral-300 text-sm font-semibold">Our Approach</a>
         </div>
       </div>
-    </section>
+      <!-- Collage -->
+      <div class="relative grid grid-cols-3 gap-3">
+        <img class="rounded-xl h-56 md:h-64 w-full object-cover" src="https://images.unsplash.com/photo-1542157585-ef20bfcce579?q=80&w=1200&auto=format&fit=crop" alt="editorial"/>
+        <img class="rounded-xl h-56 md:h-80 w-full object-cover col-span-2" src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1400&auto=format&fit=crop" alt="lookbook"/>
+        <img class="rounded-xl h-64 md:h-72 w-full object-cover col-span-2" src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1400&auto=format&fit=crop" alt="product"/>
+        <img class="rounded-xl h-56 md:h-64 w-full object-cover" src="https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&w=1200&auto=format&fit=crop" alt="detail"/>
+      </div>
+    </div>
+  </section>
 
-    <!-- CTA Footer -->
-    <section class="py-20 text-center bg-gradient-to-r from-gray-900 to-black">
-      <h2 class="text-4xl md:text-5xl font-extrabold mb-8 uppercase">Let’s Create Your Film</h2>
-      <button class="px-10 py-4 rounded-full bg-white text-black font-bold text-lg shadow-lg hover:scale-105 transition">
-        Begin the Experience
-      </button>
-    </section>
-  </body>
+  <!-- LOGO STRIP -->
+  <section class="py-8 border-t border-neutral-200">
+    <div class="max-w-7xl mx-auto px-6 flex flex-wrap items-center justify-between gap-6 opacity-70">
+      <span class="text-sm">Urbanest</span>
+      <span class="text-sm">Mountana</span>
+      <span class="text-sm">Excels</span>
+      <span class="text-sm">LogTrans</span>
+      <span class="text-sm">Archain</span>
+    </div>
+  </section>
+
+  <!-- WORK GRID -->
+  <section id="work" class="relative py-20 md:py-28 bg-gradient-to-b from-white to-neutral-100">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="mb-10 md:mb-14 flex items-end justify-between">
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Our Work <span class="text-neutral-400">Speaks</span></h2>
+        <a href="#" class="hidden md:inline text-sm font-semibold underline">View All Projects</a>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Card -->
+        <a class="group rounded-2xl overflow-hidden bg-white shadow-sm border border-neutral-200 hover:shadow-xl transition" href="#">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1600&auto=format&fit=crop" class="h-72 w-full object-cover group-hover:scale-[1.03] transition" alt="case"/>
+          <div class="p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold">Aurora Lookbook</h3>
+              <span class="text-xs text-neutral-500">Fashion</span>
+            </div>
+            <p class="text-sm text-neutral-600 mt-2">Editorial campaign for a seasonal drop.</p>
+          </div>
+        </a>
+        <a class="group rounded-2xl overflow-hidden bg-white shadow-sm border border-neutral-200 hover:shadow-xl transition" href="#">
+          <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop" class="h-72 w-full object-cover group-hover:scale-[1.03] transition" alt="case"/>
+          <div class="p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold">Monolith Brand</h3>
+              <span class="text-xs text-neutral-500">Identity</span>
+            </div>
+            <p class="text-sm text-neutral-600 mt-2">Minimal identity with timeless restraint.</p>
+          </div>
+        </a>
+        <a class="group rounded-2xl overflow-hidden bg-white shadow-sm border border-neutral-200 hover:shadow-xl transition" href="#">
+          <img src="https://images.unsplash.com/photo-1505262742709-864b210fd831?q=80&w=1600&auto=format&fit=crop" class="h-72 w-full object-cover group-hover:scale-[1.03] transition" alt="case"/>
+          <div class="p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold">Sable Product</h3>
+              <span class="text-xs text-neutral-500">Product</span>
+            </div>
+            <p class="text-sm text-neutral-600 mt-2">Studio product photography with depth.</p>
+          </div>
+        </a>
+        <a class="group rounded-2xl overflow-hidden bg-white shadow-sm border border-neutral-200 hover:shadow-xl transition md:col-span-2" href="#">
+          <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=2400&auto=format&fit=crop" class="h-[26rem] w-full object-cover group-hover:scale-[1.02] transition" alt="case"/>
+          <div class="p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold">Studio Portraits</h3>
+              <span class="text-xs text-neutral-500">Photography</span>
+            </div>
+            <p class="text-sm text-neutral-600 mt-2">Black & white portraits with cinematic light.</p>
+          </div>
+        </a>
+        <a class="group rounded-2xl overflow-hidden bg-white shadow-sm border border-neutral-200 hover:shadow-xl transition" href="#">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop" class="h-[26rem] w-full object-cover group-hover:scale-[1.02] transition" alt="case"/>
+          <div class="p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold">Edition 03</h3>
+              <span class="text-xs text-neutral-500">Lookbook</span>
+            </div>
+            <p class="text-sm text-neutral-600 mt-2">A typographic, image‑forward narrative.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / PHILOSOPHY -->
+  <section id="about" class="relative py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+      <div class="relative rounded-3xl overflow-hidden shadow-lg grain">
+        <img src="https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1600&auto=format&fit=crop" class="w-full h-[28rem] object-cover" alt="about"/>
+      </div>
+      <div>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">We design with <span class="underline decoration-4">restraint</span> and intention.</h2>
+        <p class="mt-6 text-neutral-600 max-w-xl">Our practice blends editorial art direction with modern product thinking. We champion clarity, pacing, and photographic excellence.</p>
+        <ul class="mt-6 space-y-3 text-sm text-neutral-700">
+          <li>— Art direction & campaign design</li>
+          <li>— Brand identity & systems</li>
+          <li>— Content & lookbooks</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="voices" class="py-20 md:py-28 bg-neutral-900 text-neutral-100">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-12">Voices of our <span class="text-neutral-400">clients</span></h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <figure class="rounded-2xl overflow-hidden bg-neutral-800 border border-neutral-700">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1600&auto=format&fit=crop" class="h-56 w-full object-cover" alt="client"/>
+          <figcaption class="p-6">
+            <p class="italic">“Every frame felt curated. A true editorial touch.”</p>
+            <p class="mt-3 text-sm text-neutral-400">— Maya R., Creative Lead</p>
+          </figcaption>
+        </figure>
+        <figure class="rounded-2xl overflow-hidden bg-neutral-800 border border-neutral-700">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1600&auto=format&fit=crop" class="h-56 w-full object-cover" alt="client"/>
+          <figcaption class="p-6">
+            <p class="italic">“They understand brand nuance and luxury restraint.”</p>
+            <p class="mt-3 text-sm text-neutral-400">— Arjun K., Brand Director</p>
+          </figcaption>
+        </figure>
+        <figure class="rounded-2xl overflow-hidden bg-neutral-800 border border-neutral-700">
+          <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1600&auto=format&fit=crop" class="h-56 w-full object-cover" alt="client"/>
+          <figcaption class="p-6">
+            <p class="italic">“Photography that sells the feeling, not just the product.”</p>
+            <p class="mt-3 text-sm text-neutral-400">— Elena S., Founder</p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="py-20 md:py-28 bg-neutral-950 text-neutral-100">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Let’s create something timeless</h2>
+      <p class="mt-4 text-neutral-400 max-w-2xl mx-auto">We take on a limited number of projects each quarter to protect craft and quality.</p>
+      <a href="mailto:hello@artnest.studio" class="inline-block mt-8 px-6 py-3 rounded-full bg-white text-black font-semibold">Start a project</a>
+    </div>
+  </section>
+
+  <footer class="py-10 text-center text-sm text-neutral-500">© 2025 Artnest Studio</footer>
+</body>
 </html>
