@@ -1629,11 +1629,11 @@ footer {
 }
 
 
-    /* Sample Landing Pages */
+  /* Sample Landing Pages Section */
 .landing-btn {
   width: 100%;
   text-align: left;
-  padding: 0.75rem 1.25rem;
+  padding: 0.9rem 1.25rem;
   border-radius: 0.75rem;
   border: 1px solid #e5e7eb;
   background: white;
@@ -1648,7 +1648,16 @@ footer {
   color: white;
   font-weight: 600;
 }
-    
+
+/* Smooth animation for preview switch */
+#landing-preview.fade {
+  animation: slideIn 0.4s ease forwards;
+}
+@keyframes slideIn {
+  from { transform: translateX(80px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
     
   </style>
 </head>
@@ -2383,18 +2392,19 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 
 
 <!-- Sample Landing Pages Section -->
-<section id="sample-landing" class="py-16">
+<section id="sample-landing" class="py-16 max-w-7xl mx-auto">
   <h2 class="text-3xl font-bold text-center text-purple-600 mb-12">
     Sample Landing Pages
   </h2>
 
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-7xl mx-auto items-start">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
     <!-- Left Side: Preview -->
     <div id="landing-preview" class="lg:col-span-2 bg-white rounded-2xl shadow-md overflow-hidden">
-      <img src="saas-landing/cover.jpg" alt="SaaS Landing Page" class="w-full h-96 object-cover transition-all duration-500" id="preview-img">
+      <img src="saas-landing/cover.jpg" alt="SaaS Landing Page" id="preview-img" class="w-full h-[420px] object-cover">
       <div class="p-6">
         <h3 id="preview-title" class="text-xl font-semibold mb-4">SaaS Landing Page</h3>
-        <a id="preview-link" href="saas-landing/index.html" target="_blank" class="inline-block px-5 py-2 bg-purple-600 text-white text-sm rounded-lg hover:bg-purple-700 transition">
+        <a id="preview-link" href="saas-landing/index.html" target="_blank"
+          class="inline-block px-5 py-2 bg-purple-600 text-white text-sm rounded-lg hover:bg-purple-700 transition">
           View Live ↗
         </a>
       </div>
@@ -2402,28 +2412,45 @@ Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching d
 
     <!-- Right Side: List -->
     <div class="flex flex-col space-y-4">
-      <button class="landing-btn active" data-img="saas-landing/cover.jpg" data-title="SaaS Landing Page" data-link="saas-landing/index.html">
+      <button class="landing-btn active"
+        data-img="saas-landing/cover.jpg"
+        data-title="SaaS Landing Page"
+        data-link="saas-landing/index.html">
         SaaS Landing Page
       </button>
-      <button class="landing-btn" data-img="ecommerce-landing/cover.jpg" data-title="E-commerce Landing Page" data-link="ecommerce-landing/index.html">
+      <button class="landing-btn"
+        data-img="ecommerce-landing/cover.jpg"
+        data-title="E-commerce Landing Page"
+        data-link="ecommerce-landing/index.html">
         E-commerce Landing Page
       </button>
-      <button class="landing-btn" data-img="studio-landing/cover.jpg" data-title="Creative Studio Landing Page" data-link="studio-landing/index.html">
+      <button class="landing-btn"
+        data-img="studio-landing/cover.jpg"
+        data-title="Creative Studio Landing Page"
+        data-link="studio-landing/index.html">
         Creative Studio Landing Page
       </button>
-      <button class="landing-btn" data-img="product-landing/cover.jpg" data-title="Product Launch Landing Page" data-link="product-landing/index.html">
+      <button class="landing-btn"
+        data-img="product-landing/cover.jpg"
+        data-title="Product Launch Landing Page"
+        data-link="product-landing/index.html">
         Product Launch Landing Page
       </button>
-      <button class="landing-btn" data-img="course-landing/cover.jpg" data-title="Course Landing Page" data-link="course-landing/index.html">
+      <button class="landing-btn"
+        data-img="course-landing/cover.jpg"
+        data-title="Course Landing Page"
+        data-link="course-landing/index.html">
         Course Landing Page
       </button>
-      <button class="landing-btn" data-img="tech-landing/cover.jpg" data-title="Tech Product Landing Page" data-link="tech-landing/index.html">
+      <button class="landing-btn"
+        data-img="tech-landing/cover.jpg"
+        data-title="Tech Product Landing Page"
+        data-link="tech-landing/index.html">
         Tech Product Landing Page
       </button>
     </div>
   </div>
 </section>
-
     
 
 <!-- ARTICLES / BLOGS -->
@@ -2851,7 +2878,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 </script>
 
-  <script>
+ <script>
   const buttons = document.querySelectorAll('.landing-btn');
   const previewImg = document.getElementById('preview-img');
   const previewTitle = document.getElementById('preview-title');
@@ -2860,31 +2887,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
+      // Reset buttons
       buttons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
+      // Update preview
       previewImg.src = btn.dataset.img;
       previewImg.alt = btn.dataset.title;
       previewTitle.textContent = btn.dataset.title;
       previewLink.href = btn.dataset.link;
 
-      // Slide animation
+      // Re-trigger animation
       previewCard.classList.remove('fade');
       void previewCard.offsetWidth;
       previewCard.classList.add('fade');
     });
   });
 </script>
-
-<style>
-  .fade {
-    animation: slideIn 0.4s ease forwards;
-  }
-  @keyframes slideIn {
-    from { transform: translateX(100px); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-  }
-</style>
   
 </script>
 </body>
