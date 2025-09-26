@@ -1,203 +1,1359 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EduMaster - Full Stack Web Development</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    body { background: #fff; color: #111; line-height: 1.6; }
-    header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 8%; border-bottom: 1px solid #eee; }
-    header .logo { font-size: 1.25rem; font-weight: 700; }
-    header nav a { margin: 0 1rem; color: #333; text-decoration: none; font-weight: 500; }
-    header .btn { background: #000; color: #fff; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; }
-    .hero { display: flex; align-items: center; justify-content: space-between; padding: 4rem 8%; gap: 2rem; flex-wrap: wrap; }
-    .hero-text { flex: 1; }
-    .hero-text h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
-    .hero-text p { margin-bottom: 1.2rem; color: #444; }
-    .hero-text .stats { display: flex; gap: 1.5rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
-    .hero-text .stats span { font-size: 0.95rem; color: #333; }
-    .hero-text .buttons a { margin-right: 0.75rem; padding: 0.75rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; }
-    .hero-text .buttons .primary { background: #000; color: #fff; }
-    .hero-text .buttons .secondary { background: #f6f6f6; color: #000; border: 1px solid #ddd; }
-    .hero-img { flex: 1; position: relative; }
-    .hero-img img { width: 100%; border-radius: 12px; }
-    section { padding: 4rem 8%; }
-    .section-title { text-align: center; margin-bottom: 2.5rem; }
-    .section-title h2 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .features { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 1.5rem; }
-    .feature { background: #fafafa; padding: 1.5rem; border-radius: 12px; border: 1px solid #eee; }
-    .feature h3 { margin-bottom: 0.5rem; font-size: 1.1rem; }
-    .curriculum { display: flex; flex-wrap: wrap; gap: 2rem; }
-    .curriculum .left { flex: 1; }
-    .curriculum .right { flex: 1; }
-    .curriculum ul { list-style: none; }
-    .curriculum li { margin-bottom: 1rem; padding: 1rem; border: 1px solid #eee; border-radius: 8px; }
-    .instructor { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; }
-    .instructor img { width: 300px; border-radius: 12px; }
-    .testimonials { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1.5rem; }
-    .testimonial { background: #fafafa; border-radius: 12px; padding: 1.5rem; border: 1px solid #eee; font-size: 0.95rem; }
-    .testimonial strong { display: block; margin-top: 0.75rem; }
-    .pricing { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 2rem; }
-    .price-card { background: #fff; border: 2px solid #eee; border-radius: 12px; padding: 2rem; text-align: center; }
-    .price-card h3 { margin-bottom: 0.5rem; font-size: 1.3rem; }
-    .price-card p { margin-bottom: 1rem; }
-    .price-card strong { font-size: 2rem; display: block; margin: 1rem 0; }
-    .price-card button { padding: 0.75rem 1.5rem; border: none; border-radius: 6px; background: #000; color: #fff; cursor: pointer; }
-    footer { background: #fafafa; padding: 3rem 8%; display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 2rem; }
-    footer h4 { margin-bottom: 1rem; }
-    footer a { display: block; margin-bottom: 0.5rem; text-decoration: none; color: #444; font-size: 0.95rem; }
-    .copyright { text-align: center; padding: 1rem; border-top: 1px solid #eee; font-size: 0.9rem; color: #666; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduMaster - Full-Stack Web Development Course</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #030213;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #6b7280;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #030213;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #030213;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1f2937;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #030213;
+            border: 2px solid #e5e7eb;
+        }
+
+        .btn-secondary:hover {
+            border-color: #030213;
+            background: #f9fafb;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text .highlight {
+            color: #030213;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e2e8f0;
+            color: #475569;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #374151;
+        }
+
+        .stat i {
+            color: #f59e0b;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+        }
+
+        .floating-card.top-right {
+            top: -1rem;
+            right: -1rem;
+        }
+
+        .floating-card.bottom-left {
+            bottom: -1rem;
+            left: -1rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+            background: #f8fafc;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.25rem;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 3rem;
+            height: 3rem;
+            background: rgba(3, 2, 19, 0.1);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon i {
+            color: #030213;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        /* Curriculum Section */
+        .curriculum {
+            padding: 4rem 0;
+        }
+
+        .curriculum-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+        }
+
+        .curriculum-info {
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+
+        .curriculum-modules {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .module {
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+
+        .module-header {
+            padding: 1.5rem;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.3s;
+        }
+
+        .module-header:hover {
+            background: #f9fafb;
+        }
+
+        .module-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .module-number {
+            width: 2rem;
+            height: 2rem;
+            background: #030213;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 700;
+        }
+
+        .module-details h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .module-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .module-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .module-content.active {
+            max-height: 500px;
+            padding: 1.5rem;
+        }
+
+        .module-topics {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .module-topics li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            font-size: 0.875rem;
+        }
+
+        .module-topics li i {
+            color: #10b981;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 4rem 0;
+            background: #f8fafc;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .pricing-card.popular {
+            border: 2px solid #030213;
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -0.5rem;
+            right: 1rem;
+            background: #030213;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #030213;
+            margin: 1rem 0;
+        }
+
+        .price-original {
+            font-size: 1.5rem;
+            color: #6b7280;
+            text-decoration: line-through;
+            margin-left: 0.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+        }
+
+        .features-list li i {
+            color: #10b981;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 4rem 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+        }
+
+        .testimonial-rating {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-rating i {
+            color: #f59e0b;
+        }
+
+        .testimonial-text {
+            color: #374151;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 3rem;
+            height: 3rem;
+            background: #030213;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            color: #d1d5db;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: #374151;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #030213;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 1rem;
+            text-align: center;
+            color: #d1d5db;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links,
+            .nav-buttons {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .curriculum-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                justify-content: center;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pricing-card.popular {
+                transform: none;
+            }
+
+            .pricing-card.popular:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation for images */
+        .loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="logo">EduMaster</div>
-    <nav>
-      <a href="#courses">Courses</a>
-      <a href="#about">About</a>
-      <a href="#instructors">Instructors</a>
-      <a href="#pricing">Pricing</a>
-    </nav>
-    <a href="#" class="btn">Get Started</a>
-  </header>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">EduMaster</div>
+                <ul class="nav-links">
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#curriculum">Curriculum</a></li>
+                    <li><a href="#instructor">Instructor</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="#" class="btn btn-secondary">Sign In</a>
+                    <a href="#pricing" class="btn btn-primary">Get Started</a>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
 
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Master Full-Stack Web Development</h1>
-      <p>Learn React, Node.js, and modern web technologies from industry experts. Build real projects and launch your tech career.</p>
-      <div class="stats">
-        <span>⭐ 4.9 Rating (2,340 reviews)</span>
-        <span>👩‍🎓 12,450+ Students</span>
-        <span>⏱️ 40+ Hours</span>
-      </div>
-      <div class="buttons">
-        <a href="#" class="primary">Enroll Now - $199</a>
-        <a href="#" class="secondary">Watch Preview</a>
-      </div>
-    </div>
-    <div class="hero-img">
-      <img src="https://placehold.co/600x400" alt="Course Preview">
-    </div>
-  </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="badge">🚀 New Course Available</div>
+                    <h1>Master Full-Stack <span class="highlight">Web Development</span></h1>
+                    <p>Learn React, Node.js, and modern web technologies from industry experts. Build real projects and launch your tech career.</p>
+                    
+                    <div class="stats">
+                        <div class="stat">
+                            <i class="fas fa-star"></i>
+                            <span>4.9 Rating (2,340 reviews)</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>12,450+ Students</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-clock"></i>
+                            <span>40+ Hours</span>
+                        </div>
+                    </div>
 
-  <section id="features">
-    <div class="section-title">
-      <h2>Why Choose Our Course?</h2>
-      <p>Comprehensive learning experience designed to take you from beginner to job-ready developer</p>
-    </div>
-    <div class="features">
-      <div class="feature"><h3>Hands-on Projects</h3><p>Build 6+ real-world applications including an e-commerce site, social media app, and API service.</p></div>
-      <div class="feature"><h3>Expert Mentorship</h3><p>Get personalized guidance from senior developers with 10+ years of industry experience.</p></div>
-      <div class="feature"><h3>Flexible Learning</h3><p>Study at your own pace with lifetime access to course materials and updates.</p></div>
-      <div class="feature"><h3>Industry Certification</h3><p>Earn a verified certificate recognized by top tech companies.</p></div>
-    </div>
-  </section>
+                    <div class="hero-buttons">
+                        <a href="#pricing" class="btn btn-primary">Enroll Now - $199</a>
+                        <a href="#" class="btn btn-secondary">Watch Preview</a>
+                    </div>
 
-  <section id="curriculum">
-    <div class="section-title">
-      <h2>What You'll Learn</h2>
-      <p>A comprehensive curriculum designed by industry experts to take you from beginner to professional developer.</p>
-    </div>
-    <div class="curriculum">
-      <div class="left">
-        <p>⏱️ 40+ hours of content</p>
-        <p>🎥 200+ video lessons</p>
-        <p>💻 6 hands-on projects</p>
-        <p>📂 Downloadable resources</p>
-      </div>
-      <div class="right">
-        <ul>
-          <li>1. Web Development Fundamentals – 12 lessons, 8 hours</li>
-          <li>2. React Development – 18 lessons, 12 hours</li>
-          <li>3. Backend with Node.js – 15 lessons, 10 hours</li>
-          <li>4. Full-Stack Project – 14 lessons, 10 hours</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+                    <div class="stat">
+                        <i class="fas fa-award"></i>
+                        <span>Certificate of completion included</span>
+                    </div>
+                </div>
 
-  <section id="instructor">
-    <div class="section-title">
-      <h2>Learn from Industry Expert</h2>
-      <p>Get taught by a senior developer with real-world experience at top tech companies</p>
-    </div>
-    <div class="instructor">
-      <img src="https://placehold.co/400x300" alt="Instructor">
-      <div>
-        <h3>Sarah Johnson</h3>
-        <p>Senior Full-Stack Developer</p>
-        <p>📍 San Francisco, CA</p>
-        <p>⭐ 4.9 Instructor Rating | 👩‍🎓 25,000+ Students</p>
-        <p>With over 12 years of experience in full-stack development, Sarah has worked at companies like Google, Spotify, and several successful startups.</p>
-      </div>
-    </div>
-  </section>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=600&h=400&fit=crop" alt="Students learning" loading="lazy">
+                    <div class="floating-card top-right">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <div style="width: 12px; height: 12px; background: #10b981; border-radius: 50%; animation: pulse 2s infinite;"></div>
+                            <span>Live Sessions</span>
+                        </div>
+                    </div>
+                    <div class="floating-card bottom-left">
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: 700;">95%</div>
+                            <div style="font-size: 0.75rem; color: #6b7280;">Job Success Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section id="testimonials">
-    <div class="section-title">
-      <h2>Student Success Stories</h2>
-      <p>See how our students transformed their careers and landed jobs at top tech companies</p>
-    </div>
-    <div class="testimonials">
-      <div class="testimonial">⭐️⭐️⭐️⭐️⭐️ "This course completely transformed my career. I went from zero coding experience to landing a job at Netflix in 8 months." <strong>Alex Chen, Frontend Developer at Netflix</strong></div>
-      <div class="testimonial">⭐️⭐️⭐️⭐️⭐️ "The curriculum is well-structured and the mentorship was amazing. Highly recommend!" <strong>Maria Rodriguez, Full-Stack Developer at Stripe</strong></div>
-      <div class="testimonial">⭐️⭐️⭐️⭐️⭐️ "The job placement support was amazing – I got 3 offers within 2 weeks!" <strong>David Kim, Software Engineer at Airbnb</strong></div>
-    </div>
-  </section>
+    <!-- Features Section -->
+    <section class="features" id="courses">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Our Course?</h2>
+                <p>Comprehensive learning experience designed to take you from beginner to job-ready developer</p>
+            </div>
 
-  <section id="pricing">
-    <div class="section-title">
-      <h2>Flexible Pricing Options</h2>
-      <p>Start your coding journey today with our comprehensive courses designed for every learning style</p>
-    </div>
-    <div class="pricing">
-      <div class="price-card">
-        <h3>Self-Paced</h3>
-        <strong>$99</strong>
-        <p>Perfect for motivated self-learners</p>
-        <button>Start Learning</button>
-      </div>
-      <div class="price-card">
-        <h3>Mentored</h3>
-        <strong>$199</strong>
-        <p>Personalized guidance and support</p>
-        <button>Get Mentorship</button>
-      </div>
-      <div class="price-card">
-        <h3>Premium</h3>
-        <strong>$399</strong>
-        <p>Maximum support for career transition</p>
-        <button>Go Premium</button>
-      </div>
-    </div>
-  </section>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Hands-on Projects</h3>
+                    <p>Build 6+ real-world applications including an e-commerce site, social media app, and API service.</p>
+                </div>
 
-  <footer>
-    <div>
-      <h4>EduMaster</h4>
-      <p>Empowering the next generation of developers with world-class education and mentorship.</p>
-    </div>
-    <div>
-      <h4>Courses</h4>
-      <a href="#">Web Development</a>
-      <a href="#">React Bootcamp</a>
-      <a href="#">Node.js Backend</a>
-    </div>
-    <div>
-      <h4>Company</h4>
-      <a href="#">About Us</a>
-      <a href="#">Careers</a>
-      <a href="#">Blog</a>
-    </div>
-    <div>
-      <h4>Support</h4>
-      <a href="#">Help Center</a>
-      <a href="#">Contact</a>
-      <a href="#">FAQ</a>
-    </div>
-  </footer>
-  <div class="copyright">© 2024 EduMaster. All rights reserved.</div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Expert Mentorship</h3>
+                    <p>Get personalized guidance from senior developers with 10+ years of industry experience.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Flexible Learning</h3>
+                    <p>Study at your own pace with lifetime access to course materials and regular content updates.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Industry Certification</h3>
+                    <p>Earn a verified certificate recognized by top tech companies and add it to your LinkedIn profile.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Comprehensive Curriculum</h3>
+                    <p>Cover everything from basics to advanced topics including testing, deployment, and best practices.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Modern Tech Stack</h3>
+                    <p>Learn the latest technologies including React 18, Node.js, TypeScript, and popular frameworks.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Community Support</h3>
+                    <p>Join a thriving community of 10,000+ developers for networking and problem-solving.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Career Support</h3>
+                    <p>Access job placement assistance, resume reviews, and interview preparation resources.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum Section -->
+    <section class="curriculum" id="curriculum">
+        <div class="container">
+            <div class="curriculum-content">
+                <div class="curriculum-info">
+                    <div class="badge">Course Curriculum</div>
+                    <h2>What You'll Learn</h2>
+                    <p>A comprehensive curriculum designed by industry experts to take you from beginner to professional developer.</p>
+                    
+                    <div style="margin: 2rem 0;">
+                        <div class="stat" style="margin-bottom: 1rem;">
+                            <i class="fas fa-clock"></i>
+                            <span>40+ hours of content</span>
+                        </div>
+                        <div class="stat" style="margin-bottom: 1rem;">
+                            <i class="fas fa-play-circle"></i>
+                            <span>200+ video lessons</span>
+                        </div>
+                        <div class="stat" style="margin-bottom: 1rem;">
+                            <i class="fas fa-code"></i>
+                            <span>6 hands-on projects</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-download"></i>
+                            <span>Downloadable resources</span>
+                        </div>
+                    </div>
+
+                    <a href="#pricing" class="btn btn-primary">Start Learning Today</a>
+                </div>
+
+                <div class="curriculum-modules">
+                    <div class="module">
+                        <div class="module-header" onclick="toggleModule(this)">
+                            <div class="module-title">
+                                <div class="module-number">1</div>
+                                <div class="module-details">
+                                    <h3>Web Development Fundamentals</h3>
+                                    <div class="module-meta">
+                                        <span>12 lessons</span>
+                                        <span>8 hours</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="module-content">
+                            <p>Master HTML5, CSS3, and modern JavaScript ES6+ features</p>
+                            <ul class="module-topics">
+                                <li><i class="fas fa-check-circle"></i> HTML5 semantic elements and accessibility</li>
+                                <li><i class="fas fa-check-circle"></i> CSS Grid and Flexbox layouts</li>
+                                <li><i class="fas fa-check-circle"></i> JavaScript fundamentals and DOM manipulation</li>
+                                <li><i class="fas fa-check-circle"></i> Responsive design principles</li>
+                                <li><i class="fas fa-check-circle"></i> Git version control basics</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="module">
+                        <div class="module-header" onclick="toggleModule(this)">
+                            <div class="module-title">
+                                <div class="module-number">2</div>
+                                <div class="module-details">
+                                    <h3>React Development</h3>
+                                    <div class="module-meta">
+                                        <span>18 lessons</span>
+                                        <span>12 hours</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="module-content">
+                            <p>Build dynamic user interfaces with React and modern hooks</p>
+                            <ul class="module-topics">
+                                <li><i class="fas fa-check-circle"></i> React components and JSX</li>
+                                <li><i class="fas fa-check-circle"></i> State management with useState and useEffect</li>
+                                <li><i class="fas fa-check-circle"></i> Component composition and props</li>
+                                <li><i class="fas fa-check-circle"></i> React Router for navigation</li>
+                                <li><i class="fas fa-check-circle"></i> Form handling and validation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="module">
+                        <div class="module-header" onclick="toggleModule(this)">
+                            <div class="module-title">
+                                <div class="module-number">3</div>
+                                <div class="module-details">
+                                    <h3>Backend with Node.js</h3>
+                                    <div class="module-meta">
+                                        <span>15 lessons</span>
+                                        <span>10 hours</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="module-content">
+                            <p>Create robust APIs and server-side applications</p>
+                            <ul class="module-topics">
+                                <li><i class="fas fa-check-circle"></i> Node.js and Express.js fundamentals</li>
+                                <li><i class="fas fa-check-circle"></i> RESTful API design and implementation</li>
+                                <li><i class="fas fa-check-circle"></i> Database integration with MongoDB</li>
+                                <li><i class="fas fa-check-circle"></i> Authentication and authorization</li>
+                                <li><i class="fas fa-check-circle"></i> Error handling and middleware</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="module">
+                        <div class="module-header" onclick="toggleModule(this)">
+                            <div class="module-title">
+                                <div class="module-number">4</div>
+                                <div class="module-details">
+                                    <h3>Full-Stack Project</h3>
+                                    <div class="module-meta">
+                                        <span>14 lessons</span>
+                                        <span>10 hours</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="module-content">
+                            <p>Build and deploy a complete web application</p>
+                            <ul class="module-topics">
+                                <li><i class="fas fa-check-circle"></i> Project planning and architecture</li>
+                                <li><i class="fas fa-check-circle"></i> Frontend and backend integration</li>
+                                <li><i class="fas fa-check-circle"></i> Testing strategies and implementation</li>
+                                <li><i class="fas fa-check-circle"></i> Deployment to cloud platforms</li>
+                                <li><i class="fas fa-check-circle"></i> Performance optimization techniques</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Choose Your Learning Path</h2>
+                <p>Start your coding journey today with our comprehensive courses designed for every learning style</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Self-Paced</h3>
+                    <p>Perfect for motivated self-learners</p>
+                    <div class="price">$99<span class="price-original">$149</span></div>
+                    
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Complete course access</li>
+                        <li><i class="fas fa-check"></i> 40+ hours of video content</li>
+                        <li><i class="fas fa-check"></i> 6 hands-on projects</li>
+                        <li><i class="fas fa-check"></i> Community forum access</li>
+                        <li><i class="fas fa-check"></i> Basic email support</li>
+                        <li><i class="fas fa-check"></i> Certificate of completion</li>
+                        <li><i class="fas fa-check"></i> Lifetime access to content</li>
+                    </ul>
+
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Start Learning</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Mentored</h3>
+                    <p>Get personalized guidance and support</p>
+                    <div class="price">$199<span class="price-original">$299</span></div>
+                    
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Everything in Self-Paced</li>
+                        <li><i class="fas fa-check"></i> 1-on-1 mentor sessions (4 hours)</li>
+                        <li><i class="fas fa-check"></i> Code review and feedback</li>
+                        <li><i class="fas fa-check"></i> Career guidance and planning</li>
+                        <li><i class="fas fa-check"></i> Resume and LinkedIn review</li>
+                        <li><i class="fas fa-check"></i> Interview preparation</li>
+                        <li><i class="fas fa-check"></i> Job placement assistance</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                    </ul>
+
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Get Mentorship</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Premium</h3>
+                    <p>Maximum support for career transition</p>
+                    <div class="price">$399<span class="price-original">$599</span></div>
+                    
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Everything in Mentored</li>
+                        <li><i class="fas fa-check"></i> Weekly 1-on-1 sessions (12 hours)</li>
+                        <li><i class="fas fa-check"></i> Portfolio website development</li>
+                        <li><i class="fas fa-check"></i> Mock interview sessions</li>
+                        <li><i class="fas fa-check"></i> Salary negotiation guidance</li>
+                        <li><i class="fas fa-check"></i> 6-month job search support</li>
+                        <li><i class="fas fa-check"></i> Money-back guarantee*</li>
+                        <li><i class="fas fa-check"></i> VIP community access</li>
+                    </ul>
+
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Go Premium</a>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem; color: #6b7280;">
+                <p>* Money-back guarantee applies to Premium plan within 30 days of enrollment</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Join 12,000+ Successful Graduates</h2>
+                <p>See how our students transformed their careers and landed jobs at top tech companies</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"This course completely transformed my career. I went from having zero coding experience to landing a job at Netflix in just 8 months. The teaching style is incredible and the projects are exactly what you need for real-world experience."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AC</div>
+                        <div class="author-info">
+                            <h4>Alex Chen</h4>
+                            <p>Frontend Developer at Netflix</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The curriculum is so well-structured and up-to-date. I especially loved the mentorship aspect - having someone to guide you through the challenging parts makes all the difference. Highly recommend!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <h4>Maria Rodriguez</h4>
+                            <p>Full-Stack Developer at Stripe</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Best investment I've ever made! The course not only taught me technical skills but also how to think like a developer. The job placement support was amazing - I got 3 offers within 2 weeks of completing the course."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DK</div>
+                        <div class="author-info">
+                            <h4>David Kim</h4>
+                            <p>Software Engineer at Airbnb</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Coming from a non-tech background, I was worried about making the transition. This course made everything so accessible and the community support was incredible. Now I'm building features used by millions of users!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">EZ</div>
+                        <div class="author-info">
+                            <h4>Emily Zhang</h4>
+                            <p>React Developer at Uber</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The hands-on projects were game-changers for me. Building real applications gave me the confidence I needed in interviews. The instructors are always available to help and the curriculum stays current with industry trends."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JW</div>
+                        <div class="author-info">
+                            <h4>James Wilson</h4>
+                            <p>Backend Developer at Discord</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"This course exceeded all my expectations. The depth of knowledge you gain is incredible, and the career support doesn't end when the course does. I'm now making 3x what I was before taking this course!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SP</div>
+                        <div class="author-info">
+                            <h4>Sofia Patel</h4>
+                            <p>Full-Stack Developer at Shopify</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <div style="display: inline-flex; align-items: center; gap: 1rem; background: #f8fafc; padding: 1rem 2rem; border-radius: 2rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-star" style="color: #f59e0b;"></i>
+                        <span style="font-size: 1.25rem; font-weight: 600;">4.9/5</span>
+                    </div>
+                    <div style="width: 1px; height: 1.5rem; background: #e5e7eb;"></div>
+                    <span style="color: #6b7280;">Based on 2,340+ reviews</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EduMaster</h3>
+                    <p>Empowering the next generation of developers with world-class education and mentorship.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Courses</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">React Bootcamp</a></li>
+                        <li><a href="#">Node.js Backend</a></li>
+                        <li><a href="#">Full-Stack Bundle</a></li>
+                        <li><a href="#">Career Track</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Course FAQ</a></li>
+                        <li><a href="#">Technical Support</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 EduMaster. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            const navButtons = document.querySelector('.nav-buttons');
+            
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+                navButtons.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+                
+                navButtons.style.display = 'flex';
+                navButtons.style.flexDirection = 'column';
+                navButtons.style.position = 'absolute';
+                navButtons.style.top = '200%';
+                navButtons.style.left = '0';
+                navButtons.style.right = '0';
+                navButtons.style.background = 'white';
+                navButtons.style.padding = '1rem';
+                navButtons.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Module toggle functionality
+        function toggleModule(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('i');
+            
+            content.classList.toggle('active');
+            
+            if (content.classList.contains('active')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and testimonial cards
+        document.querySelectorAll('.feature-card, .testimonial-card, .pricing-card, .module').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Pulse animation for live indicator
+        const pulseKeyframes = `
+            @keyframes pulse {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.5; }
+            }
+        `;
+        
+        const style = document.createElement('style');
+        style.textContent = pulseKeyframes;
+        document.head.appendChild(style);
+
+        // Add loading effect to images
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', function() {
+                this.classList.remove('loading');
+            });
+            
+            if (!img.complete) {
+                img.classList.add('loading');
+            }
+        });
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.feature-card, .pricing-card, .testimonial-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Track button clicks for analytics (placeholder)
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // Analytics tracking would go here
+                console.log('Button clicked:', this.textContent.trim());
+            });
+        });
+    </script>
 </body>
 </html>
