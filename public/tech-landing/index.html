@@ -16,10 +16,13 @@
             --primary-blue: #3b82f6;
             --primary-purple: #8b5cf6;
             --primary-pink: #ec4899;
+            --primary-green: #10b981;
             --gradient-premium: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-rainbow: linear-gradient(135deg, #f093fb 0%, #f5576c 25%, #4facfe 50%, #00f2fe 100%);
+            --gradient-hero: linear-gradient(135deg, #ff9a9e 0%, #fecfef 25%, #fecfef 50%, #ffd4e5 100%);
             --shadow-premium: 0 32px 64px -12px rgba(0, 0, 0, 0.25);
             --shadow-premium-colored: 0 32px 64px -12px rgba(59, 130, 246, 0.25);
+            --shadow-glow: 0 0 50px rgba(59, 130, 246, 0.3);
         }
 
         body {
@@ -62,6 +65,31 @@
             50% { transform: translateY(-20px); }
         }
 
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .animate-float {
             animation: float 6s ease-in-out infinite;
         }
@@ -69,6 +97,10 @@
         .animate-float-delayed {
             animation: float 6s ease-in-out infinite;
             animation-delay: 2s;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s infinite;
         }
 
         /* Premium text gradients */
@@ -135,7 +167,7 @@
 
         .logo:hover .logo-icon {
             transform: scale(1.05);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-glow);
         }
 
         .logo-icon::before {
@@ -165,11 +197,28 @@
             font-weight: 500;
             border-radius: 8px;
             transition: all 0.2s ease;
+            position: relative;
         }
 
         .nav-link:hover {
             color: #1f2937;
             background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-premium);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
         }
 
         .header-buttons {
@@ -190,6 +239,21 @@
             border: none;
             cursor: pointer;
             font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.5) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .btn:hover::before {
+            transform: translateX(100%);
         }
 
         .btn-ghost {
@@ -211,7 +275,8 @@
 
         .btn-primary:hover {
             background: linear-gradient(to right, #2563eb, #7c3aed);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-2px);
         }
 
         /* Mobile Menu */
@@ -246,6 +311,7 @@
 
         .mobile-menu.active {
             display: block;
+            animation: slideInUp 0.3s ease;
         }
 
         .mobile-nav {
@@ -292,7 +358,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 25%, #4facfe 50%, #00f2fe 100%);
+            background: var(--gradient-rainbow);
             background-size: 400% 400%;
             animation: gradient-shift 15s ease infinite;
             opacity: 0.1;
@@ -351,6 +417,7 @@
             display: flex;
             flex-direction: column;
             gap: 32px;
+            animation: slideInLeft 1s ease;
         }
 
         .badge {
@@ -365,6 +432,7 @@
             width: fit-content;
             backdrop-filter: blur(20px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.125);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         .hero-title {
@@ -403,6 +471,7 @@
         .btn-outline:hover {
             background: rgba(255, 255, 255, 0.95);
             border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
         }
 
         .hero-features {
@@ -422,7 +491,7 @@
 
         .hero-feature::before {
             content: '✓';
-            color: #10b981;
+            color: var(--primary-green);
             font-weight: 600;
         }
 
@@ -453,6 +522,7 @@
         /* Hero Image */
         .hero-image {
             position: relative;
+            animation: slideInRight 1s ease;
         }
 
         .hero-image-container {
@@ -474,6 +544,7 @@
             filter: blur(32px);
             opacity: 0.2;
             z-index: -1;
+            animation: pulse 4s infinite;
         }
 
         .hero-image img {
@@ -536,10 +607,11 @@
             justify-content: center;
             color: white;
             font-size: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         .card-icon-green {
-            background: linear-gradient(to bottom right, #10b981, #059669);
+            background: linear-gradient(to bottom right, var(--primary-green), #059669);
         }
 
         .card-icon-blue {
@@ -567,7 +639,7 @@
         .card-value {
             font-size: 24px;
             font-weight: 900;
-            color: #10b981;
+            color: var(--primary-green);
         }
 
         .card-small-text {
@@ -575,10 +647,10 @@
             color: #6b7280;
         }
 
-        /* Features Section */
-        .features {
+        /* Sections */
+        .section {
             padding: 128px 0;
-            background: linear-gradient(to bottom, rgba(249, 250, 251, 0.5), white);
+            position: relative;
         }
 
         .container {
@@ -615,6 +687,11 @@
             margin: 0 auto;
         }
 
+        /* Features Section */
+        .features {
+            background: linear-gradient(to bottom, rgba(249, 250, 251, 0.5), white);
+        }
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -631,6 +708,14 @@
             transition: all 0.5s ease;
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .feature-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+            animation: slideInUp 0.6s ease;
         }
 
         .feature-card:hover {
@@ -673,7 +758,7 @@
 
         .feature-card:hover .feature-icon {
             transform: scale(1.1);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-glow);
         }
 
         .feature-meta {
@@ -744,17 +829,458 @@
         .company {
             text-align: center;
             cursor: pointer;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .company-name {
             font-size: 24px;
             font-weight: 900;
             color: #9ca3af;
+            transition: all 0.3s ease;
         }
 
         .company:hover .company-name {
             color: #6b7280;
+            transform: scale(1.05);
+        }
+
+        /* Product Showcase */
+        .product-showcase {
+            background: linear-gradient(to bottom, white, rgba(249, 250, 251, 0.5));
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            margin-bottom: 64px;
+        }
+
+        .showcase-content {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .showcase-image {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-premium);
+        }
+
+        .showcase-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .showcase-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 64px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 32px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 16px;
+            box-shadow: var(--shadow-premium);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 900;
+            background: var(--gradient-premium);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(to bottom, rgba(249, 250, 251, 0.5), white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--shadow-premium);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 120px;
+            color: rgba(59, 130, 246, 0.1);
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            font-size: 18px;
+            color: #374151;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .author-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--gradient-premium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .author-role {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .rating {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 16px;
+        }
+
+        .star {
+            color: #fbbf24;
+            font-size: 18px;
+        }
+
+        /* Pricing */
+        .pricing {
+            background: linear-gradient(to bottom, white, rgba(249, 250, 251, 0.5));
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--shadow-premium);
+            transition: all 0.3s ease;
+            position: relative;
+            text-align: center;
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(to bottom right, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-4px);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-premium);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .pricing-plan {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .pricing-price {
+            font-size: 48px;
+            font-weight: 900;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .pricing-period {
+            color: #6b7280;
+            margin-bottom: 32px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .pricing-features li {
+            padding: 8px 0;
+            color: #374151;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--primary-green);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        /* FAQ */
+        .faq {
+            background: linear-gradient(to bottom, rgba(249, 250, 251, 0.5), white);
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 16px;
+            max-width: 768px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-premium);
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 24px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+
+        .faq-answer-content {
+            padding: 0 24px 24px;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta .section-title {
+            color: white;
+        }
+
+        .cta .section-description {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background: white;
+            color: #1f2937;
+            border: none;
+        }
+
+        .btn-white:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline-white:hover {
+            background: white;
+            color: #1f2937;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 64px 0 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 32px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient-premium);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .footer-logo-text {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .footer-description {
+            color: #9ca3af;
+            line-height: 1.6;
+        }
+
+        .footer-section h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid #374151;
+            text-align: center;
+            color: #9ca3af;
         }
 
         /* Responsive Design */
@@ -807,6 +1333,16 @@
             .floating-card-4 {
                 display: none;
             }
+
+            .showcase-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -839,23 +1375,34 @@
             .companies-grid {
                 grid-template-columns: 1fr;
             }
-        }
 
-        /* Additional sections would continue with similar premium styling... */
-        
-        .section {
-            padding: 128px 0;
-        }
+            .showcase-stats {
+                grid-template-columns: 1fr;
+            }
 
-        .bg-white { background: white; }
-        .bg-gray-50 { background: #f9fafb; }
-        .bg-gradient { background: linear-gradient(to bottom right, #1f2937, #111827, #000); }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
 
         /* Hide scrollbar but keep functionality */
         ::-webkit-scrollbar {
             width: 0px;
             background: transparent;
         }
+
+        /* Additional utility classes */
+        .text-center { text-align: center; }
+        .opacity-0 { opacity: 0; }
+        .opacity-100 { opacity: 1; }
+        .translate-y-8 { transform: translateY(32px); }
+        .translate-y-0 { transform: translateY(0); }
     </style>
 </head>
 <body>
@@ -872,6 +1419,7 @@
                 <a href="#product" class="nav-link">Product</a>
                 <a href="#testimonials" class="nav-link">Testimonials</a>
                 <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#faq" class="nav-link">FAQ</a>
             </nav>
             
             <div class="header-buttons">
@@ -894,6 +1442,7 @@
                 <a href="#product" class="mobile-nav-link">Product</a>
                 <a href="#testimonials" class="mobile-nav-link">Testimonials</a>
                 <a href="#pricing" class="mobile-nav-link">Pricing</a>
+                <a href="#faq" class="mobile-nav-link">FAQ</a>
             </nav>
             <div class="mobile-buttons">
                 <a href="#" class="btn btn-ghost">Sign In</a>
@@ -925,7 +1474,7 @@
                     
                     <p class="hero-description">
                         NexusFlow combines AI-powered automation with intuitive design to help startups scale faster. 
-                        Streamline operations, boost productivity, and focus on growth.
+                        Streamline operations, boost productivity, and focus on growth with our revolutionary platform.
                     </p>
                     
                     <div class="hero-buttons">
@@ -956,6 +1505,7 @@
                             <span class="trust-company">TechCorp</span>
                             <span class="trust-company">StartupX</span>
                             <span class="trust-company">InnovateCo</span>
+                            <span class="trust-company">ScaleUp</span>
                         </div>
                     </div>
                 </div>
@@ -1037,7 +1587,7 @@
                     </div>
                     <h3 class="feature-title">Lightning Fast Automation</h3>
                     <p class="feature-description">
-                        Automate repetitive tasks in seconds with our AI-powered workflow engine. Save 20+ hours per week.
+                        Automate repetitive tasks in seconds with our AI-powered workflow engine. Save 20+ hours per week and focus on what matters most.
                     </p>
                 </div>
                 
@@ -1051,7 +1601,7 @@
                     </div>
                     <h3 class="feature-title">Real-time Analytics</h3>
                     <p class="feature-description">
-                        Track performance metrics, user engagement, and revenue growth with beautiful, actionable dashboards.
+                        Track performance metrics, user engagement, and revenue growth with beautiful, actionable dashboards that update in real-time.
                     </p>
                 </div>
                 
@@ -1064,7 +1614,7 @@
                     </div>
                     <h3 class="feature-title">Team Collaboration</h3>
                     <p class="feature-description">
-                        Seamlessly collaborate with your team using built-in communication tools and shared workspaces.
+                        Seamlessly collaborate with your team using built-in communication tools, shared workspaces, and real-time updates.
                     </p>
                 </div>
                 
@@ -1078,7 +1628,7 @@
                     </div>
                     <h3 class="feature-title">Enterprise Security</h3>
                     <p class="feature-description">
-                        Bank-grade encryption, SSO integration, and compliance with SOC 2, GDPR, and HIPAA standards.
+                        Bank-grade encryption, SSO integration, and compliance with SOC 2, GDPR, and HIPAA standards for complete peace of mind.
                     </p>
                 </div>
                 
@@ -1091,7 +1641,7 @@
                     </div>
                     <h3 class="feature-title">Custom Workflows</h3>
                     <p class="feature-description">
-                        Build complex automation workflows with our visual editor. No coding required.
+                        Build complex automation workflows with our intuitive visual editor. No coding required, unlimited possibilities.
                     </p>
                 </div>
                 
@@ -1105,34 +1655,7 @@
                     </div>
                     <h3 class="feature-title">AI Assistant</h3>
                     <p class="feature-description">
-                        Get intelligent suggestions and automated insights to optimize your business processes.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon" style="background: linear-gradient(to bottom right, #06b6d4, #0891b2);">🌍</div>
-                        <div class="feature-meta">
-                            <div class="feature-arrow">↗</div>
-                        </div>
-                    </div>
-                    <h3 class="feature-title">Global Scale</h3>
-                    <p class="feature-description">
-                        Deploy worldwide with 99.9% uptime SLA. Scales automatically to handle millions of operations.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon" style="background: linear-gradient(to bottom right, #ef4444, #dc2626);">🔒</div>
-                        <div class="feature-meta">
-                            <div class="feature-badge">Secure</div>
-                            <div class="feature-arrow">↗</div>
-                        </div>
-                    </div>
-                    <h3 class="feature-title">Data Privacy</h3>
-                    <p class="feature-description">
-                        Your data stays yours. Zero-knowledge architecture ensures complete privacy and control.
+                        Get intelligent suggestions and automated insights to optimize your business processes and make data-driven decisions.
                     </p>
                 </div>
             </div>
@@ -1161,6 +1684,468 @@
             </div>
         </div>
     </section>
+
+    <!-- Product Showcase -->
+    <section class="product-showcase section" id="product">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge section-badge" style="background: rgba(139, 92, 246, 0.1); color: #7c3aed;">
+                    Product
+                </div>
+                <h2 class="section-title">
+                    Built for the <span class="text-gradient-rainbow">future</span> of work
+                </h2>
+                <p class="section-description">
+                    Experience the power of AI-driven automation combined with intuitive design. 
+                    Our platform adapts to your workflow, not the other way around.
+                </p>
+            </div>
+
+            <div class="showcase-grid">
+                <div class="showcase-content">
+                    <h3 style="font-size: 32px; font-weight: 700; margin-bottom: 16px; color: #1f2937;">
+                        Intelligent Workflow Management
+                    </h3>
+                    <p style="font-size: 18px; color: #6b7280; line-height: 1.6; margin-bottom: 32px;">
+                        Our AI learns from your patterns and suggests optimizations to streamline your processes. 
+                        Watch as mundane tasks become automated, freeing your team to focus on innovation.
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 24px; height: 24px; background: linear-gradient(to right, var(--primary-green), #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;">✓</div>
+                            <span style="color: #374151;">Smart task prioritization</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 24px; height: 24px; background: linear-gradient(to right, var(--primary-green), #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;">✓</div>
+                            <span style="color: #374151;">Automated deadline tracking</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 24px; height: 24px; background: linear-gradient(to right, var(--primary-green), #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;">✓</div>
+                            <span style="color: #374151;">Real-time collaboration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="showcase-image">
+                    <img src="https://images.unsplash.com/photo-1748256622734-92241ae7b43f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWFtJTIwY29sbGFib3JhdGlvbiUyMHdvcmtzcGFjZXxlbnwxfHx8fDE3NTg5MDAyMzB8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Team collaboration workspace">
+                </div>
+            </div>
+
+            <div class="showcase-stats">
+                <div class="stat-card">
+                    <div class="stat-number">300%</div>
+                    <div class="stat-label">Faster Processing</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Uptime SLA</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">AI Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials section" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge section-badge" style="background: rgba(16, 185, 129, 0.1); color: #059669;">
+                    Testimonials
+                </div>
+                <h2 class="section-title">
+                    Loved by <span class="text-gradient-premium">thousands</span> of teams
+                </h2>
+                <p class="section-description">
+                    Don't just take our word for it. See what our customers have to say about their experience with NexusFlow.
+                </p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-content">
+                        "NexusFlow transformed our entire operation. We went from manual processes to fully automated workflows in just two weeks. The ROI has been incredible."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SC</div>
+                        <div class="author-info">
+                            <div class="author-name">Sarah Chen</div>
+                            <div class="author-role">CTO, TechCorp</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-content">
+                        "The AI insights are game-changing. We're making decisions faster and with more confidence than ever before. It's like having a data scientist on every team."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MJ</div>
+                        <div class="author-info">
+                            <div class="author-name">Marcus Johnson</div>
+                            <div class="author-role">Founder, StartupX</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-content">
+                        "Integration was seamless, and the learning curve was surprisingly gentle. Our team was productive from day one. The customer support is also phenomenal."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">ER</div>
+                        <div class="author-info">
+                            <div class="author-name">Emily Rodriguez</div>
+                            <div class="author-role">VP Product, InnovateCo</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-content">
+                        "We've tried many workflow tools, but nothing comes close to NexusFlow. The automation capabilities are light-years ahead of the competition."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DK</div>
+                        <div class="author-info">
+                            <div class="author-name">David Kim</div>
+                            <div class="author-role">Operations Director, ScaleUp</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-content">
+                        "Security was our biggest concern, but NexusFlow exceeded all our expectations. Enterprise-grade security with startup-level agility."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AT</div>
+                        <div class="author-info">
+                            <div class="author-name">Alex Thompson</div>
+                            <div class="author-role">CISO, GrowthLab</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-content">
+                        "The visual workflow builder is intuitive and powerful. Our non-technical team members are creating complex automations with ease."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">LP</div>
+                        <div class="author-info">
+                            <div class="author-name">Lisa Park</div>
+                            <div class="author-role">Project Manager, DigitalFirst</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge section-badge" style="background: rgba(236, 72, 153, 0.1); color: #be185d;">
+                    Pricing
+                </div>
+                <h2 class="section-title">
+                    Simple, <span class="text-gradient-rainbow">transparent</span> pricing
+                </h2>
+                <p class="section-description">
+                    Choose the plan that fits your team size and needs. All plans include our core features and 24/7 support.
+                </p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-plan">Starter</div>
+                    <div class="pricing-price">$29</div>
+                    <div class="pricing-period">per user/month</div>
+                    <ul class="pricing-features">
+                        <li>Up to 5 users</li>
+                        <li>10GB storage</li>
+                        <li>Basic automation</li>
+                        <li>Email support</li>
+                        <li>API access</li>
+                        <li>Mobile apps</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline btn-lg" style="width: 100%;">Start Free Trial</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-plan">Professional</div>
+                    <div class="pricing-price">$79</div>
+                    <div class="pricing-period">per user/month</div>
+                    <ul class="pricing-features">
+                        <li>Up to 25 users</li>
+                        <li>100GB storage</li>
+                        <li>Advanced automation</li>
+                        <li>Priority support</li>
+                        <li>Custom integrations</li>
+                        <li>Advanced analytics</li>
+                        <li>Team collaboration</li>
+                        <li>Workflow templates</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary btn-lg" style="width: 100%;">Start Free Trial</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-plan">Enterprise</div>
+                    <div class="pricing-price">Custom</div>
+                    <div class="pricing-period">contact sales</div>
+                    <ul class="pricing-features">
+                        <li>Unlimited users</li>
+                        <li>Unlimited storage</li>
+                        <li>Enterprise security</li>
+                        <li>24/7 phone support</li>
+                        <li>Custom development</li>
+                        <li>Dedicated success manager</li>
+                        <li>SLA guarantee</li>
+                        <li>White-label options</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline btn-lg" style="width: 100%;">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge section-badge" style="background: rgba(99, 102, 241, 0.1); color: #4f46e5;">
+                    FAQ
+                </div>
+                <h2 class="section-title">
+                    Frequently asked <span class="text-gradient-premium">questions</span>
+                </h2>
+                <p class="section-description">
+                    Everything you need to know about NexusFlow. Can't find the answer you're looking for? 
+                    Feel free to reach out to our support team.
+                </p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How does the 14-day free trial work?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            You get full access to all features during your 14-day trial. No credit card required to start. 
+                            You can cancel anytime during the trial period without any charges.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I change my plan at any time?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, 
+                            and billing is prorated based on your usage.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is my data secure with NexusFlow?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Absolutely. We use bank-grade encryption and are compliant with SOC 2, GDPR, and HIPAA. 
+                            Your data is encrypted both in transit and at rest.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you offer custom integrations?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes, we offer custom integrations for Professional and Enterprise plans. 
+                            Our team can help integrate NexusFlow with your existing tools and systems.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What kind of support do you provide?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We offer email support for all plans, priority support for Professional users, 
+                            and 24/7 phone support for Enterprise customers. We also have extensive documentation and video tutorials.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I export my data if I decide to leave?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes, you own your data and can export it at any time in standard formats. 
+                            We also provide migration assistance to help you transition smoothly.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    Ready to transform your workflow?
+                </h2>
+                <p class="section-description">
+                    Join thousands of teams already using NexusFlow to automate their processes and accelerate growth. 
+                    Start your free trial today and see the difference AI can make.
+                </p>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-white btn-lg">
+                    Start Free Trial
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 8px;">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7,7 17,7 17,17"></polyline>
+                    </svg>
+                </a>
+                <a href="#" class="btn btn-outline-white btn-lg">
+                    Contact Sales
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">✨</div>
+                        <span class="footer-logo-text">NexusFlow</span>
+                    </div>
+                    <p class="footer-description">
+                        Transform your workflow into revenue with AI-powered automation. 
+                        Built for the modern team that values efficiency and growth.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#">Integrations</a></li>
+                        <li><a href="#">API Docs</a></li>
+                        <li><a href="#">Changelog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Templates</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Compliance</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 NexusFlow. All rights reserved. Made with ❤️ for teams that build the future.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Mobile menu toggle
@@ -1198,16 +2183,6 @@
             });
         });
 
-        // Add pulse animation for live indicator
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes pulse {
-                0%, 100% { opacity: 1; }
-                50% { opacity: 0.5; }
-            }
-        `;
-        document.head.appendChild(style);
-
         // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
@@ -1217,18 +2192,32 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('animate');
                 }
             });
         }, observerOptions);
 
         // Observe feature cards for entrance animations
         document.querySelectorAll('.feature-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'all 0.6s ease';
             observer.observe(card);
+        });
+
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
         });
 
         // Add parallax effect to floating backgrounds
@@ -1239,6 +2228,68 @@
             document.querySelectorAll('.floating-bg').forEach((element, index) => {
                 const speed = (index + 1) * 0.3;
                 element.style.transform = `translateY(${parallax * speed}px)`;
+            });
+        });
+
+        // Add scroll reveal animations
+        const revealElements = document.querySelectorAll('.testimonial-card, .stat-card, .pricing-card');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'all 0.6s ease';
+            revealObserver.observe(element);
+        });
+
+        // Add dynamic gradient animation to hero section
+        const hero = document.querySelector('.hero');
+        let gradientPosition = 0;
+        
+        setInterval(() => {
+            gradientPosition += 1;
+            hero.style.background = `linear-gradient(${gradientPosition}deg, rgba(59, 130, 246, 0.05), rgba(255, 255, 255, 1), rgba(139, 92, 246, 0.05))`;
+        }, 100);
+
+        // Add typing effect to hero title (optional enhancement)
+        const heroTitle = document.querySelector('.hero-title');
+        const originalText = heroTitle.innerHTML;
+        
+        // Button hover effects
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                btn.style.transform = 'translateY(-2px)';
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Add loading animation to feature cards
+        const featureCards = document.querySelectorAll('.feature-card');
+        featureCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Add smooth hover effects to company logos
+        document.querySelectorAll('.company').forEach(company => {
+            company.addEventListener('mouseenter', () => {
+                company.style.transform = 'scale(1.1)';
+            });
+            
+            company.addEventListener('mouseleave', () => {
+                company.style.transform = 'scale(1)';
             });
         });
     </script>
