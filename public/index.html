@@ -1720,6 +1720,161 @@
   75% { opacity: 1; }
   100% { opacity: 0; }
 }
+
+
+  /* Section Base */
+  .how-i-think {
+    position: relative;
+    background: #0e0f17;
+    padding: 5rem 1.5rem;
+    overflow: hidden;
+    color: white;
+    font-family: "Inter", sans-serif;
+  }
+
+  .how-i-think .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* Header */
+  .how-i-think .header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #8b5cf6, #0ea5e9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .how-i-think .header p {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #9ca3af;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Stepper */
+  .stepper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+    position: relative;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .connector {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+      to right,
+      rgba(139, 92, 246, 0.4),
+      rgba(14, 165, 233, 0.4),
+      rgba(16, 185, 129, 0.4)
+    );
+    z-index: 0;
+    animation: flow 4s linear infinite;
+    background-size: 200% 100%;
+  }
+
+  @keyframes flow {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+
+  .step {
+    flex: 1;
+    min-width: 180px;
+    z-index: 1;
+  }
+
+  .icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(to right, #8b5cf6, #0ea5e9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+  }
+
+  .icon-circle i {
+    font-size: 1.4rem;
+    color: white;
+  }
+
+  .step h3 {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .step p {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #9ca3af;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* CTA */
+  .cta {
+    margin-top: 4rem;
+  }
+
+  .cta a {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.75rem;
+    background: linear-gradient(to right, #8b5cf6, #0ea5e9);
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+
+  .cta a:hover {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+    transform: scale(1.02);
+  }
+
+  /* Background Glows */
+  .glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.3;
+    z-index: 0;
+  }
+
+  .glow-left {
+    top: -100px;
+    left: -100px;
+    width: 300px;
+    height: 300px;
+    background: rgba(139, 92, 246, 0.6);
+  }
+
+  .glow-right {
+    bottom: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: rgba(14, 165, 233, 0.6);
+  }
     
   </style>
 </head>
@@ -2139,6 +2294,90 @@
     </div>
   </section>
 
+  <!-- HOW I THINK SECTION -->
+<section class="how-i-think">
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h2>How I Think</h2>
+      <p>
+        These are the core principles and mental models that guide my marketing
+        decisions — the philosophy behind my execution frameworks.
+      </p>
+    </div>
+
+    <!-- Stepper -->
+    <div class="stepper">
+      <div class="connector"></div>
+
+      <div class="step">
+        <div class="icon-circle">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3>Audience First</h3>
+        <p>
+          Every decision starts with understanding the customer’s needs,
+          behaviors, and motivations.
+        </p>
+      </div>
+
+      <div class="step">
+        <div class="icon-circle">
+          <i class="fas fa-flask"></i>
+        </div>
+        <h3>Test Over Guess</h3>
+        <p>
+          Assumptions are dangerous. I believe in experimentation, data, and
+          validation over intuition alone.
+        </p>
+      </div>
+
+      <div class="step">
+        <div class="icon-circle">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>Compound Growth</h3>
+        <p>
+          Small, consistent optimizations stack into exponential long-term
+          results.
+        </p>
+      </div>
+
+      <div class="step">
+        <div class="icon-circle">
+          <i class="fas fa-sync-alt"></i>
+        </div>
+        <h3>Iterate Relentlessly</h3>
+        <p>
+          Marketing is never done. Learn, adjust, and improve continuously.
+        </p>
+      </div>
+
+      <div class="step">
+        <div class="icon-circle">
+          <i class="fas fa-bullseye"></i>
+        </div>
+        <h3>Full-Funnel Thinking</h3>
+        <p>
+          Alignment across TOFU, MOFU, and BOFU ensures no opportunity is left
+          behind.
+        </p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+      <a href="#approach">
+        See how this connects with My Marketing Approach →
+      </a>
+    </div>
+  </div>
+
+  <!-- Glow Backgrounds -->
+  <div class="glow glow-left"></div>
+  <div class="glow glow-right"></div>
+</section>
+  
   <!-- Approach Section -->
   <section id="approach" class="approach section">
     <div class="container mx-auto px-4 sm:px-6 lg:px-12 xl:px-20">
@@ -3087,6 +3326,10 @@
       setTimeout(() => preloader.style.display = "none", 500);
     }, 2000); // keep text visible for 2 seconds
   });
+
+    <!-- FONT AWESOME (for icons) -->
+  src="https://kit.fontawesome.com/a2d9d6cfd3.js"
+  crossorigin="anonymous"
     
   </script>
 </body>
