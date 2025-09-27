@@ -3,2977 +3,2716 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Shreshth's Portfolio</title>
+  <title>Shreshth's Portfolio - Marketing Specialist</title>
   <meta name="description" content="Marketing Specialist | Content Creator | Digital Strategist — portfolio & case studies" />
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<!-- Preload font stylesheet -->
-<link rel="preload" 
-      as="style" 
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap">
-
-<!-- Load stylesheet (with swap) -->
-<link rel="stylesheet" 
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" 
-      media="all">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" media="all">
   
-<!-- Preload Hero (AVIF preferred) -->
-<link rel="preload" as="image" href="/images/hero.avif" type="image/avif" fetchpriority="high">
-
   <!-- AOS (Scroll Animations) -->
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   
   <style>
-:root {
-  --bg:#F7FAFC;
-  --card:#ffffff;
-  --muted:#6B7280;
-  --accent:#2563EB;
-  --accent-600:#1D4ED8;
-  --text:#0f172a;
-  --glass: rgba(255,255,255,0.6);
-  --gap: clamp(16px, 2.5vw, 32px);
-  --container: 1100px;
-
-  /* 🔥 Gradient palette */
-  --gradient-colors: #6366f1, #9333ea, #06b6d4, #6366f1;
-}
-
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background:linear-gradient(180deg,var(--bg),#fff);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  line-height:1.4;
-}
-
-/* Layout container */
-.wrap{
-  max-width:var(--container);
-  margin:0 auto;
-  padding:48px 20px;
-}
-
-/* Header (Dock-Style Premium) */
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 14px 28px;
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%) translateY(-30px);
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(14px);
-  border: none;
-  border-radius: 40px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-  z-index: 100;
-  overflow: visible;   /* ⬅ allow dropdown outside dock */
-  opacity: 0;
-  transition: transform 0.6s ease, opacity 0.6s ease, box-shadow 0.3s ease;
-  max-width: fit-content;
-}
-
-/* Animate header entrance */
-header.show {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
-}
-
-/* Soft glowing border effect */
-header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 40px;
-  padding: 2px;
-  background: linear-gradient(90deg, var(--gradient-colors));
-  background-size: 400% 400%;
-  animation: gradientBG 6s ease infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: destination-out;
-  mask-composite: exclude;
-  pointer-events: none;
-  z-index: -1;
-}
-
-/* Hover lift on the dock */
-header:hover {
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.16);
-  transform: translateX(-50%) translateY(-2px);
-}
-
-/* Logo */
-.logo {
-  font-weight: 700;
-  letter-spacing: 0.3px;
-  color: #111827;
-  font-size: 18px;
-  white-space: nowrap;
-  transition: transform 0.25s ease;
-}
-.logo:hover {
-  transform: scale(1.05);
-}
-
-/* Nav Links */
-nav {
-  display: flex;
-  gap: 18px;
-  align-items: center;
-  flex-wrap: nowrap;
-}
-
-nav a {
-  color: #374151;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-size: 15px;
-  position: relative;
-  transition: color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-  white-space: nowrap;
-}
-
-/* Hover micro-interaction */
-nav a:hover {
-  color: #2563eb;
-  transform: translateY(-2px) scale(1.06);
-  background: rgba(99, 102, 241, 0.08);
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.2);
-}
-
-/* Gradient underline indicator */
-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--gradient-colors));
-  background-size: 400% 400%;
-  animation: gradientBG 6s ease infinite;
-  transition: width 0.3s ease;
-  border-radius: 2px;
-}
-nav a:hover::after,
-nav a.active::after {
-  width: 100%;
-}
-
-/* Menu toggle button (hidden by default) */
-.menu-toggle {
-  display: none;
-  font-size: 24px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #374151;
-  transition: transform 0.3s ease;
-}
-.menu-toggle:active {
-  transform: scale(0.9);
-}
-
-/* Mobile tweaks */
-@media (max-width: 768px) {
-  header {
-    padding: 12px 18px;
-    gap: 10px;
-    border-radius: 28px;
-    max-width: 92%;
-  }
-
-  .logo {
-    font-size: 15px;
-  }
-
-  /* Hide nav by default on mobile */
-  nav {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    position: absolute;
-    top: 110%;   /* ⬅ dropdown below dock */
-    right: 0;
-    min-width: 160px;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(14px);
-    border-radius: 16px;
-    padding: 14px;
-    margin-top: 8px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-    transform: translateY(-12px);
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s ease;
-  }
-
-  nav.show {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  nav a {
-    font-size: 14px;
-    padding: 10px 12px;
-    width: 100%;
-  }
-
-  /* Show toggle button */
-  .menu-toggle {
-    display: block;
-  }
-}
-
-/* Tiny screens */
-@media (max-width: 480px) {
-  header {
-    padding: 10px 14px;
-    border-radius: 22px;
-    max-width: 95%;
-  }
-
-  .logo {
-    font-size: 14px;
-  }
-
-  nav a {
-    font-size: 13px;
-    padding: 8px 10px;
-  }
-}
-
-/* Shared gradient animation */
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-    
-/* Hero Section */
-.hero {
-  display: grid;
-  gap: 24px;
-  grid-template-columns: 1fr 420px;
-  align-items: center;
-  padding: 64px 20px;
-  min-height: 100vh;
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, #3b82f6, #10b981);
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-  color: #fff; /* default text color */
-}
-
-/* Hero Headline */
-.hero .headline {
-  font-size: clamp(28px, 4.5vw, 52px);
-  line-height: 1.1;
-  font-weight: 800;
-  margin: 0 0 20px 0;
-  color: #fff;
-  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
-}
-
-/* Hero Subtext */
-.hero .sub {
-  margin-bottom: 24px;
-  max-width: 62ch;
-  font-size: 17px;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-/* CTA Row */
-.cta-row {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-/* Buttons */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 18px;
-  border-radius: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  border: 0;
-  font-size: 15px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-.btn:hover {
-  transform: translateY(-2px);
-}
-.btn-primary {
-  background: var(--accent, #2563eb);
-  color: #fff;
-  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
-}
-.btn-ghost {
-  background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-}
-
-/* Hero Image Container */
-.hero-art {
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.08);
-  height: 360px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-  animation: float 6s ease-in-out infinite;
-}
-.hero-art img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(1.05) contrast(1.05);
-}
-
-/* Floating Animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-}
-
-/* Responsive Adjustments */
-@media (max-width: 900px) {
-  .hero {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .hero-art {
-    height: 280px;
-    margin-top: 20px;
-  }
-}
-    
-   /* About Section */
-.about {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 32px;
-  align-items: center;
-  margin-top: 64px;
-  padding: 40px 20px;
-}
-
-/* Avatar (circular, glowing) */
-.avatar {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 6px solid #fff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-.avatar:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.25);
-}
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-}
-
-/* About Paragraph */
-.about p {
-  color: var(--muted, #6b7280);
-  margin-top: 10px;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-/* Stats Container */
-.stats {
-  display: flex;
-  gap: 24px;
-  margin-top: 24px;
-  flex-wrap: wrap;
-}
-
-/* Stat Card (Glassmorphism) */
-.stat {
-  flex: 1;
-  min-width: 120px;
-  text-align: center;
-  padding: 18px 20px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-.stat:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-  border-color: rgba(59, 130, 246, 0.4); /* subtle accent glow */
-}
-.stat .num {
-  font-weight: 800;
-  font-size: 22px;
-  color: var(--accent, #2563eb);
-}
-.stat .label {
-  font-size: 14px;
-  color: var(--muted, #6b7280);
-  margin-top: 4px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .about {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 20px;
-  }
-  .stats {
-    justify-content: center;
-  }
-}
-
-/* === Tools Section Wrapper === */
-.tools-section {
-  margin-top: 80px;
-  padding: 60px 20px;
-  background: linear-gradient(135deg, #f9fafb, #eef6ff);
-  border-radius: 24px;
-  overflow: hidden;
-  text-align: center;
-}
-
-/* Title – gradient style like Performance Metrics */
-.tools-section h3 {
-  font-size: 2rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #00d4ff, #7a5cff, #ff4ecd);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 0.5rem;
-}
-
-/* Subtitle – match performance subtitle */
-.tools-sub {
-  font-size: 1rem;
-  color: #333; /* darker subtitle text */
-  margin-bottom: 2rem;
-}
-
-/* === Ticker Effect === */
-.tools-ticker {
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-}
-
-.ticker-track {
-  display: flex;
-  gap: 40px;
-  width: max-content;
-  animation: ticker 25s linear infinite;
-  will-change: transform;
-}
-
-@keyframes ticker {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-/* === Tool Card === */
-.tool {
-  flex: 0 0 auto;
-  min-width: 150px;
-  padding: 18px 20px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(14px);
-  text-align: center;
-  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.tool:hover {
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 14px 34px rgba(37, 99, 235, 0.25);
-}
-
-.tool svg {
-  margin-bottom: 10px;
-  width: 42px;
-  height: 42px;
-}
-
-.tool span {
-  display: block;
-  font-size: 15px;
-  font-weight: 600;
-  color: #0f172a;
-}
-
-/* === Responsive Tweaks === */
-@media (max-width: 768px) {
-  .ticker-track {
-    animation-duration: 15s; /* faster on mobile */
-  }
-  .tool {
-    min-width: 120px;
-    padding: 14px 16px;
-  }
-}
-    
-/* Services Section */
-.services {
-  margin-top: 64px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2x2 default */
-  gap: 32px;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 20px; /* breathing space on smaller screens */
-}
-    
-/* Service Card */
-.service-card {
-  position: relative;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(14px);
-  padding: 28px 22px;
-  border-radius: 20px;
-  box-shadow: 0 8px 26px rgba(15, 23, 42, 0.06);
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  align-items: flex-start;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-}
-
-/* Gradient border effect */
-.service-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  padding: 2px;
-  background: linear-gradient(90deg, var(--gradient-colors));
-  background-size: 300% 300%;
-  animation: gradientBG 6s ease infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: destination-out;
-  mask-composite: exclude;
-  pointer-events: none;
-  z-index: -1;
-}
-
-/* Hover lift */
-.service-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
-}
-
-/* Icon */
-.icon {
-  width: 54px;
-  height: 54px;
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, #6366f1, #06b6d4);
-  color: white;
-  font-size: 22px;
-  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.service-card:hover .icon {
-  transform: scale(1.2) rotate(8deg);
-  box-shadow: 0 10px 24px rgba(99, 102, 241, 0.4);
-}
-
-/* Text */
-.svc h4 {
-  margin: 0 0 8px 0;
-  font-size: 1.1rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, var(--gradient-colors));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.svc p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-/* Responsive Layouts */
-@media (max-width: 600px) {
-  .services {
-    grid-template-columns: 1fr; /* stack vertically (1x4) */
-  }
-}
-
-/* Shared gradient animation */
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-    
-  /* Portfolio Section */
-.portfolio {
-  margin-top: 64px; /* more breathing room */
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 20px; /* spacing on smaller screens */
-}
-
-.portfolio-grid {
-  display: grid;
-  gap: 24px; /* slightly bigger gap for premium feel */
-  grid-template-columns: repeat(2, 1fr); /* 2x2 default */
-  align-items: stretch; /* keep cards equal height */
-}
-
-.proj {
-  background: var(--card, #fff);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 26px rgba(15, 23, 42, 0.06);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  min-height: 200px; /* more presence */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.proj:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
-}
-
-/* Optional: make thumbnail zoom slightly on hover */
-.proj:hover .proj-thumb {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
-}
-
-.proj-thumb {
-  height: 120px;
-  background: #eef2ff;
-  display: block;
-}
-
-.proj-body {
-  padding: 12px;
-}
-
-.proj-title {
-  font-weight: 700;
-  margin: 0 0 6px 0;
-}
-
-.proj-desc {
-  color: var(--muted);
-  font-size: 14px;
-  margin: 0;
-}
-
-/* Responsive Layouts */
-@media (max-width: 600px) {
-  .portfolio-grid {
-    grid-template-columns: 1fr; /* stack vertically (1x4) */
-  }
-}
-
-/* === Articles Grid === */
-.articles, .articles-grid {
-  margin-top: 64px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 32px;
-  margin-bottom: 32px;
-  align-items: stretch; /* keeps all cards aligned */
-  grid-auto-rows: 1fr;  /* ensures equal row heights */
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 20px; /* padding for smaller screens */
-}
-
-/* === Article Card === */
-.article {
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  overflow: hidden;
-  height: 100%; /* cards fill row height */
-  cursor: pointer;
-}
-
-.article:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.12),
-              0 0 16px rgba(37, 99, 235, 0.12),   /* subtle glow */
-              0 0 28px rgba(37, 99, 235, 0.08);   /* lighter outer glow */
-}
-    
-/* === Banner Image === */
-.article img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s ease;
-}
-
-.article:hover img {
-  transform: scale(1.05); /* hover zoom */
-}
-
-/* === Content Wrapper === */
-.article-content {
-  padding: 24px 22px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-/* === Title === */
-.article h5 {
-  margin: 0 0 14px 0;
-  font-size: 19px;
-  font-weight: 700;
-  color: #111827;
-  line-height: 1.3;
-}
-
-/* === Excerpt === */
-.article p {
-  margin: 0 0 18px 0;
-  color: #4b5563;
-  font-size: 15px;
-  line-height: 1.55;
-  flex-grow: 1; /* pushes button to bottom */
-}
-
-/* === Read More Button === */
-.article .btn {
-  align-self: flex-start;
-  padding: 12px 20px;
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: 12px;
-  cursor: pointer;
-  background: var(--accent);
-  color: #fff;
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.25);
-  transition: transform 0.2s ease, box-shadow 0.25s ease;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.article .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.35),
-              0 0 12px rgba(37, 99, 235, 0.3); /* glow around button */
-}
-
-/* === Modal Backdrop === */
-#modalBackdrop {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.65);
-  z-index: 1000;
-  place-items: center;
-  padding: 20px;
-}
-
-/* === Modal Box === */
-.modal {
-  background: #fff;
-  border-radius: 14px;
-  max-width: 700px;
-  width: 100%;
-  max-height: 85vh;
-  overflow-y: auto;
-  padding: 28px;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.25);
-  animation: fadeIn 0.3s ease;
-  position: relative;
-}
-
-/* === Modal Content === */
-.modal h3 {
-  margin-top: 0;
-  font-size: 22px;
-  font-weight: 700;
-  color: #111827;
-}
-.modal h4 {
-  font-size: 18px;
-  margin: 20px 0 8px;
-  font-weight: 600;
-  color: #1f2937;
-}
-.modal p, .modal li {
-  font-size: 15px;
-  color: #374151;
-  line-height: 1.6;
-  margin-bottom: 14px;
-}
-
-/* === Close Button === */
-.modal-close {
-  position: absolute;
-  top: 16px;
-  right: 20px;
-  font-size: 22px;
-  cursor: pointer;
-  color: #6b7280;
-  transition: color 0.2s ease;
-}
-.modal-close:hover {
-  color: #111827;
-}
-
-/* === Animation === */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
-/* === Responsive === */
-@media (max-width: 768px) {
-  .articles {
-    grid-template-columns: 1fr; /* stack on mobile */
-    gap: 20px;
-  }
-  .article img {
-    height: 180px;
-  }
-}
-    
-   /* Resume / CTA */
-.resume {
-  margin-top: 64px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 30px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(14px);
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.12);
-  position: relative;
-  overflow: hidden;
-  max-width: 780px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-/* Animated gradient border */
-.resume::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  padding: 2px;
-  background: linear-gradient(270deg, var(--gradient-colors));
-  background-size: 300% 300%;
-  animation: gradientBG 8s ease infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: destination-out;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-/* Heading */
-.resume h3 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 12px;
-  background: linear-gradient(90deg, var(--gradient-colors));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Subtitle */
-.resume p {
-  color: var(--muted);
-  font-size: 1.1rem;
-  margin-bottom: 28px;
-  max-width: 600px;
-}
-
-/* Buttons */
-.resume .resume-actions {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.resume .btn {
-  padding: 14px 28px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* Primary button */
-.resume .btn-primary {
-  background: linear-gradient(270deg, var(--gradient-colors));
-  background-size: 300% 300%;
-  animation: gradientBG 8s ease infinite;
-  color: white;
-  box-shadow: 0 6px 20px rgba(99,102,241,0.4);
-}
-
-.resume .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 28px rgba(99,102,241,0.6);
-}
-
-/* Outline button */
-.resume .btn-outline {
-  border: 2px solid rgba(255,255,255,0.25);
-  background: rgba(255,255,255,0.05);
-  color: var(--text);
-}
-
-.resume .btn-outline:hover {
-  background: rgba(255,255,255,0.15);
-  transform: translateY(-3px);
-}
-
-/* Shared gradient animation */
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-   /* Contact */
-.contact {
-  margin-top: 48px;
-  padding: 26px;
-  border-radius: 12px;
-  background: var(--card);
-  box-shadow: 0 6px 18px rgba(15,23,42,0.03);
-  text-align: center;
-}
-
-.contact h3 {
-  font-size: 2rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #00d4ff, #7a5cff, #ff4ecd);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 0.75rem;
-}
-
-.contact p {
-  color: var(--muted);
-}
-
-.social {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 12px;
-}
-
-.social a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  text-decoration: none;
-  color: var(--muted);
-  border: 1px solid rgba(15,23,42,0.04);
-}
-
-footer {
-  margin: 42px 0 90px 0;
-  text-align: center;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-/* Modal */
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(2,6,23,0.6);
-  display: none;
-  place-items: center;
-  z-index: 120;
-}
-
-.modal {
-  width: min(1000px, calc(100% - 40px));
-  max-height: 90vh;
-  overflow: auto;
-  background: var(--card);
-  padding: 20px;
-  border-radius: 14px;
-  box-shadow: 0 20px 60px rgba(2,6,23,0.4);
-}
-
-.modal .close {
-  float: right;
-  background: transparent;
-  border: 0;
-  font-weight: 700;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-/* Responsive */
-@media (max-width: 980px) {
-  .hero { grid-template-columns: 1fr; padding: 28px 10px; }
-  .about { grid-template-columns: 1fr; text-align: center; }
-  .avatar { margin: 0 auto; }
-  .services { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-}
-
-    /* Case Study Modal Sections */
-.modal h4 {
-  margin-top: 16px;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--accent-600);
-}
-
-.modal ul {
-  padding-left: 20px;
-  margin: 8px 0;
-}
-
-.modal li {
-  margin-bottom: 6px;
-}
-
-/* === Journey Timeline Section === */
-#journey {
-  margin-top: 40px;
-  padding: 50px 20px;
-  background: #f9fafb;
-  border-radius: 18px;
-}
-
-#journey h2 {
-  font-size: 1.8rem;
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 12px;
-  color: #0f172a;
-}
-
-.timeline-horizontal {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
-  position: relative;
-  max-width: 1100px;
-  margin: 40px auto 60px auto;
-  flex-wrap: wrap;
-}
-
-/* Connector line (gradient, same as approach) */
-.timeline-horizontal::before {
-  content: "";
-  position: absolute;
-  top: 27px; /* aligns with circles */
-  left: 5%;
-  right: 5%;
-  height: 3px;
-  background: linear-gradient(90deg,#3b82f6,#10b981);
-  z-index: 0;
-  border-radius: 2px;
-}
-
-.timeline-event {
-  flex: 1;
-  min-width: 160px;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
-
-/* Gradient circles (same as approach) */
-.timeline-event::before {
-  content: "";
-  display: block;
-  margin: 0 auto 12px auto;
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  background: linear-gradient(135deg,#3b82f6,#10b981);
-  box-shadow: 0 4px 12px rgba(59,130,246,0.25);
-  position: relative;
-  z-index: 1;
-}
-
-/* Headings */
-.timeline-event h5 {
-  margin: 6px 0;
-  font-size: 15px;
-  font-weight: 700;
-  color: #0f172a;
-}
-
-/* Paragraphs */
-.timeline-event p {
-  font-size: 13px;
-  color: #6b7280;
-  margin: 0;
-  line-height: 1.5;
-}
-
-/* === Animation (optional) === */
-.timeline-event {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease;
-}
-.timeline-event.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* === Responsive (mobile) === */
-@media (max-width: 768px) {
-  .timeline-horizontal {
-    flex-direction: column;
-    align-items: center;
-  }
-  .timeline-horizontal::before {
-    top: 0;
-    left: 27px;
-    width: 3px;
-    height: 100%;
-    background: linear-gradient(180deg,#3b82f6,#10b981);
-  }
-  .timeline-event {
-    width: 100%;
-    text-align: left;
-    padding-left: 70px;
-    margin-bottom: 40px;
-  }
-  .timeline-event::before {
-    margin: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-}
-    
-.performance-section {
-  background: linear-gradient(135deg, #0b0b0f, #0d0d1a, #0a0a0f);
-  border-radius: 24px;
-  padding: 4rem 2rem;
-  margin: 4rem auto;
-  max-width: 1200px;
-  text-align: center;
-  color: #f0f0f0;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 40px rgba(0,0,0,0.6);
-}
-
-.performance-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 24px;
-  padding: 2px;
-  background: linear-gradient(90deg, #00d4ff, #7a5cff, #ff4ecd);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box,
-                 linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-.performance-section h2 {
-  font-size: 2.8rem;
-  font-weight: 900;
-  background: linear-gradient(90deg, #ff4ecd, #a86bff, #00d4ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 1rem;
-}
-
-.performance-section p.subtitle {
-  font-size: 1.1rem;
-  color: #bbb;
-  margin-bottom: 3rem;
-}
-
-/* Grid */
-.metrics {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-}
-@media (max-width: 900px) {
-  .metrics { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 500px) {
-  .metrics { grid-template-columns: 1fr; }
-}
-
-/* Metric card */
-.metric-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 20px;
-  padding: 2rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-.metric-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 20px rgba(255,78,205,0.3);
-}
-
-.gauge {
-  width: 110px;
-  height: 110px;
-  position: relative;
-}
-.gauge svg {
-  transform: rotate(-90deg);
-  width: 110px;
-  height: 110px;
-}
-.bg {
-  stroke: rgba(255,255,255,0.08);
-  stroke-width: 12;
-  fill: none;
-}
-.fg {
-  stroke-width: 12;
-  fill: none;
-  stroke-linecap: round;
-  stroke-dasharray: 351;
-  stroke-dashoffset: 351;
-  transition: stroke-dashoffset 2s ease;
-}
-.score {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: #fff;
-}
-
-.label {
-  margin-top: 1rem;
-  font-weight: 700;
-  font-size: 1rem;
-}
-.full-form {
-  font-size: 0.85rem;
-  color: #aaa;
-  margin-top: 0.25rem;
-  min-height: 20px;
-}
-
-/* Comparison bar */
-.compare {
-  width: 100%;
-  margin-top: 1.2rem;
-}
-.compare-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.75rem;
-  color: #aaa;
-  margin-bottom: 0.25rem;
-}
-.compare-bar {
-  position: relative;
-  width: 100%;
-  height: 6px;
-  background: #222;
-  border-radius: 6px;
-  overflow: hidden;
-}
-.compare-bar .you {
-  position: absolute;
-  top: 0; left: 0;
-  height: 6px;
-  background: linear-gradient(90deg, #ff4ecd, #7a5cff);
-}
-.compare-bar .avg {
-  position: absolute;
-  top: 0; left: 0;
-  height: 6px;
-  background: rgba(255,255,255,0.2);
-}
-
-/* Status colors */
-.score.good { color: #0cce6b; }
-.score.needs { color: #ffa400; }
-.score.poor { color: #ff4e42; }
-
-/* Shimmer loader */
-.score.shimmer {
-  color: transparent;
-  background: linear-gradient(90deg, #333 25%, #555 50%, #333 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: 6px;
-  min-width: 40px;
-  min-height: 20px;
-  display: inline-block;
-}
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-    
-/* === Approach Section === */
-#approach {
-  margin-top: 40px;
-  padding: 50px 20px;
-  background: #f9fafb;
-  border-radius: 18px;
-}
-
-#approach h2 {
-  font-size: 1.8rem;
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 12px;
-  background: linear-gradient(90deg, #00d4ff, #7a5cff, #ff4ecd);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-#approach p.sub {
-  text-align: center;
-  color: #6b7280;
-  margin-bottom: 40px;
-  font-size: 15px;
-}
-
-/* Steps */
-.approach-steps {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
-  flex-wrap: wrap;
-  position: relative;
-  margin-bottom: 60px;
-}
-.step-card {
-  flex: 1;
-  min-width: 160px;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-.step-card:hover { transform: translateY(-6px); }
-.step-card .circle {
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  background: linear-gradient(135deg,#3b82f6,#10b981);
-  color: #fff;
-  font-weight: bold;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 12px auto;
-  box-shadow: 0 4px 12px rgba(59,130,246,0.25);
-}
-.step-card h4 {
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.step-card p {
-  font-size: 13px;
-  color: #6b7280;
-  line-height: 1.5;
-}
-
-/* Connector line */
-.approach-steps::before {
-  content: "";
-  position: absolute;
-  top: 27px;
-  left: 5%;
-  right: 5%;
-  height: 3px;
-  background: linear-gradient(90deg,#3b82f6,#10b981);
-  z-index: 0;
-}
-.step-card .circle { position: relative; z-index: 1; }
-
-/* Slide Deck */
-.deck-preview {
-  position: relative;
-  max-width: 820px;
-  margin: 0 auto 50px auto;
-  overflow: hidden;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 8px 26px rgba(0,0,0,0.08);
-}
-.slides {
-  display: flex;
-  transition: transform 0.6s ease;
-}
-.slide {
-  min-width: 100%;
-  padding: 40px;
-}
-.slide h4 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: #0f172a;
-  text-align: center;
-}
-.slide-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-}
-.slide-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  background: #f9fafb;
-  padding: 16px;
-  border-radius: 10px;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-.slide-item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.15);
-}
-.slide-item .icon { font-size: 22px; }
-.slide-item h5 {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-.slide-item p {
-  font-size: 13px;
-  color: #374151;
-  line-height: 1.5;
-}
-
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  transition: background 0.3s ease;
-  
-  /* 🔒 fix button height/line-height so it doesn’t jump */
-  height: 40px;
-  line-height: 1; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.carousel-btn:hover {
-  background: #f3f4f6;
-}
-
-.carousel-btn.prev { left: 12px; }
-.carousel-btn.next { right: 12px; }
-
-/* Indicators */
-.indicators {
-  text-align: center;
-  padding: 14px 0;
-}
-.indicators span {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 0 4px;
-  background: #d1d5db;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-.indicators span.active {
-  background: #2563eb;
-  transform: scale(1.2);
-}
-
-/* Download box */
-.deck-preview .download-box {
-  margin: 20px auto 10px auto;
-  background: #f9fafb;
-  border-radius: 10px;
-  padding: 14px 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  max-width: 420px;
-}
-.deck-preview .download-box span {
-  font-size: 14px;
-  font-weight: 500;
-  color: #374151;
-}
-.deck-preview .download-btn {
-  padding: 8px 16px;
-  border-radius: 8px;
-  background: #2563eb;
-  color: #fff;
-  font-weight: 600;
-  font-size: 13px;
-  text-decoration: none;
-  transition: background 0.25s ease;
-  white-space: nowrap;
-}
-.deck-preview .download-btn:hover { background: #1d4ed8; }
-
-
-
-/* === Gradient Section Headings (Reusable) === */
-.section-title {
-  font-size: 2rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #00d4ff, #7a5cff, #ff4ecd);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  margin-bottom: 0.75rem;
-  text-align: center;
-}
-
-
-
-/* Subtitles for sections */
-.sub {
-  text-align: center;
-  color: var(--muted, #6b7280);
-  font-size: 1rem;
-  margin-top: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-
-/* Section wrapper */
-.sample-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 20px;
-}
-
-/* Title */
-.sample-section .section-title {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #7c3aed;
-  margin-bottom: 40px;
-}
-
-/* Grid layout */
-.sample-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-@media (max-width: 900px) {
-  .sample-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Left preview */
-.preview-card {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  overflow: hidden;
-}
-.preview-card img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  display: block;
-}
-.preview-content {
-  padding: 20px;
-}
-.preview-content h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-.preview-content a {
-  display: inline-block;
-  padding: 10px 18px;
-  background: #7c3aed;
-  color: #fff;
-  font-size: 0.9rem;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-.preview-content a:hover {
-  background: #6d28d9;
-}
-
-/* Right list */
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.landing-btn {
-  width: 100%;
-  padding: 12px 18px;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  background: #fff;
-  font-size: 1rem;
-  text-align: left;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.landing-btn:hover {
-  background: #f3f4f6;
-}
-.landing-btn.active {
-  background: #000;
-  color: #fff;
-  font-weight: 600;
-}
-
-/* Slide animation */
-.preview-card.fade {
-  animation: slideIn 0.4s ease forwards;
-}
-@keyframes slideIn {
-  from { transform: translateX(80px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-    
-  </style>
-</head>
-<body>
-
-<header aria-label="Main header" class="header-dock premium-dock">
-  <div class="logo">Shreshth's Portfolio</div>
-
-  <!-- Dropdown toggle button (visible on mobile) -->
-  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
-    ☰
-  </button>
-
-  <nav id="main-nav" role="navigation" aria-label="Primary">
-    <a href="#work">Work</a>
-    <a href="#tools">Tools</a>
-    <a href="#resume">Resume</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-  
-  <main class="wrap">
-
-   <!-- HERO -->
-<section class="hero parallax-section" id="home" aria-labelledby="hero-heading">
-  <div data-aos="fade-up">
-    <h1 id="hero-heading" class="headline">
-      Helping brands grow through data-driven marketing & storytelling
-    </h1>
-    <p class="sub" data-aos="fade-up" data-aos-delay="150">
-      I create campaign-driven growth strategies — paid, content, and email — 
-      that move the needle for B2B and consumer brands. 
-      Focused on measurable results and growth that scales.
-    </p>
-
-    <div class="cta-row" role="region" aria-label="Primary call to actions">
-      <button class="btn btn-primary" data-aos="zoom-in" data-aos-delay="300"
-        onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">
-        View My Work
-      </button>
-      <a class="btn btn-ghost" href="#contact" data-aos="zoom-in" data-aos-delay="400">
-        Let’s Talk
-      </a>
-    </div>
-  </div>
-
-  <div class="hero-art parallax-float" aria-hidden="true" data-aos="fade-left" data-aos-delay="200">
-    <picture>
-      <!-- WebP sources -->
-      <source 
-        srcset="
-          https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=400&auto=format&fit=crop&fm=webp 400w,
-          https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop&fm=webp 800w,
-          https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop&fm=webp 1200w
-        "
-        sizes="(max-width: 768px) 100vw, 1200px"
-        type="image/webp"
-      >
-
-      <!-- JPG fallback -->
-      <img 
-        src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop" 
-        srcset="
-          https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=400&auto=format&fit=crop 400w,
-          https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop 800w,
-          https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop 1200w
-        "
-        sizes="(max-width: 768px) 100vw, 1200px"
-        alt="Marketing creative visual"
-      >
-    </picture>      
-  </div>
-</section>
-
-    <!-- ABOUT -->
-<section class="about" aria-labelledby="about-heading" data-aos="fade-up">
-  <div class="avatar" aria-hidden="true" data-aos="zoom-in" data-aos-delay="100">
-    <!-- Replace with your photo -->
-    <img src="myphoto.jpg" loading="lazy" alt="Portrait of Shresnth Saini" />
-  </div>
-
-  <div>
-    <h2 id="about-heading" data-aos="fade-up" data-aos-delay="150">About Me</h2>
-    <p data-aos="fade-up" data-aos-delay="250">
-      I'm a Marketing Specialist with 4+ years of experience in digital marketing and content strategy. 
-      I design campaigns that increase engagement, generate qualified leads, and deliver measurable ROI. 
-      I work across SEO, paid media, content creation, and performance analytics.
-    </p>
-
-    <div class="stats" aria-hidden="true">
-      <div class="stat" data-aos="fade-up" data-aos-delay="350">
-        <div class="num">4+</div>
-        <div class="label">Years of experience</div>
-      </div>
-      <div class="stat" data-aos="fade-up" data-aos-delay="450">
-        <div class="num">20+</div>
-        <div class="label">Campaigns managed</div>
-      </div>
-      <div class="stat" data-aos="fade-up" data-aos-delay="550">
-        <div class="num">Avg 2x</div>
-        <div class="label">ROI improvement</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PERSONALITY & STORY -->
-<section id="story" data-aos="fade-up" data-aos-delay="150">
-  <h3>My Story</h3>
-
-  <p data-aos="fade-up" data-aos-delay="200">
-    I first stepped into marketing because I was fascinated by how creative storytelling and data analytics together can move people to act. While studying, I was drawn to projects where I could combine strategy with measurable impact, and that curiosity naturally led me into digital marketing.  </p>
-
-  <p data-aos="fade-up" data-aos-delay="250">
-    At <strong>OYO Hotels</strong>, I managed multi-location campaigns, influencer collaborations, and content calendars that lifted seasonal bookings by 15% and grew Instagram followers by 20% in six months. From there, I expanded into performance marketing at Practo, where I led multi-channel campaigns across Google Ads, LinkedIn, and Email—achieving a 22% increase in qualified leads and reducing cost-per-lead by 18% through analytics-driven optimizations.  </p>
-
-  <p data-aos="fade-up" data-aos-delay="300">
-    Today, I focus on <em>scalable e-commerce and growth marketing</em>: lifecycle campaigns, SEO-led content, and automation that boost conversions and customer LTV. I believe effective marketing is about creating clarity in a noisy digital world — connecting the right audience with genuine value.  </p>
-
-  <p data-aos="fade-up" data-aos-delay="350">
-Outside of work, I recharge by exploring Vancouver’s coffee scene, sketching digital designs, and writing about emerging marketing trends. My goal is to join a team where I can keep solving growth challenges while bringing creative energy and data-driven rigor.</p>
-
- <!-- HORIZONTAL TIMELINE -->
-<div style="margin-top:28px">
-  <h4>Journey Timeline</h4>
-  <div class="timeline-horizontal">
-    <div class="timeline-event" data-aos="fade-right" data-aos-delay="100">
-      <div class="circle"></div>
-      <h5>2020</h5>
-      <p>BBA · Project Management Major<br>Built strong foundations in strategy, operations, and leadership</p>
-    </div>
-    <div class="timeline-event" data-aos="fade-up" data-aos-delay="200">
-      <div class="circle"></div>
-      <h5>2021</h5>
-      <p>OYO Hotels<br>Marketing Associate · Campaigns, Influencer partnerships, Social growth</p>
-    </div>
-    <div class="timeline-event" data-aos="fade-up" data-aos-delay="300">
-      <div class="circle"></div>
-      <h5>2022 – 2025</h5>
-      <p>Practo<br>Performance Marketing Analyst · Multi-Channel Growth & Automation</p>
-    </div>
-    <div class="timeline-event" data-aos="fade-up" data-aos-delay="400">
-      <div class="circle"></div>
-      <h5>2024 – 2025</h5>
-      <p>MBA, UCW<br>Project Management & Strategy focus</p>
-    </div>
-    <div class="timeline-event" data-aos="fade-left" data-aos-delay="500">
-      <div class="circle"></div>
-      <h5>Today</h5>
-      <p>Marketing Specialist<br>Data-driven storytelling & Growth campaigns</p>
-    </div>
-  </div>
-</div>
-</section>
-    
-    
- <!-- TOOLS & SKILLS SECTION -->
-<section id="tools" class="tools-section" aria-labelledby="tools-heading">
-  <h3 id="tools-heading" data-aos="fade-up">Tools & Technologies</h3>
-  <p class="tools-sub" data-aos="fade-up" data-aos-delay="100">
-    A snapshot of the platforms and tools I use to design, optimize, and scale campaigns.
-  </p>
-
-  <!-- Ticker wrapper -->
-  <div class="tools-ticker" data-aos="fade-up" data-aos-delay="200">
-    <div class="ticker-track">
-      <!-- === First Set of Tools === -->
-      <!-- Google Analytics -->
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#E37400" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M10.2 0C8.99 0 8 1.01 8 2.25v19.5C8 22.99 8.99 24 10.2 24h1.55C12.99 24 14 22.99 14 21.75V2.25C14 1.01 12.99 0 11.75 0h-1.55zM2.25 16C1.01 16 0 17.01 0 18.25v3.5C0 22.99 1.01 24 2.25 24h1.5C4.99 24 6 22.99 6 21.75v-3.5C6 17.01 4.99 16 3.75 16h-1.5zM21.75 8C20.51 8 19.5 9.01 19.5 10.25v11.5c0 1.24 1.01 2.25 2.25 2.25h.25C23.99 24 25 22.99 25 21.75V10.25C25 9.01 23.99 8 22.75 8h-.25z"/>
-        </svg>
-        <span>Google Analytics</span>
-      </div>
-
-      <!-- Google Ads -->
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#4285F4" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M12 2L1 21h22L12 2z"/>
-        </svg>
-        <span>Google Ads</span>
-      </div>
-
-      <!-- Meta Ads -->
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#1877F2" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 4.99 3.66 9.12 8.44 9.86v-6.98H8.07v-2.88h2.41V9.41c0-2.38 1.42-3.7 3.59-3.7 1.04 0 2.12.19 2.12.19v2.33h-1.2c-1.18 0-1.55.73-1.55 1.48v1.78h2.64l-.42 2.88h-2.22V22c4.78-.74 8.44-4.87 8.44-9.86 0-5.5-4.46-9.96-9.96-9.96z"/>
-        </svg>
-        <span>Meta Ads</span>
-      </div>
-
-      <!-- LinkedIn Ads -->
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#0A66C2" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M4.98 3.5a2.5 2.5 0 11.001 5.001A2.5 2.5 0 014.98 3.5zM4.5 9h3v12h-3zM9 9h2.82v1.64h.04c.39-.74 1.35-1.52 2.78-1.52C17.26 9.12 18 11 18 14.08V21h-3v-6.08c0-1.45-.03-3.31-2.02-3.31-2.02 0-2.33 1.58-2.33 3.21V21H9z"/>
-        </svg>
-        <span>LinkedIn Ads</span>
-      </div>
-
-      <!-- HubSpot -->
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#FF7A59" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M12 2a2 2 0 100 4 2 2 0 000-4zm-1 6v5.09A6.5 6.5 0 1016.5 19h-2.1a4.5 4.5 0 11-6.4-5.9V8h3z"/>
-        </svg>
-        <span>HubSpot</span>
-      </div>
-
-      <!-- Klaviyo -->
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#4CAF50" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M12 2L1 12l11 10 11-10L12 2zm0 3.4l7.6 6.6L12 18.6 4.4 12 12 5.4z"/>
-        </svg>
-        <span>Klaviyo</span>
-      </div>
-
-      <!-- SEMRush -->
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#FF642D" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M2 12a10 10 0 1020 0A10 10 0 002 12zm11 4l-4-4 4-4 4 4-4 4z"/>
-        </svg>
-        <span>SEMRush</span>
-      </div>
-
-      <!-- Hootsuite -->
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M12 2C6.48 2 2 6.48 2 12c0 4.74 3.3 8.71 7.7 9.73V15H8v-3h1.7V9.5c0-1.7 1.03-2.63 2.55-2.63.72 0 1.46.13 1.46.13v1.6h-.82c-.81 0-1.06.5-1.06 1V12H14l-.4 3h-2.3v6.73C18.7 20.71 22 16.74 22 12c0-5.52-4.48-10-10-10z"/>
-        </svg>
-        <span>Hootsuite</span>
-      </div>
-
-      <!-- Canva -->
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#00C4CC" viewBox="0 0 24 24" width="40" height="40">
-          <circle cx="12" cy="12" r="10"/>
-        </svg>
-        <span>Canva</span>
-      </div>
-
-      <!-- Adobe -->
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#FF0000" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M3 3h18v18H3V3zm4.5 4l4.5 10h-2l-1-2.5H7L6 17H4l3.5-10h.5zm9 0v2h-2v6h2v2h-4V7h4z"/>
-        </svg>
-        <span>Adobe Creative Suite</span>
-      </div>
-
-      <!-- Mailchimp -->
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#FFE01B" viewBox="0 0 24 24" width="40" height="40">
-          <circle cx="12" cy="12" r="10"/>
-        </svg>
-        <span>Mailchimp</span>
-      </div>
-
-      <!-- Shopify -->
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#96BF48" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M4 2l16 4-2 16-12-2-2-16z"/>
-        </svg>
-        <span>Shopify</span>
-      </div>
-
-      <!-- WordPress -->
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#21759B" viewBox="0 0 24 24" width="40" height="40">
-          <circle cx="12" cy="12" r="10"/>
-        </svg>
-        <span>WordPress</span>
-      </div>
-
-      <!-- Google Tag Manager -->
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#246FDB" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M4 4h16v16H4z"/>
-        </svg>
-        <span>Google Tag Manager</span>
-      </div>
-
-      <!-- === Duplicate Set of Tools (for seamless scroll) === -->
-      <!-- Simply repeat the same tools again -->
-      <!-- Google Analytics -->
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#E37400" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M10.2 0C8.99 0 8 1.01 8 2.25v19.5C8 22.99 8.99 24 10.2 24h1.55C12.99 24 14 22.99 14 21.75V2.25C14 1.01 12.99 0 11.75 0h-1.55zM2.25 16C1.01 16 0 17.01 0 18.25v3.5C0 22.99 1.01 24 2.25 24h1.5C4.99 24 6 22.99 6 21.75v-3.5C6 17.01 4.99 16 3.75 16h-1.5zM21.75 8C20.51 8 19.5 9.01 19.5 10.25v11.5c0 1.24 1.01 2.25 2.25 2.25h.25C23.99 24 25 22.99 25 21.75V10.25C25 9.01 23.99 8 22.75 8h-.25z"/>
-        </svg>
-        <span>Google Analytics</span>
-      </div>
-
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#4285F4" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M12 2L1 21h22L12 2z"/>
-        </svg>
-        <span>Google Ads</span>
-      </div>
-
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#1877F2" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 4.99 3.66 9.12 8.44 9.86v-6.98H8.07v-2.88h2.41V9.41c0-2.38 1.42-3.7 3.59-3.7 1.04 0 2.12.19 2.12.19v2.33h-1.2c-1.18 0-1.55.73-1.55 1.48v1.78h2.64l-.42 2.88h-2.22V22c4.78-.74 8.44-4.87 8.44-9.86 0-5.5-4.46-9.96-9.96-9.96z"/>
-        </svg>
-        <span>Meta Ads</span>
-      </div>
-
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#0A66C2" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M4.98 3.5a2.5 2.5 0 11.001 5.001A2.5 2.5 0 014.98 3.5zM4.5 9h3v12h-3zM9 9h2.82v1.64h.04c.39-.74 1.35-1.52 2.78-1.52C17.26 9.12 18 11 18 14.08V21h-3v-6.08c0-1.45-.03-3.31-2.02-3.31-2.02 0-2.33 1.58-2.33 3.21V21H9z"/>
-        </svg>
-        <span>LinkedIn Ads</span>
-      </div>
-
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#FF7A59" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M12 2a2 2 0 100 4 2 2 0 000-4zm-1 6v5.09A6.5 6.5 0 1016.5 19h-2.1a4.5 4.5 0 11-6.4-5.9V8h3z"/>
-        </svg>
-        <span>HubSpot</span>
-      </div>
-
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#4CAF50" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M12 2L1 12l11 10 11-10L12 2zm0 3.4l7.6 6.6L12 18.6 4.4 12 12 5.4z"/>
-        </svg>
-        <span>Klaviyo</span>
-      </div>
-
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#FF642D" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M2 12a10 10 0 1020 0A10 10 0 002 12zm11 4l-4-4 4-4 4 4-4 4z"/>
-        </svg>
-        <span>SEMRush</span>
-      </div>
-
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M12 2C6.48 2 2 6.48 2 12c0 4.74 3.3 8.71 7.7 9.73V15H8v-3h1.7V9.5c0-1.7 1.03-2.63 2.55-2.63.72 0 1.46.13 1.46.13v1.6h-.82c-.81 0-1.06.5-1.06 1V12H14l-.4 3h-2.3v6.73C18.7 20.71 22 16.74 22 12c0-5.52-4.48-10-10-10z"/>
-        </svg>
-        <span>Hootsuite</span>
-      </div>
-
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#00C4CC" viewBox="0 0 24 24" width="40" height="40">
-          <circle cx="12" cy="12" r="10"/>
-        </svg>
-        <span>Canva</span>
-      </div>
-
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#FF0000" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M3 3h18v18H3V3zm4.5 4l4.5 10h-2l-1-2.5H7L6 17H4l3.5-10h.5zm9 0v2h-2v6h2v2h-4V7h4z"/>
-        </svg>
-        <span>Adobe Creative Suite</span>
-      </div>
-
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#FFE01B" viewBox="0 0 24 24" width="40" height="40">
-          <circle cx="12" cy="12" r="10"/>
-        </svg>
-        <span>Mailchimp</span>
-      </div>
-
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#96BF48" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M4 2l16 4-2 16-12-2-2-16z"/>
-        </svg>
-        <span>Shopify</span>
-      </div>
-
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#21759B" viewBox="0 0 24 24" width="40" height="40">
-          <circle cx="12" cy="12" r="10"/>
-        </svg>
-        <span>WordPress</span>
-      </div>
-
-      <div class="tool">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#246FDB" viewBox="0 0 24 24" width="40" height="40">
-          <path d="M4 4h16v16H4z"/>
-        </svg>
-        <span>Google Tag Manager</span>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- === Global Gradients (put once in <body>, before section) === -->
-<svg style="position:absolute;width:0;height:0" aria-hidden="true">
-  <defs>
-    <linearGradient id="gradFCP" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00d4ff"/>
-      <stop offset="100%" stop-color="#0077ff"/>
-    </linearGradient>
-    <linearGradient id="gradLCP" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#9a4dff"/>
-      <stop offset="100%" stop-color="#ff4ecd"/>
-    </linearGradient>
-    <linearGradient id="gradCLS" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00ffb2"/>
-      <stop offset="100%" stop-color="#00995c"/>
-    </linearGradient>
-    <linearGradient id="gradTBT" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ff8c00"/>
-      <stop offset="100%" stop-color="#ff3d3d"/>
-    </linearGradient>
-  </defs>
-</svg>
-
-<!-- Gradients for stroke -->
-<svg style="position:absolute;width:0;height:0" aria-hidden="true">
-  <defs>
-    <linearGradient id="gradFCP" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#0077ff"/>
-    </linearGradient>
-    <linearGradient id="gradLCP" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#9a4dff"/><stop offset="100%" stop-color="#ff4ecd"/>
-    </linearGradient>
-    <linearGradient id="gradCLS" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00ffb2"/><stop offset="100%" stop-color="#00995c"/>
-    </linearGradient>
-    <linearGradient id="gradTBT" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ff8c00"/><stop offset="100%" stop-color="#ff3d3d"/>
-    </linearGradient>
-  </defs>
-</svg>
-
-<section id="performance" class="performance-section" data-aos="fade-up">
-  <h2>Performance Metrics</h2>
-  <p class="subtitle">Live insights highlighting speed, stability, and interactivity — compared with industry benchmarks.</p>
-
-  <div class="metrics">
-    <!-- FCP -->
-    <div class="metric-card">
-      <div class="gauge">
-        <svg viewBox="0 0 120 120">
-          <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="fcp" stroke="url(#gradFCP)" cx="60" cy="60" r="56"></circle>
-        </svg>
-        <span class="score shimmer">0</span>
-      </div>
-      <span class="label">FCP</span>
-      <span class="full-form">First Contentful Paint</span>
-      <div class="compare">
-        <div class="compare-labels"><span>You</span><span>Industry Avg</span></div>
-        <div class="compare-bar">
-          <div class="you" data-you="fcp"></div>
-          <div class="avg" data-avg="fcp"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- LCP -->
-    <div class="metric-card">
-      <div class="gauge">
-        <svg viewBox="0 0 120 120">
-          <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="lcp" stroke="url(#gradLCP)" cx="60" cy="60" r="56"></circle>
-        </svg>
-        <span class="score shimmer">0</span>
-      </div>
-      <span class="label">LCP</span>
-      <span class="full-form">Largest Contentful Paint</span>
-      <div class="compare">
-        <div class="compare-labels"><span>You</span><span>Industry Avg</span></div>
-        <div class="compare-bar">
-          <div class="you" data-you="lcp"></div>
-          <div class="avg" data-avg="lcp"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CLS -->
-    <div class="metric-card">
-      <div class="gauge">
-        <svg viewBox="0 0 120 120">
-          <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="cls" stroke="url(#gradCLS)" cx="60" cy="60" r="56"></circle>
-        </svg>
-        <span class="score shimmer">0</span>
-      </div>
-      <span class="label">CLS</span>
-      <span class="full-form">Cumulative Layout Shift</span>
-      <div class="compare">
-        <div class="compare-labels"><span>You</span><span>Industry Avg</span></div>
-        <div class="compare-bar">
-          <div class="you" data-you="cls"></div>
-          <div class="avg" data-avg="cls"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TBT -->
-    <div class="metric-card">
-      <div class="gauge">
-        <svg viewBox="0 0 120 120">
-          <circle class="bg" cx="60" cy="60" r="56"></circle>
-          <circle class="fg" data-metric="tbt" stroke="url(#gradTBT)" cx="60" cy="60" r="56"></circle>
-        </svg>
-        <span class="score shimmer">0</span>
-      </div>
-      <span class="label">TBT</span>
-      <span class="full-form">Total Blocking Time</span>
-      <div class="compare">
-        <div class="compare-labels"><span>You</span><span>Industry Avg</span></div>
-        <div class="compare-bar">
-          <div class="you" data-you="tbt"></div>
-          <div class="avg" data-avg="tbt"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-    
-<!-- APPROACH SECTION -->
-<section id="approach" aria-labelledby="approach-heading">
-  <h2 id="approach-heading" class="section-title" data-aos="fade-up">
-    My Marketing Approach
-  </h2>
-  <p class="sub" data-aos="fade-up" data-aos-delay="100">
-    A structured 2-page plan for growth & measurable results.
-  </p>
-  
-  <div class="approach-steps">
-    <div class="step-card" data-aos="fade-up" data-aos-delay="100"><div class="circle">1</div><h4>Audit & Research</h4><p>Market trends, competitors, personas.</p></div>
-    <div class="step-card" data-aos="fade-up" data-aos-delay="200"><div class="circle">2</div><h4>Strategy & Messaging</h4><p>Positioning, value proposition, brand voice.</p></div>
-    <div class="step-card" data-aos="fade-up" data-aos-delay="300"><div class="circle">3</div><h4>Execution</h4><p>SEO, ads, social, content, and email campaigns.</p></div>
-    <div class="step-card" data-aos="fade-up" data-aos-delay="400"><div class="circle">4</div><h4>Measurement</h4><p>KPI tracking, dashboards, transparent reporting.</p></div>
-    <div class="step-card" data-aos="fade-up" data-aos-delay="500"><div class="circle">5</div><h4>Optimization</h4><p>Iterating weekly and scaling best channels.</p></div>
-  </div>
-
-  <!-- Slide Deck -->
-  <div class="deck-preview" data-aos="zoom-in" data-aos-delay="200">
-    <div class="slides" id="slides">
-      <!-- Page 1 -->
-      <div class="slide active">
-        <h4>📘 Page 1 – Strategy & Approach</h4>
-        <div class="slide-grid">
-          <div class="slide-item" data-aos="fade-up" data-aos-delay="100"><span class="icon">🎯</span><div><h5>Objectives</h5><p>Awareness, traffic, sustainable growth.</p></div></div>
-          <div class="slide-item" data-aos="fade-up" data-aos-delay="200"><span class="icon">🔍</span><div><h5>Research</h5><p>Competitors, personas, market insights.</p></div></div>
-          <div class="slide-item" data-aos="fade-up" data-aos-delay="300"><span class="icon">🌐</span><div><h5>Channels</h5><p>SEO, social media, email, ads.</p></div></div>
-        </div>
-      </div>
-
-      <!-- Page 2 -->
-      <div class="slide">
-        <h4>🚀 Page 2 – Execution & Measurement</h4>
-        <div class="slide-grid">
-          <div class="slide-item"><span class="icon">📈</span><div><h5>Execution</h5><p>SEO, PPC, social & email campaigns.</p></div></div>
-          <div class="slide-item"><span class="icon">📊</span><div><h5>Measurement</h5><p>KPI tracking, dashboards, reporting.</p></div></div>
-          <div class="slide-item"><span class="icon">♻️</span><div><h5>Optimization</h5><p>Iterating weekly, scaling best channels.</p></div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Controls -->
-    <button class="carousel-btn prev" onclick="moveSlide(-1)">‹</button>
-    <button class="carousel-btn next" onclick="moveSlide(1)">›</button>
-    <div class="indicators"></div>
-
-    <div class="download-box">
-      <span>Download my full Marketing Plan </span>
-      <a href="Marketing Proposal.pdf" class="download-btn" download>Download PDF</a>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services" aria-labelledby="services-heading">
-  <h2 id="services-heading" class="section-title" data-aos="fade-up">
-    Services
-  </h2>
-  <p class="sub" data-aos="fade-up" data-aos-delay="100">
-    Strategic services I offer — modular or full-service campaign execution.
-  </p>
-
-  <div class="services" role="list" data-aos="fade-up">
-    <!-- SEO -->
-    <article class="service-card" role="listitem">
-      <div class="icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M11 17l-5-5 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M18 19l-7-7 7-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
-        </svg>
-      </div>
-      <div class="svc">
-        <h4>SEO & Content</h4>
-        <p>Keyword-led content and technical SEO that increases organic discoverability and quality traffic.</p>
-      </div>
-    </article>
-
-    <!-- Paid Media -->
-    <article class="service-card" role="listitem">
-      <div class="icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <path d="M3 7h18M7 21V7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="svc">
-        <h4>Paid Media (PPC)</h4>
-        <p>Audience-first paid campaigns across Meta, Google, and LinkedIn focused on LTV and CPA optimization.</p>
-      </div>
-    </article>
-
-    <!-- Social Media -->
-    <article class="service-card" role="listitem">
-      <div class="icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="3" stroke="white" stroke-width="1.8"/>
-          <path d="M19 12c0 4-3 7-7 7s-7-3-7-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="svc">
-        <h4>Social Media Strategy</h4>
-        <p>Content calendars, creative briefs, and paid-social experiments to grow brand awareness and engagement.</p>
-      </div>
-    </article>
-
-    <!-- Email Campaigns -->
-    <article class="service-card" role="listitem">
-      <div class="icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <rect x="3" y="5" width="18" height="14" rx="2" stroke="white" stroke-width="1.8"/>
-          <path d="M3 7l9 6 9-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="svc">
-        <h4>Email Campaigns</h4>
-        <p>Lifecycle emails, automations, and A/B testing to increase conversions and LTV.</p>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- PORTFOLIO -->
-<section id="work" class="portfolio" aria-labelledby="work-heading">
-  <h2 id="work-heading" class="section-title" data-aos="fade-up">
-    Marketing Case Studies
-  </h2>
-  <p class="sub" data-aos="fade-up" data-aos-delay="100">
-    Click a project to view the case study details and results.
-  </p>
-
-  <div class="portfolio-grid" role="list" data-aos="fade-up">
-    <!-- Example Project 1 -->
-        <article class="proj" role="listitem" tabindex="0" data-project='{
-          "title": "Performance Marketing Optimization",
-  "subtitle": "Reduced CPL by 18% and boosted qualified leads by 22%",
-  "challenge": "Practo wanted to scale lead generation for its healthcare SaaS product while lowering Cost Per Lead (CPL). Growth had stagnated in key markets, conversion rates were inconsistent, and ad spend was rising. Another challenge was building a unified funnel strategy where ads, landing pages, and email nurturing worked together.",
-  "approach": "I developed a multi-channel demand generation plan across Google Ads, LinkedIn Ads, and email automation. The strategy prioritized targeting high-intent segments with tailored messaging, creating persona-specific ad creatives, aligning paid campaigns with content offers (webinars, whitepapers), and designing structured A/B tests for messaging, creatives, and CTAs.",
-  "execution": "• Launched multi-ad set campaigns on Google Search, Display, and LinkedIn Sponsored Content + InMail. \n• Built custom landing pages optimized for conversions by testing headlines, form length, and CTA placement. \n• Implemented HubSpot workflows with segmented nurture drips based on funnel stage. \n• Tracked CPL and lead quality in GA4 + HubSpot dashboards with daily monitoring. \n• Reduced wasted spend via negative keyword strategy and reallocated 25% of ad spend to best-performing channels.",
-  "results": [
-    "Reduced CPL by 18% within 3 months",
-    "Increased qualified lead volume by 22% quarter-over-quarter",
-    "Boosted ROI by reallocating budget into high-performing channels",
-    "Improved email engagement rates by 30% through segmented automation",
-    "Strengthened sales-marketing alignment with weekly performance dashboards"
-  ],
-  "takeaways": "This project proved that a data-driven growth framework can deliver efficiency and scale. Beyond execution, I drove strategic alignment between performance marketing and nurturing, positioning Practo for predictable pipeline growth."
-}'>          
-          <div class="proj-thumb" style="background-image:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1f5e9a4ae2a4c1f1b7a5a7d2f2bd6f45'); background-size:cover; background-position:center"></div>
-          <div class="proj-body">
-            <h4 class="proj-title">Performance Marketing Optimization</h4>
-            <p class="proj-desc">Reduced CPL by 18% and boosted qualified leads by 22% through multi-channel campaigns (Google Ads, LinkedIn, Email) with Practo.</p>
-          </div>
-        </article>
-
-        <!-- Project 2 -->
-        <article class="proj" role="listitem" tabindex="0" data-project='{
-   "title": "Content Strategy & SEO Growth",
-  "subtitle": "Improved engagement by 30% and scaled inbound traffic",
-  "challenge": "Practo needed to establish stronger organic authority, drive consistent inbound leads from healthcare professionals and patients, and reduce dependency on paid channels. Content was fragmented and lacked a cohesive SEO-driven structure.",
-  "approach": "I created a keyword-first content strategy anchored on pillar pages and supporting blogs. The plan focused on aligning content with user intent across the funnel, optimizing technical SEO, and building thought leadership pieces like whitepapers and case studies.",
-  "execution": "• Conducted comprehensive keyword research and competitor analysis. \n• Built content calendars for blogs, landing pages, and gated assets. \n• Collaborated with product and sales teams for subject matter input. \n• Optimized on-page SEO (metadata, headings, schema) and fixed technical issues. \n• Implemented internal linking to improve discoverability and domain authority.",
-  "results": [
-    "Engagement increased by 30% within 4 months",
-    "Inbound traffic scaled steadily quarter-over-quarter",
-    "Improved lead quality from organic traffic",
-    "Positioned Practo as a thought leader in health-tech marketing"
-  ],
-  "takeaways": "A structured SEO + content framework can compound growth over time. This initiative proved that investing in educational, intent-driven content reduces dependency on paid channels while boosting long-term inbound pipelines."
-  }'>
-          <div class="proj-thumb" style="background-image:url('https://marginmedia.com.au/hubfs/shutterstock_2257709177.jpg'); background-size:cover; background-position:center"></div>
-          <div class="proj-body">
-            <h4 class="proj-title">Content Strategy & SEO Growth</h4>
-            <p class="proj-desc">Developed content calendars, blogs, and landing pages that improved engagement by 30% and scaled inbound traffic.</p>
-          </div>
-        </article>
-
-        <!-- Project 3 -->
-        <article class="proj" role="listitem" tabindex="0" data-project='{
-    "title": "Social Media Campaigns & Partnerships",
-  "subtitle": "Executed influencer collaborations driving 15% lift in bookings & 20% Instagram growth",
-  "challenge": "OYO Hotels wanted to boost seasonal bookings and awareness among younger audiences. Traditional ads had plateaued, and brand recall in local markets was weak.",
-  "approach": "I developed a localized social media strategy combining influencer partnerships, authentic storytelling, and seasonal promotions. The focus was to build credibility via micro-influencers while leveraging OYO’s existing channels for amplification.",
-  "execution": "• Identified and partnered with travel and lifestyle micro-influencers for co-branded content. \n• Managed Instagram, Facebook, and LinkedIn calendars with engaging themes. \n• Designed seasonal promotional campaigns tailored for younger demographics. \n• Implemented UGC (user-generated content) contests to drive engagement. \n• Monitored campaign metrics using Hootsuite and native analytics tools.",
-  "results": [
-    "Seasonal bookings increased by 15%",
-    "Instagram followers grew by 20% in 6 months",
-    "Improved brand recall and awareness in key markets",
-    "Increased engagement rates on social posts by 25%"
-  ],
-  "takeaways": "Community-driven content and influencer collaborations are powerful levers for brand growth. This project reinforced the importance of authenticity in digital marketing, particularly when targeting younger, experience-driven audiences."
-  }'>
-          <div class="proj-thumb" style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f9be5d56c8aaf2c8a3d40f7a6f3b9b2'); background-size:cover; background-position:center"></div>
-          <div class="proj-body">
-            <h4 class="proj-title">Social Media Campaigns & Partnerships</h4>
-            <p class="proj-desc">Planned and executed influencer collaborations at OYO Hotels, driving a 15% lift in seasonal bookings and increasing Instagram followers by 20%.</p>
-          </div>
-        </article>
-
-        <!-- Project 4 -->
-        <article class="proj" role="listitem" tabindex="0" data-project='{
-   "title": "Email & Lifecycle Campaigns",
-  "subtitle": "Automated nurture flows improved conversion rates by 48% and boosted retention",
-  "challenge": "Practo struggled with lead-to-customer conversions and customer retention. Many leads stalled in the funnel, and churn rates were rising due to limited engagement post-signup.",
-  "approach": "I designed segmented email journeys tailored to different funnel stages and customer personas. The strategy aimed to personalize communication, nurture leads through value-driven content, and re-engage dormant customers.",
-  "execution": "• Built HubSpot automation workflows with stage-specific drip campaigns. \n• Crafted personalized content for awareness, consideration, and decision stages. \n• Ran A/B tests on subject lines, send times, and content layouts. \n• Implemented re-engagement campaigns for dormant leads with special offers. \n• Set up lifecycle reporting dashboards to measure conversion and retention.",
-  "results": [
-    "Conversion rates improved by 48%",
-    "Customer LTV increased through better retention",
-    "Reduced churn with consistent lifecycle touchpoints",
-    "Email engagement rates grew by 35% (open + click-through)"
-  ],
-  "takeaways": "Well-structured lifecycle marketing ensures that leads are nurtured into customers and customers into long-term advocates. Personalization and automation were critical in driving conversions and boosting LTV."
-  }'>
-          <div class="proj-thumb" style="background-image:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=e3c4c1b4e7b2a6a5435f7d1e2f6e6f9c'); background-size:cover; background-position:center"></div>
-          <div class="proj-body">
-            <h4 class="proj-title">Email & Lifecycle Campaigns</h4>
-            <p class="proj-desc">Built automated nurture flows that improved conversion rates by 48%, focusing on retention and customer LTV.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-
-<!-- Sample Landing Pages Section -->
-<section id="sample-landing" class="sample-section">
-  <h2 class="section-title">Sample Landing Pages</h2>
-
-  <div class="sample-grid">
-    <!-- Left Side: Preview -->
-    <div id="landing-preview" class="preview-card">
-      <img id="preview-img" src="saas-landing.png" alt="SaaS Landing Page">
-      <div class="preview-content">
-        <h3 id="preview-title">SaaS Landing Page</h3>
-        <a id="preview-link" href="saas-landing/index.html" target="_blank">View Live ↗</a>
-      </div>
-    </div>
-
-    <!-- Right Side: List -->
-    <div class="list">
-      <button class="landing-btn active"
-        data-img="saas-landing.png"
-        data-title="SaaS Landing Page"
-        data-link="saas-landing/index.html">
-        SaaS Landing Page
-      </button>
-      <button class="landing-btn"
-        data-img="ecommerce-landing.png"
-        data-title="E-commerce Landing Page"
-        data-link="ecommerce-landing/index.html">
-        E-commerce Landing Page
-      </button>
-      <button class="landing-btn"
-        data-img="studio-landing.png"
-        data-title="Creative Studio Landing Page"
-        data-link="studio-landing/index.html">
-        Creative Studio Landing Page
-      </button>
-      <button class="landing-btn"
-        data-img="product-landing.png"
-        data-title="Product Launch Landing Page"
-        data-link="product-landing/index.html">
-        Product Launch Landing Page
-      </button>
-      <button class="landing-btn"
-        data-img="course-landing.png"
-        data-title="Course Landing Page"
-        data-link="course-landing/index.html">
-        Course Landing Page
-      </button>
-      <button class="landing-btn"
-        data-img="tech-landing.png"
-        data-title="Tech Product Landing Page"
-        data-link="tech-landing/index.html">
-        Tech Product Landing Page
-      </button>
-      <button class="landing-btn"
-        data-img="event-landing.png"
-        data-title="Event Landing Page"
-        data-link="event-landing/index.html">
-        Event Landing Page
-      </button>
-    </div>
-  </div>
-</section>
-    
-
-<!-- ARTICLES / BLOGS -->
-<section id="articles" aria-labelledby="articles-heading" style="margin-top:64px">
-  <h2 id="articles-heading" class="section-title" data-aos="fade-up">
-    Articles & Insights
-  </h2>
-  <div class="articles-grid" data-aos="fade-up">
-    
-    <!-- Article 1 -->
-    <article class="article" role="listitem">
-      <img src="/Paid-Search-Ads-2.webp" alt="Maximizing ROI with Data-Driven Campaigns">
-      <div class="article-content">
-        <h5>Maximizing ROI with Data-Driven Campaigns</h5>
-        <p>How leveraging analytics and KPI tracking can reduce costs and increase conversions...</p>
-        <button class="btn"
-          onclick="openArticle(
-            'Maximizing ROI with Data-Driven Campaigns',
-            `<p>In today’s digital landscape, brands can’t afford to rely on intuition alone. Data-driven campaigns have become the backbone of high-performing marketing strategies, ensuring every dollar spent is accountable and measurable.</p>
-            <p>At Practo, I experienced firsthand how structured KPI tracking transformed performance marketing. By leveraging Google Analytics and HubSpot dashboards, we optimized campaigns across Google Ads, LinkedIn, and email — ultimately reducing cost-per-lead (CPL) by 18% while increasing qualified lead volume by more than 20%. The key was not just collecting data, but interpreting it to refine targeting, messaging, and budget allocation.</p>
-            <p>A strong data strategy means going beyond vanity metrics. Instead of focusing solely on clicks or impressions, the real power lies in mapping metrics to business objectives — whether that’s pipeline growth, revenue attribution, or customer lifetime value. When marketing and sales teams align on these KPIs, campaigns become far more effective.</p>
-            <p>The result is scalable, predictable growth. Data turns marketing from a cost center into a revenue engine, enabling brands to continuously test, learn, and optimize. For companies aiming to grow in competitive markets, data-driven campaigns aren’t optional — they’re the foundation of sustainable ROI.</p>`
-          )">Read More →</button>
-      </div>
-    </article>
-
-    <!-- Article 2 -->
-    <article class="article" role="listitem">
-      <img src="/local-influencer-marketing.webp" alt="The Power of Influencer Partnerships in Local Growth">
-      <div class="article-content">
-        <h5>The Power of Influencer Partnerships in Local Growth</h5>
-        <p>Why micro-influencer collaborations and event partnerships drive stronger engagement...</p>
-        <button class="btn"
-          onclick="openArticle(
-            'The Power of Influencer Partnerships in Local Growth',
-            `<p>While paid media can deliver reach, nothing builds authentic brand connection like influencer partnerships. Especially in community-focused industries such as hospitality, micro-influencers offer a powerful way to generate awareness and trust.</p>
-            <p>During my time at OYO Hotels, we executed influencer-led campaigns and local event partnerships that directly boosted seasonal bookings by 15%. By collaborating with creators who already had established credibility in their communities, we amplified OYO’s message in a way that felt authentic and relatable. Unlike traditional ads, this strategy built trust faster and engaged audiences at a deeper level.</p>
-            <p>Micro-influencers in particular hold unique value. Their audiences are smaller but highly engaged, making them ideal for driving conversions rather than just impressions. Pairing their voices with event-based activations created a word-of-mouth effect that extended well beyond the campaign window.</p>
-            <p>The takeaway is simple: when brands view influencers as long-term partners instead of one-off channels, they create stronger community ties and lasting impact. In a digital world where consumers crave authenticity, influencer marketing is more than a trend — it’s a sustainable growth lever for modern brands.</p>`
-          )">Read More →</button>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- MODAL STRUCTURE -->
-<div id="modalBackdrop" aria-hidden="true">
-  <div class="modal">
-    <span class="modal-close" onclick="closeModal()">×</span>
-    <h3 id="modalTitle"></h3>
-    <h4 id="modalSubtitle"></h4>
-    <div id="modalContent"></div>
-  </div>
-</div>
-    
-<!-- RESUME -->
-<section class="resume" id="resume" aria-labelledby="resume-heading" data-aos="fade-up">
-  <div class="resume-card">
-    <h3 id="resume-heading">Resume</h3>
-    <p>
-      Download a PDF version of my resume or explore my professional journey online.
-    </p>
-    <div class="resume-actions">
-      <a class="btn btn-primary" href="Shreshth_Marketing_Resume.pdf" download aria-label="Download resume as PDF">
-        📄 Download Resume (PDF)
-      </a>
-      <a class="btn btn-outline" href="#work" aria-label="View work experience section">
-        🔍 View Experience
-      </a>
-    </div>
-  </div>
-</section>
-
-   <!-- CONTACT -->
-<section id="contact" class="contact" aria-labelledby="contact-heading">
-  <h3 id="contact-heading" class="section-title" data-aos="fade-up">
-    Let’s Build Your Next Campaign
-  </h3>
-  <p>I’d love to connect — tell me about your goals and I’ll propose a short plan. No spam, just real strategy.</p>
-
-      <div style="margin-top:18px">
-      <!-- Calendly inline embed -->
-  <div class="calendly-inline-widget"
-       data-url="https://calendly.com/shreshthsaini/book-a-call-with-shreshth"       
-    style="min-width:320px; height:700px; margin-top:20px;">
-  </div>
-  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
-  <div style="margin-top:12px; color:var(--muted)">💡 I usually reply within 24 hours.</div>
-      </div>
-
-      <div style="margin-top:12px; color:var(--muted)">Or reach out via</div>
-      <div class="social" role="list" aria-label="social links">
-        <a href="mailto:shreshthsaini45@gmail.com" role="listitem" title="Email">
-          <!-- email svg -->
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:0.9"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#374151" stroke-width="1.4"/><path d="M3 7l9 6 9-6" stroke="#374151" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Email
-        </a>
-
-        <a href="https://www.linkedin.com/in/shreshth-saini-6296971b1/" target="_blank" rel="noreferrer" role="listitem" title="LinkedIn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:0.9"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#374151" stroke-width="1.4"/><path d="M8 11v6M8 8v.01M12 11v6M17 11v6" stroke="#374151" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          LinkedIn
-        </a>
-
-        <a href="https://www.instagram.com" target="_blank" rel="noreferrer" role="listitem" title="Instagram">      
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
-    <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.25-.88a1.13 1.13 0 1 1-2.25 0 1.13 1.13 0 0 1 2.25 0Z"/>
-  </svg>
-          Instagram
-        </a>
-      </div>
-    </section>
-
-    <footer>
-      © <span id="year"></span> Shreshth Saini · Marketing Specialist 
-    </footer>
-
-  </main>
-
-  <!-- Project Modal (hidden by default) -->
-<!-- Case Study / Article Modal -->
-<div class="modal-backdrop" id="modalBackdrop" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal" role="document" aria-labelledby="modalTitle">
-    <button class="close" aria-label="Close modal" onclick="closeModal()">✕</button>
-
-    <!-- Title + optional subtitle -->
-    <h3 id="modalTitle"></h3>
-    <p id="modalSubtitle" style="color:var(--muted); font-style:italic"></p>
-
-    <!-- Main body (used for both case studies & articles) -->
-    <div id="modalContent" style="margin-top:18px; line-height:1.6"></div>
-  </div>
-</div>
-
-
- <script>
-  // === Footer year ===
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // === Project modal functionality ===
-  const projectEls = document.querySelectorAll('.proj');
-  const modalBackdrop = document.getElementById('modalBackdrop');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalDesc = document.getElementById('modalDesc');
-  const modalImage = document.getElementById('modalImage');
-
-  projectEls.forEach(el => {
-    el.addEventListener('click', () => openProject(el));
-    el.addEventListener('keypress', (e) => { if(e.key === 'Enter' || e.key === ' ') openProject(el); });
-  });
-
-  function openProject(el){
-    const data = el.dataset.project ? JSON.parse(el.dataset.project) : null;
-    if(!data) return;
-
-    modalTitle.textContent = data.title;
-    document.getElementById("modalSubtitle").textContent = data.subtitle || "";
-
-    let contentHtml = "";
-    if(data.challenge) contentHtml += `<h4>Challenge</h4><p>${data.challenge}</p>`;
-    if(data.approach) contentHtml += `<h4>Approach</h4><p>${data.approach}</p>`;
-    if(data.execution) {
-      const execItems = data.execution.split("\n").map(e => e.trim()).filter(e => e);
-      contentHtml += `<h4>Execution</h4><ul>${execItems.map(e => `<li>${e.replace(/^•\s*/, "")}</li>`).join("")}</ul>`;
+    /* === CSS VARIABLES & RESET === */
+    :root {
+      /* Light theme */
+      --background: #ffffff;
+      --foreground: #0f172a;
+      --card: #ffffff;
+      --card-foreground: #0f172a;
+      --primary: #2563eb;
+      --primary-foreground: #ffffff;
+      --secondary: #f1f5f9;
+      --secondary-foreground: #0f172a;
+      --muted: #f1f5f9;
+      --muted-foreground: #64748b;
+      --accent: #f1f5f9;
+      --accent-foreground: #0f172a;
+      --border: rgba(0, 0, 0, 0.1);
+      --input-background: #f8fafc;
+      --destructive: #dc2626;
+      --destructive-foreground: #ffffff;
+      --ring: #2563eb;
+      
+      /* Layout */
+      --container: 1200px;
+      --gap: clamp(16px, 2.5vw, 32px);
+      --radius: 12px;
+      
+      /* Gradients */
+      --gradient-primary: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
+      --gradient-secondary: linear-gradient(135deg, #f59e0b, #ef4444, #ec4899);
     }
-    if(data.results) {
-      contentHtml += `<h4>Results</h4><ul>${data.results.map(r => `<li>${r}</li>`).join("")}</ul>`;
+
+    .dark {
+      --background: #0f172a;
+      --foreground: #f8fafc;
+      --card: #1e293b;
+      --card-foreground: #f8fafc;
+      --primary: #3b82f6;
+      --primary-foreground: #ffffff;
+      --secondary: #1e293b;
+      --secondary-foreground: #f8fafc;
+      --muted: #334155;
+      --muted-foreground: #94a3b8;
+      --accent: #334155;
+      --accent-foreground: #f8fafc;
+      --border: rgba(255, 255, 255, 0.1);
+      --input-background: #334155;
     }
-    if(data.takeaways) {
-      contentHtml += `<h4>Key Takeaways</h4><p>${data.takeaways}</p>`;
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    
-    document.getElementById("modalContent").innerHTML = contentHtml;
 
-    modalBackdrop.style.display = 'grid';
-    modalBackdrop.setAttribute('aria-hidden','false');
-    document.documentElement.style.overflow = 'hidden';
-  }
+    html, body {
+      height: 100%;
+    }
 
-  function openArticle(title, content){
-    modalTitle.textContent = title;
-    document.getElementById("modalSubtitle").textContent = "";
-    document.getElementById("modalContent").innerHTML = content;
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
-    modalBackdrop.style.display = 'grid';
-    modalBackdrop.setAttribute('aria-hidden','false');
-    document.documentElement.style.overflow = 'hidden';
-  }
+    /* === HEADER & NAVIGATION === */
+    header {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-30px);
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 12px 24px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transition: all 0.6s ease;
+      max-width: fit-content;
+    }
 
-  function closeModal(){
-    modalBackdrop.style.display = 'none';
-    modalBackdrop.setAttribute('aria-hidden','true');
-    modalTitle.textContent = '';
-    document.getElementById("modalSubtitle").textContent = '';
-    document.getElementById("modalContent").innerHTML = '';
-    document.documentElement.style.overflow = '';
-  }
+    .dark header {
+      background: rgba(30, 41, 59, 0.8);
+    }
 
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape') closeModal();
-  });
-  modalBackdrop.addEventListener('click', (evt) => {
-    if(evt.target === modalBackdrop) closeModal();
-  });
+    header.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
 
-  // === Reveal timeline events on scroll ===
-  const timelineEvents = document.querySelectorAll('.timeline-event');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.2 });
-  timelineEvents.forEach(event => observer.observe(event));
-</script>
+    header:hover {
+      transform: translateX(-50%) translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
 
-<script>
-document.addEventListener("DOMContentLoaded", async () => {
-  // Add shimmer effect until data loads
-  document.querySelectorAll(".score").forEach(el => el.classList.add("shimmer"));
+    .logo {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--foreground);
+      white-space: nowrap;
+    }
 
-  try {
-    const res = await fetch("/api/performance");
-    const data = await res.json();
-    const raw = data.raw || {};
-    const norm = data.norm || {};
-    const industry = data.industry || { fcp: 70, lcp: 65, cls: 80, tbt: 75 }; // fallback % values
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-    // Thresholds for status coloring
-    const thresholds = {
-      fcp: { good: 1.8, poor: 3.0 },
-      lcp: { good: 2.5, poor: 4.0 },
-      cls: { good: 0.1, poor: 0.25 },
-      tbt: { good: 200, poor: 600 }
-    };
+    nav a {
+      color: var(--muted-foreground);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 24px;
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      position: relative;
+      white-space: nowrap;
+    }
 
-    for (const metric of ["fcp","lcp","cls","tbt"]) {
-      const circle = document.querySelector(`.fg[data-metric="${metric}"]`);
-      const scoreEl = circle?.closest(".gauge")?.querySelector(".score"); // ✅ fixed
-      const youBar = document.querySelector(`.you[data-you="${metric}"]`);
-      const avgBar = document.querySelector(`.avg[data-avg="${metric}"]`);
-      if (!circle || !scoreEl) continue;
+    nav a:hover, nav a.active {
+      color: var(--primary);
+      background: rgba(59, 130, 246, 0.1);
+      transform: translateY(-2px);
+    }
 
-      const valNorm = norm[metric] ?? 0;
-      const valRaw = raw[metric];
-      const radius = circle.getAttribute("r");
-      const circumference = 2 * Math.PI * radius;
-      const offset = circumference - (valNorm / 100) * circumference;
+    .theme-toggle {
+      background: none;
+      border: none;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--muted-foreground);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+    }
 
-      // Animate gauge stroke
-      circle.style.strokeDasharray = circumference;
-      circle.style.strokeDashoffset = circumference;
-      setTimeout(() => {
-        circle.style.transition = "stroke-dashoffset 1.8s ease";
-        circle.style.strokeDashoffset = offset;
-      }, 200);
+    .theme-toggle:hover {
+      background: var(--muted);
+      color: var(--foreground);
+      transform: scale(1.1);
+    }
 
-      // Show normalized percentage
-      scoreEl.classList.remove("shimmer");
-      scoreEl.textContent = `${valNorm}%`;
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--foreground);
+    }
 
-      // Status coloring (still based on raw thresholds)
-      if (valRaw !== undefined) {
-        let status = "good";
-        if (valRaw > thresholds[metric].poor) status = "poor";
-        else if (valRaw > thresholds[metric].good) status = "needs";
-        scoreEl.classList.add(status);
+    /* Mobile Navigation */
+    @media (max-width: 768px) {
+      header {
+        padding: 10px 20px;
+        gap: 12px;
+        max-width: 90%;
       }
 
-      // Comparison bars
-      if (youBar) youBar.style.width = `${valNorm}%`;
-      if (avgBar) avgBar.style.width = `${industry[metric]}%`;
+      .logo {
+        font-size: 16px;
+      }
+
+      nav {
+        position: absolute;
+        top: 110%;
+        right: 0;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 16px;
+        min-width: 200px;
+        flex-direction: column;
+        gap: 8px;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+      }
+
+      nav.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      nav a {
+        width: 100%;
+        text-align: left;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
     }
-  } catch (err) {
-    console.error("❌ Failed to load performance data:", err);
-    document.querySelectorAll(".score").forEach(el => {
-      el.textContent = "ERR";
-      el.classList.remove("shimmer"); 
-    });
-  }
-});
-</script>
-  
-<!-- Service Worker -->
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/service-worker.js")
-      .then((reg) => console.log("✅ Service Worker registered:", reg.scope))
-      .catch((err) => console.error("❌ Service Worker registration failed:", err));
-  });
-}
-</script>
 
-<!-- Carousel (Approach slides) -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const slides = document.querySelector(".slides");
-  const slideItems = document.querySelectorAll(".slide");
-  const prevBtn = document.querySelector(".carousel-btn.prev");
-  const nextBtn = document.querySelector(".carousel-btn.next");
-  const indicatorsContainer = document.querySelector(".indicators");
+    /* === LAYOUT === */
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-  let currentSlide = 0;
-  const totalSlides = slideItems.length;
-  let autoPlay;
+    .section {
+      padding: 80px 0;
+      position: relative;
+    }
 
-  // Indicators
-  slideItems.forEach((_, idx) => {
-    const dot = document.createElement("span");
-    if (idx === 0) dot.classList.add("active");
-    dot.addEventListener("click", () => moveToSlide(idx));
-    indicatorsContainer.appendChild(dot);
-  });
-  const dots = indicatorsContainer.querySelectorAll("span");
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
 
-  function moveToSlide(index) {
-    currentSlide = index;
-    slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-    dots.forEach((dot, i) => dot.classList.toggle("active", i === currentSlide));
-  }
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-  prevBtn.addEventListener("click", () => {
-    const newIndex = (currentSlide - 1 + totalSlides) % totalSlides;
-    moveToSlide(newIndex);
-    resetAutoplay();
-  });
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--muted-foreground);
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
-  nextBtn.addEventListener("click", () => {
-    const newIndex = (currentSlide + 1) % totalSlides;
-    moveToSlide(newIndex);
-    resetAutoplay();
-  });
+    /* === HERO SECTION === */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--background) 0%, var(--muted) 100%);
+    }
 
-  function startAutoplay() {
-    autoPlay = setInterval(() => {
-      const newIndex = (currentSlide + 1) % totalSlides;
-      moveToSlide(newIndex);
-    }, 8000);
-  }
-  function resetAutoplay() {
-    clearInterval(autoPlay);
-    startAutoplay();
-  }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-primary);
+      opacity: 0.03;
+      z-index: 0;
+    }
 
-  startAutoplay();
-  slides.parentElement.addEventListener("mouseenter", () => clearInterval(autoPlay));
-  slides.parentElement.addEventListener("mouseleave", startAutoplay);
-});
-</script>
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 60px;
+      align-items: center;
+    }
 
- <!-- AOS + Rellax -->
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
+    .hero-text h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 24px;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+    }
+
+    .hero-text p {
+      font-size: 1.25rem;
+      color: var(--muted-foreground);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-image {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--gradient-primary);
+      animation: float 6s ease-in-out infinite;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @media (max-width: 900px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+      }
+      
+      .hero-image {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+    }
+
+    /* === BUTTONS === */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--primary-foreground);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--foreground);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background: var(--muted);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted-foreground);
+    }
+
+    .btn-ghost:hover {
+      background: var(--muted);
+      color: var(--foreground);
+    }
+
+    /* === CARDS === */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .dark .glass-card {
+      background: rgba(30, 41, 59, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* === ABOUT SECTION === */
+    .about {
+      background: var(--muted);
+      position: relative;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 6px solid var(--card);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease;
+    }
+
+    .avatar:hover {
+      transform: scale(1.05);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .stats {
+      display: flex;
+      gap: 24px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      flex: 1;
+      min-width: 120px;
+      text-align: center;
+      padding: 20px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .stat:hover {
+      transform: translateY(-4px);
+    }
+
+    .stat .num {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .stat .label {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
+
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+      }
+      
+      .avatar {
+        margin: 0 auto;
+      }
+
+      .stats {
+        justify-content: center;
+      }
+    }
+
+    /* === TIMELINE === */
+    .timeline-horizontal {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      position: relative;
+      margin: 40px 0 60px 0;
+      flex-wrap: wrap;
+    }
+
+    .timeline-horizontal::before {
+      content: "";
+      position: absolute;
+      top: 27px;
+      left: 5%;
+      right: 5%;
+      height: 3px;
+      background: var(--gradient-primary);
+      z-index: 0;
+      border-radius: 2px;
+    }
+
+    .timeline-event {
+      flex: 1;
+      min-width: 160px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .timeline-event.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-event::before {
+      content: "";
+      display: block;
+      margin: 0 auto 12px auto;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-event h5 {
+      margin: 6px 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--foreground);
+    }
+
+    .timeline-event p {
+      font-size: 13px;
+      color: var(--muted-foreground);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .timeline-horizontal {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .timeline-horizontal::before {
+        top: 0;
+        left: 27px;
+        width: 3px;
+        height: 100%;
+        background: var(--gradient-primary);
+      }
+      
+      .timeline-event {
+        width: 100%;
+        text-align: left;
+        padding-left: 70px;
+        margin-bottom: 40px;
+      }
+      
+      .timeline-event::before {
+        margin: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+
+    /* === TOOLS SECTION === */
+    .tools-section {
+      background: var(--background);
+      text-align: center;
+    }
+
+    .tools-ticker {
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+      margin-top: 40px;
+    }
+
+    .ticker-track {
+      display: flex;
+      gap: 40px;
+      width: max-content;
+      animation: ticker 25s linear infinite;
+      will-change: transform;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .tool {
+      flex: 0 0 auto;
+      min-width: 150px;
+      padding: 20px;
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid var(--border);
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .tool:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .tool svg {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 12px;
+    }
+
+    .tool span {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--foreground);
+    }
+
+    /* === SERVICES SECTION === */
+    .services {
+      background: var(--muted);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .service-card {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      padding: 2px;
+      background: var(--gradient-primary);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient-primary);
+      color: white;
+      font-size: 24px;
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .service-content h4 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .service-content p {
+      color: var(--muted-foreground);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* === PORTFOLIO SECTION === */
+    .portfolio {
+      background: var(--background);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-thumb {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--muted);
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .project-thumb {
+      transform: scale(1.05);
+    }
+
+    .project-body {
+      padding: 24px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--foreground);
+    }
+
+    .project-desc {
+      color: var(--muted-foreground);
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    @media (max-width: 600px) {
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* === PERFORMANCE METRICS === */
+    .performance-section {
+      background: linear-gradient(135deg, #0b0b0f, #0d0d1a, #0a0a0f);
+      border-radius: 24px;
+      padding: 4rem 2rem;
+      margin: 4rem auto;
+      text-align: center;
+      color: #f0f0f0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,0,0,0.6);
+    }
+
+    .performance-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      padding: 2px;
+      background: linear-gradient(90deg, #00d4ff, #7a5cff, #ff4ecd);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .performance-section h2 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, #ff4ecd, #a86bff, #00d4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .performance-section .subtitle {
+      font-size: 1.1rem;
+      color: #bbb;
+      margin-bottom: 3rem;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .metric-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 20px rgba(255,78,205,0.3);
+    }
+
+    .gauge {
+      width: 110px;
+      height: 110px;
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .gauge svg {
+      transform: rotate(-90deg);
+      width: 110px;
+      height: 110px;
+    }
+
+    .gauge .bg {
+      stroke: rgba(255,255,255,0.08);
+      stroke-width: 12;
+      fill: none;
+    }
+
+    .gauge .fg {
+      stroke-width: 12;
+      fill: none;
+      stroke-linecap: round;
+      stroke-dasharray: 351;
+      stroke-dashoffset: 351;
+      transition: stroke-dashoffset 2s ease;
+    }
+
+    .score {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .label {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .full-form {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: 1rem;
+      min-height: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 500px) {
+      .metrics { grid-template-columns: 1fr; }
+    }
+
+    /* === APPROACH SECTION === */
+    .approach {
+      background: var(--muted);
+    }
+
+    .approach-steps {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      flex-wrap: wrap;
+      position: relative;
+      margin-bottom: 60px;
+    }
+
+    .approach-steps::before {
+      content: "";
+      position: absolute;
+      top: 27px;
+      left: 5%;
+      right: 5%;
+      height: 3px;
+      background: var(--gradient-primary);
+      z-index: 0;
+    }
+
+    .step-card {
+      flex: 1;
+      min-width: 160px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .step-card .circle {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px auto;
+      box-shadow: 0 4px 12px rgba(59,130,246,0.25);
+    }
+
+    .step-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .step-card p {
+      font-size: 13px;
+      color: var(--muted-foreground);
+      line-height: 1.5;
+    }
+
+    /* === DECK PREVIEW === */
+    .deck-preview {
+      position: relative;
+      max-width: 820px;
+      margin: 0 auto 50px auto;
+      overflow: hidden;
+      border-radius: 16px;
+      background: var(--card);
+      box-shadow: 0 8px 26px rgba(0,0,0,0.08);
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.6s ease;
+    }
+
+    .slide {
+      min-width: 100%;
+      padding: 40px;
+    }
+
+    .slide h4 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--foreground);
+      text-align: center;
+    }
+
+    .slide-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .slide-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--muted);
+      padding: 16px;
+      border-radius: 10px;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .slide-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.15);
+    }
+
+    .slide-item .icon {
+      font-size: 22px;
+    }
+
+    .slide-item h5 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .slide-item p {
+      font-size: 13px;
+      color: var(--muted-foreground);
+      line-height: 1.5;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      transition: background 0.3s ease;
+      height: 40px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dark .carousel-btn {
+      background: rgba(30, 41, 59, 0.9);
+      color: var(--foreground);
+    }
+
+    .carousel-btn:hover {
+      background: var(--muted);
+    }
+
+    .carousel-btn.prev { left: 12px; }
+    .carousel-btn.next { right: 12px; }
+
+    .indicators {
+      text-align: center;
+      padding: 14px 0;
+    }
+
+    .indicators span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 0 4px;
+      background: var(--muted-foreground);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .indicators span.active {
+      background: var(--primary);
+      transform: scale(1.2);
+    }
+
+    .download-box {
+      margin: 20px auto 10px auto;
+      background: var(--muted);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      max-width: 420px;
+    }
+
+    .download-box span {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted-foreground);
+    }
+
+    .download-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: var(--primary);
+      color: var(--primary-foreground);
+      font-weight: 600;
+      font-size: 13px;
+      text-decoration: none;
+      transition: background 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .download-btn:hover {
+      background: var(--primary);
+      filter: brightness(1.1);
+    }
+
+    /* === ARTICLES SECTION === */
+    .articles {
+      background: var(--background);
+    }
+
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    .article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .article:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .article img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .article:hover img {
+      transform: scale(1.05);
+    }
+
+    .article-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .article h5 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--foreground);
+    }
+
+    .article p {
+      color: var(--muted-foreground);
+      line-height: 1.6;
+      flex-grow: 1;
+      margin-bottom: 20px;
+    }
+
+    /* === SAMPLE LANDING PAGES === */
+    .sample-section {
+      background: var(--muted);
+    }
+
+    .sample-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .preview-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .preview-card img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .preview-content {
+      padding: 20px;
+    }
+
+    .preview-content h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .preview-content a {
+      display: inline-block;
+      padding: 10px 18px;
+      background: var(--primary);
+      color: var(--primary-foreground);
+      font-size: 0.9rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .preview-content a:hover {
+      filter: brightness(1.1);
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .landing-btn {
+      width: 100%;
+      padding: 12px 18px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      font-size: 1rem;
+      text-align: left;
+      cursor: pointer;
+      color: var(--foreground);
+      transition: all 0.3s;
+    }
+
+    .landing-btn:hover {
+      background: var(--muted);
+    }
+
+    .landing-btn.active {
+      background: var(--primary);
+      color: var(--primary-foreground);
+      font-weight: 600;
+    }
+
+    .preview-card.fade {
+      animation: slideIn 0.4s ease forwards;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(80px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @media (max-width: 900px) {
+      .sample-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* === RESUME SECTION === */
+    .resume {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 60px 40px;
+      margin: 64px auto;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      max-width: 800px;
+    }
+
+    .resume::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 2px;
+      background: var(--gradient-primary);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .resume h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .resume p {
+      font-size: 1.1rem;
+      color: var(--muted-foreground);
+      margin-bottom: 32px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .resume-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* === CONTACT SECTION === */
+    .contact {
+      background: var(--background);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .contact-info p {
+      color: var(--muted-foreground);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .social {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .social a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: var(--muted-foreground);
+      transition: all 0.3s ease;
+    }
+
+    .social a:hover {
+      background: var(--muted);
+      color: var(--foreground);
+      transform: translateY(-2px);
+    }
+
+    .calendly-inline-widget {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    /* === MODAL === */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      place-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      max-width: 700px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 32px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.3s ease;
+      position: relative;
+    }
+
+    .modal h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--foreground);
+    }
+
+    .modal h4 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 24px 0 12px 0;
+      color: var(--primary);
+    }
+
+    .modal p, .modal li {
+      color: var(--muted-foreground);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .modal ul {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+
+    .modal li {
+      margin-bottom: 8px;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--muted-foreground);
+      transition: color 0.2s ease;
+      background: none;
+      border: none;
+    }
+
+    .close:hover {
+      color: var(--foreground);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* === FOOTER === */
+    footer {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      padding: 60px 0 40px 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .footer-brand h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-brand p {
+      color: var(--muted-foreground);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .footer-links h4 {
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 8px;
+    }
+
+    .footer-links a {
+      color: var(--muted-foreground);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--foreground);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-bottom p {
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* === UTILITY CLASSES === */
+    .text-center { text-align: center; }
+    .hidden { display: none; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .section { padding: 60px 0; }
+      .section-title { font-size: 2rem; }
+      .hero-text h1 { font-size: 2.5rem; }
+      .hero-text p { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header id="header">
+    <div class="logo">Shreshth's Portfolio</div>
+    
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+      ☰
+    </button>
+    
+    <nav id="nav">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#tools">Tools</a>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"></circle>
+        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero section">
+    <div class="container">
+      <div class="hero-content" data-aos="fade-up">
+        <div class="hero-text">
+          <h1>Helping brands grow through data-driven marketing & storytelling</h1>
+          <p>I create campaign-driven growth strategies — paid, content, and email — that move the needle for B2B and consumer brands. Focused on measurable results and growth that scales.</p>
+          <div class="hero-actions">
+            <a href="#work" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-outline">Let's Talk</a>
+          </div>
+        </div>
+        <div class="hero-image" data-aos="fade-left" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop" alt="Marketing creative visual">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about section">
+    <div class="container">
+      <div class="about-grid" data-aos="fade-up">
+        <div class="avatar" data-aos="zoom-in" data-aos-delay="100">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop" alt="Portrait of Shreshth Saini" />
+        </div>
+        
+        <div>
+          <h2 data-aos="fade-up" data-aos-delay="150">About Me</h2>
+          <p data-aos="fade-up" data-aos-delay="250">
+            I'm a Marketing Specialist with 4+ years of experience in digital marketing and content strategy. 
+            I design campaigns that increase engagement, generate qualified leads, and deliver measurable ROI. 
+            I work across SEO, paid media, content creation, and performance analytics.
+          </p>
+
+          <div class="stats">
+            <div class="stat" data-aos="fade-up" data-aos-delay="350">
+              <div class="num">4+</div>
+              <div class="label">Years of experience</div>
+            </div>
+            <div class="stat" data-aos="fade-up" data-aos-delay="450">
+              <div class="num">20+</div>
+              <div class="label">Campaigns managed</div>
+            </div>
+            <div class="stat" data-aos="fade-up" data-aos-delay="550">
+              <div class="num">Avg 2x</div>
+              <div class="label">ROI improvement</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story Section -->
+      <div style="margin-top: 60px;" data-aos="fade-up" data-aos-delay="200">
+        <h3>My Story</h3>
+        <p data-aos="fade-up" data-aos-delay="250">
+          I first stepped into marketing because I was fascinated by how creative storytelling and data analytics together can move people to act. While studying, I was drawn to projects where I could combine strategy with measurable impact, and that curiosity naturally led me into digital marketing.
+        </p>
+        <p data-aos="fade-up" data-aos-delay="300">
+          At <strong>OYO Hotels</strong>, I managed multi-location campaigns, influencer collaborations, and content calendars that lifted seasonal bookings by 15% and grew Instagram followers by 20% in six months. From there, I expanded into performance marketing at Practo, where I led multi-channel campaigns across Google Ads, LinkedIn, and Email—achieving a 22% increase in qualified leads and reducing cost-per-lead by 18% through analytics-driven optimizations.
+        </p>
+        <p data-aos="fade-up" data-aos-delay="350">
+          Today, I focus on <em>scalable e-commerce and growth marketing</em>: lifecycle campaigns, SEO-led content, and automation that boost conversions and customer LTV. I believe effective marketing is about creating clarity in a noisy digital world — connecting the right audience with genuine value.
+        </p>
+        <p data-aos="fade-up" data-aos-delay="400">
+          Outside of work, I recharge by exploring Vancouver's coffee scene, sketching digital designs, and writing about emerging marketing trends. My goal is to join a team where I can keep solving growth challenges while bringing creative energy and data-driven rigor.
+        </p>
+
+        <!-- Timeline -->
+        <div style="margin-top: 40px;">
+          <h4>Journey Timeline</h4>
+          <div class="timeline-horizontal">
+            <div class="timeline-event" data-aos="fade-right" data-aos-delay="100">
+              <h5>2020</h5>
+              <p>BBA · Project Management Major<br>Built strong foundations in strategy, operations, and leadership</p>
+            </div>
+            <div class="timeline-event" data-aos="fade-up" data-aos-delay="200">
+              <h5>2021</h5>
+              <p>OYO Hotels<br>Marketing Associate · Campaigns, Influencer partnerships, Social growth</p>
+            </div>
+            <div class="timeline-event" data-aos="fade-up" data-aos-delay="300">
+              <h5>2022 – 2025</h5>
+              <p>Practo<br>Performance Marketing Analyst · Multi-Channel Growth & Automation</p>
+            </div>
+            <div class="timeline-event" data-aos="fade-up" data-aos-delay="400">
+              <h5>2024 – 2025</h5>
+              <p>MBA, UCW<br>Project Management & Strategy focus</p>
+            </div>
+            <div class="timeline-event" data-aos="fade-left" data-aos-delay="500">
+              <h5>Today</h5>
+              <p>Marketing Specialist<br>Data-driven storytelling & Growth campaigns</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools Section -->
+  <section id="tools" class="tools-section section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-aos="fade-up">Tools & Technologies</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          A snapshot of the platforms and tools I use to design, optimize, and scale campaigns.
+        </p>
+      </div>
+
+      <div class="tools-ticker" data-aos="fade-up" data-aos-delay="200">
+        <div class="ticker-track">
+          <!-- First set of tools -->
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#E37400" viewBox="0 0 24 24" width="40" height="40">
+              <path d="M10.2 0C8.99 0 8 1.01 8 2.25v19.5C8 22.99 8.99 24 10.2 24h1.55C12.99 24 14 22.99 14 21.75V2.25C14 1.01 12.99 0 11.75 0h-1.55zM2.25 16C1.01 16 0 17.01 0 18.25v3.5C0 22.99 1.01 24 2.25 24h1.5C4.99 24 6 22.99 6 21.75v-3.5C6 17.01 4.99 16 3.75 16h-1.5zM21.75 8C20.51 8 19.5 9.01 19.5 10.25v11.5c0 1.24 1.01 2.25 2.25 2.25h.25C23.99 24 25 22.99 25 21.75V10.25C25 9.01 23.99 8 22.75 8h-.25z"/>
+            </svg>
+            <span>Google Analytics</span>
+          </div>
+
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#4285F4" viewBox="0 0 24 24" width="40" height="40">
+              <path d="M12 2L1 21h22L12 2z"/>
+            </svg>
+            <span>Google Ads</span>
+          </div>
+
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#1877F2" viewBox="0 0 24 24" width="40" height="40">
+              <path d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 4.99 3.66 9.12 8.44 9.86v-6.98H8.07v-2.88h2.41V9.41c0-2.38 1.42-3.7 3.59-3.7 1.04 0 2.12.19 2.12.19v2.33h-1.2c-1.18 0-1.55.73-1.55 1.48v1.78h2.64l-.42 2.88h-2.22V22c4.78-.74 8.44-4.87 8.44-9.86 0-5.5-4.46-9.96-9.96-9.96z"/>
+            </svg>
+            <span>Meta Ads</span>
+          </div>
+
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#0A66C2" viewBox="0 0 24 24" width="40" height="40">
+              <path d="M4.98 3.5a2.5 2.5 0 11.001 5.001A2.5 2.5 0 014.98 3.5zM4.5 9h3v12h-3zM9 9h2.82v1.64h.04c.39-.74 1.35-1.52 2.78-1.52C17.26 9.12 18 11 18 14.08V21h-3v-6.08c0-1.45-.03-3.31-2.02-3.31-2.02 0-2.33 1.58-2.33 3.21V21H9z"/>
+            </svg>
+            <span>LinkedIn Ads</span>
+          </div>
+
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#FF7A59" viewBox="0 0 24 24" width="40" height="40">
+              <path d="M12 2a2 2 0 100 4 2 2 0 000-4zm-1 6v5.09A6.5 6.5 0 1016.5 19h-2.1a4.5 4.5 0 11-6.4-5.9V8h3z"/>
+            </svg>
+            <span>HubSpot</span>
+          </div>
+
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#4CAF50" viewBox="0 0 24 24" width="40" height="40">
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+            <span>Klaviyo</span>
+          </div>
+
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#FF642D" viewBox="0 0 24 24" width="40" height="40">
+              <path d="M2 12a10 10 0 1020 0A10 10 0 002 12zm11 4l-4-4 4-4 4 4-4 4z"/>
+            </svg>
+            <span>SEMRush</span>
+          </div>
+
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#00C4CC" viewBox="0 0 24 24" width="40" height="40">
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+            <span>Canva</span>
+          </div>
+
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#FFE01B" viewBox="0 0 24 24" width="40" height="40">
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+            <span>Mailchimp</span>
+          </div>
+
+          <!-- Duplicate set for seamless loop -->
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#E37400" viewBox="0 0 24 24" width="40" height="40">
+              <path d="M10.2 0C8.99 0 8 1.01 8 2.25v19.5C8 22.99 8.99 24 10.2 24h1.55C12.99 24 14 22.99 14 21.75V2.25C14 1.01 12.99 0 11.75 0h-1.55zM2.25 16C1.01 16 0 17.01 0 18.25v3.5C0 22.99 1.01 24 2.25 24h1.5C4.99 24 6 22.99 6 21.75v-3.5C6 17.01 4.99 16 3.75 16h-1.5zM21.75 8C20.51 8 19.5 9.01 19.5 10.25v11.5c0 1.24 1.01 2.25 2.25 2.25h.25C23.99 24 25 22.99 25 21.75V10.25C25 9.01 23.99 8 22.75 8h-.25z"/>
+            </svg>
+            <span>Google Analytics</span>
+          </div>
+
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#4285F4" viewBox="0 0 24 24" width="40" height="40">
+              <path d="M12 2L1 21h22L12 2z"/>
+            </svg>
+            <span>Google Ads</span>
+          </div>
+
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#1877F2" viewBox="0 0 24 24" width="40" height="40">
+              <path d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 4.99 3.66 9.12 8.44 9.86v-6.98H8.07v-2.88h2.41V9.41c0-2.38 1.42-3.7 3.59-3.7 1.04 0 2.12.19 2.12.19v2.33h-1.2c-1.18 0-1.55.73-1.55 1.48v1.78h2.64l-.42 2.88h-2.22V22c4.78-.74 8.44-4.87 8.44-9.86 0-5.5-4.46-9.96-9.96-9.96z"/>
+            </svg>
+            <span>Meta Ads</span>
+          </div>
+
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#0A66C2" viewBox="0 0 24 24" width="40" height="40">
+              <path d="M4.98 3.5a2.5 2.5 0 11.001 5.001A2.5 2.5 0 014.98 3.5zM4.5 9h3v12h-3zM9 9h2.82v1.64h.04c.39-.74 1.35-1.52 2.78-1.52C17.26 9.12 18 11 18 14.08V21h-3v-6.08c0-1.45-.03-3.31-2.02-3.31-2.02 0-2.33 1.58-2.33 3.21V21H9z"/>
+            </svg>
+            <span>LinkedIn Ads</span>
+          </div>
+
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#FF7A59" viewBox="0 0 24 24" width="40" height="40">
+              <path d="M12 2a2 2 0 100 4 2 2 0 000-4zm-1 6v5.09A6.5 6.5 0 1016.5 19h-2.1a4.5 4.5 0 11-6.4-5.9V8h3z"/>
+            </svg>
+            <span>HubSpot</span>
+          </div>
+
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#4CAF50" viewBox="0 0 24 24" width="40" height="40">
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+            <span>Klaviyo</span>
+          </div>
+
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#FF642D" viewBox="0 0 24 24" width="40" height="40">
+              <path d="M2 12a10 10 0 1020 0A10 10 0 002 12zm11 4l-4-4 4-4 4 4-4 4z"/>
+            </svg>
+            <span>SEMRush</span>
+          </div>
+
+          <div class="tool">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#00C4CC" viewBox="0 0 24 24" width="40" height="40">
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+            <span>Canva</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Performance Metrics Section -->
+  <div class="container">
+    <section class="performance-section" data-aos="fade-up">
+      <!-- SVG gradients for gauges -->
+      <svg style="position:absolute;width:0;height:0" aria-hidden="true">
+        <defs>
+          <linearGradient id="gradFCP" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00d4ff"/>
+            <stop offset="100%" stop-color="#0077ff"/>
+          </linearGradient>
+          <linearGradient id="gradLCP" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#9a4dff"/>
+            <stop offset="100%" stop-color="#ff4ecd"/>
+          </linearGradient>
+          <linearGradient id="gradCLS" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00ffb2"/>
+            <stop offset="100%" stop-color="#00995c"/>
+          </linearGradient>
+          <linearGradient id="gradTBT" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ff8c00"/>
+            <stop offset="100%" stop-color="#ff3d3d"/>
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <h2>Performance Metrics</h2>
+      <p class="subtitle">Live insights highlighting speed, stability, and interactivity — compared with industry benchmarks.</p>
+
+      <div class="metrics">
+        <div class="metric-card">
+          <div class="gauge">
+            <svg viewBox="0 0 120 120">
+              <circle class="bg" cx="60" cy="60" r="56"></circle>
+              <circle class="fg" data-metric="fcp" stroke="url(#gradFCP)" cx="60" cy="60" r="56"></circle>
+            </svg>
+            <span class="score">94%</span>
+          </div>
+          <span class="label">FCP</span>
+          <span class="full-form">First Contentful Paint</span>
+        </div>
+
+        <div class="metric-card">
+          <div class="gauge">
+            <svg viewBox="0 0 120 120">
+              <circle class="bg" cx="60" cy="60" r="56"></circle>
+              <circle class="fg" data-metric="lcp" stroke="url(#gradLCP)" cx="60" cy="60" r="56"></circle>
+            </svg>
+            <span class="score">89%</span>
+          </div>
+          <span class="label">LCP</span>
+          <span class="full-form">Largest Contentful Paint</span>
+        </div>
+
+        <div class="metric-card">
+          <div class="gauge">
+            <svg viewBox="0 0 120 120">
+              <circle class="bg" cx="60" cy="60" r="56"></circle>
+              <circle class="fg" data-metric="cls" stroke="url(#gradCLS)" cx="60" cy="60" r="56"></circle>
+            </svg>
+            <span class="score">96%</span>
+          </div>
+          <span class="label">CLS</span>
+          <span class="full-form">Cumulative Layout Shift</span>
+        </div>
+
+        <div class="metric-card">
+          <div class="gauge">
+            <svg viewBox="0 0 120 120">
+              <circle class="bg" cx="60" cy="60" r="56"></circle>
+              <circle class="fg" data-metric="tbt" stroke="url(#gradTBT)" cx="60" cy="60" r="56"></circle>
+            </svg>
+            <span class="score">87%</span>
+          </div>
+          <span class="label">TBT</span>
+          <span class="full-form">Total Blocking Time</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Approach Section -->
+  <section class="approach section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-aos="fade-up">My Marketing Approach</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          A structured 2-page plan for growth & measurable results.
+        </p>
+      </div>
+      
+      <div class="approach-steps">
+        <div class="step-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="circle">1</div>
+          <h4>Audit & Research</h4>
+          <p>Market trends, competitors, personas.</p>
+        </div>
+        <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="circle">2</div>
+          <h4>Strategy & Messaging</h4>
+          <p>Positioning, value proposition, brand voice.</p>
+        </div>
+        <div class="step-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="circle">3</div>
+          <h4>Execution</h4>
+          <p>SEO, ads, social, content, and email campaigns.</p>
+        </div>
+        <div class="step-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="circle">4</div>
+          <h4>Measurement</h4>
+          <p>KPI tracking, dashboards, transparent reporting.</p>
+        </div>
+        <div class="step-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="circle">5</div>
+          <h4>Optimization</h4>
+          <p>Iterating weekly and scaling best channels.</p>
+        </div>
+      </div>
+
+      <!-- Slide Deck -->
+      <div class="deck-preview" data-aos="zoom-in" data-aos-delay="200">
+        <div class="slides" id="slides">
+          <div class="slide active">
+            <h4>📘 Page 1 – Strategy & Approach</h4>
+            <div class="slide-grid">
+              <div class="slide-item">
+                <span class="icon">🎯</span>
+                <div>
+                  <h5>Objectives</h5>
+                  <p>Awareness, traffic, sustainable growth.</p>
+                </div>
+              </div>
+              <div class="slide-item">
+                <span class="icon">🔍</span>
+                <div>
+                  <h5>Research</h5>
+                  <p>Competitors, personas, market insights.</p>
+                </div>
+              </div>
+              <div class="slide-item">
+                <span class="icon">🌐</span>
+                <div>
+                  <h5>Channels</h5>
+                  <p>SEO, social media, email, ads.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <h4>🚀 Page 2 – Execution & Measurement</h4>
+            <div class="slide-grid">
+              <div class="slide-item">
+                <span class="icon">📈</span>
+                <div>
+                  <h5>Execution</h5>
+                  <p>SEO, PPC, social & email campaigns.</p>
+                </div>
+              </div>
+              <div class="slide-item">
+                <span class="icon">📊</span>
+                <div>
+                  <h5>Measurement</h5>
+                  <p>KPI tracking, dashboards, reporting.</p>
+                </div>
+              </div>
+              <div class="slide-item">
+                <span class="icon">♻️</span>
+                <div>
+                  <h5>Optimization</h5>
+                  <p>Iterating weekly, scaling best channels.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-btn prev" onclick="moveSlide(-1)">‹</button>
+        <button class="carousel-btn next" onclick="moveSlide(1)">›</button>
+        <div class="indicators" id="indicators"></div>
+
+        <div class="download-box">
+          <span>Download my full Marketing Plan</span>
+          <a href="#" class="download-btn" download>Download PDF</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-aos="fade-up">Services</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Strategic services I offer — modular or full-service campaign execution.
+        </p>
+      </div>
+
+      <div class="services-grid" data-aos="fade-up">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M11 17l-5-5 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18 19l-7-7 7-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+            </svg>
+          </div>
+          <div class="service-content">
+            <h4>SEO & Content</h4>
+            <p>Keyword-led content and technical SEO that increases organic discoverability and quality traffic.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M3 7h18M7 21V7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="service-content">
+            <h4>Paid Media (PPC)</h4>
+            <p>Audience-first paid campaigns across Meta, Google, and LinkedIn focused on LTV and CPA optimization.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="3" stroke="white" stroke-width="1.8"/>
+              <path d="M19 12c0 4-3 7-7 7s-7-3-7-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="service-content">
+            <h4>Social Media Strategy</h4>
+            <p>Content calendars, creative briefs, and paid-social experiments to grow brand awareness and engagement.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="white" stroke-width="1.8"/>
+              <path d="M3 7l9 6 9-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="service-content">
+            <h4>Email Campaigns</h4>
+            <p>Lifecycle emails, automations, and A/B testing to increase conversions and LTV.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="work" class="portfolio section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-aos="fade-up">Marketing Case Studies</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Click a project to view the case study details and results.
+        </p>
+      </div>
+
+      <div class="portfolio-grid" data-aos="fade-up">
+        <div class="project-card" data-project='{
+          "title": "Performance Marketing Optimization",
+          "subtitle": "Reduced CPL by 18% and boosted qualified leads by 22%",
+          "challenge": "Practo wanted to scale lead generation for its healthcare SaaS product while lowering Cost Per Lead (CPL). Growth had stagnated in key markets, conversion rates were inconsistent, and ad spend was rising. Another challenge was building a unified funnel strategy where ads, landing pages, and email nurturing worked together.",
+          "approach": "I developed a multi-channel demand generation plan across Google Ads, LinkedIn Ads, and email automation. The strategy prioritized targeting high-intent segments with tailored messaging, creating persona-specific ad creatives, aligning paid campaigns with content offers (webinars, whitepapers), and designing structured A/B tests for messaging, creatives, and CTAs.",
+          "execution": "• Launched multi-ad set campaigns on Google Search, Display, and LinkedIn Sponsored Content + InMail. \n• Built custom landing pages optimized for conversions by testing headlines, form length, and CTA placement. \n• Implemented HubSpot workflows with segmented nurture drips based on funnel stage. \n• Tracked CPL and lead quality in GA4 + HubSpot dashboards with daily monitoring. \n• Reduced wasted spend via negative keyword strategy and reallocated 25% of ad spend to best-performing channels.",
+          "results": [
+            "Reduced CPL by 18% within 3 months",
+            "Increased qualified lead volume by 22% quarter-over-quarter",
+            "Boosted ROI by reallocating budget into high-performing channels",
+            "Improved email engagement rates by 30% through segmented automation",
+            "Strengthened sales-marketing alignment with weekly performance dashboards"
+          ],
+          "takeaways": "This project proved that a data-driven growth framework can deliver efficiency and scale. Beyond execution, I drove strategic alignment between performance marketing and nurturing, positioning Practo for predictable pipeline growth."
+        }'>
+          <div class="project-thumb" style="background-image:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3'); background-size:cover; background-position:center"></div>
+          <div class="project-body">
+            <h4 class="project-title">Performance Marketing Optimization</h4>
+            <p class="project-desc">Reduced CPL by 18% and boosted qualified leads by 22% through multi-channel campaigns (Google Ads, LinkedIn, Email) with Practo.</p>
+          </div>
+        </div>
+
+        <div class="project-card" data-project='{
+          "title": "Content Strategy & SEO Growth",
+          "subtitle": "Improved engagement by 30% and scaled inbound traffic",
+          "challenge": "Practo needed to establish stronger organic authority, drive consistent inbound leads from healthcare professionals and patients, and reduce dependency on paid channels. Content was fragmented and lacked a cohesive SEO-driven structure.",
+          "approach": "I created a keyword-first content strategy anchored on pillar pages and supporting blogs. The plan focused on aligning content with user intent across the funnel, optimizing technical SEO, and building thought leadership pieces like whitepapers and case studies.",
+          "execution": "• Conducted comprehensive keyword research and competitor analysis. \n• Built content calendars for blogs, landing pages, and gated assets. \n• Collaborated with product and sales teams for subject matter input. \n• Optimized on-page SEO (metadata, headings, schema) and fixed technical issues. \n• Implemented internal linking to improve discoverability and domain authority.",
+          "results": [
+            "Engagement increased by 30% within 4 months",
+            "Inbound traffic scaled steadily quarter-over-quarter",
+            "Improved lead quality from organic traffic",
+            "Positioned Practo as a thought leader in health-tech marketing"
+          ],
+          "takeaways": "A structured SEO + content framework can compound growth over time. This initiative proved that investing in educational, intent-driven content reduces dependency on paid channels while boosting long-term inbound pipelines."
+        }'>
+          <div class="project-thumb" style="background-image:url('https://marginmedia.com.au/hubfs/shutterstock_2257709177.jpg'); background-size:cover; background-position:center"></div>
+          <div class="project-body">
+            <h4 class="project-title">Content Strategy & SEO Growth</h4>
+            <p class="project-desc">Developed content calendars, blogs, and landing pages that improved engagement by 30% and scaled inbound traffic.</p>
+          </div>
+        </div>
+
+        <div class="project-card" data-project='{
+          "title": "Social Media Campaigns & Partnerships",
+          "subtitle": "Executed influencer collaborations driving 15% lift in bookings & 20% Instagram growth",
+          "challenge": "OYO Hotels wanted to boost seasonal bookings and awareness among younger audiences. Traditional ads had plateaued, and brand recall in local markets was weak.",
+          "approach": "I developed a localized social media strategy combining influencer partnerships, authentic storytelling, and seasonal promotions. The focus was to build credibility via micro-influencers while leveraging OYO existing channels for amplification.",
+          "execution": "• Identified and partnered with travel and lifestyle micro-influencers for co-branded content. \n• Managed Instagram, Facebook, and LinkedIn calendars with engaging themes. \n• Designed seasonal promotional campaigns tailored for younger demographics. \n• Implemented UGC (user-generated content) contests to drive engagement. \n• Monitored campaign metrics using Hootsuite and native analytics tools.",
+          "results": [
+            "Seasonal bookings increased by 15%",
+            "Instagram followers grew by 20% in 6 months",
+            "Improved brand recall and awareness in key markets",
+            "Increased engagement rates on social posts by 25%"
+          ],
+          "takeaways": "Community-driven content and influencer collaborations are powerful levers for brand growth. This project reinforced the importance of authenticity in digital marketing, particularly when targeting younger, experience-driven audiences."
+        }'>
+          <div class="project-thumb" style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3'); background-size:cover; background-position:center"></div>
+          <div class="project-body">
+            <h4 class="project-title">Social Media Campaigns & Partnerships</h4>
+            <p class="project-desc">Planned and executed influencer collaborations at OYO Hotels, driving a 15% lift in seasonal bookings and increasing Instagram followers by 20%.</p>
+          </div>
+        </div>
+
+        <div class="project-card" data-project='{
+          "title": "Email & Lifecycle Campaigns",
+          "subtitle": "Automated nurture flows improved conversion rates by 48% and boosted retention",
+          "challenge": "Practo struggled with lead-to-customer conversions and customer retention. Many leads stalled in the funnel, and churn rates were rising due to limited engagement post-signup.",
+          "approach": "I designed segmented email journeys tailored to different funnel stages and customer personas. The strategy aimed to personalize communication, nurture leads through value-driven content, and re-engage dormant customers.",
+          "execution": "• Built HubSpot automation workflows with stage-specific drip campaigns. \n• Crafted personalized content for awareness, consideration, and decision stages. \n• Ran A/B tests on subject lines, send times, and content layouts. \n• Implemented re-engagement campaigns for dormant leads with special offers. \n• Set up lifecycle reporting dashboards to measure conversion and retention.",
+          "results": [
+            "Conversion rates improved by 48%",
+            "Customer LTV increased through better retention",
+            "Reduced churn with consistent lifecycle touchpoints",
+            "Email engagement rates grew by 35% (open + click-through)"
+          ],
+          "takeaways": "Well-structured lifecycle marketing ensures that leads are nurtured into customers and customers into long-term advocates. Personalization and automation were critical in driving conversions and boosting LTV."
+        }'>
+          <div class="project-thumb" style="background-image:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3'); background-size:cover; background-position:center"></div>
+          <div class="project-body">
+            <h4 class="project-title">Email & Lifecycle Campaigns</h4>
+            <p class="project-desc">Built automated nurture flows that improved conversion rates by 48%, focusing on retention and customer LTV.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sample Landing Pages Section -->
+  <section class="sample-section section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-aos="fade-up">Sample Landing Pages</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Custom-designed landing pages for different industries and conversion goals.
+        </p>
+      </div>
+
+      <div class="sample-grid">
+        <div id="landing-preview" class="preview-card">
+          <img id="preview-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" alt="SaaS Landing Page">
+          <div class="preview-content">
+            <h3 id="preview-title">SaaS Landing Page</h3>
+            <a id="preview-link" href="#" target="_blank">View Live ↗</a>
+          </div>
+        </div>
+
+        <div class="list">
+          <button class="landing-btn active"
+            data-img="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
+            data-title="SaaS Landing Page"
+            data-link="#">
+            SaaS Landing Page
+          </button>
+          <button class="landing-btn"
+            data-img="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=800&auto=format&fit=crop"
+            data-title="E-commerce Landing Page"
+            data-link="#">
+            E-commerce Landing Page
+          </button>
+          <button class="landing-btn"
+            data-img="https://images.unsplash.com/photo-1586953208448-b95a79798f07?q=80&w=800&auto=format&fit=crop"
+            data-title="Creative Studio Landing Page"
+            data-link="#">
+            Creative Studio Landing Page
+          </button>
+          <button class="landing-btn"
+            data-img="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=800&auto=format&fit=crop"
+            data-title="Product Launch Landing Page"
+            data-link="#">
+            Product Launch Landing Page
+          </button>
+          <button class="landing-btn"
+            data-img="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop"
+            data-title="Course Landing Page"
+            data-link="#">
+            Course Landing Page
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Articles Section -->
+  <section class="articles section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-aos="fade-up">Articles & Insights</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Thoughts on marketing strategy, growth tactics, and industry trends.
+        </p>
+      </div>
+
+      <div class="articles-grid" data-aos="fade-up">
+        <article class="article">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Maximizing ROI with Data-Driven Campaigns">
+          <div class="article-content">
+            <h5>Maximizing ROI with Data-Driven Campaigns</h5>
+            <p>How leveraging analytics and KPI tracking can reduce costs and increase conversions in modern marketing campaigns...</p>
+            <button class="btn btn-primary"
+              onclick="openArticle(
+                'Maximizing ROI with Data-Driven Campaigns',
+                '<p>In today\'s digital landscape, brands can\'t afford to rely on intuition alone. Data-driven campaigns have become the backbone of high-performing marketing strategies, ensuring every dollar spent is accountable and measurable.</p><p>At Practo, I experienced firsthand how structured KPI tracking transformed performance marketing. By leveraging Google Analytics and HubSpot dashboards, we optimized campaigns across Google Ads, LinkedIn, and email — ultimately reducing cost-per-lead (CPL) by 18% while increasing qualified lead volume by more than 20%. The key was not just collecting data, but interpreting it to refine targeting, messaging, and budget allocation.</p><p>A strong data strategy means going beyond vanity metrics. Instead of focusing solely on clicks or impressions, the real power lies in mapping metrics to business objectives — whether that\'s pipeline growth, revenue attribution, or customer lifetime value. When marketing and sales teams align on these KPIs, campaigns become far more effective.</p><p>The result is scalable, predictable growth. Data turns marketing from a cost center into a revenue engine, enabling brands to continuously test, learn, and optimize. For companies aiming to grow in competitive markets, data-driven campaigns aren\'t optional — they\'re the foundation of sustainable ROI.</p>'
+              )">Read More →</button>
+          </div>
+        </article>
+
+        <article class="article">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" alt="The Power of Influencer Partnerships in Local Growth">
+          <div class="article-content">
+            <h5>The Power of Influencer Partnerships in Local Growth</h5>
+            <p>Why micro-influencer collaborations and event partnerships drive stronger engagement and authentic brand connections...</p>
+            <button class="btn btn-primary"
+              onclick="openArticle(
+                'The Power of Influencer Partnerships in Local Growth',
+                '<p>While paid media can deliver reach, nothing builds authentic brand connection like influencer partnerships. Especially in community-focused industries such as hospitality, micro-influencers offer a powerful way to generate awareness and trust.</p><p>During my time at OYO Hotels, we executed influencer-led campaigns and local event partnerships that directly boosted seasonal bookings by 15%. By collaborating with creators who already had established credibility in their communities, we amplified OYO\'s message in a way that felt authentic and relatable. Unlike traditional ads, this strategy built trust faster and engaged audiences at a deeper level.</p><p>Micro-influencers in particular hold unique value. Their audiences are smaller but highly engaged, making them ideal for driving conversions rather than just impressions. Pairing their voices with event-based activations created a word-of-mouth effect that extended well beyond the campaign window.</p><p>The takeaway is simple: when brands view influencers as long-term partners instead of one-off channels, they create stronger community ties and lasting impact. In a digital world where consumers crave authenticity, influencer marketing is more than a trend — it\'s a sustainable growth lever for modern brands.</p>'
+              )">Read More →</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume Section -->
+  <div class="container">
+    <section class="resume" data-aos="fade-up">
+      <h3>Resume</h3>
+      <p>
+        Download a PDF version of my resume or explore my professional journey online.
+      </p>
+      <div class="resume-actions">
+        <a class="btn btn-primary" href="#" download>
+          📄 Download Resume (PDF)
+        </a>
+        <a class="btn btn-outline" href="#work">
+          🔍 View Experience
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-aos="fade-up">Let's Build Your Next Campaign</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          I'd love to connect — tell me about your goals and I'll propose a short plan. No spam, just real strategy.
+        </p>
+      </div>
+
+      <div class="contact-grid" data-aos="fade-up">
+        <div class="contact-info">
+          <h3>Get In Touch</h3>
+          <p>
+            Ready to start your next project? I'd love to hear from you. Send me a message and I'll respond as soon as possible.
+          </p>
+
+          <div style="margin-top: 32px;">
+            <p style="color: var(--muted-foreground); margin-bottom: 16px;">Or reach out via</p>
+            <div class="social">
+              <a href="mailto:shreshthsaini45@gmail.com">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Email
+              </a>
+
+              <a href="https://www.linkedin.com/in/shreshth-saini-6296971b1/" target="_blank" rel="noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M8 11v6M8 8v.01M12 11v6M17 11v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                LinkedIn
+              </a>
+
+              <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.25-.88a1.13 1.13 0 1 1-2.25 0 1.13 1.13 0 0 1 2.25 0Z"/>
+                </svg>
+                Instagram
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <!-- Calendly embed would go here -->
+          <div class="calendly-inline-widget"
+               data-url="https://calendly.com/shreshthsaini/book-a-call-with-shreshth"       
+               style="min-width:320px; height:700px; background: var(--muted); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: var(--muted-foreground);">
+            📅 Calendly integration would appear here
+          </div>
+          <div style="margin-top:12px; color:var(--muted-foreground); text-align: center;">💡 I usually reply within 24 hours.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>Shreshth Saini</h3>
+          <p>
+            Marketing Specialist passionate about creating exceptional digital experiences 
+            with modern technologies and data-driven strategies.
+          </p>
+          <div class="social">
+            <a href="mailto:shreshthsaini45@gmail.com">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/shreshth-saini-6296971b1/" target="_blank" rel="noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M8 11v6M8 8v.01M12 11v6M17 11v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">SEO & Content</a></li>
+            <li><a href="#services">Paid Media</a></li>
+            <li><a href="#services">Social Strategy</a></li>
+            <li><a href="#services">Email Campaigns</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Shreshth Saini. All rights reserved.</p>
+        <p>Made with ❤️ using modern web technologies</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal">
+      <button class="close" onclick="closeModal()">×</button>
+      <h3 id="modalTitle"></h3>
+      <p id="modalSubtitle" style="color:var(--muted-foreground); font-style:italic; margin-bottom: 24px;"></p>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <script>
+    // Initialize AOS
     AOS.init({
       duration: 900,
       easing: "ease-out-cubic",
       once: true,
       offset: 80
     });
-    new Rellax('.parallax', { speed: -2, center: true });
-  });
-</script>
-  
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const dock = document.querySelector('.header-dock.premium-dock');
-    const toggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('#main-nav'); // nav must have id="main-nav"
-    const navLinks = document.querySelectorAll('#main-nav a');
 
-    // Dock entrance animation
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    
+    // Check for saved theme preference or default to light mode
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      html.classList.add('dark');
+      updateThemeIcon(true);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = html.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateThemeIcon(isDark);
+    });
+
+    function updateThemeIcon(isDark) {
+      themeToggle.innerHTML = isDark 
+        ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>'
+        : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>';
+    }
+
+    // Header Animation & Mobile Menu
+    const header = document.getElementById('header');
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('nav');
+
     setTimeout(() => {
-      dock?.classList.add('show');
+      header.classList.add('show');
     }, 200);
 
-    // Dropdown toggle (for mobile)
-    if (toggle && nav) {
-      toggle.addEventListener('click', (e) => {
-        e.stopPropagation(); // prevent closing immediately
-        const expanded = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', String(!expanded));
-        nav.classList.toggle('show');
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      nav.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('header')) {
+        nav.classList.remove('show');
+      }
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          nav.classList.remove('show');
+        }
+      });
+    });
+
+    // Active navigation link on scroll
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('nav a[href^="#"]');
+      let current = '';
+
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 120;
+        if (window.scrollY >= top) {
+          current = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Timeline animation
+    const timelineEvents = document.querySelectorAll('.timeline-event');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    timelineEvents.forEach(event => observer.observe(event));
+
+    // Performance metrics animation
+    function animateMetrics() {
+      const gauges = document.querySelectorAll('.gauge .fg');
+      const scores = [94, 89, 96, 87]; // FCP, LCP, CLS, TBT
+      
+      gauges.forEach((gauge, index) => {
+        const radius = gauge.getAttribute('r');
+        const circumference = 2 * Math.PI * radius;
+        const score = scores[index];
+        const offset = circumference - (score / 100) * circumference;
+        
+        gauge.style.strokeDasharray = circumference;
+        gauge.style.strokeDashoffset = circumference;
+        
+        setTimeout(() => {
+          gauge.style.transition = 'stroke-dashoffset 2s ease';
+          gauge.style.strokeDashoffset = offset;
+        }, 500 + index * 200);
       });
     }
 
-    // Close dropdown if clicked outside
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.header-dock')) {
-        nav?.classList.remove('show');
-        toggle?.setAttribute('aria-expanded', 'false');
-      }
+    // Animate metrics when section comes into view
+    const metricsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateMetrics();
+          metricsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const performanceSection = document.querySelector('.performance-section');
+    if (performanceSection) {
+      metricsObserver.observe(performanceSection);
+    }
+
+    // Carousel functionality
+    let currentSlide = 0;
+    const slides = document.querySelector('.slides');
+    const slideItems = document.querySelectorAll('.slide');
+    const indicatorsContainer = document.getElementById('indicators');
+    const totalSlides = slideItems.length;
+
+    // Create indicators
+    slideItems.forEach((_, idx) => {
+      const dot = document.createElement('span');
+      if (idx === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => moveToSlide(idx));
+      indicatorsContainer.appendChild(dot);
     });
 
-    // Close nav when clicking a link (on mobile)
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('show');
-        toggle?.setAttribute('aria-expanded', 'false');
+    const dots = indicatorsContainer.querySelectorAll('span');
+
+    function moveToSlide(index) {
+      currentSlide = index;
+      slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
+    }
+
+    function moveSlide(direction) {
+      const newIndex = (currentSlide + direction + totalSlides) % totalSlides;
+      moveToSlide(newIndex);
+    }
+
+    // Auto-play carousel
+    let autoPlay = setInterval(() => {
+      moveSlide(1);
+    }, 8000);
+
+    function resetAutoplay() {
+      clearInterval(autoPlay);
+      autoPlay = setInterval(() => {
+        moveSlide(1);
+      }, 8000);
+    }
+
+    // Landing page preview functionality
+    const landingButtons = document.querySelectorAll('.landing-btn');
+    const previewImg = document.getElementById('preview-img');
+    const previewTitle = document.getElementById('preview-title');
+    const previewLink = document.getElementById('preview-link');
+    const previewCard = document.getElementById('landing-preview');
+
+    landingButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        landingButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        previewImg.src = btn.dataset.img;
+        previewImg.alt = btn.dataset.title;
+        previewTitle.textContent = btn.dataset.title;
+        previewLink.href = btn.dataset.link;
+
+        previewCard.classList.remove('fade');
+        void previewCard.offsetWidth;
+        previewCard.classList.add('fade');
       });
     });
-  });
 
-  // Active link highlight on scroll
-  window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.header-dock nav a');
-    let current = '';
+    // Modal functionality
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSubtitle = document.getElementById('modalSubtitle');
+    const modalContent = document.getElementById('modalContent');
 
-    sections.forEach(sec => {
-      const top = sec.offsetTop - 120; // adjust offset for dock height
-      if (window.scrollY >= top) {
-        current = sec.getAttribute('id');
+    // Project modal
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('click', () => openProject(card));
+    });
+
+    function openProject(el) {
+      const data = el.dataset.project ? JSON.parse(el.dataset.project) : null;
+      if (!data) return;
+
+      modalTitle.textContent = data.title;
+      modalSubtitle.textContent = data.subtitle || "";
+
+      let contentHtml = "";
+      if (data.challenge) contentHtml += `<h4>Challenge</h4><p>${data.challenge}</p>`;
+      if (data.approach) contentHtml += `<h4>Approach</h4><p>${data.approach}</p>`;
+      if (data.execution) {
+        const execItems = data.execution.split("\n").map(e => e.trim()).filter(e => e);
+        contentHtml += `<h4>Execution</h4><ul>${execItems.map(e => `<li>${e.replace(/^•\s*/, "")}</li>`).join("")}</ul>`;
       }
-    });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
-        link.classList.add('active');
+      if (data.results) {
+        contentHtml += `<h4>Results</h4><ul>${data.results.map(r => `<li>${r}</li>`).join("")}</ul>`;
       }
+      if (data.takeaways) {
+        contentHtml += `<h4>Key Takeaways</h4><p>${data.takeaways}</p>`;
+      }
+      
+      modalContent.innerHTML = contentHtml;
+      showModal();
+    }
+
+    function openArticle(title, content) {
+      modalTitle.textContent = title;
+      modalSubtitle.textContent = "";
+      modalContent.innerHTML = content;
+      showModal();
+    }
+
+    function showModal() {
+      modalBackdrop.style.display = 'grid';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modalBackdrop.style.display = 'none';
+      document.body.style.overflow = '';
+      modalTitle.textContent = '';
+      modalSubtitle.textContent = '';
+      modalContent.innerHTML = '';
+    }
+
+    // Close modal on backdrop click or Escape key
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) closeModal();
     });
-  });
-</script>
 
-<script>
-  const buttons = document.querySelectorAll('.landing-btn');
-  const previewImg = document.getElementById('preview-img');
-  const previewTitle = document.getElementById('preview-title');
-  const previewLink = document.getElementById('preview-link');
-  const previewCard = document.getElementById('landing-preview');
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      previewImg.src = btn.dataset.img;
-      previewImg.alt = btn.dataset.title;
-      previewTitle.textContent = btn.dataset.title;
-      previewLink.href = btn.dataset.link;
-
-      // animate
-      previewCard.classList.remove('fade');
-      void previewCard.offsetWidth;
-      previewCard.classList.add('fade');
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
     });
-  });
-</script>
-  
-</script>
+
+    // Make global functions available
+    window.moveSlide = moveSlide;
+    window.openArticle = openArticle;
+    window.closeModal = closeModal;
+  </script>
 </body>
 </html>
