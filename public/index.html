@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
   
   <style>
     /* === CSS VARIABLES & RESET === */
@@ -1969,24 +1971,6 @@
       font-size: 0.875rem;
       font-weight: 500;
     }
-
-
-/* Highlight active tab */
-.tab-active {
-  background: linear-gradient(to right, #4f46e5, #8b5cf6);
-  color: white !important;
-  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.4);
-}
-
-/* Smooth fade-in cards */
-.fade {
-  animation: fadeIn 0.4s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
     
     
   </style>
@@ -3030,38 +3014,137 @@
     </div>
   </section>
 
-<section id="resources" class="py-16 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
+<!-- Downloadable Assets Section -->
+<section class="py-20 bg-[#0b0f1a] text-white">
+  <div class="max-w-6xl mx-auto px-6">
 
-    <!-- Header -->
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-      <div>
-        <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-white">Free Resources</h2>
-        <p class="mt-2 text-slate-300 max-w-2xl">
-          Ungated playbooks, templates, and checklists I use with clients. Download, duplicate, ship.
-        </p>
+    <!-- Gradient Heading -->
+    <h2 class="text-4xl font-extrabold text-center bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-12">
+      Downloadable Assets
+    </h2>
+
+    <!-- Tabs + Search -->
+    <div class="flex flex-col md:flex-row justify-between items-center mb-10 space-y-4 md:space-y-0">
+
+      <!-- Tabs -->
+      <div class="flex space-x-4">
+        <button data-tab="playbooks" class="tab-btn px-5 py-2 rounded-lg bg-purple-600 text-white font-medium">
+          Playbooks
+        </button>
+        <button data-tab="checklists" class="tab-btn px-5 py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700">
+          Checklists
+        </button>
+        <button data-tab="templates" class="tab-btn px-5 py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700">
+          Templates
+        </button>
+        <button data-tab="frameworks" class="tab-btn px-5 py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700">
+          Frameworks
+        </button>
       </div>
-      <div class="relative">
-        <input id="searchInput" placeholder="Search assets…" 
-          class="w-full md:w-72 rounded-2xl bg-slate-800/60 outline-none border border-slate-700/60 px-4 py-2 text-slate-100 placeholder:text-slate-400" />
+
+      <!-- Search Bar -->
+      <div class="relative w-full md:w-64">
+        <input
+          type="text"
+          id="assetSearch"
+          placeholder="Search assets..."
+          class="w-full px-4 py-2 rounded-lg bg-gray-800 text-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+        />
+        <span class="absolute right-3 top-2.5 text-gray-400">⌘K</span>
       </div>
     </div>
 
-    <!-- Tabs -->
-    <div class="mt-6 overflow-x-auto scrollbar-none">
-      <div id="tabs" class="inline-flex gap-2 rounded-2xl bg-slate-800/50 p-1 border border-slate-700/60"></div>
+    <!-- Tab Content -->
+    <div id="playbooks" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- Card 1 -->
+      <div class="asset-card bg-[#111827] rounded-2xl p-6 shadow hover:shadow-lg transition" data-title="B2B Growth Playbook">
+        <div class="h-32 bg-gradient-to-br from-purple-900 to-blue-900 rounded-lg mb-4"></div>
+        <h3 class="text-lg font-semibold mb-2">B2B Growth Playbook</h3>
+        <p class="text-gray-400 text-sm mb-4">End-to-end system for predictable growth.</p>
+        <a href="#" class="inline-block px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-sm font-medium">
+          Download
+        </a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="asset-card bg-[#111827] rounded-2xl p-6 shadow hover:shadow-lg transition" data-title="Content Strategy OS">
+        <div class="h-32 bg-gradient-to-br from-purple-900 to-blue-900 rounded-lg mb-4"></div>
+        <h3 class="text-lg font-semibold mb-2">Content Strategy OS</h3>
+        <p class="text-gray-400 text-sm mb-4">12-month calendar with pillars + formats.</p>
+        <a href="#" class="inline-block px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-sm font-medium">
+          Download
+        </a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="asset-card bg-[#111827] rounded-2xl p-6 shadow hover:shadow-lg transition" data-title="Product Launch Kit">
+        <div class="h-32 bg-gradient-to-br from-purple-900 to-blue-900 rounded-lg mb-4"></div>
+        <h3 class="text-lg font-semibold mb-2">Product Launch Kit</h3>
+        <p class="text-gray-400 text-sm mb-4">Narratives, briefs, checklists for GTM.</p>
+        <a href="#" class="inline-block px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-sm font-medium">
+          Download
+        </a>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="asset-card bg-[#111827] rounded-2xl p-6 shadow hover:shadow-lg transition" data-title="Demand Gen Blueprint">
+        <div class="h-32 bg-gradient-to-br from-purple-900 to-blue-900 rounded-lg mb-4"></div>
+        <h3 class="text-lg font-semibold mb-2">Demand Gen Blueprint</h3>
+        <p class="text-gray-400 text-sm mb-4">From ICP → channels → measurement.</p>
+        <a href="#" class="inline-block px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-sm font-medium">
+          Download
+        </a>
+      </div>
     </div>
 
-    <!-- Grid -->
-    <div id="grid" class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
+    <!-- Checklists -->
+    <div id="checklists" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="asset-card bg-[#111827] rounded-2xl p-6 shadow hover:shadow-lg transition" data-title="Marketing Checklist">
+        <div class="h-32 bg-gradient-to-br from-green-900 to-teal-900 rounded-lg mb-4"></div>
+        <h3 class="text-lg font-semibold mb-2">Marketing Checklist</h3>
+        <p class="text-gray-400 text-sm mb-4">Step-by-step list to streamline campaigns.</p>
+        <a href="#" class="inline-block px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-sm font-medium">
+          Download
+        </a>
+      </div>
+    </div>
 
-    <!-- Footer -->
-    <div class="mt-10 flex items-center justify-between gap-4">
-      <p class="text-slate-400 text-sm">All downloads are free. No email required.</p>
-      <a href="#" class="rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-900/40 hover:opacity-95 active:opacity-90">
+    <!-- Templates -->
+    <div id="templates" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="asset-card bg-[#111827] rounded-2xl p-6 shadow hover:shadow-lg transition" data-title="Proposal Template">
+        <div class="h-32 bg-gradient-to-br from-blue-900 to-cyan-900 rounded-lg mb-4"></div>
+        <h3 class="text-lg font-semibold mb-2">Proposal Template</h3>
+        <p class="text-gray-400 text-sm mb-4">Professional proposals to close deals faster.</p>
+        <a href="#" class="inline-block px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-sm font-medium">
+          Download
+        </a>
+      </div>
+    </div>
+
+    <!-- Frameworks -->
+    <div id="frameworks" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="asset-card bg-[#111827] rounded-2xl p-6 shadow hover:shadow-lg transition" data-title="Growth Framework">
+        <div class="h-32 bg-gradient-to-br from-pink-900 to-purple-900 rounded-lg mb-4"></div>
+        <h3 class="text-lg font-semibold mb-2">Growth Framework</h3>
+        <p class="text-gray-400 text-sm mb-4">Proven system to accelerate scaling.</p>
+        <a href="#" class="inline-block px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-sm font-medium">
+          Download
+        </a>
+      </div>
+    </div>
+
+    <!-- Browse All -->
+    <div class="flex justify-center mt-10">
+      <a href="#" class="px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-blue-500 text-white font-semibold">
         Browse All Resources →
       </a>
     </div>
+
+    <!-- Small Note -->
+    <p class="text-center text-gray-500 text-sm mt-6">
+      All downloads are free. No email required.
+    </p>
   </div>
 </section>
   
@@ -3573,96 +3656,48 @@
 
     setInterval(animateSlider, 40); // ~2 seconds full sweep
 
-    // ---------------- Resources Section ----------------
-const LIBRARY = [
-  {
-    category: "Playbooks",
-    items: [
-      { id: "p1", title: "B2B Growth Playbook", blurb: "End-to-end system for predictable growth.", file: "#" },
-      { id: "p2", title: "Content Strategy OS", blurb: "12-month calendar with pillars + formats.", file: "#" },
-      { id: "p3", title: "Product Launch Kit", blurb: "Narratives, briefs, checklists for GTM.", file: "#" },
-      { id: "p4", title: "Demand Gen Blueprint", blurb: "From ICP → channels → measurement.", file: "#" },
-    ],
-  },
-  {
-    category: "Checklists",
-    items: [
-      { id: "c1", title: "Paid Ads QA Checklist", blurb: "Preflight: tracking, budgets, creatives.", file: "#" },
-      { id: "c2", title: "Email Campaign QA", blurb: "Copy, rendering, deliverability, UTM.", file: "#" },
-    ],
-  },
-  {
-    category: "Templates",
-    items: [
-      { id: "t1", title: "Landing Page Template", blurb: "Wireframe + copy blocks that convert.", file: "#" },
-      { id: "t2", title: "Budget Model (CSV)", blurb: "CAC/LTV + scenario planning.", file: "#" },
-    ],
-  },
-  {
-    category: "Frameworks",
-    items: [
-      { id: "f1", title: "Content Repurposing Framework", blurb: "Turn 1 long-form asset → 10+ pieces.", file: "#" },
-      { id: "f2", title: "Growth Experiment Tracker", blurb: "Prioritize, run, measure tests.", file: "#" },
-    ],
-  },
-];
+ <!-- Script for Tabs + Search -->
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+  const searchInput = document.getElementById('assetSearch');
 
-const tabs = document.getElementById("tabs");
-const grid = document.getElementById("grid");
-const searchInput = document.getElementById("searchInput");
+  // Tab switching
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabButtons.forEach(b => b.classList.remove('bg-purple-600', 'text-white'));
+      tabButtons.forEach(b => b.classList.add('bg-gray-800', 'text-gray-300'));
+      tabContents.forEach(content => content.classList.add('hidden'));
 
-let activeCategory = LIBRARY[0].category;
+      const target = document.getElementById(btn.dataset.tab);
+      target.classList.remove('hidden');
 
-function renderTabs() {
-  tabs.innerHTML = "";
-  LIBRARY.forEach(group => {
-    const btn = document.createElement("button");
-    btn.textContent = group.category;
-    btn.className = "relative isolate whitespace-nowrap rounded-xl px-4 py-2 text-sm font-medium transition-all text-slate-300 hover:text-white";
-    if (group.category === activeCategory) btn.classList.add("tab-active");
-    btn.onclick = () => { activeCategory = group.category; renderTabs(); renderGrid(); };
-    tabs.appendChild(btn);
+      btn.classList.add('bg-purple-600', 'text-white');
+      btn.classList.remove('bg-gray-800', 'text-gray-300');
+
+      // Reset search when switching tabs
+      searchInput.value = "";
+      filterAssets("");
+    });
   });
-}
 
-function renderGrid() {
-  grid.innerHTML = "";
-  const group = LIBRARY.find(g => g.category === activeCategory);
-  const q = searchInput.value.toLowerCase();
-  const filtered = group.items.filter(it =>
-    it.title.toLowerCase().includes(q) || it.blurb.toLowerCase().includes(q)
-  );
+  // Search filtering
+  function filterAssets(query) {
+    const activeTab = document.querySelector('.tab-content:not(.hidden)');
+    const cards = activeTab.querySelectorAll('.asset-card');
 
-  if (filtered.length === 0) {
-    grid.innerHTML = `<div class='col-span-full text-slate-400'>No matches in ${activeCategory}. Try another term.</div>`;
-  } else {
-    filtered.forEach(asset => {
-      const card = document.createElement("div");
-      card.className = "fade group rounded-2xl border border-slate-700/60 bg-slate-900/60 backdrop-blur-sm p-4 shadow-sm hover:shadow-xl hover:shadow-black/40 transition-shadow";
-      card.innerHTML = `
-        <div class="relative aspect-[4/3] overflow-hidden rounded-xl bg-gradient-to-br from-slate-800 to-slate-900">
-          <div class="absolute inset-0 opacity-40 bg-[radial-gradient(50%_50%_at_30%_0%,rgba(99,102,241,0.6),transparent_60%),radial-gradient(50%_50%_at_80%_80%,rgba(168,85,247,0.5),transparent_60%)]"></div>
-          <div class="absolute inset-3 rounded-lg border border-white/10"></div>
-          <div class="absolute bottom-3 left-3 right-3 text-white/90 font-medium tracking-tight text-sm">${asset.title}</div>
-        </div>
-        <div class="mt-3">
-          <p class="text-slate-300 text-sm">${asset.blurb}</p>
-        </div>
-        <div class="mt-4 flex items-center justify-between">
-          <a href="${asset.file}" download class="inline-flex items-center gap-2 rounded-xl bg-slate-800 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-700 transition-colors">
-            <span>Download</span>
-          </a>
-          <button class="opacity-0 group-hover:opacity-100 transition-opacity text-slate-400 hover:text-slate-200 text-xs" onclick="navigator.clipboard.writeText(window.location.origin + '${asset.file}')">Copy link</button>
-        </div>`;
-      grid.appendChild(card);
+    cards.forEach(card => {
+      const title = card.dataset.title.toLowerCase();
+      if (title.includes(query.toLowerCase())) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
     });
   }
-}
 
-searchInput.addEventListener("input", renderGrid);
-
-renderTabs();
-renderGrid();
+  searchInput.addEventListener('input', e => {
+    filterAssets(e.target.value);
+  });
     
   </script>
 </body>
