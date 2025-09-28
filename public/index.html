@@ -1877,6 +1877,99 @@
     height: 300px;
     background: rgba(14, 165, 233, 0.6);
   }
+
+      /* Hire Me Section */
+    #hire-me {
+      padding: 8rem 2rem;
+      background: var(--surface);
+      position: relative;
+    }
+
+    #hire-me .showcase-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    #hire-me .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-align: center;
+      color: var(--primary);
+    }
+
+    #hire-me .section-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    #hire-me .before-after-container {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      margin-top: 3rem;
+    }
+
+    #hire-me .before-after-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--surface-2);
+    }
+
+    #hire-me .before-image,
+    #hire-me .after-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #hire-me .after-image {
+      clip-path: inset(0 0 0 50%);
+      transition: clip-path 0.2s linear;
+    }
+
+    #hire-me .slider-handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: var(--primary);
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    #hire-me .slider-handle::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+    }
+
+    #hire-me .ba-slider {
+      display: none; /* hidden because we animate automatically */
+    }
+
+    #hire-me .ba-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
     
   </style>
 </head>
@@ -2919,6 +3012,79 @@
     </div>
   </section>
 
+   <!-- Hire Me Section -->
+  <section id="hire-me">
+    <div class="showcase-container">
+      <h2 class="section-title">Why Work With Me</h2>
+      <p class="section-subtitle">
+        See the transformation from chaos to clarity when you hire me.
+      </p>
+      
+      <div class="before-after-container">
+        <div class="before-after-wrapper">
+          
+          <!-- BEFORE (Messy Cards) -->
+          <svg class="before-image" viewBox="0 0 1600 900" role="img" aria-label="Before: messy workflow">
+            <rect width="1600" height="900" fill="#0f0f11"/>
+            <g font-family="Inter, system-ui" font-size="28" font-weight="600">
+              <rect x="200" y="150" width="320" height="180" rx="20" fill="#ef4444" transform="rotate(-10 200 150)"/>
+              <text x="230" y="240" fill="white">Email Overload</text>
+              
+              <rect x="600" y="300" width="340" height="200" rx="20" fill="#f59e0b" transform="rotate(8 600 300)"/>
+              <text x="630" y="390" fill="white">Manual Reporting</text>
+              
+              <rect x="280" y="500" width="300" height="160" rx="20" fill="#ec4899" transform="rotate(-6 280 500)"/>
+              <text x="310" y="590" fill="white">Reactive Planning</text>
+              
+              <rect x="950" y="200" width="320" height="180" rx="20" fill="#22c55e" transform="rotate(12 950 200)"/>
+              <text x="980" y="280" fill="white">Hidden Costs</text>
+              
+              <rect x="1100" y="480" width="300" height="160" rx="20" fill="#6b7280" transform="rotate(-12 1100 480)"/>
+              <text x="1130" y="560" fill="white">Missed Deadlines</text>
+            </g>
+            <text x="40" y="60" fill="#94a3b8" font-size="28" font-weight="600">Before</text>
+          </svg>
+          
+          <!-- AFTER (Organized Blocks) -->
+          <svg class="after-image" viewBox="0 0 1600 900" role="img" aria-label="After: working with me">
+            <rect width="1600" height="900" fill="#0f0f11"/>
+            <g font-family="Inter, system-ui" font-size="28" font-weight="600">
+              <rect x="100" y="100" width="500" height="200" rx="20" fill="#3b82f6"/>
+              <text x="150" y="210" fill="white">Streamlined Systems</text>
+              
+              <rect x="650" y="100" width="350" height="150" rx="20" fill="#8b5cf6"/>
+              <text x="670" y="180" fill="white">Automated Dashboards</text>
+              
+              <rect x="1050" y="100" width="400" height="150" rx="20" fill="#22c55e"/>
+              <text x="1080" y="180" fill="white">On-Time Delivery</text>
+              
+              <rect x="650" y="300" width="400" height="180" rx="20" fill="#ec4899"/>
+              <text x="670" y="390" fill="white">Transparent Budgets</text>
+              
+              <rect x="1100" y="320" width="300" height="160" rx="20" fill="#10b981"/>
+              <text x="1120" y="410" fill="white">Proactive Campaigns</text>
+              
+              <rect x="100" y="350" width="520" height="250" rx="20" fill="#6366f1"/>
+              <text x="150" y="480" fill="white">Performance Growth</text>
+              
+              <rect x="700" y="550" width="300" height="160" rx="20" fill="#f59e0b"/>
+              <text x="720" y="640" fill="white">Clear Strategy Map</text>
+            </g>
+            <text x="1520" y="60" text-anchor="end" fill="#94a3b8" font-size="28" font-weight="600">After</text>
+          </svg>
+
+          <!-- Slider Handle -->
+          <div class="slider-handle" id="hireSliderHandle"></div>
+          <input type="range" min="0" max="100" value="50" class="ba-slider" id="hireSlider">
+        </div>
+        <div class="ba-labels">
+          <span>Before: Chaos</span>
+          <span>After: Organized</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
   <!-- Contact Section -->
   <section id="contact" class="contact section">
     <div class="container mx-auto px-4 sm:px-6 lg:px-12 xl:px-20">
@@ -3334,7 +3500,26 @@
       setTimeout(() => preloader.style.display = "none", 500);
     }, 2000); // keep text visible for 2 seconds
   });
-  
+
+    const hireSlider = document.getElementById('hireSlider');
+    const hireSliderHandle = document.getElementById('hireSliderHandle');
+    const hireAfter = document.querySelector('#hire-me .after-image');
+
+    let value = 50;
+    let direction = 1;
+
+    function animateSlider() {
+      value += direction;
+      if (value >= 100 || value <= 0) {
+        direction *= -1; // reverse direction
+      }
+      hireSlider.value = value;
+      hireAfter.style.clipPath = `inset(0 0 0 ${value}%)`;
+      hireSliderHandle.style.left = value + "%";
+    }
+
+    setInterval(animateSlider, 40); // ~2 seconds full sweep
+
     
   </script>
 </body>
