@@ -1970,6 +1970,30 @@
       font-weight: 500;
     }
 
+
+/* Active Tab Highlight */
+.tab-active {
+  background: linear-gradient(to right, #4f46e5, #8b5cf6);
+  color: white !important;
+  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.4);
+}
+
+/* Fade-in animation for cards */
+.fade {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+    
     
   </style>
 </head>
@@ -3012,6 +3036,43 @@
     </div>
   </section>
 
+ <!-- ================= Downloadable Assets Section ================= -->
+<section id="resources" class="w-full px-4 sm:px-6 lg:px-8 py-16 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+  <div class="mx-auto max-w-6xl flex flex-col gap-6">
+
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-white">Free Resources</h2>
+        <p class="mt-2 text-slate-300 max-w-2xl">
+          Ungated playbooks, templates, and checklists I use with clients. Download, duplicate, ship.
+        </p>
+      </div>
+      <div class="relative">
+        <input id="searchInput" placeholder="Search assets…" 
+          class="w-full md:w-72 rounded-2xl bg-slate-800/60 outline-none border border-slate-700/60 px-4 py-2 text-slate-100 placeholder:text-slate-400" />
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="mt-6 overflow-x-auto scrollbar-none">
+      <div id="tabs" class="inline-flex gap-2 rounded-2xl bg-slate-800/50 p-1 border border-slate-700/60"></div>
+    </div>
+
+    <!-- Grid -->
+    <div id="grid" class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
+
+    <!-- Footer -->
+    <div class="mt-10 flex items-center justify-between gap-4">
+      <p class="text-slate-400 text-sm">All downloads are free. No email required.</p>
+      <a href="#" class="rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-900/40 hover:opacity-95 active:opacity-90">
+        Browse All Resources →
+      </a>
+    </div>
+  </div>
+</section>
+<!-- ================= End Downloadable Assets Section ================= -->
+
    <!-- Hire Me Section -->
   <section id="hire-me">
     <div class="showcase-container">
@@ -3519,6 +3580,98 @@
     }
 
     setInterval(animateSlider, 40); // ~2 seconds full sweep
+
+    // ================= Downloadable Assets Section =================
+
+const LIBRARY = [
+  {
+    category: "Playbooks",
+    items: [
+      { id: "p1", title: "B2B Growth Playbook", blurb: "End-to-end system for predictable growth.", file: "#" },
+      { id: "p2", title: "Content Strategy OS", blurb: "12-month calendar with pillars + formats.", file: "#" },
+      { id: "p3", title: "Product Launch Kit", blurb: "Narratives, briefs, checklists for GTM.", file: "#" },
+      { id: "p4", title: "Demand Gen Blueprint", blurb: "From ICP → channels → measurement.", file: "#" },
+    ],
+  },
+  {
+    category: "Checklists",
+    items: [
+      { id: "c1", title: "Paid Ads QA Checklist", blurb: "Preflight: tracking, budgets, creatives.", file: "#" },
+      { id: "c2", title: "Email Campaign QA", blurb: "Copy, rendering, deliverability, UTM.", file: "#" },
+    ],
+  },
+  {
+    category: "Templates",
+    items: [
+      { id: "t1", title: "Landing Page Template", blurb: "Wireframe + copy blocks that convert.", file: "#" },
+      { id: "t2", title: "Budget Model (CSV)", blurb: "CAC/LTV + scenario planning.", file: "#" },
+    ],
+  },
+  {
+    category: "Frameworks",
+    items: [
+      { id: "f1", title: "Content Repurposing Framework", blurb: "Turn 1 long-form asset → 10+ pieces.", file: "#" },
+      { id: "f2", title: "Growth Experiment Tracker", blurb: "Prioritize, run, measure tests.", file: "#" },
+    ],
+  },
+];
+
+const tabs = document.getElementById("tabs");
+const grid = document.getElementById("grid");
+const searchInput = document.getElementById("searchInput");
+
+let activeCategory = LIBRARY[0].category;
+
+function renderTabs() {
+  tabs.innerHTML = "";
+  LIBRARY.forEach(group => {
+    const btn = document.createElement("button");
+    btn.textContent = group.category;
+    btn.className = "relative isolate whitespace-nowrap rounded-xl px-4 py-2 text-sm font-medium transition-all text-slate-300 hover:text-white";
+    if (group.category === activeCategory) btn.classList.add("tab-active");
+    btn.onclick = () => { activeCategory = group.category; renderTabs(); renderGrid(); };
+    tabs.appendChild(btn);
+  });
+}
+
+function renderGrid() {
+  grid.innerHTML = "";
+  const group = LIBRARY.find(g => g.category === activeCategory);
+  const q = searchInput.value.toLowerCase();
+  const filtered = group.items.filter(it =>
+    it.title.toLowerCase().includes(q) || it.blurb.toLowerCase().includes(q)
+  );
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class='col-span-full text-slate-400'>No matches in ${activeCategory}. Try another term.</div>`;
+  } else {
+    filtered.forEach(asset => {
+      const card = document.createElement("div");
+      card.className = "fade group rounded-2xl border border-slate-700/60 bg-slate-900/60 backdrop-blur-sm p-4 shadow-sm hover:shadow-xl hover:shadow-black/40 transition-shadow";
+      card.innerHTML = `
+        <div class="relative aspect-[4/3] overflow-hidden rounded-xl bg-gradient-to-br from-slate-800 to-slate-900"></div>
+          <div class="absolute inset-0 opacity-40 bg-[radial-gradient(50%_50%_at_30%_0%,rgba(99,102,241,0.6),transparent_60%),radial-gradient(50%_50%_at_80%_80%,rgba(168,85,247,0.5),transparent_60%)]"></div>
+          <div class="absolute inset-3 rounded-lg border border-white/10"></div>
+          <div class="absolute bottom-3 left-3 right-3 text-white/90 font-medium tracking-tight text-sm">${asset.title}</div>
+        
+        <div class="mt-3">
+          <p class="text-slate-300 text-sm">${asset.blurb}</p>
+        </div>
+        <div class="mt-4 flex items-center justify-between">
+          <a href="${asset.file}" download class="inline-flex items-center gap-2 rounded-xl bg-slate-800 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-700 transition-colors">
+            <span>Download</span>
+          </a>
+          <button class="opacity-0 group-hover:opacity-100 transition-opacity text-slate-400 hover:text-slate-200 text-xs" onclick="navigator.clipboard.writeText(window.location.origin + '${asset.file}')">Copy link</button>
+        </div>`;
+      grid.appendChild(card);
+    });
+  }
+}
+
+searchInput.addEventListener("input", renderGrid);
+
+renderTabs();
+renderGrid();
 
     
   </script>
