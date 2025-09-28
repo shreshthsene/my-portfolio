@@ -1971,27 +1971,21 @@
     }
 
 
-/* Active Tab Highlight */
+/* Highlight active tab */
 .tab-active {
   background: linear-gradient(to right, #4f46e5, #8b5cf6);
   color: white !important;
   box-shadow: 0 4px 20px rgba(79, 70, 229, 0.4);
 }
 
-/* Fade-in animation for cards */
+/* Smooth fade-in cards */
 .fade {
   animation: fadeIn 0.4s ease-in-out;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
     
     
@@ -3036,9 +3030,8 @@
     </div>
   </section>
 
- <!-- ================= Downloadable Assets Section ================= -->
-<section id="resources" class="w-full px-4 sm:px-6 lg:px-8 py-16 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-  <div class="mx-auto max-w-6xl flex flex-col gap-6">
+<section id="resources" class="py-16 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
 
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
@@ -3071,8 +3064,7 @@
     </div>
   </div>
 </section>
-<!-- ================= End Downloadable Assets Section ================= -->
-
+  
    <!-- Hire Me Section -->
   <section id="hire-me">
     <div class="showcase-container">
@@ -3581,8 +3573,7 @@
 
     setInterval(animateSlider, 40); // ~2 seconds full sweep
 
-    // ================= Downloadable Assets Section =================
-
+    // ---------------- Resources Section ----------------
 const LIBRARY = [
   {
     category: "Playbooks",
@@ -3649,11 +3640,11 @@ function renderGrid() {
       const card = document.createElement("div");
       card.className = "fade group rounded-2xl border border-slate-700/60 bg-slate-900/60 backdrop-blur-sm p-4 shadow-sm hover:shadow-xl hover:shadow-black/40 transition-shadow";
       card.innerHTML = `
-        <div class="relative aspect-[4/3] overflow-hidden rounded-xl bg-gradient-to-br from-slate-800 to-slate-900"></div>
+        <div class="relative aspect-[4/3] overflow-hidden rounded-xl bg-gradient-to-br from-slate-800 to-slate-900">
           <div class="absolute inset-0 opacity-40 bg-[radial-gradient(50%_50%_at_30%_0%,rgba(99,102,241,0.6),transparent_60%),radial-gradient(50%_50%_at_80%_80%,rgba(168,85,247,0.5),transparent_60%)]"></div>
           <div class="absolute inset-3 rounded-lg border border-white/10"></div>
           <div class="absolute bottom-3 left-3 right-3 text-white/90 font-medium tracking-tight text-sm">${asset.title}</div>
-        
+        </div>
         <div class="mt-3">
           <p class="text-slate-300 text-sm">${asset.blurb}</p>
         </div>
@@ -3672,7 +3663,6 @@ searchInput.addEventListener("input", renderGrid);
 
 renderTabs();
 renderGrid();
-
     
   </script>
 </body>
