@@ -1711,9 +1711,9 @@
 
 #preloader h1 {
   margin: 0;              /* remove default h1 margins */
-  line-height: 1.2;       /* keep tight vertical alignment */
+  line-height: 1.2;       /* keeps text vertically aligned */
   color: #fff;
-  font-size: 3rem;        /* large, bold presence on desktop */
+  font-size: clamp(1.6rem, 5vw, 3rem); /* fluid scaling */
   font-family: 'DM Serif Display', serif;
   font-weight: 400;
   letter-spacing: 1px;
@@ -1727,26 +1727,6 @@
   75% { opacity: 1; }
   100% { opacity: 0; }
 }
-
-/* 📱 Responsive font size */
-@media (max-width: 1024px) {
-  #preloader h1 {
-    font-size: 2.5rem; /* tablets & small laptops */
-  }
-}
-
-@media (max-width: 768px) {
-  #preloader h1 {
-    font-size: 2rem; /* large phones */
-  }
-}
-
-@media (max-width: 480px) {
-  #preloader h1 {
-    font-size: 1.6rem; /* small phones */
-  }
-}
-
 
   /* Section Base */
   .how-i-think {
