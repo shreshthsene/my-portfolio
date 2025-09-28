@@ -1701,8 +1701,9 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, var(--background) 0%, var(--muted) 100%);  display: flex;
+  height: 100dvh; /* Fix for mobile browser height issues */
+  background: linear-gradient(135deg, var(--background) 0%, var(--muted) 100%);
+  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
@@ -1714,6 +1715,7 @@
   font-family: 'DM Serif Display', serif;
   font-weight: 400; /* DM Serif Display has only one weight */
   letter-spacing: 1px;
+  text-align: center; /* ensure perfect centering on small screens */
   animation: fadeInOut 2s ease-in-out;
 }
 
@@ -1979,9 +1981,10 @@
 <body>
 
 <!-- Preloader -->
-  <div id="preloader">
-    <h1>Shreshth's Portfolio</h1>
-  </div>
+<div id="preloader">
+  <h1>Shreshth's Portfolio</h1>
+</div>
+
   
   <!-- Header -->
   <header id="header">
