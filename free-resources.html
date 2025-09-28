@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Resources</title>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background: #0f172a;
+      color: #e2e8f0;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin: 0;
+      color: #f8fafc;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.8;
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+
+    .search-bar input {
+      padding: 0.9rem 1.2rem;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 40px;
+      border: none;
+      font-size: 1rem;
+      outline: none;
+      background: #1e293b;
+      color: #f1f5f9;
+      box-shadow: inset 6px 6px 12px #0c111c,
+                  inset -6px -6px 12px #2a354b;
+    }
+
+    .resources {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 1rem;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 6px 6px 16px #0c111c,
+                  -6px -6px 16px #2a354b;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 8px 8px 20px #0c111c,
+                  -8px -8px 20px #2a354b;
+    }
+
+    .icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      margin: 0.5rem 0;
+      font-size: 1.3rem;
+      color: #f8fafc;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      margin-bottom: 1.4rem;
+    }
+
+    .download-btn {
+      display: inline-block;
+      padding: 0.7rem 1.4rem;
+      border-radius: 0.6rem;
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
+      border: none;
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    }
+
+    .download-btn:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      background: #0f172a;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Free Resources</h1>
+    <p>Download all premium templates and guides for free</p>
+  </header>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="🔍 Search resources..." onkeyup="filterResources()" />
+  </div>
+
+  <section class="resources" id="resources">
+    <!-- 13 Resources -->
+    <div class="card" data-type="word">
+      <div class="icon">📄</div>
+      <h3>Customer Persona Worksheet</h3>
+      <p>Define your ideal customer profiles. (PDF)</p>
+      <a href="files/business-report.docx" class="download-btn" download>Download</a>
+    </div>
+
+    <div class="card" data-type="excel">
+      <div class="icon">📊</div>
+      <h3>Marketing Funnel Map</h3>
+      <p>Visualize and optimize your funnel. (PDF)</p>
+      <a href="files/financial-tracker.xlsx" class="download-btn" download>Download</a>
+    </div>
+
+    <div class="card" data-type="pdf">
+      <div class="icon">📕</div>
+      <h3>SWOT Analysis Template</h3>
+      <p>Identify strengths, weaknesses, opportunities, and threats. (PDF)</p>
+      <a href="files/marketing-guide.pdf" class="download-btn" download>Download</a>
+    </div>
+
+    <div class="card" data-type="pdf">
+      <div class="icon">📘</div>
+      <h3>Content Calendar Template</h3>
+      <p>Plan your content with ease. (PDF)</p>
+      <a href="files/startup-handbook.pdf" class="download-btn" download>Download</a>
+    </div>
+
+    <div class="card" data-type="excel">
+      <div class="icon">📊</div>
+      <h3>A/B Testing Log</h3>
+      <p>Track experiences and outcomes. (Excel)</p>
+      <a href="files/budget-planner.xlsx" class="download-btn" download>Download</a>
+    </div>
+
+    <div class="card" data-type="word">
+      <div class="icon">📝</div>
+      <h3>Paid Ads Performance Tracker</h3>
+      <p>Measure ad effectiveness. (Excel)</p>
+      <a href="files/resume-template.docx" class="download-btn" download>Download</a>
+    </div>
+
+    <div class="card" data-type="pdf">
+      <div class="icon">📕</div>
+      <h3>Growth Experiment Tracker</h3>
+      <p>Document and analyze growth experiments. (Excel)</p>
+      <a href="files/social-media-guide.pdf" class="download-btn" download>Download</a>
+    </div>
+
+    <div class="card" data-type="word">
+      <div class="icon">📄</div>
+      <h3>KPI Dashboard Starter</h3>
+      <p>Quick start KPI tracking. (Excel)</p>
+      <a href="files/project-proposal.docx" class="download-btn" download>Download</a>
+    </div>
+
+    <div class="card" data-type="excel">
+      <div class="icon">📊</div>
+      <h3>Website Audit Checklist</h3>
+      <p>Evaluate site performance and UX. (Excel)</p>
+      <a href="files/sales-dashboard.xlsx" class="download-btn" download>Download</a>
+    </div>
+
+    <div class="card" data-type="pdf">
+      <div class="icon">📘</div>
+      <h3>SEO On-Page Optimization Checklist</h3>
+      <p>Boost rankings with structured optimization. (PDF)</p>
+      <a href="files/productivity-hacks.pdf" class="download-btn" download>Download</a>
+    </div>
+
+    <div class="card" data-type="word">
+      <div class="icon">📄</div>
+      <h3>Marketing Channel Audit Sheet</h3>
+      <p>Analyze channel ROI and gaps. (Excel)</p>
+      <a href="files/meeting-agenda.docx" class="download-btn" download>Download</a>
+    </div>
+
+    <div class="card" data-type="excel">
+      <div class="icon">📊</div>
+      <h3>Lead Nurturing Email Sequence Template</h3>
+      <p>Pre-written email workflows. (Word)</p>
+      <a href="files/inventory-tracker.xlsx" class="download-btn" download>Download</a>
+    </div>
+
+    <div class="card" data-type="pdf">
+      <div class="icon">📘</div>
+      <h3>Landing Page Copy Framework</h3>
+      <p>Copywriting framework for conversions. (PDF)</p>
+      <a href="files/remote-work-toolkit.pdf" class="download-btn" download>Download</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Shreshth's Portfolio. All rights reserved.
+  </footer>
+
+  <script>
+    function filterResources() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const cards = document.querySelectorAll(".card");
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(input)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
