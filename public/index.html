@@ -3015,7 +3015,7 @@
   </section>
 
 <!-- Downloadable Assets Section -->
-<section class="py-20 bg-[#0b0f1a] text-white">
+<section class="py-20">
   <div class="max-w-6xl mx-auto px-6">
 
     <!-- Gradient Heading -->
@@ -3077,7 +3077,7 @@
     </div>
 
     <!-- Tracking & Optimizing (5 assets) -->
-    <div id="tracking" class="tab-content grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div id="tracking" class="tab-content hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       <div class="asset-card bg-[#111827] rounded-2xl p-6 shadow hover:shadow-lg transition" data-title="Content Calendar Template">
         <div class="h-32 bg-gradient-to-br from-purple-900 to-blue-900 rounded-lg mb-4"></div>
         <h3 class="text-lg font-semibold mb-2">Content Calendar Template</h3>
@@ -3111,7 +3111,7 @@
     </div>
 
     <!-- Audit & Checklist (3 assets) -->
-    <div id="audit" class="tab-content grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div id="audit" class="tab-content hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       <div class="asset-card bg-[#111827] rounded-2xl p-6 shadow hover:shadow-lg transition" data-title="Website Audit Checklist">
         <div class="h-32 bg-gradient-to-br from-purple-900 to-blue-900 rounded-lg mb-4"></div>
         <h3 class="text-lg font-semibold mb-2">Website Audit Checklist</h3>
@@ -3133,7 +3133,7 @@
     </div>
 
     <!-- Nurturing & Campaign (2 assets) -->
-    <div id="nurturing" class="tab-content grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div id="nurturing" class="tab-content hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       <div class="asset-card bg-[#111827] rounded-2xl p-6 shadow hover:shadow-lg transition" data-title="Lead Nurturing Email Sequence Template">
         <div class="h-32 bg-gradient-to-br from-purple-900 to-blue-900 rounded-lg mb-4"></div>
         <h3 class="text-lg font-semibold mb-2">Lead Nurturing Email Sequence Template</h3>
@@ -3670,7 +3670,7 @@
 
     setInterval(animateSlider, 40); // ~2 seconds full sweep
 
- <!-- Script for Tabs + Search -->
+<!-- Tabs + Search -->
   const tabButtons = document.querySelectorAll('.tab-btn');
   const tabContents = document.querySelectorAll('.tab-content');
   const searchInput = document.getElementById('assetSearch');
@@ -3694,11 +3694,12 @@
     });
   });
 
-  // Search filtering
+  // Search filtering across ALL tabs
   function filterAssets(query) {
     const activeTab = document.querySelector('.tab-content:not(.hidden)');
-    const cards = activeTab.querySelectorAll('.asset-card');
+    if (!activeTab) return;
 
+    const cards = activeTab.querySelectorAll('.asset-card');
     cards.forEach(card => {
       const title = card.dataset.title.toLowerCase();
       if (title.includes(query.toLowerCase())) {
