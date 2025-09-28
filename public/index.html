@@ -1711,11 +1711,11 @@
 
 #preloader h1 {
   color: #fff; /* white text */
-  font-size: 2.5rem; /* larger for strong presence */
+  font-size: 2.5rem; /* desktop default */
   font-family: 'DM Serif Display', serif;
   font-weight: 400; /* DM Serif Display has only one weight */
   letter-spacing: 1px;
-  text-align: center; /* ensure perfect centering on small screens */
+  text-align: center; /* ensure centering on small screens */
   animation: fadeInOut 2s ease-in-out;
 }
 
@@ -1725,6 +1725,19 @@
   25% { opacity: 1; }
   75% { opacity: 1; }
   100% { opacity: 0; }
+}
+
+/* 📱 Responsive font size for smaller screens */
+@media (max-width: 768px) {
+  #preloader h1 {
+    font-size: 2rem; /* tablets & large phones */
+  }
+}
+
+@media (max-width: 480px) {
+  #preloader h1 {
+    font-size: 1.6rem; /* small phones */
+  }
 }
 
 
