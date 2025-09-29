@@ -1229,102 +1229,91 @@
       flex-grow: 1;
     }
 
-    /* === SAMPLE LANDING PAGES === */
+ <!-- === SAMPLE LANDING PAGES === -->
     .sample-section {
-      background: var(--muted);
-    }
+    background: var(--muted);
+  }
 
-    .sample-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 40px;
-      align-items: start;
-    }
+  .preview-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+  }
 
-    .preview-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
+  .preview-card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+  }
 
-    .preview-card img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-      display: block;
-    }
+  .preview-content {
+    padding: 20px;
+  }
 
-    .preview-content {
-      padding: 20px;
-    }
+  .preview-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 16px 0;
+  }
 
-    .preview-content h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
+  .preview-content p {
+    margin-bottom: 16px;
+    font-size: 1rem;
+  }
 
-    .preview-content a {
-      display: inline-block;
-      padding: 10px 18px;
-      background: var(--primary);
-      color: var(--primary-foreground);
-      font-size: 0.9rem;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
+  .preview-content a {
+    display: inline-block;
+    padding: 10px 18px;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    font-size: 0.9rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
 
-    .preview-content a:hover {
-      filter: brightness(1.1);
-    }
+  .preview-content a:hover {
+    filter: brightness(1.1);
+  }
 
-    .list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+  .slider-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 0 20px;
+  }
 
-    .landing-btn {
-      width: 100%;
-      padding: 12px 18px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      font-size: 1rem;
-      text-align: left;
-      cursor: pointer;
-      color: var(--foreground);
-      transition: all 0.3s;
-    }
+  .slider-btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--foreground);
+    transition: all 0.3s;
+  }
 
-    .landing-btn:hover {
-      background: var(--muted);
-    }
+  .slider-btn:hover {
+    background: var(--muted);
+  }
 
-    .landing-btn.active {
-      background: var(--primary);
-      color: var(--primary-foreground);
-      font-weight: 600;
-    }
+  .preview-card.fade {
+    animation: slideIn 0.4s ease forwards;
+  }
 
-    .preview-card.fade {
-      animation: slideIn 0.4s ease forwards;
-    }
-
-    @keyframes slideIn {
-      from { transform: translateX(80px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    @media (max-width: 900px) {
-      .sample-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
+  @keyframes slideIn {
+    from { transform: translateX(80px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+    
     /* === ARTICLES SECTION === */
     .articles {
       background: var(--background);
@@ -2846,88 +2835,31 @@
     </div>
   </section>
 
-  <!-- Sample Landing Pages Section -->
-  <section id="landing-pages" class="sample-section section">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-12 xl:px-20">
-      <div class="section-header">
-        <h2 class="section-title" data-aos="fade-up">Sample Landing Pages</h2>
-        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
-          Custom-designed landing pages for different industries and conversion goals.
-        </p>
+<!-- Sample Landing Pages Section -->
+<section id="landing-pages" class="sample-section section">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-12 xl:px-20">
+    <div class="section-header">
+      <h2 class="section-title" data-aos="fade-up">Sample Landing Pages</h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+        Custom-designed landing pages for different industries and conversion goals.
+      </p>
+    </div>
+
+    <div id="landing-preview" class="preview-card">
+      <img id="preview-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" alt="SaaS Landing Page">
+      <div class="preview-content">
+        <h3 id="preview-title">SaaS Landing Page</h3>
+        <p id="preview-desc">High-converting landing page designed for SaaS companies with clear value proposition and social proof.</p>
+        <a id="preview-link" href="saas-landing/index.html" target="_blank">View Live Demo ↗</a>
       </div>
-
-      <div class="sample-grid">
-        <div id="landing-preview" class="preview-card">
-          <img id="preview-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" alt="SaaS Landing Page">
-          <div class="preview-content">
-            <h3 id="preview-title">SaaS Landing Page</h3>
-            <p id="preview-desc">High-converting landing page designed for SaaS companies with clear value proposition and social proof.</p>
-            <a id="preview-link" href="saas-landing/index.html" target="_blank">View Live Demo ↗</a>
-          </div>
-        </div>
-
-        <div class="list">
-          <button class="landing-btn active"
-            data-img="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
-            data-title="SaaS Landing Page"
-            data-desc="High-converting landing page designed for SaaS companies with clear value proposition and social proof."
-            data-link="saas-landing/index.html">
-            SaaS Landing Page
-          </button>
-          <button class="landing-btn"
-            data-img="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=800&auto=format&fit=crop"
-            data-title="E-Commerce Product Page"
-            data-desc="Optimized product landing page with compelling showcase and streamlined checkout flow."
-            data-link="ecommerce-landing/index.html">
-            E-Commerce Landing Page
-          </button>
-          <button class="landing-btn"
-            data-img="https://images.unsplash.com/photo-1586953208448-b95a79798f07?q=80&w=800&auto=format&fit=crop"
-            data-title="Creative Studio Landing Page"
-            data-desc="Visually stunning portfolio page that showcases creative work and drives client inquiries."
-            data-link="studio-landing/index.html">
-            Creative Studio Landing Page
-          </button>
-          <button class="landing-btn"
-            data-img="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=800&auto=format&fit=crop"
-            data-title="Event Landing Page"
-            data-desc="High-energy event landing page designed to maximize registrations and build excitement."
-            data-link="event-landing/index.html">
-            Event Landing Page
-          </button>
-          <button class="landing-btn"
-            data-img="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop"
-            data-title="Online Course Landing Page"
-            data-desc="Educational course landing page with clear learning outcomes and compelling enrollment CTAs."
-            data-link="course-landing/index.html">
-            Online Course Landing Page
-          </button>
-          <button class="landing-btn"
-            data-img="https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=800&auto=format&fit=crop"
-            data-title="StartUp/Tech Product Landing Page"
-            data-desc="A modern solution designed to simplify workflows, boost productivity, and deliver seamless digital experiences."
-            data-link="tech-landing/index.html">
-            StartUp/Tech Product Landing Page
-          </button>
-          <button class="landing-btn"
-            data-img="https://images.unsplash.com/photo-1732848291412-0ef07002931f?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            data-title="Product Launch Landing Page"
-            data-desc="Experience next-gen style and performance with a smartwatch built for every moment."
-            data-link="product-landing/index.html">
-            Product Launch Landing Page
-          </button>
-          <button class="landing-btn"
-            data-img="agency.jpg"
-            data-title="Agency/Consulting Landing Page"
-            data-desc="A high-converting landing page designed for agencies and consultants to showcase expertise, build trust, and drive client inquiries."
-            data-link="agency-landing/index.html">
-            Agency/Consulting Landing Page
-          </button>
-        </div>
+      <div class="slider-nav">
+        <button id="prev-btn" class="slider-btn">← Previous</button>
+        <button id="next-btn" class="slider-btn">Next →</button>
       </div>
     </div>
-  </section>
-
+  </div>
+</section>
+  
   <!-- Articles Section -->
   <section id="articles" class="articles section">
     <div class="container mx-auto px-4 sm:px-6 lg:px-12 xl:px-20">
@@ -3539,30 +3471,90 @@
       moveSlide(1);
     }, 8000);
 
-    // Landing page preview functionality
-    const landingButtons = document.querySelectorAll('.landing-btn');
-    const previewImg = document.getElementById('preview-img');
-    const previewTitle = document.getElementById('preview-title');
-    const previewDesc = document.getElementById('preview-desc');
-    const previewLink = document.getElementById('preview-link');
-    const previewCard = document.getElementById('landing-preview');
+   
+  const pages = [
+    {
+      img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+      title: "SaaS Landing Page",
+      desc: "High-converting landing page designed for SaaS companies with clear value proposition and social proof.",
+      link: "saas-landing/index.html"
+    },
+    {
+      img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=800&auto=format&fit=crop",
+      title: "E-Commerce Product Page",
+      desc: "Optimized product landing page with compelling showcase and streamlined checkout flow.",
+      link: "ecommerce-landing/index.html"
+    },
+    {
+      img: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?q=80&w=800&auto=format&fit=crop",
+      title: "Creative Studio Landing Page",
+      desc: "Visually stunning portfolio page that showcases creative work and drives client inquiries.",
+      link: "studio-landing/index.html"
+    },
+    {
+      img: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=800&auto=format&fit=crop",
+      title: "Event Landing Page",
+      desc: "High-energy event landing page designed to maximize registrations and build excitement.",
+      link: "event-landing/index.html"
+    },
+    {
+      img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop",
+      title: "Online Course Landing Page",
+      desc: "Educational course landing page with clear learning outcomes and compelling enrollment CTAs.",
+      link: "course-landing/index.html"
+    },
+    {
+      img: "https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=800&auto=format&fit=crop",
+      title: "StartUp/Tech Product Landing Page",
+      desc: "A modern solution designed to simplify workflows, boost productivity, and deliver seamless digital experiences.",
+      link: "tech-landing/index.html"
+    },
+    {
+      img: "https://images.unsplash.com/photo-1732848291412-0ef07002931f?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      title: "Product Launch Landing Page",
+      desc: "Experience next-gen style and performance with a smartwatch built for every moment.",
+      link: "product-landing/index.html"
+    },
+    {
+      img: "agency.jpg",
+      title: "Agency/Consulting Landing Page",
+      desc: "A high-converting landing page designed for agencies and consultants to showcase expertise, build trust, and drive client inquiries.",
+      link: "agency-landing/index.html"
+    }
+  ];
 
-    landingButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        landingButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+  let index = 0;
 
-        previewImg.src = btn.dataset.img;
-        previewImg.alt = btn.dataset.title;
-        previewTitle.textContent = btn.dataset.title;
-        previewDesc.textContent = btn.dataset.desc;
-        previewLink.href = btn.dataset.link;
+  const previewImg = document.getElementById('preview-img');
+  const previewTitle = document.getElementById('preview-title');
+  const previewDesc = document.getElementById('preview-desc');
+  const previewLink = document.getElementById('preview-link');
+  const previewCard = document.getElementById('landing-preview');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
 
-        previewCard.classList.remove('fade');
-        void previewCard.offsetWidth;
-        previewCard.classList.add('fade');
-      });
-    });
+  function showSlide(i) {
+    const p = pages[i];
+    previewImg.src = p.img;
+    previewImg.alt = p.title;
+    previewTitle.textContent = p.title;
+    previewDesc.textContent = p.desc;
+    previewLink.href = p.link;
+
+    previewCard.classList.remove('fade');
+    void previewCard.offsetWidth;
+    previewCard.classList.add('fade');
+  }
+
+  prevBtn.addEventListener('click', () => {
+    index = (index - 1 + pages.length) % pages.length;
+    showSlide(index);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    index = (index + 1) % pages.length;
+    showSlide(index);
+  });
 
     // Modal functionality
     const modalBackdrop = document.getElementById('modalBackdrop');
