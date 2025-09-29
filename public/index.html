@@ -350,35 +350,39 @@
 .hero-video {
   position: relative;
   width: 100%;
-  max-width: 480px;   /* expanded box */
+  max-width: 500px;   /* expanded box */
+  min-height: 320px;  /* ensures more height */
   border-radius: 24px;
   overflow: hidden;
   background: var(--gradient-primary);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   text-align: center;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-video video {
   width: 100%;
-  height: auto;       /* keeps proportions, no cutoff */
+  height: auto;       /* keeps proportions */
   object-fit: cover;
   display: block;
   border-radius: 24px;
 }
 
-/* Subtitle outside the video box */
-.video-subtitle {
-  margin-top: 12px;
+/* Subtitle INSIDE hero-video, under the video */
+.hero-video .video-subtitle {
+  margin-top: 10px;
   font-size: 0.95rem;
-  text-align: center;
   color: var(--muted-foreground);
+  text-align: center;
 }
 
 /* Unmute/Mute button */
 .unmute-btn {
   position: absolute;
-  bottom: 12px;
+  bottom: 50px;   /* lifted up so it doesn’t overlap subtitle */
   right: 12px;
   background: rgba(0,0,0,0.6);
   color: #fff;
@@ -402,7 +406,8 @@
   }
   
   .hero-video {
-    max-width: 300px;
+    max-width: 320px;
+    min-height: 240px;
     margin: 0 auto;
   }
 }
@@ -2078,7 +2083,6 @@
     Your browser does not support the video tag.
   </video>
   <button id="toggleAudioBtn" class="unmute-btn">🔊 Unmute</button>
-</div>
 <p class="video-subtitle">Watch my 16-second portfolio walkthrough</p>
     </div>
     </div>
