@@ -346,35 +346,43 @@
   transform: translateY(-2px);
 }
 
-/* 🔹 Updated hero-video */
+/* 🔹 Updated hero-video (no gradient bg) */
 .hero-video {
   position: relative;
   width: 100%;
   max-width: 500px;   /* expanded box */
-  min-height: 320px;  /* ensures more height */
+  min-height: 320px;  /* ensures proper height */
   border-radius: 24px;
   overflow: hidden;
-  background: var(--gradient-primary);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   text-align: center;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: none;   /* remove gradient background */
 }
 
 .hero-video video {
   width: 100%;
-  height: auto;       /* keeps proportions */
+  height: auto;
   object-fit: cover;
   display: block;
   border-radius: 24px;
 }
 
+/* Subtitle inside hero-video */
+.hero-video .video-subtitle {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+
 /* Unmute/Mute button */
 .unmute-btn {
   position: absolute;
-  bottom: 50px;   /* lifted up so it doesn’t overlap subtitle */
+  bottom: 12px;
   right: 12px;
   background: rgba(0,0,0,0.6);
   color: #fff;
@@ -2069,13 +2077,14 @@
         </div>
       </div>
       
-     <div class="hero-video" data-aos="fade-left" data-aos-delay="200">
+    <div class="hero-video" data-aos="fade-left" data-aos-delay="200">
   <video id="heroVideo" autoplay loop muted playsinline>
     <source src="hero-video.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
-  <button id="toggleAudioBtn" class="unmute-btn">🔊 Unmute</button>
-    </div>
+  <button id="toggleAudioBtn" class="unmute-btn">Unmute</button>
+  <p class="video-subtitle">Watch my 16-second portfolio walkthrough</p>
+</div>
     </div>
   </div>
 </section>
