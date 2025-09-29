@@ -1699,14 +1699,14 @@
 }
 
 #preloader h1 {
-  margin: 0;              /* remove default h1 margins */
-  line-height: 1.2;       /* keeps text vertically aligned */
-  color: #fff;
-  font-size: clamp(1.6rem, 5vw, 3rem); /* fluid scaling */
+  margin: 0;
+  line-height: 1.2;
+  font-size: clamp(1.6rem, 5vw, 3rem);
   font-family: 'DM Serif Display', serif;
   font-weight: 400;
   letter-spacing: 1px;
   animation: fadeInOut 2s ease-in-out;
+  color: var(--foreground); /* dynamic text color */
 }
 
 /* Fade in and fade out effect */
@@ -1715,6 +1715,16 @@
   25% { opacity: 1; }
   75% { opacity: 1; }
   100% { opacity: 0; }
+}
+
+/* Light mode override */
+[data-theme="light"] #preloader h1 {
+  color: #000; /* black text in light mode */
+}
+
+/* Dark mode (default stays white as before) */
+[data-theme="dark"] #preloader h1 {
+  color: #fff;
 }
 
   /* Section Base */
