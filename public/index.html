@@ -349,28 +349,33 @@
 /* 🔹 Updated hero-video */
 .hero-video {
   position: relative;
-  aspect-ratio: 1;
+  width: 100%;
+  max-width: 480px;   /* expanded box */
   border-radius: 24px;
   overflow: hidden;
   background: var(--gradient-primary);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   text-align: center;
+  margin: 0 auto;
 }
 
 .hero-video video {
   width: 100%;
-  height: 100%;
+  height: auto;       /* keeps proportions, no cutoff */
   object-fit: cover;
   display: block;
+  border-radius: 24px;
 }
 
-.hero-video .video-subtitle {
+/* Subtitle outside the video box */
+.video-subtitle {
   margin-top: 12px;
   font-size: 0.95rem;
+  text-align: center;
   color: var(--muted-foreground);
 }
 
-/* Unmute button */
+/* Unmute/Mute button */
 .unmute-btn {
   position: absolute;
   bottom: 12px;
@@ -401,7 +406,7 @@
     margin: 0 auto;
   }
 }
-
+    
     /* === BUTTONS === */
     .btn {
       display: inline-flex;
@@ -2067,16 +2072,15 @@
         </div>
       </div>
       
-      <!-- Right hero video -->
-      <div class="hero-video" data-aos="fade-left" data-aos-delay="200">
-        <video id="heroVideo" autoplay loop muted playsinline>
-          <source src="hero-video.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <button id="unmuteBtn" class="unmute-btn">🔊 Unmute</button>
-        <p class="video-subtitle">Watch my 16-second portfolio walkthrough</p>
-      </div>
-      
+     <div class="hero-video" data-aos="fade-left" data-aos-delay="200">
+  <video id="heroVideo" autoplay loop muted playsinline>
+    <source src="assets/videos/hero-video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <button id="toggleAudioBtn" class="unmute-btn">🔊 Unmute</button>
+</div>
+<p class="video-subtitle">Watch my 16-second portfolio walkthrough</p>
+    </div>
     </div>
   </div>
 </section>
@@ -3762,13 +3766,18 @@
     filterAssets(e.target.value);
   });
 
-    const heroVideo = document.getElementById("heroVideo");
-const unmuteBtn = document.getElementById("unmuteBtn");
+   const heroVideo = document.getElementById("heroVideo");
+const toggleAudioBtn = document.getElementById("toggleAudioBtn");
 
-unmuteBtn.addEventListener("click", () => {
-  heroVideo.muted = false;
-  heroVideo.play();
-  unmuteBtn.style.display = "none"; // hide after unmute
+toggleAudioBtn.addEventListener("click", () => {
+  if (heroVideo.muted) {
+    heroVideo.muted = false;
+    heroVideo.play();
+    toggleAudioBtn.textContent = "🔇 Mute";
+  } else {
+    heroVideo.muted = true;
+    toggleAudioBtn.textContent = "🔊 Unmute";
+  }
 });
     
   </script>
