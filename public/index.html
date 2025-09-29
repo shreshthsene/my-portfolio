@@ -346,12 +346,12 @@
   transform: translateY(-2px);
 }
 
-/* 🔹 Updated hero-video (no gradient bg) */
+/* 🔹 Updated hero-video (bigger size) */
 .hero-video {
   position: relative;
   width: 100%;
-  max-width: 500px;   /* expanded box */
-  min-height: 320px;  /* ensures proper height */
+  max-width: 600px;   /* increased from 500px */
+  min-height: 360px;  /* taller for better presence */
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -360,7 +360,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: none;   /* remove gradient background */
+  background: none;
 }
 
 .hero-video video {
@@ -374,7 +374,7 @@
 /* Subtitle inside hero-video */
 .hero-video .video-subtitle {
   margin-top: 10px;
-  font-size: 0.95rem;
+  font-size: 1rem; /* slightly larger */
   color: var(--muted-foreground);
   text-align: center;
 }
@@ -406,7 +406,7 @@
   }
   
   .hero-video {
-    max-width: 320px;
+    max-width: 340px;  /* slightly larger for mobile too */
     min-height: 240px;
     margin: 0 auto;
   }
@@ -2082,7 +2082,7 @@
     <source src="hero-video.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
-  <button id="toggleAudioBtn" class="unmute-btn">Unmute</button>
+  <button id="toggleAudioBtn" class="unmute-btn">🔊Unmute</button>
   <p class="video-subtitle">Watch my 16-second portfolio walkthrough</p>
 </div>
     </div>
