@@ -375,22 +375,23 @@
   object-fit: cover;
 }
 
-/* Premium-style mute/unmute image button */
-.unmute-img {
+/* Mute/Unmute Toggle Icon */
+.mute-toggle {
   position: absolute;
-  bottom: 12px;
-  right: 12px;
-  z-index: 5;
-  width: 48px;  /* adjust size */
-  height: 48px;
+  bottom: 14px;
+  right: 14px;
+  z-index: 10;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: transform 0.2s ease;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  opacity: 0.85;
 }
 
-.unmute-img:hover {
-  transform: scale(1.1); /* slight zoom for premium feel */
+.mute-toggle:hover {
+  opacity: 1;
+  transform: scale(1.1);
 }
     
 /* Subtitle Button */
@@ -2110,8 +2111,8 @@
       <source src="hero-video.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <!-- Toggle Button Image -->
-    <img src="maxresdefault.jpg" alt="Mute/Unmute" class="unmute-img" id="unmuteBtn">
+    <!-- Toggle Icon -->
+    <img id="muteToggle" class="mute-toggle" src="unmute-icon.png" alt="Toggle Mute">
   </div>
      
   <!-- Subtitle (separate, not inside video box) -->
@@ -3805,15 +3806,15 @@
   });
 
 const video = document.getElementById("heroVideo");
-const btn = document.getElementById("unmuteBtn");
+const toggleBtn = document.getElementById("muteToggle");
 
-btn.addEventListener("click", () => {
+toggleBtn.addEventListener("click", () => {
   if (video.muted) {
     video.muted = false;
-    btn.src = "unmute-icon.png"; // replace with green unmute icon
+    toggleBtn.src = "mute-icon.png"; // red mute icon when sound ON
   } else {
     video.muted = true;
-    btn.src = "mute-icon.png"; // replace with red mute icon
+    toggleBtn.src = "unmute-icon.png"; // green unmute icon when sound OFF
   }
 });
     
