@@ -375,34 +375,22 @@
   object-fit: cover;
 }
 
-/* Premium-style Mute/Unmute Button */
-.unmute-btn {
+/* Premium-style mute/unmute image button */
+.unmute-img {
   position: absolute;
   bottom: 12px;
   right: 12px;
-  z-index: 5; /* ensures it’s above video */
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  border: none;
-  border-radius: 20px;
-  padding: 6px 14px;
-  font-size: 0.85rem;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  z-index: 5;
+  width: 48px;  /* adjust size */
+  height: 48px;
+  border-radius: 50%;
   cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(4px); /* adds premium glass effect */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
 }
 
-.unmute-btn:hover {
-  background: rgba(0, 0, 0, 0.85);
-}
-
-/* Optional: add icon */
-.unmute-btn::before {
-  content: "🔇"; /* use 🔊 for muted */
-  font-size: 1rem;
+.unmute-img:hover {
+  transform: scale(1.1); /* slight zoom for premium feel */
 }
     
 /* Subtitle Button */
@@ -2115,21 +2103,17 @@
         </div>
       </div>
       
-    <div class="hero-video-container" data-aos="fade-left" data-aos-delay="200">
+   <div class="hero-video-container" data-aos="fade-left" data-aos-delay="200">
   <!-- Video Box -->
   <div class="hero-video">
     <video id="heroVideo" autoplay muted loop playsinline>
       <source src="hero-video.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <button class="unmute-btn" id="unmuteBtn">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M5 9v6h4l5 5V4l-5 5H5z"/>
-      </svg>
-      Unmute
-    </button>
+    <!-- Toggle Button Image -->
+    <img src="maxresdefault.jpg" alt="Mute/Unmute" class="unmute-img" id="unmuteBtn">
   </div>
-
+     
   <!-- Subtitle (separate, not inside video box) -->
   <div class="video-subtitle-btn">
     Watch my 16-second portfolio walkthrough
@@ -3826,10 +3810,10 @@ const btn = document.getElementById("unmuteBtn");
 btn.addEventListener("click", () => {
   if (video.muted) {
     video.muted = false;
-    btn.innerHTML = "🔊 Mute";
+    btn.src = "unmute-icon.png"; // replace with green unmute icon
   } else {
     video.muted = true;
-    btn.innerHTML = "🔇 Unmute";
+    btn.src = "mute-icon.png"; // replace with red mute icon
   }
 });
     
