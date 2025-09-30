@@ -3826,18 +3826,10 @@ const btn = document.getElementById("unmuteBtn");
 btn.addEventListener("click", () => {
   if (video.muted) {
     video.muted = false;
-    btn.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M5 9v6h4l5 5V4l-5 5H5z"/>
-      </svg>
-      Mute`;
+    btn.innerHTML = "🔊 Mute";
   } else {
     video.muted = true;
-    btn.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M16.5 12L19 14.5l1.5-1.5L19 11l1.5-1.5L19 8l-2.5 2.5L14 8l-1.5 1.5L14 11l-1.5 1.5L14 14l2.5-2zM5 9v6h4l5 5V4l-5 5H5z"/>
-      </svg>
-      Unmute`;
+    btn.innerHTML = "🔇 Unmute";
   }
 });
     
